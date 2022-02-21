@@ -36,6 +36,13 @@ rtos_mutex g_wifiMutex = NULL;
     }                                      \
 } while(0)
 
+#define WIFI_CLOSE_LINK(link) do { \
+    if ((link) != NULL) { \
+        fhost_cntrl_cfgrwnx_link_close(link); \
+        (link) = NULL; \
+    } \
+} while(0)
+
 void WifiDeviceEntry(void *arg);
 
 void SecureHm2Chipsea(int hmType, uint32_t *akm)
@@ -71,7 +78,7 @@ void SecureChipsea2Hm(int *hmType, uint32_t akm)
     dbg("SecureChipsea2Hm akm = %d,hmType = %d\r\n", akm, *hmType);
 }
 
-int32_t WifiLock()
+int32_t WifiCreateLock()
 {
     if (g_wifiMutex == NULL) {
         if (rtos_mutex_create(&g_wifiMutex) != 0) {
@@ -79,7 +86,7 @@ int32_t WifiLock()
             return ERROR_WIFI_NOT_AVAILABLE;
         }
     }
-    if (g_wifiMutex != NULL) { \
+    if (g_wifiMutex != NULL) {
         if (rtos_mutex_lock(g_wifiMutex, osWaitForever) != 0) {
             dbg("wifiDevice:mutex lock err\r\n");
             return ERROR_WIFI_NOT_AVAILABLE;
@@ -108,7 +115,10 @@ WifiErrorCode AddDeviceConfig(const WifiDeviceConfig *config, int *result)
     PARAM_CHECK(result);
     uint8_t index;
 
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return ERROR_WIFI_NOT_AVAILABLE;
+    }
+
     for (index = 0; index < WIFI_MAX_CONFIG_SIZE; index++) {
         if (g_wifiData.deviceTab[index].used == 0) {
             memcpy(&g_wifiData.deviceTab[index].devConf, config, sizeof(WifiDeviceConfig));
@@ -133,7 +143,10 @@ WifiErrorCode GetDeviceConfigs(WifiDeviceConfig *result, unsigned int *size)
     uint8_t index;
     uint8_t cnt;
 
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return ERROR_WIFI_NOT_AVAILABLE;
+    }
+
     for (index = 0,cnt = 0; index < WIFI_MAX_CONFIG_SIZE; index++) {
         if (g_wifiData.deviceTab[index].used == 1) {
             memcpy(result + cnt, &g_wifiData.deviceTab[index].devConf, sizeof(WifiDeviceConfig));
@@ -154,13 +167,11 @@ WifiErrorCode RemoveDevice(int networkId)
     return WIFI_SUCCESS;
 }
 
-static int32_t SetVif()
+static int32_t SetStaVif()
 {
-     ipc_host_cntrl_start();
+    ipc_host_cntrl_start();
 
-    if (g_wifiData.consoleCntrlLink != NULL) {
-        fhost_cntrl_cfgrwnx_link_close(g_wifiData.consoleCntrlLink);
-    }
+    WIFI_CLOSE_LINK(g_wifiData.consoleCntrlLink);
     g_wifiData.consoleCntrlLink = fhost_cntrl_cfgrwnx_link_open();
     if (g_wifiData.consoleCntrlLink == NULL) {
         dbg("Failed to open link with control task\n");
@@ -169,6 +180,7 @@ static int32_t SetVif()
 
     if (fhost_set_vif_type(g_wifiData.consoleCntrlLink, DEFAULT_STA_VIF, VIF_UNKNOWN, false) ||
         fhost_set_vif_type(g_wifiData.consoleCntrlLink, DEFAULT_STA_VIF, VIF_STA, false)) {
+        WIFI_CLOSE_LINK(g_wifiData.consoleCntrlLink);
         return ERROR_WIFI_UNKNOWN;
     }
 
@@ -184,7 +196,9 @@ WifiErrorCode Scan(void)
         .payLoad = 0,
     };
 
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return ERROR_WIFI_NOT_AVAILABLE;
+    }
     if (rtos_queue_write(g_wifiData.wifiQueue, &msg, 1, false) != 0) {
         dbg("wifiDevice:rtos_queue_write err\r\n");
         WifiUnlock();
@@ -199,24 +213,22 @@ int32_t DoScan(void)
     WIFI_STATE_INVALID_CHECK(WIFI_STA_NOT_ACTIVE);
 
     g_wifiData.scanSize = 0;
-    if (SetVif() != WIFI_SUCCESS) {
-        dbg("SetVif err\r\n");
-        goto scanerr;
+    if (SetStaVif() != WIFI_SUCCESS) {
+        dbg("SetStaVif err\r\n");
+        DoScanCallBack(WIFI_STATE_NOT_AVALIABLE, 0);
+        return ERROR_WIFI_NOT_AVAILABLE;
     }
 
     g_wifiData.scanSize = fhost_scan(g_wifiData.consoleCntrlLink, DEFAULT_STA_VIF, NULL);
     if (g_wifiData.scanSize < 0) {
         dbg("wifiDevice:scan size err:%d\r\n", g_wifiData.scanSize);
-        goto scanerr;
+        WIFI_CLOSE_LINK(g_wifiData.consoleCntrlLink);
+        DoScanCallBack(WIFI_STATE_NOT_AVALIABLE, 0);
+        return ERROR_WIFI_NOT_AVAILABLE;
     }
 
     DoScanCallBack(WIFI_STATE_AVALIABLE, g_wifiData.scanSize);
     return WIFI_SUCCESS;
-scanerr:
-    fhost_cntrl_cfgrwnx_link_close(g_wifiData.consoleCntrlLink);
-    g_wifiData.consoleCntrlLink = NULL;
-    DoScanCallBack(WIFI_STATE_NOT_AVALIABLE, 0);
-    return ERROR_WIFI_NOT_AVAILABLE;
 }
 
 WifiErrorCode AdvanceScan(WifiScanParams *params)
@@ -269,7 +281,9 @@ WifiErrorCode AdvanceScan(WifiScanParams *params)
         .payLoad = (uint32_t)paramSave,
     };
 
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return ERROR_WIFI_NOT_AVAILABLE;
+    }
     if (rtos_queue_write(g_wifiData.wifiQueue, &msg, 1, false) != 0) {
         dbg("wifiDevice:rtos_queue_write err\r\n");
         WifiUnlock();
@@ -305,30 +319,27 @@ int32_t DoAdvanceScan(WifiScanParams *params)
             scanParam.band = params->band;
             break;
         default:
+            rtos_free(params);
             return ERROR_WIFI_UNKNOWN;
         break;
     }
+    rtos_free(params);
 
-    if (SetVif() != WIFI_SUCCESS) {
-        dbg("SetVif err\r\n");
-        goto adscanerr;
+    if (SetStaVif() != WIFI_SUCCESS) {
+        dbg("SetStaVif err\r\n");
+        DoScanCallBack(WIFI_STATE_NOT_AVALIABLE, 0);
+        return ERROR_WIFI_NOT_AVAILABLE;
     }
 
     g_wifiData.scanSize = fhost_super_scan(g_wifiData.consoleCntrlLink, 0, &scanParam);
     if (g_wifiData.scanSize < 0) {
-        dbg("fhost_super_scan err\r\n");
-        goto adscanerr;
+        WIFI_CLOSE_LINK(g_wifiData.consoleCntrlLink);
+        DoScanCallBack(WIFI_STATE_NOT_AVALIABLE, 0);
+        return ERROR_WIFI_NOT_AVAILABLE;
     }
 
-    rtos_free(params);
     DoScanCallBack(WIFI_STATE_AVALIABLE, g_wifiData.scanSize);
     return WIFI_SUCCESS;
-adscanerr:
-    rtos_free(params);
-    fhost_cntrl_cfgrwnx_link_close(g_wifiData.consoleCntrlLink);
-    g_wifiData.consoleCntrlLink = NULL;
-    DoScanCallBack(WIFI_STATE_NOT_AVALIABLE, 0);
-    return ERROR_WIFI_NOT_AVAILABLE;
 }
 
 WifiErrorCode GetScanInfoList(WifiScanInfo *result, unsigned int *size)
@@ -336,14 +347,17 @@ WifiErrorCode GetScanInfoList(WifiScanInfo *result, unsigned int *size)
     PARAM_CHECK(result);
     PARAM_CHECK(size);
 
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return ERROR_WIFI_NOT_AVAILABLE;
+    }
+
     struct mac_scan_result scanRst;
     int32_t rstIndex = 0;
 
     if (g_wifiData.scanSize <= 0 || g_wifiData.consoleCntrlLink == NULL) {
-        dbg("get scan list not init!\r\n");
         *size = 0;
         WifiUnlock();
+        dbg("get scan list not init!\r\n");
         return WIFI_SUCCESS;
     }
 
@@ -367,8 +381,7 @@ WifiErrorCode GetScanInfoList(WifiScanInfo *result, unsigned int *size)
         rstIndex++;
     }
 
-    fhost_cntrl_cfgrwnx_link_close(g_wifiData.consoleCntrlLink);
-    g_wifiData.consoleCntrlLink = NULL;
+    WIFI_CLOSE_LINK(g_wifiData.consoleCntrlLink);
     *size = rstIndex;
     /* close already,scan again */
     g_wifiData.state = WIFI_ACTIVE;
@@ -408,57 +421,60 @@ static int32_t StaConfig(WifiConnectDevice *device, struct fhost_vif_sta_cfg *st
 
 WifiErrorCode ConnectTo(int networkId)
 {
+    int32_t ret;
     net_if_t *net_if = NULL;
     WifiConnectDevice *device;
     struct fhost_vif_sta_cfg staCfg;
 
     if (networkId >= WIFI_MAX_CONFIG_SIZE) {
-        goto connecterror;
+        goto connect_err;
     }
 
     dbg("Connect to %d\r\n", networkId);
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return ERROR_WIFI_NOT_AVAILABLE;
+    }
+
     if ((g_wifiData.state == WIFI_STA_NOT_ACTIVE) || (g_wifiData.state == WIFI_CONNECT)) {
         dbg("device state err %d\r\n", g_wifiData.state);
-        goto connecterror;
+        goto connect_err;
     }
 
     device = &g_wifiData.deviceTab[networkId];
     if (device->used != 1) {
         dbg("network id not used\r\n");
-        goto connecterror;
+        goto connect_err;
     }
 
-    if (SetVif() != WIFI_SUCCESS) {
-        fhost_cntrl_cfgrwnx_link_close(g_wifiData.consoleCntrlLink);
-        g_wifiData.consoleCntrlLink = NULL;
-        dbg("SetVif err\r\n");
-        goto connecterror;
+    ret = SetStaVif();
+    WIFI_CLOSE_LINK(g_wifiData.consoleCntrlLink);
+    if (ret != WIFI_SUCCESS) {
+        dbg("SetStaVif err\r\n");
+        goto connect_err;
     }
-    fhost_cntrl_cfgrwnx_link_close(g_wifiData.consoleCntrlLink);
-    g_wifiData.consoleCntrlLink = NULL;
 
-    if (StaConfig(device, &staCfg) != WIFI_SUCCESS) {
+    ret = StaConfig(device, &staCfg);
+    if (ret != WIFI_SUCCESS) {
         dbg("StaConfig err\r\n");
-        goto connecterror;
+        goto connect_err;
     }
 
     dbg("connect param ssid = %s,len = %d, key = %s,akm = %d\r\n", staCfg.ssid.array,staCfg.ssid.length,staCfg.key,staCfg.akm);
     if (fhost_sta_cfg(DEFAULT_STA_VIF, &staCfg)) {
         dbg("enable wifi device err!\r\n");
-        goto connecterror;
+        goto connect_err;
     }
 
     net_if = net_if_find_from_wifi_idx(DEFAULT_STA_VIF);
     if (net_if == NULL) {
         dbg("[CS] net_if_find_from_wifi_idx fail\r\n");
-        goto connecterror;
+        goto connect_err;
     }
 
     if (wlan_dhcp(net_if)) {
         wlan_disconnect_sta(DEFAULT_STA_VIF);
         dbg("[CS] dhcp fail\r\n");
-        goto connecterror;
+        goto connect_err;
     }
 
     net_if_set_default(net_if);
@@ -468,7 +484,7 @@ WifiErrorCode ConnectTo(int networkId)
     AfterConnect(networkId, device);
     WifiUnlock();
     return WIFI_SUCCESS;
-connecterror:
+connect_err:
     WifiUnlock();
     DoStaConnectCallBack(WIFI_STATE_NOT_AVALIABLE, NULL);
     return ERROR_WIFI_UNKNOWN;
@@ -477,7 +493,9 @@ connecterror:
 WifiErrorCode Disconnect(void)
 {
     dbg("Disconnect!\r\n");
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return ERROR_WIFI_NOT_AVAILABLE;
+    }
 
     if (g_wifiData.state != WIFI_CONNECT) {
         WifiUnlock();
@@ -526,7 +544,9 @@ WifiErrorCode GetCountryCode(char *countryCode, unsigned int *len)
 WifiErrorCode EnableWifi(void)
 {
     dbg("wifiDevice:start wifi device!\r\n");
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return ERROR_WIFI_NOT_AVAILABLE;
+    }
 
     if (g_wifiData.state != WIFI_INACTIVE) {
         WifiUnlock();
@@ -562,7 +582,10 @@ WifiErrorCode EnableWifi(void)
 WifiErrorCode DisableWifi(void)
 {
     dbg("Disable wifi!\r\n");
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return ERROR_WIFI_NOT_AVAILABLE;
+    }
+
     if (g_wifiData.state == WIFI_INACTIVE) {
         WifiUnlock();
         return ERROR_WIFI_NOT_STARTED;

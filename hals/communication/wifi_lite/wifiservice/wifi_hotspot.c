@@ -39,11 +39,11 @@
 
 ChipseaWifiApData g_apData = {0};
 
-static int32_t SetVif()
+static int32_t SetApVif()
 {
     struct fhost_vif_tag *fhost_vif;
     struct fhost_cntrl_link *apLink;
-     ipc_host_cntrl_start();
+    ipc_host_cntrl_start();
 
     apLink = fhost_cntrl_cfgrwnx_link_open();
     if (apLink == NULL) {
@@ -67,34 +67,37 @@ static int32_t SetVif()
 
 WifiErrorCode EnableHotspot(void)
 {
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return ERROR_WIFI_NOT_AVAILABLE;
+    }
 
     if (g_apData.state == WIFI_HOTSPOT_ACTIVE) {
         dbg("ap has enabled\r\n");
-        goto error;
+        WifiUnlock();
+        return ERROR_WIFI_UNKNOWN;
     }
 
     LOS_ListInit(&g_apData.stationHead);
 
     if (g_apData.vifApCfg.ssid.length == 0) {
         dbg("Failed to start AP, check ssid\r\n");
-        goto error;
+        goto enable_err;
     }
 
-    if (SetVif() != WIFI_SUCCESS) {
-        dbg("SetVif err\r\n");
-        goto error;
+    if (SetApVif() != WIFI_SUCCESS) {
+        dbg("SetApVif err\r\n");
+        goto enable_err;
     }
 
     if (fhost_ap_cfg(DEFAULT_AP_VIF, &g_apData.vifApCfg)) {
         dbg("Failed to start AP, check your configuration\r\n");
-        goto error;
+        goto enable_err;
     }
 
     net_if_t *net_if = fhost_to_net_if(DEFAULT_AP_VIF);
     if (net_if == NULL) {
         dbg("[CS] net_if_find_from_wifi_idx fail\r\n");
-        goto error;
+        goto enable_err;
     }
 
     uint32_t ip_addr = get_ap_ip_addr();
@@ -114,7 +117,8 @@ WifiErrorCode EnableHotspot(void)
     DoApStateCallBack(WIFI_STATE_AVALIABLE);
     WifiUnlock();
     return WIFI_SUCCESS;
-error:
+enable_err:
+    DoApStateCallBack(WIFI_STATE_NOT_AVALIABLE);
     WifiUnlock();
     return ERROR_WIFI_UNKNOWN;
 }
@@ -122,9 +126,11 @@ error:
 WifiErrorCode DisableHotspot(void)
 {
     WifiStationNode *pos = NULL;
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return ERROR_WIFI_NOT_AVAILABLE;
+    }
     if (g_apData.state == WIFI_HOTSPOT_NOT_ACTIVE) {
-        dbg("wifi ap has closed");
+        dbg("wifi ap has closed\r\n");
         WifiUnlock();
         return ERROR_WIFI_NOT_AVAILABLE;
     }
@@ -183,7 +189,9 @@ WifiErrorCode SetHotspotConfig(const HotspotConfig *config)
 {
     PARAM_CHECK(config);
 
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return ERROR_WIFI_NOT_AVAILABLE;
+    }
     memset(&g_apData.vifApCfg, 0, sizeof(struct fhost_vif_ap_cfg));
 
     if (strcpy_s((char *)g_apData.vifApCfg.ssid.array, MAC_SSID_LEN, config->ssid) != EOK) {
@@ -306,7 +314,9 @@ void HandleStaConnect(uint8_t *macAddr, ip4_addr_t clientIP)
         dbg("null check err\r\n");
         return;
     }
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return;
+    }
 
     if (g_apData.stationCnt > WIFI_MAX_STA_NUM) {
         dbg("station cnt over flow\r\n");
@@ -341,7 +351,9 @@ void HandleStaDisconnect(uint8_t *macAddr)
         dbg("null check err\r\n");
         return;
     }
-    WifiLock();
+    if (WifiCreateLock() != WIFI_SUCCESS) {
+        return;
+    }
 
     WifiStationNode *pos = NULL;
 

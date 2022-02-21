@@ -61,7 +61,6 @@ void rtos_free(void *ptr)
     LOS_MemFree(OS_SYS_MEM_ADDR, ptr);
 }
 
-//TODO
 void rtos_heap_info(int *total_size, int *free_size, int *min_free_size)
 {
     *total_size = LOS_MemPoolSizeGet(OS_SYS_MEM_ADDR);
@@ -90,10 +89,15 @@ int rtos_task_create(rtos_task_fct func,
     osThreadId_t tid;
     osThreadAttr_t attr = {0};
     attr.stack_size = stack_depth;
-    attr.priority = (prio < osPriorityNormal) ? osPriorityNormal : prio;
+    if (prio < osPriorityNormal) {
+        dbg("rtos_task_create prio err! task:%s,prio = %d\r\n", attr.name, prio);
+        prio = osPriorityNormal;
+    }
+    attr.priority = prio;
     attr.name = name;
     tid = osThreadNew((osThreadFunc_t)func, params, &attr);
     if (tid == NULL) {
+        dbg("rtos_task_create err! task:%s\r\n",attr.name);
         return 1;
     }
     if (task_handle) {
@@ -220,8 +224,10 @@ void rtos_task_notify(rtos_task_handle task_handle, uint32_t value, bool isr)
 int rtos_queue_create(int elt_size, int nb_elt, rtos_queue *queue)
 {
     *queue = osMessageQueueNew(nb_elt, elt_size, NULL);
-    if (*queue == NULL)
+    if (*queue == NULL) {
+        dbg("rtos_queue_create err!\r\n");
         return -1;
+    }
     return 0;
 }
 
@@ -257,7 +263,11 @@ int rtos_queue_read(rtos_queue queue, void *msg, int timeout, bool isr)
 int rtos_semaphore_create(rtos_semaphore *semaphore, int max_count, int init_count)
 {
     *semaphore = osSemaphoreNew(max_count, init_count, NULL);
-    return (*semaphore == NULL) ? -1 : 0;
+    if (*semaphore == NULL) {
+        dbg("rtos_semaphore_create err!\r\n");
+        return -1;
+    }
+    return 0;
 }
 
 void rtos_semaphore_delete(rtos_semaphore semaphore)
@@ -373,12 +383,15 @@ int rtos_timer_restart(TimerHandle_t xTimer,TickType_t xTicksToWait, bool isr)
     }
 }
 
-
 int rtos_mutex_create(rtos_mutex *mutex)
 {
     *mutex = osMutexNew(NULL);
+    if (*mutex == 0) {
+        dbg("rtos_mutex_create err!\r\n");
+        return -1;
+    }
 
-    return (*mutex == 0) ? -1 : 0;
+    return 0;
 }
 
 void rtos_mutex_delete(rtos_mutex mutex)
@@ -410,8 +423,6 @@ int rtos_mutex_recursive_unlock(rtos_mutex mutex)
 {
     return osMutexRelease(mutex);
 }
-
-
 
 uint32_t rtos_protect(void)
 {
