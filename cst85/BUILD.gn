@@ -1,0 +1,72 @@
+# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/lite/config/component/lite_component.gni")
+import("//kernel/liteos_m/liteos.gni")
+
+print("SOC:CHIPSEA:CST85")
+
+module_name = get_path_info(rebase_path("."), "name")
+print("SOC:CHIPSEA:CST85 - $module_name")
+module_group(module_name) {
+  modules = [
+    "liteos_m",
+  ]
+
+}
+
+#build_ext_component("cst85f01") {
+#  print("SOC:CHIPSEA:CST85 ext component")
+#  exec_path = rebase_path(".", root_build_dir)
+#  outdir = rebase_path("$root_out_dir")
+#
+#  print("$board_toolchain")
+#  print("------>> $exec_path ")
+#  print("------>> $outdir")
+#
+#  if (board_toolchain_path != "") {
+#    toolchain_path = rebase_path("$board_toolchain_path")
+#    command = "./build.sh ${outdir} ${toolchain_path}"
+#  } else {
+#    command = "./build.sh ${outdir}"
+#  }
+#
+#  deps = [
+#    "//build/lite:ohos" ,
+#    ":startup_boot"
+#  ]
+#}
+#
+#static_library("startup_boot") {
+#  print("SOC:CHIPSEA:CST85 startup_boot")
+#  sources = [
+#    "startup_boot.s",
+#    "exception.s",
+#  ]
+#
+#  include_dirs = [
+#    "."  ,
+#    "Core/Inc",
+#    "Core/Inc/board",
+#    "Core/Src/driver/dbg/api",
+#    "Core/Src/driver/ticker/",
+#    "Core/Inc/driver",
+#    "Core/Inc/driver/ipc",
+#  ]
+#
+#  deps = [
+##     "//drivers/adapter/khdf/liteos_m:hdf_lite",
+#     "Core:core",
+#     "handler:handler",  
+#  ]
+#}

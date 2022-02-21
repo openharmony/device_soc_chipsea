@@ -1,0 +1,93 @@
+# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//kernel/liteos_m/liteos.gni")
+module_name = "sdk_modules_lwip"
+
+kernel_module(module_name) {
+  sources = [
+    "net_al/net_al.c",
+    "net_al/net_tg_al.c",
+    "net_al/net_iperf_al.c",
+
+    "dhcps/dhcps.c",
+
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/init.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/def.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/dns.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/inet_chksum.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/ip.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/mem.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/memp.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/netif.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/pbuf.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/raw.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/stats.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/sys.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/tcp.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/tcp_in.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/tcp_out.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/timeouts.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/udp.c",
+
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/ipv4/autoip.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/ipv4/dhcp.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/ipv4/etharp.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/ipv4/icmp.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/ipv4/igmp.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/ipv4/ip4_frag.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/ipv4/ip4.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/core/ipv4/ip4_addr.c",
+
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/api/api_lib.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/api/api_msg.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/api/err.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/api/netbuf.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/api/netdb.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/api/netifapi.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/api/sockets.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/api/tcpip.c",
+
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/netif/ethernet.c",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/netif/slipif.c",
+
+    "lwip-STABLE-2_0_2_RELEASE_VER/ports/rtos/sys_arch.c",
+  ]
+  include_dirs = [
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/include/posix",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/include/posix/sys",
+  ]
+  configs += ["../lwip:lwip_public_configs"]
+}
+
+config("lwip_public_configs") {
+  include_dirs = [
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/include/lwip",
+  ]
+}
+
+config("public") {
+  include_dirs = [
+    "net_al",
+    "dhcps",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/include",
+
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/include/lwip/apps",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/include/lwip/priv",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/include/lwip/prot",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/include/netif",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/include/netif/ppp",
+    "lwip-STABLE-2_0_2_RELEASE_VER/src/include/netif/ppp/polarssl",
+    "lwip-STABLE-2_0_2_RELEASE_VER/ports/rtos/include",
+  ]
+}

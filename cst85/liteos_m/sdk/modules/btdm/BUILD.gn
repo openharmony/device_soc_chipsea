@@ -1,0 +1,61 @@
+# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//kernel/liteos_m/liteos.gni")
+module_name = "sdk_module_btdm"
+
+kernel_module(module_name) {
+  sources = [
+    "ble/ble_app/app_main/app.c",
+    "ble/ble_app/app_main/app_task.c",
+    "ble/ble_profiles/smartconfig/smartconfigs/src/smartconfig.c",
+    "ble/ble_profiles/smartconfig/smartconfigs/src/smartconfig_task.c", 
+    "ble/ble_profiles/prf/prf_user.c",
+    "ble/ble_dbg/csble_dbg.c",
+    "ble/ble_app/app_batt/app_batt.c",
+    "ble/ble_app/app_hid/app_hid.c",
+    "ble/ble_app/app_smartconfig/app_smartconfig.c",
+  ]
+}
+
+config("public") {
+  include_dirs = [
+    "bt/include",
+    "ble/ble_app/app_batt",
+    "ble/ble_app/app_dis",
+    "ble/ble_app/app_hid",
+    "ble/ble_app/app_hrps",
+    "ble/ble_app/app_htp",
+    "ble/ble_app/app_main",
+    "ble/ble_app/app_sec",
+    "ble/ble_app/app_smartconfig",
+    "ble/ble_app/",
+    "ble/ble_dbg/",
+    "ble/ble_stack/common/api",
+    "ble/ble_stack/hl/inc",
+    "ble/ble_stack/hl/api",
+    "ble/ble_stack/ke/src",
+    "ble/ble_stack/ke/api",
+    "ble/ble_stack/ble_ip",
+    "ble/ble_adp/",
+    "ble/ble_profiles/smartconfig/smartconfigs/api",
+    "ble/ble_profiles/smartconfig/smartconfigs/src",
+    "ble/ble_profiles/hogp/hogpd/api",
+    "ble/ble_profiles/hogp/hogpd/src",
+    "ble/ble_profiles/bas/bass/api",
+    "ble/ble_profiles/bas/bass/src",
+    "ble/ble_app/app_smartconfig",
+
+  ]
+}
+
