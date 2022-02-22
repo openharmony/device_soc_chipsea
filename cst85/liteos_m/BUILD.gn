@@ -1,0 +1,63 @@
+# Copyright (c) 2021 chipsea Co., Ltd. All rights reserved.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//kernel/liteos_m/liteos.gni")
+
+#module_name = "liteos_m"
+module_name = get_path_info(rebase_path("."), "name")
+print("SOC:CHIPSEA:CST85/liteos_m - $module_name")
+module_group(module_name) {
+  modules = [
+    "components",
+
+    "sdk",
+    "sdk/bsp/sample",
+    "sdk/bsp/arch",
+    "sdk/bsp/driver/asdma_mst",
+    "sdk/bsp/driver/bt",
+    "sdk/bsp/driver/ce",
+    "sdk/bsp/driver/common",
+    "sdk/bsp/driver/cs1000aud_regs",
+    "sdk/bsp/driver/cs1000lite_regs",
+    "sdk/bsp/driver/dma",
+    #"sdk/bsp/driver/dbg",
+    "sdk/bsp/driver/flash",
+    "sdk/bsp/driver/gpadc",
+    "sdk/bsp/driver/gpio",
+    "sdk/bsp/driver/iomux",
+    "sdk/bsp/driver/ipc",
+    "sdk/bsp/driver/pmic",
+    "sdk/bsp/driver/psim",
+    "sdk/bsp/driver/reg",
+    "sdk/bsp/driver/rf",
+    "sdk/bsp/driver/sleep",
+    "sdk/bsp/driver/stdio_uart",
+    "sdk/bsp/driver/sysctrl",
+    "sdk/bsp/driver/ticker",
+    "sdk/bsp/driver/time",
+    "sdk/bsp/driver/trng",
+    "sdk/bsp/wrapper",
+
+    "sdk/modules/aon",
+    "sdk/modules/apps",
+    "sdk/modules/ble_task",
+    "sdk/modules/btdm",
+    "sdk/modules/common",
+    "sdk/modules/dbg",
+    "sdk/modules/lwip",
+    "sdk/modules/rtos",
+    "sdk/modules/wb_coex",
+    "sdk/modules/wifi",
+    "sdk/modules/console",
+  ]
+}
