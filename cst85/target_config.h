@@ -65,7 +65,7 @@ extern "C" {
 /*=============================================================================
                                        Task module configuration
 =============================================================================*/
-#define LOSCFG_BASE_CORE_TSK_LIMIT                          24
+#define LOSCFG_BASE_CORE_TSK_LIMIT                          48
 #define LOSCFG_BASE_CORE_TSK_IDLE_STACK_SIZE                (0x500U)
 #define LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE             (0x2D0U)
 #define LOSCFG_BASE_CORE_TSK_MIN_STACK_SIZE                 (0x130U)
@@ -80,12 +80,12 @@ extern "C" {
                                        Mutex module configuration
 =============================================================================*/
 #define LOSCFG_BASE_IPC_MUX                                 1
-#define LOSCFG_BASE_IPC_MUX_LIMIT                           24
+#define LOSCFG_BASE_IPC_MUX_LIMIT                           48
 /*=============================================================================
                                        Queue module configuration
 =============================================================================*/
 #define LOSCFG_BASE_IPC_QUEUE                               1
-#define LOSCFG_BASE_IPC_QUEUE_LIMIT                         24
+#define LOSCFG_BASE_IPC_QUEUE_LIMIT                         48
 /*=============================================================================
                                        Software timer module configuration
 =============================================================================*/
@@ -108,7 +108,7 @@ extern "C" {
 
 #define LOSCFG_BASE_CORE_SCHED_SLEEP                        1
 
-#define LOSCFG_SYS_HEAP_SIZE                                0x20000UL
+#define LOSCFG_SYS_HEAP_SIZE                                0x25000UL
 
 //#define LOSCFG_KERNEL_PM                                    0
 
