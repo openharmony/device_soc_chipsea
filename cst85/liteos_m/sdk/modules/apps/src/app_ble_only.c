@@ -365,25 +365,25 @@ static int app_ble_addr_rdwr(int argc, char *argv[])
 
 void app_ble_test_command_add(void)
 {
-    console_cmd_add("ble_scan_stop", "ble_scan_stop", 1, app_ble_scan_stop);
-    console_cmd_add("ble_scan_start", "ble_scan_start", 1, app_ble_scan_start);
-    console_cmd_add("ble_adv_data", "ble adv data update", 1, app_ble_adv_data_update);
-    console_cmd_add("ble_adv_param", "ble adv param update", 1, app_ble_adv_param_update);
-    console_cmd_add("ble_adv_stop", "ble adv stop", 1, app_ble_adv_stop);
-    console_cmd_add("ble_adv_start", "ble adv start", 1, app_ble_adv_start);
-    console_cmd_add("ble_discon", "ble disconnet", 1, app_ble_discon);
-    console_cmd_add("ble_con_param", "ble con param update", 1, app_ble_con_param_update);
-    console_cmd_add("ble_on", "ble_on/off", 2, app_ble_onoff_control);
+    console_cmd_add("ble_scan_stop", "  ble_scan_stop", 1, app_ble_scan_stop);
+    console_cmd_add("ble_scan_start", "  ble_scan_start", 1, app_ble_scan_start);
+    console_cmd_add("ble_adv_data", "  ble adv data update", 1, app_ble_adv_data_update);
+    console_cmd_add("ble_adv_param", "  ble adv param update", 1, app_ble_adv_param_update);
+    console_cmd_add("ble_adv_stop", "  ble adv stop", 1, app_ble_adv_stop);
+    console_cmd_add("ble_adv_start", "  ble adv start", 1, app_ble_adv_start);
+    console_cmd_add("ble_discon", "  ble disconnet", 1, app_ble_discon);
+    console_cmd_add("ble_con_param", "  ble con param update", 1, app_ble_con_param_update);
+    console_cmd_add("ble_on", "  ble_on/off", 2, app_ble_onoff_control);
 #if (BLE_APP_BATT)
-    console_cmd_add("batt_set", "batt set", 1, app_batt_set);
+    console_cmd_add("batt_set", "  batt set", 1, app_batt_set);
 #endif // (BLE_APP_BATT)
-    console_cmd_add("ble_del_bond", "ble delete bond", 2, app_ble_del_bond);
-    console_cmd_add("ble_usrslp", "Allow user sleep", 2, app_ble_user_sleep);
-    console_cmd_add("ble_slplvl", "Set system sleep level", 2, app_ble_sleep_level);
-    console_cmd_add("ble_usrwusrc", "Set user wakeup source", 4, app_ble_user_wakeup_source);
-    console_cmd_add("ble_addr", "rdwr ble addr", 2, app_ble_addr_rdwr);
-    console_cmd_add("dut", "dut  :enter dut", 1, app_ble_enable_dut);
-    console_cmd_add("scan_en", "scan_en <scan_type> <is_dut>", 3, app_ble_scan_en);
+    console_cmd_add("ble_del_bond", "  ble delete bond", 2, app_ble_del_bond);
+    console_cmd_add("ble_usrslp", "  Allow user sleep", 2, app_ble_user_sleep);
+    console_cmd_add("ble_slplvl", "  Set system sleep level", 2, app_ble_sleep_level);
+    console_cmd_add("ble_usrwusrc", "  Set user wakeup source", 4, app_ble_user_wakeup_source);
+    console_cmd_add("ble_addr", "  rdwr ble addr", 2, app_ble_addr_rdwr);
+    console_cmd_add("dut", "  dut  :enter dut", 1, app_ble_enable_dut);
+    console_cmd_add("scan_en", "  scan_en <scan_type> <is_dut>", 3, app_ble_scan_en);
 }
 #endif // (PLF_CONSOLE)
 
