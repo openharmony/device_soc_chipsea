@@ -40,7 +40,7 @@
 #define CONFIG_SYS_MAXARGS  16
 #define CONFIG_LINE_BYTES   16
 
-#define CONFIG_CMDTBL_SIZE  24
+#define CONFIG_CMDTBL_SIZE  36
 #define CONFIG_CMDBUF_SIZE  4
 
 typedef struct {
@@ -429,6 +429,7 @@ int do_help(int argc, char *argv[])
     cmd_tbl_t *cmdtemp = &cmd_tbl_list[0];    /*Init value */
     int i = 0;
 
+    console_putf("\r\n");
     for (i = 1; i < cmd_tbl_curidx; i++) {
         cmdtemp = &cmd_tbl_list[i];
         if(cmdtemp->usage) {
@@ -661,8 +662,8 @@ void command_init(void)
     }
     CONSOLE_CRITICAL_END();
     console_cmd_add("help", " help info", 1, do_help);
-    console_cmd_add("r", " r addr <cnt> <size>", 4, do_mem_read);
-    console_cmd_add("w", " w addr val", 3, do_mem_write);
+    console_cmd_add("r", "  r addr <cnt> <size>", 4, do_mem_read);
+    console_cmd_add("w", "  w addr val", 3, do_mem_write);
     #if (PLF_PMIC && PLF_PMIC_VER_LITE && PLF_EXT_CS1000)
     console_cmd_add("ar", " ar addr <cnt> <size>", 4, do_amem_read);
     console_cmd_add("aw", " aw addr val", 3, do_amem_write);

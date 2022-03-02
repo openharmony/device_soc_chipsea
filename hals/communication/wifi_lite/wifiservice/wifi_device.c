@@ -16,11 +16,10 @@
 #include "fhost.h"
 #include "fhost_config.h"
 #include "wlan_if.h"
-#include <stdio.h>
 #include "net_def.h"
 #include "rwnx_defs.h"
 #include "cfgrwnx.h"
-#include <securec.h>
+#include "securec.h"
 
 #define DEFAULT_STA_VIF 0
 #define MAX_WIFI_EVENT_NUM 10
@@ -147,7 +146,7 @@ WifiErrorCode GetDeviceConfigs(WifiDeviceConfig *result, unsigned int *size)
         return ERROR_WIFI_NOT_AVAILABLE;
     }
 
-    for (index = 0,cnt = 0; index < WIFI_MAX_CONFIG_SIZE; index++) {
+    for (index = 0, cnt = 0; index < WIFI_MAX_CONFIG_SIZE; index++) {
         if (g_wifiData.deviceTab[index].used == 1) {
             memcpy(result + cnt, &g_wifiData.deviceTab[index].devConf, sizeof(WifiDeviceConfig));
             cnt++;
@@ -293,7 +292,7 @@ WifiErrorCode AdvanceScan(WifiScanParams *params)
     return WIFI_SUCCESS;
 }
 
-int32_t DoAdvanceScan(WifiScanParams *params)
+void DoAdvanceScan(WifiScanParams *params)
 {
     PARAM_CHECK(params);
     struct fhost_super_scan_t scanParam = {0};
@@ -320,26 +319,26 @@ int32_t DoAdvanceScan(WifiScanParams *params)
             break;
         default:
             rtos_free(params);
-            return ERROR_WIFI_UNKNOWN;
+            DoScanCallBack(WIFI_STATE_AVALIABLE, 0);
+            return;
         break;
     }
     rtos_free(params);
 
     if (SetStaVif() != WIFI_SUCCESS) {
         dbg("SetStaVif err\r\n");
-        DoScanCallBack(WIFI_STATE_NOT_AVALIABLE, 0);
-        return ERROR_WIFI_NOT_AVAILABLE;
+        DoScanCallBack(WIFI_STATE_AVALIABLE, 0);
+        return;
     }
 
     g_wifiData.scanSize = fhost_super_scan(g_wifiData.consoleCntrlLink, 0, &scanParam);
     if (g_wifiData.scanSize < 0) {
         WIFI_CLOSE_LINK(g_wifiData.consoleCntrlLink);
-        DoScanCallBack(WIFI_STATE_NOT_AVALIABLE, 0);
-        return ERROR_WIFI_NOT_AVAILABLE;
+        g_wifiData.scanSize = 0;
+        dbg("fhost_super_scan,no result!\r\n");
     }
 
     DoScanCallBack(WIFI_STATE_AVALIABLE, g_wifiData.scanSize);
-    return WIFI_SUCCESS;
 }
 
 WifiErrorCode GetScanInfoList(WifiScanInfo *result, unsigned int *size)
@@ -404,6 +403,7 @@ static void AfterConnect(int networkId, WifiConnectDevice *device)
 static int32_t StaConfig(WifiConnectDevice *device, struct fhost_vif_sta_cfg *staCfg)
 {
     memset(staCfg, 0, sizeof(struct fhost_vif_sta_cfg));
+    //timeout 30s
     staCfg->timeout_ms = 30000;
     if (memcpy_s(staCfg->ssid.array, MAC_SSID_LEN, device->devConf.ssid, strlen(device->devConf.ssid)) != EOK) {
         dbg("set ssid fail!\rn");
@@ -459,7 +459,8 @@ WifiErrorCode ConnectTo(int networkId)
         goto connect_err;
     }
 
-    dbg("connect param ssid = %s,len = %d, key = %s,akm = %d\r\n", staCfg.ssid.array,staCfg.ssid.length,staCfg.key,staCfg.akm);
+    dbg("connect param ssid = %s,len = %d, key = %s,akm = %d\r\n",
+        staCfg.ssid.array,staCfg.ssid.length,staCfg.key,staCfg.akm);
     if (fhost_sta_cfg(DEFAULT_STA_VIF, &staCfg)) {
         dbg("enable wifi device err!\r\n");
         goto connect_err;
