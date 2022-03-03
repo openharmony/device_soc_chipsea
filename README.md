@@ -53,7 +53,7 @@ mkdir openharmony_chipsea
 
 cd openharmony_chipsea
 
-repo init -u https://gitee.com/openharmony/manifest --no-repo-verify
+repo init -u ssh://git@gitee.com/openharmony-sig/manifest.git -b master --no-repo-verify -m devboard_cst85f01.xml
 
 repo sync -c
 
