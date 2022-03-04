@@ -15,6 +15,10 @@ if SOC_SERIES_CST85
 
 rsource "Kconfig.liteos_m.defconfig.cst85f01"
 
+config HALS_COMMUCATION_WIFI_LITE
+    bool
+    default y
+
 config SOC_SERIES
     string
     default "cst85"
