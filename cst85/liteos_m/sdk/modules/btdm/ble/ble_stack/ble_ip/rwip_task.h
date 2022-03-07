@@ -5,8 +5,6 @@
  *
  * @brief Task Identifier description for the RW IP
  *
- * Copyright (C) RivieraWaves 2009-2016
- *
  ****************************************************************************************
  */
 
