@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2021 Huawei Device Co., Ltd.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+    This is the configuration file template for OpenHarmony OSS Audit Tool, please copy it to your project root dir and modify it refer to OpenHarmony/tools_oat/README.
+
+-->
+
+<configuration>
+    <oatconfig>
+        <licensefile></licensefile>
+        <policylist>
+            <policy name="projectPolicy" desc="">
+                <policyitem type="copyright" name="2021 Chipsea Technologies (Shenzhen) Corp., Ltd. All rights reserved." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="original chipsea copyright"/>
+                <policyitem type="copyright" name="2018-2020 CSSemi Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use CSSemi copyright"/>
+                <policyitem type="copyright" name="2001-2004 Swedish Institute of Computer Science." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use Swedish Institute of Computer Science copyright"/>
+                <policyitem type="copyright" name="2006 Axon Digital Design B.V., The Netherlands." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use Axon Digital copyright"/>
+                <policyitem type="copyright" name="2002 CITEL Technologies Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use CITEL copyright"/>
+                <policyitem type="copyright" name="2016 Elias Oenal." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use Elias Oenalcopyright"/>
+                <policyitem type="copyright" name="2015 Inico Technologies Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use Inico copyright"/>
+                <policyitem type="copyright" name="2003 by Marc Boucher, Services Informatiques (MBSI) inc.|Copyright (c) 1997 Global Election Systems Inc." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use MBSI copyright"/>
+                <policyitem type="copyright" name="1994-2002 Paul Mackerras. All rights reserved." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use Paul Mackerras copyright"/>
+                <policyitem type="copyright" name="2006-2015 ARM Limited" path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use ARM copyright"/>
+                <policyitem type="copyright" name="2018-2021 CSSemi Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use CSSemi copyright"/> 
+                <policyitem type="copyright" name="2013-2019 Huawei Technologies Co., Ltd. All rights reserved." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use Huawei copyright"/>
+                <policyitem type="license" name="BSD-3-Clause" path=".*" desc="兼容license"/>        
+            </policy>
+        </policylist>
+        <filefilterlist>
+            <filefilter name="defaultFilter" desc="Files not to check">
+                <filteritem type="filepath" name=".*.a" desc="Temp files"/>
+                <filteritem type="filepath" name=".*.png|.*.gif" desc="Temp files"/>
+                <filteritem type="filepath" name="cst85/liteos_m/sdk/.*" desc="sdk files"/>
+                <filteritem type="filepath" name="cst85/build.sh" desc="script file"/>
+            </filefilter>
+            <filefilter name="defaultPolicyFilter" desc="Filters for compatibility，license header policies">
+                <filteritem type="filepath" name="End User License Agreement.md" desc="chipsea using MIT files, but invalid copyright"/>
+            </filefilter>
+            <filefilter name="copyrightPolicyFilter" desc="Filters for copyright header policies">
+                <filteritem type="filepath" name="cst85/liteos_m/components/drivers/led_driver/BUILD.gn" desc="chipsea using MIT files, but invalid copyright"/>
+            </filefilter>
+        </filefilterlist>
+    </oatconfig>
+</configuration>

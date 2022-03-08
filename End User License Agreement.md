@@ -66,6 +66,6 @@ This Agreement shall be governed by and construed in accordance with the laws of
 
 --------------------------------------------------------------------
 
-Copyright (C) 2020-2021 Chipsea Technologies (Shenzhen) Corp., Ltd. All rights reserved.
+Copyright (C) 2021 Chipsea Technologies (Shenzhen) Corp., Ltd. All rights reserved.
 
  
