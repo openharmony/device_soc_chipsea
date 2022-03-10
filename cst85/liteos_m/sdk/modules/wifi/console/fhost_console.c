@@ -1230,4 +1230,10 @@ int fhost_application_init(void)
 
     return 0;
 }
+#else
+// If NOT define CFG_APP_CONSOLEWIFI, define a stub function.
+int fhost_application_init(void)
+{
+    return 0;
+}
 #endif
