@@ -27,7 +27,6 @@
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include <stdio.h>
-#include "fs_operations.h"
 #include "los_config.h"
 #include "hal_vfs.h"
 #include "flash_api.h"
@@ -78,23 +77,23 @@ int32_t hal_vfs_init(void)
     VfsOps->LfsOps.prog = lfs_block_write;
     VfsOps->LfsOps.erase = lfs_block_erase;
     VfsOps->LfsOps.sync = lfs_block_sync;
-    VfsOps->LfsOps.read_size = 256;
-    VfsOps->LfsOps.prog_size = 256;
-    VfsOps->LfsOps.cache_size = 256;
-    VfsOps->LfsOps.lookahead_size = 16;
-    VfsOps->LfsOps.block_cycles = 500;
+    VfsOps->LfsOps.read_size = LFS_READ_SIZE;
+    VfsOps->LfsOps.prog_size = LFS_READ_SIZE;
+    VfsOps->LfsOps.cache_size = LFS_READ_SIZE;
+    VfsOps->LfsOps.lookahead_size = LFS_LOOK_AHEAD_SIZE;
+    VfsOps->LfsOps.block_cycles = LFS_BLOCK_CYCLES;
     VfsOps->start_addr = LFS_DEFAULT_START_ADDR;
     VfsOps->LfsOps.block_size = LFS_DEFAULT_BLOCK_SIZE;
     VfsOps->LfsOps.block_count = LFS_DEFAULT_BLOCK_COUNT;
 
-    SetDefaultMountPath(0,"/data");
-    if (LOS_FsMount(NULL, "/data", "littlefs", 0, VfsOps) != FS_SUCCESS) {
+    // SetDefaultMountPath(0,"/data");
+    if (LOS_FsMount(NULL, "/data", "littlefs", 0, VfsOps) != 0) {
         printf("+++ hal_vfs_init: Mount littlefs faild!\n");
         free(VfsOps);
         return -1;
     }
 
-    if (LOS_Mkdir("/data", 0777) != 0 ) {
+    if (LOS_Mkdir("/data", 0777) != 0) {
         printf("+++ hal_vfs_init: Make dir faild!\n");
     }
 
@@ -107,7 +106,7 @@ int32_t hal_vfs_init(void)
 
 void hal_vfs_deinit(void)
 {
-    LOS_FsUmount(RootPath);
+    LOS_FsUmount(ROOTPATH);
     free(VfsOps);
 }
 
