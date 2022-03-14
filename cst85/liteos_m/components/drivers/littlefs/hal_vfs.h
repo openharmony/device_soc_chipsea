@@ -37,10 +37,13 @@ extern "C" {
 #include "lfs.h"
 #include "los_fs.h"
 
-#define RootPath "/a"
+#define ROOTPATH "/a"
 #define LFS_DEFAULT_START_ADDR 0x081E3000
 #define LFS_DEFAULT_BLOCK_SIZE 4096
-#define LFS_DEFAULT_BLOCK_COUNT 25 
+#define LFS_DEFAULT_BLOCK_COUNT 25
+#define LFS_READ_SIZE 256
+#define LFS_BLOCK_CYCLES 500
+#define LFS_LOOK_AHEAD_SIZE 16
 
 struct lfs_manager {
     struct lfs_config LfsOps;
