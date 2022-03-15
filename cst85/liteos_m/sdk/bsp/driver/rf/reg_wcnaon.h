@@ -64,7 +64,7 @@
  * The BT_MEM_CFG1 register will be read and its value returned.
  * @return The current value of the BT_MEM_CFG1 register.
  */
-__INLINE uint32_t wcnaon_bt_mem_cfg1_get(void)
+static inline uint32_t wcnaon_bt_mem_cfg1_get(void)
 {
     return REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR);
 }
@@ -74,7 +74,7 @@ __INLINE uint32_t wcnaon_bt_mem_cfg1_get(void)
  * The BT_MEM_CFG1 register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_bt_mem_cfg1_set(uint32_t value)
+static inline void wcnaon_bt_mem_cfg1_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_BT_MEM_CFG1_ADDR, value);
 }
@@ -112,7 +112,7 @@ __INLINE void wcnaon_bt_mem_cfg1_set(uint32_t value)
  * @param[in] btfwlpmode - The value to use for the btfw_lp_mode field.
  * @param[in] btmemcfg - The value to use for the bt_mem_cfg field.
  */
-__INLINE void wcnaon_bt_mem_cfg1_pack(uint8_t btcfg, uint8_t btfwlpmode, uint16_t btmemcfg)
+static inline void wcnaon_bt_mem_cfg1_pack(uint8_t btcfg, uint8_t btfwlpmode, uint16_t btmemcfg)
 {
     REG_PL_WR(WCNAON_BT_MEM_CFG1_ADDR,  ((uint32_t)btcfg << 17) | ((uint32_t)btfwlpmode << 16) | ((uint32_t)btmemcfg << 0));
 }
@@ -127,7 +127,7 @@ __INLINE void wcnaon_bt_mem_cfg1_pack(uint8_t btcfg, uint8_t btfwlpmode, uint16_
  * @param[out] btfwlpmode - Will be populated with the current value of this field from the register.
  * @param[out] btmemcfg - Will be populated with the current value of this field from the register.
  */
-__INLINE void wcnaon_bt_mem_cfg1_unpack(uint8_t* btcfg, uint8_t* btfwlpmode, uint16_t* btmemcfg)
+static inline void wcnaon_bt_mem_cfg1_unpack(uint8_t* btcfg, uint8_t* btfwlpmode, uint16_t* btmemcfg)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR);
 
@@ -143,7 +143,7 @@ __INLINE void wcnaon_bt_mem_cfg1_unpack(uint8_t* btcfg, uint8_t* btfwlpmode, uin
  *
  * @return The current value of the bt_cfg field in the BT_MEM_CFG1 register.
  */
-__INLINE uint8_t wcnaon_bt_cfg_getf(void)
+static inline uint8_t wcnaon_bt_cfg_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR);
     return ((localVal & ((uint32_t)0x001E0000)) >> 17);
@@ -156,7 +156,7 @@ __INLINE uint8_t wcnaon_bt_cfg_getf(void)
  *
  * @param[in] btcfg - The value to set the field to.
  */
-__INLINE void wcnaon_bt_cfg_setf(uint8_t btcfg)
+static inline void wcnaon_bt_cfg_setf(uint8_t btcfg)
 {
     REG_PL_WR(WCNAON_BT_MEM_CFG1_ADDR, (REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR) & ~((uint32_t)0x001E0000)) | ((uint32_t)btcfg << 17));
 }
@@ -168,7 +168,7 @@ __INLINE void wcnaon_bt_cfg_setf(uint8_t btcfg)
  *
  * @return The current value of the btfw_lp_mode field in the BT_MEM_CFG1 register.
  */
-__INLINE uint8_t wcnaon_btfw_lp_mode_getf(void)
+static inline uint8_t wcnaon_btfw_lp_mode_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR);
     return ((localVal & ((uint32_t)0x00010000)) >> 16);
@@ -181,7 +181,7 @@ __INLINE uint8_t wcnaon_btfw_lp_mode_getf(void)
  *
  * @param[in] btfwlpmode - The value to set the field to.
  */
-__INLINE void wcnaon_btfw_lp_mode_setf(uint8_t btfwlpmode)
+static inline void wcnaon_btfw_lp_mode_setf(uint8_t btfwlpmode)
 {
     REG_PL_WR(WCNAON_BT_MEM_CFG1_ADDR, (REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR) & ~((uint32_t)0x00010000)) | ((uint32_t)btfwlpmode << 16));
 }
@@ -193,7 +193,7 @@ __INLINE void wcnaon_btfw_lp_mode_setf(uint8_t btfwlpmode)
  *
  * @return The current value of the bt_mem_cfg field in the BT_MEM_CFG1 register.
  */
-__INLINE uint16_t wcnaon_bt_mem_cfg_getf(void)
+static inline uint16_t wcnaon_bt_mem_cfg_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR);
     return ((localVal & ((uint32_t)0x0000FFFF)) >> 0);
@@ -206,7 +206,7 @@ __INLINE uint16_t wcnaon_bt_mem_cfg_getf(void)
  *
  * @param[in] btmemcfg - The value to set the field to.
  */
-__INLINE void wcnaon_bt_mem_cfg_setf(uint16_t btmemcfg)
+static inline void wcnaon_bt_mem_cfg_setf(uint16_t btmemcfg)
 {
     REG_PL_WR(WCNAON_BT_MEM_CFG1_ADDR, (REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR) & ~((uint32_t)0x0000FFFF)) | ((uint32_t)btmemcfg << 0));
 }
@@ -238,7 +238,7 @@ __INLINE void wcnaon_bt_mem_cfg_setf(uint16_t btmemcfg)
  * The WIFI_MEM_CFG register will be read and its value returned.
  * @return The current value of the WIFI_MEM_CFG register.
  */
-__INLINE uint32_t wcnaon_wifi_mem_cfg_get(void)
+static inline uint32_t wcnaon_wifi_mem_cfg_get(void)
 {
     return REG_PL_RD(WCNAON_WIFI_MEM_CFG_ADDR);
 }
@@ -248,7 +248,7 @@ __INLINE uint32_t wcnaon_wifi_mem_cfg_get(void)
  * The WIFI_MEM_CFG register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_wifi_mem_cfg_set(uint32_t value)
+static inline void wcnaon_wifi_mem_cfg_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_WIFI_MEM_CFG_ADDR, value);
 }
@@ -271,7 +271,7 @@ __INLINE void wcnaon_wifi_mem_cfg_set(uint32_t value)
  *
  * @return The current value of the wifi_mem_cfg field in the WIFI_MEM_CFG register.
  */
-__INLINE uint16_t wcnaon_wifi_mem_cfg_getf(void)
+static inline uint16_t wcnaon_wifi_mem_cfg_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_WIFI_MEM_CFG_ADDR);
     return (localVal >> 0);
@@ -284,7 +284,7 @@ __INLINE uint16_t wcnaon_wifi_mem_cfg_getf(void)
  *
  * @param[in] wifimemcfg - The value to set the field to.
  */
-__INLINE void wcnaon_wifi_mem_cfg_setf(uint16_t wifimemcfg)
+static inline void wcnaon_wifi_mem_cfg_setf(uint16_t wifimemcfg)
 {
     REG_PL_WR(WCNAON_WIFI_MEM_CFG_ADDR, (uint32_t)wifimemcfg << 0);
 }
@@ -318,7 +318,7 @@ __INLINE void wcnaon_wifi_mem_cfg_setf(uint16_t wifimemcfg)
  * The BT_CLK_CFG0 register will be read and its value returned.
  * @return The current value of the BT_CLK_CFG0 register.
  */
-__INLINE uint32_t wcnaon_bt_clk_cfg0_get(void)
+static inline uint32_t wcnaon_bt_clk_cfg0_get(void)
 {
     return REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR);
 }
@@ -328,7 +328,7 @@ __INLINE uint32_t wcnaon_bt_clk_cfg0_get(void)
  * The BT_CLK_CFG0 register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_bt_clk_cfg0_set(uint32_t value)
+static inline void wcnaon_bt_clk_cfg0_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_BT_CLK_CFG0_ADDR, value);
 }
@@ -366,7 +366,7 @@ __INLINE void wcnaon_bt_clk_cfg0_set(uint32_t value)
  * @param[in] btdivm - The value to use for the bt_div_M field.
  * @param[in] btdivn - The value to use for the bt_div_N field.
  */
-__INLINE void wcnaon_bt_clk_cfg0_pack(uint8_t btdivnumld, uint16_t btdivm, uint16_t btdivn)
+static inline void wcnaon_bt_clk_cfg0_pack(uint8_t btdivnumld, uint16_t btdivm, uint16_t btdivn)
 {
     REG_PL_WR(WCNAON_BT_CLK_CFG0_ADDR,  ((uint32_t)btdivnumld << 31) | ((uint32_t)btdivm << 16) | ((uint32_t)btdivn << 0));
 }
@@ -381,7 +381,7 @@ __INLINE void wcnaon_bt_clk_cfg0_pack(uint8_t btdivnumld, uint16_t btdivm, uint1
  * @param[out] btdivm - Will be populated with the current value of this field from the register.
  * @param[out] btdivn - Will be populated with the current value of this field from the register.
  */
-__INLINE void wcnaon_bt_clk_cfg0_unpack(uint8_t* btdivnumld, uint16_t* btdivm, uint16_t* btdivn)
+static inline void wcnaon_bt_clk_cfg0_unpack(uint8_t* btdivnumld, uint16_t* btdivm, uint16_t* btdivn)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR);
 
@@ -397,7 +397,7 @@ __INLINE void wcnaon_bt_clk_cfg0_unpack(uint8_t* btdivnumld, uint16_t* btdivm, u
  *
  * @return The current value of the bt_div_num_ld field in the BT_CLK_CFG0 register.
  */
-__INLINE uint8_t wcnaon_bt_div_num_ld_getf(void)
+static inline uint8_t wcnaon_bt_div_num_ld_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR);
     return ((localVal & ((uint32_t)0x80000000)) >> 31);
@@ -410,7 +410,7 @@ __INLINE uint8_t wcnaon_bt_div_num_ld_getf(void)
  *
  * @param[in] btdivnumld - The value to set the field to.
  */
-__INLINE void wcnaon_bt_div_num_ld_setf(uint8_t btdivnumld)
+static inline void wcnaon_bt_div_num_ld_setf(uint8_t btdivnumld)
 {
     REG_PL_WR(WCNAON_BT_CLK_CFG0_ADDR, (REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR) & ~((uint32_t)0x80000000)) | ((uint32_t)btdivnumld << 31));
 }
@@ -422,7 +422,7 @@ __INLINE void wcnaon_bt_div_num_ld_setf(uint8_t btdivnumld)
  *
  * @return The current value of the bt_div_M field in the BT_CLK_CFG0 register.
  */
-__INLINE uint16_t wcnaon_bt_div_m_getf(void)
+static inline uint16_t wcnaon_bt_div_m_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR);
     return ((localVal & ((uint32_t)0x01FF0000)) >> 16);
@@ -435,7 +435,7 @@ __INLINE uint16_t wcnaon_bt_div_m_getf(void)
  *
  * @param[in] btdivm - The value to set the field to.
  */
-__INLINE void wcnaon_bt_div_m_setf(uint16_t btdivm)
+static inline void wcnaon_bt_div_m_setf(uint16_t btdivm)
 {
     REG_PL_WR(WCNAON_BT_CLK_CFG0_ADDR, (REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR) & ~((uint32_t)0x01FF0000)) | ((uint32_t)btdivm << 16));
 }
@@ -447,7 +447,7 @@ __INLINE void wcnaon_bt_div_m_setf(uint16_t btdivm)
  *
  * @return The current value of the bt_div_N field in the BT_CLK_CFG0 register.
  */
-__INLINE uint16_t wcnaon_bt_div_n_getf(void)
+static inline uint16_t wcnaon_bt_div_n_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR);
     return ((localVal & ((uint32_t)0x0000FFFF)) >> 0);
@@ -460,7 +460,7 @@ __INLINE uint16_t wcnaon_bt_div_n_getf(void)
  *
  * @param[in] btdivn - The value to set the field to.
  */
-__INLINE void wcnaon_bt_div_n_setf(uint16_t btdivn)
+static inline void wcnaon_bt_div_n_setf(uint16_t btdivn)
 {
     REG_PL_WR(WCNAON_BT_CLK_CFG0_ADDR, (REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR) & ~((uint32_t)0x0000FFFF)) | ((uint32_t)btdivn << 0));
 }
@@ -494,7 +494,7 @@ __INLINE void wcnaon_bt_div_n_setf(uint16_t btdivn)
  * The BT_CLK_CFG1 register will be read and its value returned.
  * @return The current value of the BT_CLK_CFG1 register.
  */
-__INLINE uint32_t wcnaon_bt_clk_cfg1_get(void)
+static inline uint32_t wcnaon_bt_clk_cfg1_get(void)
 {
     return REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR);
 }
@@ -504,7 +504,7 @@ __INLINE uint32_t wcnaon_bt_clk_cfg1_get(void)
  * The BT_CLK_CFG1 register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_bt_clk_cfg1_set(uint32_t value)
+static inline void wcnaon_bt_clk_cfg1_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_BT_CLK_CFG1_ADDR, value);
 }
@@ -544,7 +544,7 @@ __INLINE void wcnaon_bt_clk_cfg1_set(uint32_t value)
  * @param[in] btclkgcfg - The value to use for the bt_clkg_cfg field.
  * @param[in] btclksel - The value to use for the bt_clksel field.
  */
-__INLINE void wcnaon_bt_clk_cfg1_pack(uint8_t btcfgrfsel, uint8_t btclkgcfg, uint8_t btclksel)
+static inline void wcnaon_bt_clk_cfg1_pack(uint8_t btcfgrfsel, uint8_t btclkgcfg, uint8_t btclksel)
 {
     REG_PL_WR(WCNAON_BT_CLK_CFG1_ADDR,  ((uint32_t)btcfgrfsel << 24) | ((uint32_t)btclkgcfg << 16) | ((uint32_t)btclksel << 0));
 }
@@ -559,7 +559,7 @@ __INLINE void wcnaon_bt_clk_cfg1_pack(uint8_t btcfgrfsel, uint8_t btclkgcfg, uin
  * @param[out] btclkgcfg - Will be populated with the current value of this field from the register.
  * @param[out] btclksel - Will be populated with the current value of this field from the register.
  */
-__INLINE void wcnaon_bt_clk_cfg1_unpack(uint8_t* btcfgrfsel, uint8_t* btclkgcfg, uint8_t* btclksel)
+static inline void wcnaon_bt_clk_cfg1_unpack(uint8_t* btcfgrfsel, uint8_t* btclkgcfg, uint8_t* btclksel)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR);
 
@@ -575,7 +575,7 @@ __INLINE void wcnaon_bt_clk_cfg1_unpack(uint8_t* btcfgrfsel, uint8_t* btclkgcfg,
  *
  * @return The current value of the bt_cfg_rfsel field in the BT_CLK_CFG1 register.
  */
-__INLINE uint8_t wcnaon_bt_cfg_rfsel_getf(void)
+static inline uint8_t wcnaon_bt_cfg_rfsel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR);
     return ((localVal & ((uint32_t)0x3F000000)) >> 24);
@@ -588,7 +588,7 @@ __INLINE uint8_t wcnaon_bt_cfg_rfsel_getf(void)
  *
  * @param[in] btcfgrfsel - The value to set the field to.
  */
-__INLINE void wcnaon_bt_cfg_rfsel_setf(uint8_t btcfgrfsel)
+static inline void wcnaon_bt_cfg_rfsel_setf(uint8_t btcfgrfsel)
 {
     REG_PL_WR(WCNAON_BT_CLK_CFG1_ADDR, (REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)btcfgrfsel << 24));
 }
@@ -600,7 +600,7 @@ __INLINE void wcnaon_bt_cfg_rfsel_setf(uint8_t btcfgrfsel)
  *
  * @return The current value of the bt_clkg_cfg field in the BT_CLK_CFG1 register.
  */
-__INLINE uint8_t wcnaon_bt_clkg_cfg_getf(void)
+static inline uint8_t wcnaon_bt_clkg_cfg_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR);
     return ((localVal & ((uint32_t)0x007F0000)) >> 16);
@@ -613,7 +613,7 @@ __INLINE uint8_t wcnaon_bt_clkg_cfg_getf(void)
  *
  * @param[in] btclkgcfg - The value to set the field to.
  */
-__INLINE void wcnaon_bt_clkg_cfg_setf(uint8_t btclkgcfg)
+static inline void wcnaon_bt_clkg_cfg_setf(uint8_t btclkgcfg)
 {
     REG_PL_WR(WCNAON_BT_CLK_CFG1_ADDR, (REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)btclkgcfg << 16));
 }
@@ -625,7 +625,7 @@ __INLINE void wcnaon_bt_clkg_cfg_setf(uint8_t btclkgcfg)
  *
  * @return The current value of the bt_clksel field in the BT_CLK_CFG1 register.
  */
-__INLINE uint8_t wcnaon_bt_clksel_getf(void)
+static inline uint8_t wcnaon_bt_clksel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
@@ -638,7 +638,7 @@ __INLINE uint8_t wcnaon_bt_clksel_getf(void)
  *
  * @param[in] btclksel - The value to set the field to.
  */
-__INLINE void wcnaon_bt_clksel_setf(uint8_t btclksel)
+static inline void wcnaon_bt_clksel_setf(uint8_t btclksel)
 {
     REG_PL_WR(WCNAON_BT_CLK_CFG1_ADDR, (REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)btclksel << 0));
 }
@@ -679,7 +679,7 @@ __INLINE void wcnaon_bt_clksel_setf(uint8_t btclksel)
  * The WIFI_SOFT_WAKEUP_REQ register will be read and its value returned.
  * @return The current value of the WIFI_SOFT_WAKEUP_REQ register.
  */
-__INLINE uint32_t wcnaon_wifi_soft_wakeup_req_get(void)
+static inline uint32_t wcnaon_wifi_soft_wakeup_req_get(void)
 {
     return REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
 }
@@ -689,7 +689,7 @@ __INLINE uint32_t wcnaon_wifi_soft_wakeup_req_get(void)
  * The WIFI_SOFT_WAKEUP_REQ register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_wifi_soft_wakeup_req_set(uint32_t value)
+static inline void wcnaon_wifi_soft_wakeup_req_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, value);
 }
@@ -774,7 +774,7 @@ __INLINE void wcnaon_wifi_soft_wakeup_req_set(uint32_t value)
  * @param[in] wlanpowersleepen - The value to use for the wlan_power_sleep_en field.
  * @param[in] wlansoftwakeupreq - The value to use for the wlan_soft_wakeup_req field.
  */
-__INLINE void wcnaon_wifi_soft_wakeup_req_pack(uint8_t btwakeuplpsel, uint8_t wlanwakeuplpsel, uint8_t btcfgpoweren, uint8_t btcfgcpuen, uint8_t monsel, uint8_t wlanradiocgsleepen, uint8_t wlancpuwakeupen, uint8_t wlanradiosleepen, uint8_t wlanpowersleepen, uint8_t wlansoftwakeupreq)
+static inline void wcnaon_wifi_soft_wakeup_req_pack(uint8_t btwakeuplpsel, uint8_t wlanwakeuplpsel, uint8_t btcfgpoweren, uint8_t btcfgcpuen, uint8_t monsel, uint8_t wlanradiocgsleepen, uint8_t wlancpuwakeupen, uint8_t wlanradiosleepen, uint8_t wlanpowersleepen, uint8_t wlansoftwakeupreq)
 {
     REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR,  ((uint32_t)btwakeuplpsel << 11) | ((uint32_t)wlanwakeuplpsel << 10) | ((uint32_t)btcfgpoweren << 9) | ((uint32_t)btcfgcpuen << 8) | ((uint32_t)monsel << 5) | ((uint32_t)wlanradiocgsleepen << 4) | ((uint32_t)wlancpuwakeupen << 3) | ((uint32_t)wlanradiosleepen << 2) | ((uint32_t)wlanpowersleepen << 1) | ((uint32_t)wlansoftwakeupreq << 0));
 }
@@ -796,7 +796,7 @@ __INLINE void wcnaon_wifi_soft_wakeup_req_pack(uint8_t btwakeuplpsel, uint8_t wl
  * @param[out] wlanpowersleepen - Will be populated with the current value of this field from the register.
  * @param[out] wlansoftwakeupreq - Will be populated with the current value of this field from the register.
  */
-__INLINE void wcnaon_wifi_soft_wakeup_req_unpack(uint8_t* btwakeuplpsel, uint8_t* wlanwakeuplpsel, uint8_t* btcfgpoweren, uint8_t* btcfgcpuen, uint8_t* monsel, uint8_t* wlanradiocgsleepen, uint8_t* wlancpuwakeupen, uint8_t* wlanradiosleepen, uint8_t* wlanpowersleepen, uint8_t* wlansoftwakeupreq)
+static inline void wcnaon_wifi_soft_wakeup_req_unpack(uint8_t* btwakeuplpsel, uint8_t* wlanwakeuplpsel, uint8_t* btcfgpoweren, uint8_t* btcfgcpuen, uint8_t* monsel, uint8_t* wlanradiocgsleepen, uint8_t* wlancpuwakeupen, uint8_t* wlanradiosleepen, uint8_t* wlanpowersleepen, uint8_t* wlansoftwakeupreq)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
 
@@ -819,7 +819,7 @@ __INLINE void wcnaon_wifi_soft_wakeup_req_unpack(uint8_t* btwakeuplpsel, uint8_t
  *
  * @return The current value of the bt_wakeup_lp_sel field in the WIFI_SOFT_WAKEUP_REQ register.
  */
-__INLINE uint8_t wcnaon_bt_wakeup_lp_sel_getf(void)
+static inline uint8_t wcnaon_bt_wakeup_lp_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000800)) >> 11);
@@ -832,7 +832,7 @@ __INLINE uint8_t wcnaon_bt_wakeup_lp_sel_getf(void)
  *
  * @param[in] btwakeuplpsel - The value to set the field to.
  */
-__INLINE void wcnaon_bt_wakeup_lp_sel_setf(uint8_t btwakeuplpsel)
+static inline void wcnaon_bt_wakeup_lp_sel_setf(uint8_t btwakeuplpsel)
 {
     REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)btwakeuplpsel << 11));
 }
@@ -844,7 +844,7 @@ __INLINE void wcnaon_bt_wakeup_lp_sel_setf(uint8_t btwakeuplpsel)
  *
  * @return The current value of the wlan_wakeup_lp_sel field in the WIFI_SOFT_WAKEUP_REQ register.
  */
-__INLINE uint8_t wcnaon_wlan_wakeup_lp_sel_getf(void)
+static inline uint8_t wcnaon_wlan_wakeup_lp_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000400)) >> 10);
@@ -857,7 +857,7 @@ __INLINE uint8_t wcnaon_wlan_wakeup_lp_sel_getf(void)
  *
  * @param[in] wlanwakeuplpsel - The value to set the field to.
  */
-__INLINE void wcnaon_wlan_wakeup_lp_sel_setf(uint8_t wlanwakeuplpsel)
+static inline void wcnaon_wlan_wakeup_lp_sel_setf(uint8_t wlanwakeuplpsel)
 {
     REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)wlanwakeuplpsel << 10));
 }
@@ -869,7 +869,7 @@ __INLINE void wcnaon_wlan_wakeup_lp_sel_setf(uint8_t wlanwakeuplpsel)
  *
  * @return The current value of the bt_cfg_power_en field in the WIFI_SOFT_WAKEUP_REQ register.
  */
-__INLINE uint8_t wcnaon_bt_cfg_power_en_getf(void)
+static inline uint8_t wcnaon_bt_cfg_power_en_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000200)) >> 9);
@@ -882,7 +882,7 @@ __INLINE uint8_t wcnaon_bt_cfg_power_en_getf(void)
  *
  * @param[in] btcfgpoweren - The value to set the field to.
  */
-__INLINE void wcnaon_bt_cfg_power_en_setf(uint8_t btcfgpoweren)
+static inline void wcnaon_bt_cfg_power_en_setf(uint8_t btcfgpoweren)
 {
     REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)btcfgpoweren << 9));
 }
@@ -894,7 +894,7 @@ __INLINE void wcnaon_bt_cfg_power_en_setf(uint8_t btcfgpoweren)
  *
  * @return The current value of the bt_cfg_cpu_en field in the WIFI_SOFT_WAKEUP_REQ register.
  */
-__INLINE uint8_t wcnaon_bt_cfg_cpu_en_getf(void)
+static inline uint8_t wcnaon_bt_cfg_cpu_en_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
@@ -907,7 +907,7 @@ __INLINE uint8_t wcnaon_bt_cfg_cpu_en_getf(void)
  *
  * @param[in] btcfgcpuen - The value to set the field to.
  */
-__INLINE void wcnaon_bt_cfg_cpu_en_setf(uint8_t btcfgcpuen)
+static inline void wcnaon_bt_cfg_cpu_en_setf(uint8_t btcfgcpuen)
 {
     REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)btcfgcpuen << 8));
 }
@@ -919,7 +919,7 @@ __INLINE void wcnaon_bt_cfg_cpu_en_setf(uint8_t btcfgcpuen)
  *
  * @return The current value of the mon_sel field in the WIFI_SOFT_WAKEUP_REQ register.
  */
-__INLINE uint8_t wcnaon_mon_sel_getf(void)
+static inline uint8_t wcnaon_mon_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000060)) >> 5);
@@ -932,7 +932,7 @@ __INLINE uint8_t wcnaon_mon_sel_getf(void)
  *
  * @param[in] monsel - The value to set the field to.
  */
-__INLINE void wcnaon_mon_sel_setf(uint8_t monsel)
+static inline void wcnaon_mon_sel_setf(uint8_t monsel)
 {
     REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000060)) | ((uint32_t)monsel << 5));
 }
@@ -944,7 +944,7 @@ __INLINE void wcnaon_mon_sel_setf(uint8_t monsel)
  *
  * @return The current value of the wlan_radio_cg_sleep_en field in the WIFI_SOFT_WAKEUP_REQ register.
  */
-__INLINE uint8_t wcnaon_wlan_radio_cg_sleep_en_getf(void)
+static inline uint8_t wcnaon_wlan_radio_cg_sleep_en_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000010)) >> 4);
@@ -957,7 +957,7 @@ __INLINE uint8_t wcnaon_wlan_radio_cg_sleep_en_getf(void)
  *
  * @param[in] wlanradiocgsleepen - The value to set the field to.
  */
-__INLINE void wcnaon_wlan_radio_cg_sleep_en_setf(uint8_t wlanradiocgsleepen)
+static inline void wcnaon_wlan_radio_cg_sleep_en_setf(uint8_t wlanradiocgsleepen)
 {
     REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)wlanradiocgsleepen << 4));
 }
@@ -969,7 +969,7 @@ __INLINE void wcnaon_wlan_radio_cg_sleep_en_setf(uint8_t wlanradiocgsleepen)
  *
  * @return The current value of the wlan_cpu_wakeup_en field in the WIFI_SOFT_WAKEUP_REQ register.
  */
-__INLINE uint8_t wcnaon_wlan_cpu_wakeup_en_getf(void)
+static inline uint8_t wcnaon_wlan_cpu_wakeup_en_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000008)) >> 3);
@@ -982,7 +982,7 @@ __INLINE uint8_t wcnaon_wlan_cpu_wakeup_en_getf(void)
  *
  * @param[in] wlancpuwakeupen - The value to set the field to.
  */
-__INLINE void wcnaon_wlan_cpu_wakeup_en_setf(uint8_t wlancpuwakeupen)
+static inline void wcnaon_wlan_cpu_wakeup_en_setf(uint8_t wlancpuwakeupen)
 {
     REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)wlancpuwakeupen << 3));
 }
@@ -994,7 +994,7 @@ __INLINE void wcnaon_wlan_cpu_wakeup_en_setf(uint8_t wlancpuwakeupen)
  *
  * @return The current value of the wlan_radio_sleep_en field in the WIFI_SOFT_WAKEUP_REQ register.
  */
-__INLINE uint8_t wcnaon_wlan_radio_sleep_en_getf(void)
+static inline uint8_t wcnaon_wlan_radio_sleep_en_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000004)) >> 2);
@@ -1007,7 +1007,7 @@ __INLINE uint8_t wcnaon_wlan_radio_sleep_en_getf(void)
  *
  * @param[in] wlanradiosleepen - The value to set the field to.
  */
-__INLINE void wcnaon_wlan_radio_sleep_en_setf(uint8_t wlanradiosleepen)
+static inline void wcnaon_wlan_radio_sleep_en_setf(uint8_t wlanradiosleepen)
 {
     REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)wlanradiosleepen << 2));
 }
@@ -1019,7 +1019,7 @@ __INLINE void wcnaon_wlan_radio_sleep_en_setf(uint8_t wlanradiosleepen)
  *
  * @return The current value of the wlan_power_sleep_en field in the WIFI_SOFT_WAKEUP_REQ register.
  */
-__INLINE uint8_t wcnaon_wlan_power_sleep_en_getf(void)
+static inline uint8_t wcnaon_wlan_power_sleep_en_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000002)) >> 1);
@@ -1032,7 +1032,7 @@ __INLINE uint8_t wcnaon_wlan_power_sleep_en_getf(void)
  *
  * @param[in] wlanpowersleepen - The value to set the field to.
  */
-__INLINE void wcnaon_wlan_power_sleep_en_setf(uint8_t wlanpowersleepen)
+static inline void wcnaon_wlan_power_sleep_en_setf(uint8_t wlanpowersleepen)
 {
     REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)wlanpowersleepen << 1));
 }
@@ -1044,7 +1044,7 @@ __INLINE void wcnaon_wlan_power_sleep_en_setf(uint8_t wlanpowersleepen)
  *
  * @return The current value of the wlan_soft_wakeup_req field in the WIFI_SOFT_WAKEUP_REQ register.
  */
-__INLINE uint8_t wcnaon_wlan_soft_wakeup_req_getf(void)
+static inline uint8_t wcnaon_wlan_soft_wakeup_req_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
@@ -1057,7 +1057,7 @@ __INLINE uint8_t wcnaon_wlan_soft_wakeup_req_getf(void)
  *
  * @param[in] wlansoftwakeupreq - The value to set the field to.
  */
-__INLINE void wcnaon_wlan_soft_wakeup_req_setf(uint8_t wlansoftwakeupreq)
+static inline void wcnaon_wlan_soft_wakeup_req_setf(uint8_t wlansoftwakeupreq)
 {
     REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)wlansoftwakeupreq << 0));
 }
@@ -1091,7 +1091,7 @@ __INLINE void wcnaon_wlan_soft_wakeup_req_setf(uint8_t wlansoftwakeupreq)
  * The WIFI_WAKEUP_DELAY_TIMER register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_wifi_wakeup_delay_timer_set(uint32_t value)
+static inline void wcnaon_wifi_wakeup_delay_timer_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR, value);
 }
@@ -1131,7 +1131,7 @@ __INLINE void wcnaon_wifi_wakeup_delay_timer_set(uint32_t value)
  * @param[in] wlantwpwr - The value to use for the wlan_twpwr field.
  * @param[in] wlantwext - The value to use for the wlan_twext field.
  */
-__INLINE void wcnaon_wifi_wakeup_delay_timer_pack(uint16_t wlantwrm, uint16_t wlantwpwr, uint16_t wlantwext)
+static inline void wcnaon_wifi_wakeup_delay_timer_pack(uint16_t wlantwrm, uint16_t wlantwpwr, uint16_t wlantwext)
 {
     REG_PL_WR(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR,  ((uint32_t)wlantwrm << 22) | ((uint32_t)wlantwpwr << 11) | ((uint32_t)wlantwext << 0));
 }
@@ -1143,7 +1143,7 @@ __INLINE void wcnaon_wifi_wakeup_delay_timer_pack(uint16_t wlantwrm, uint16_t wl
  *
  * @param[in] wlantwrm - The value to set the field to.
  */
-__INLINE void wcnaon_wlan_twrm_setf(uint16_t wlantwrm)
+static inline void wcnaon_wlan_twrm_setf(uint16_t wlantwrm)
 {
     REG_PL_WR(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR, (REG_PL_RD(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR) & ~((uint32_t)0xFFC00000)) | ((uint32_t)wlantwrm << 22));
 }
@@ -1155,7 +1155,7 @@ __INLINE void wcnaon_wlan_twrm_setf(uint16_t wlantwrm)
  *
  * @param[in] wlantwpwr - The value to set the field to.
  */
-__INLINE void wcnaon_wlan_twpwr_setf(uint16_t wlantwpwr)
+static inline void wcnaon_wlan_twpwr_setf(uint16_t wlantwpwr)
 {
     REG_PL_WR(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR, (REG_PL_RD(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR) & ~((uint32_t)0x003FF800)) | ((uint32_t)wlantwpwr << 11));
 }
@@ -1167,7 +1167,7 @@ __INLINE void wcnaon_wlan_twpwr_setf(uint16_t wlantwpwr)
  *
  * @param[in] wlantwext - The value to set the field to.
  */
-__INLINE void wcnaon_wlan_twext_setf(uint16_t wlantwext)
+static inline void wcnaon_wlan_twext_setf(uint16_t wlantwext)
 {
     REG_PL_WR(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR, (REG_PL_RD(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)wlantwext << 0));
 }
@@ -1202,7 +1202,7 @@ __INLINE void wcnaon_wlan_twext_setf(uint16_t wlantwext)
  * The WFBT_RFEN_CTRL register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_wfbt_rfen_ctrl_set(uint32_t value)
+static inline void wcnaon_wfbt_rfen_ctrl_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_WFBT_RFEN_CTRL_ADDR, value);
 }
@@ -1243,7 +1243,7 @@ __INLINE void wcnaon_wfbt_rfen_ctrl_set(uint32_t value)
  * @param[in] wfrfendr - The value to use for the wf_rfen_dr field.
  * @param[in] wfrfenreg - The value to use for the wf_rf_en_reg field.
  */
-__INLINE void wcnaon_wfbt_rfen_ctrl_pack(uint8_t btrfendr, uint8_t btrfenreg, uint8_t wfrfendr, uint8_t wfrfenreg)
+static inline void wcnaon_wfbt_rfen_ctrl_pack(uint8_t btrfendr, uint8_t btrfenreg, uint8_t wfrfendr, uint8_t wfrfenreg)
 {
     REG_PL_WR(WCNAON_WFBT_RFEN_CTRL_ADDR,  ((uint32_t)btrfendr << 3) | ((uint32_t)btrfenreg << 2) | ((uint32_t)wfrfendr << 1) | ((uint32_t)wfrfenreg << 0));
 }
@@ -1255,7 +1255,7 @@ __INLINE void wcnaon_wfbt_rfen_ctrl_pack(uint8_t btrfendr, uint8_t btrfenreg, ui
  *
  * @param[in] btrfendr - The value to set the field to.
  */
-__INLINE void wcnaon_bt_rfen_dr_setf(uint8_t btrfendr)
+static inline void wcnaon_bt_rfen_dr_setf(uint8_t btrfendr)
 {
     REG_PL_WR(WCNAON_WFBT_RFEN_CTRL_ADDR, (REG_PL_RD(WCNAON_WFBT_RFEN_CTRL_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)btrfendr << 3));
 }
@@ -1267,7 +1267,7 @@ __INLINE void wcnaon_bt_rfen_dr_setf(uint8_t btrfendr)
  *
  * @param[in] btrfenreg - The value to set the field to.
  */
-__INLINE void wcnaon_bt_rfen_reg_setf(uint8_t btrfenreg)
+static inline void wcnaon_bt_rfen_reg_setf(uint8_t btrfenreg)
 {
     REG_PL_WR(WCNAON_WFBT_RFEN_CTRL_ADDR, (REG_PL_RD(WCNAON_WFBT_RFEN_CTRL_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)btrfenreg << 2));
 }
@@ -1279,7 +1279,7 @@ __INLINE void wcnaon_bt_rfen_reg_setf(uint8_t btrfenreg)
  *
  * @param[in] wfrfendr - The value to set the field to.
  */
-__INLINE void wcnaon_wf_rfen_dr_setf(uint8_t wfrfendr)
+static inline void wcnaon_wf_rfen_dr_setf(uint8_t wfrfendr)
 {
     REG_PL_WR(WCNAON_WFBT_RFEN_CTRL_ADDR, (REG_PL_RD(WCNAON_WFBT_RFEN_CTRL_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)wfrfendr << 1));
 }
@@ -1291,7 +1291,7 @@ __INLINE void wcnaon_wf_rfen_dr_setf(uint8_t wfrfendr)
  *
  * @param[in] wfrfenreg - The value to set the field to.
  */
-__INLINE void wcnaon_wf_rf_en_reg_setf(uint8_t wfrfenreg)
+static inline void wcnaon_wf_rf_en_reg_setf(uint8_t wfrfenreg)
 {
     REG_PL_WR(WCNAON_WFBT_RFEN_CTRL_ADDR, (REG_PL_RD(WCNAON_WFBT_RFEN_CTRL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)wfrfenreg << 0));
 }
@@ -1324,7 +1324,7 @@ __INLINE void wcnaon_wf_rf_en_reg_setf(uint8_t wfrfenreg)
  * The DEEPSLEEP_WAKEUP_IND register will be read and its value returned.
  * @return The current value of the DEEPSLEEP_WAKEUP_IND register.
  */
-__INLINE uint32_t wcnaon_deepsleep_wakeup_ind_get(void)
+static inline uint32_t wcnaon_deepsleep_wakeup_ind_get(void)
 {
     return REG_PL_RD(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR);
 }
@@ -1334,7 +1334,7 @@ __INLINE uint32_t wcnaon_deepsleep_wakeup_ind_get(void)
  * The DEEPSLEEP_WAKEUP_IND register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_deepsleep_wakeup_ind_set(uint32_t value)
+static inline void wcnaon_deepsleep_wakeup_ind_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR, value);
 }
@@ -1365,7 +1365,7 @@ __INLINE void wcnaon_deepsleep_wakeup_ind_set(uint32_t value)
  * @param[in] hweco - The value to use for the hw_eco field.
  * @param[in] deepsleepwakeupind - The value to use for the deepsleep_wakeup_ind field.
  */
-__INLINE void wcnaon_deepsleep_wakeup_ind_pack(uint32_t hweco, uint8_t deepsleepwakeupind)
+static inline void wcnaon_deepsleep_wakeup_ind_pack(uint32_t hweco, uint8_t deepsleepwakeupind)
 {
     REG_PL_WR(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR,  ((uint32_t)hweco << 4) | ((uint32_t)deepsleepwakeupind << 0));
 }
@@ -1379,7 +1379,7 @@ __INLINE void wcnaon_deepsleep_wakeup_ind_pack(uint32_t hweco, uint8_t deepsleep
  * @param[out] hweco - Will be populated with the current value of this field from the register.
  * @param[out] deepsleepwakeupind - Will be populated with the current value of this field from the register.
  */
-__INLINE void wcnaon_deepsleep_wakeup_ind_unpack(uint32_t* hweco, uint8_t* deepsleepwakeupind)
+static inline void wcnaon_deepsleep_wakeup_ind_unpack(uint32_t* hweco, uint8_t* deepsleepwakeupind)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR);
 
@@ -1394,7 +1394,7 @@ __INLINE void wcnaon_deepsleep_wakeup_ind_unpack(uint32_t* hweco, uint8_t* deeps
  *
  * @return The current value of the hw_eco field in the DEEPSLEEP_WAKEUP_IND register.
  */
-__INLINE uint32_t wcnaon_hw_eco_getf(void)
+static inline uint32_t wcnaon_hw_eco_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR);
     return ((localVal & ((uint32_t)0xFFFFFFF0)) >> 4);
@@ -1407,7 +1407,7 @@ __INLINE uint32_t wcnaon_hw_eco_getf(void)
  *
  * @param[in] hweco - The value to set the field to.
  */
-__INLINE void wcnaon_hw_eco_setf(uint32_t hweco)
+static inline void wcnaon_hw_eco_setf(uint32_t hweco)
 {
     REG_PL_WR(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR, (REG_PL_RD(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR) & ~((uint32_t)0xFFFFFFF0)) | ((uint32_t)hweco << 4));
 }
@@ -1419,7 +1419,7 @@ __INLINE void wcnaon_hw_eco_setf(uint32_t hweco)
  *
  * @return The current value of the deepsleep_wakeup_ind field in the DEEPSLEEP_WAKEUP_IND register.
  */
-__INLINE uint8_t wcnaon_deepsleep_wakeup_ind_getf(void)
+static inline uint8_t wcnaon_deepsleep_wakeup_ind_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR);
     return ((localVal & ((uint32_t)0x0000000F)) >> 0);
@@ -1432,7 +1432,7 @@ __INLINE uint8_t wcnaon_deepsleep_wakeup_ind_getf(void)
  *
  * @param[in] deepsleepwakeupind - The value to set the field to.
  */
-__INLINE void wcnaon_deepsleep_wakeup_ind_setf(uint8_t deepsleepwakeupind)
+static inline void wcnaon_deepsleep_wakeup_ind_setf(uint8_t deepsleepwakeupind)
 {
     REG_PL_WR(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR, (REG_PL_RD(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR) & ~((uint32_t)0x0000000F)) | ((uint32_t)deepsleepwakeupind << 0));
 }
@@ -1468,7 +1468,7 @@ __INLINE void wcnaon_deepsleep_wakeup_ind_setf(uint8_t deepsleepwakeupind)
  * The MAXIM_SPI register will be read and its value returned.
  * @return The current value of the MAXIM_SPI register.
  */
-__INLINE uint32_t wcnaon_maxim_spi_get(void)
+static inline uint32_t wcnaon_maxim_spi_get(void)
 {
     return REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
 }
@@ -1478,7 +1478,7 @@ __INLINE uint32_t wcnaon_maxim_spi_get(void)
  * The MAXIM_SPI register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_maxim_spi_set(uint32_t value)
+static inline void wcnaon_maxim_spi_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_MAXIM_SPI_ADDR, value);
 }
@@ -1532,7 +1532,7 @@ __INLINE void wcnaon_maxim_spi_set(uint32_t value)
  * @param[in] address - The value to use for the ADDRESS field.
  * @param[in] data - The value to use for the DATA field.
  */
-__INLINE void wcnaon_maxim_spi_pack(uint8_t startdone, uint8_t cs, uint8_t prescaler, uint8_t address, uint16_t data)
+static inline void wcnaon_maxim_spi_pack(uint8_t startdone, uint8_t cs, uint8_t prescaler, uint8_t address, uint16_t data)
 {
     REG_PL_WR(WCNAON_MAXIM_SPI_ADDR,  ((uint32_t)startdone << 31) | ((uint32_t)cs << 24) | ((uint32_t)prescaler << 20) | ((uint32_t)address << 16) | ((uint32_t)data << 0));
 }
@@ -1549,7 +1549,7 @@ __INLINE void wcnaon_maxim_spi_pack(uint8_t startdone, uint8_t cs, uint8_t presc
  * @param[out] address - Will be populated with the current value of this field from the register.
  * @param[out] data - Will be populated with the current value of this field from the register.
  */
-__INLINE void wcnaon_maxim_spi_unpack(uint8_t* startdone, uint8_t* cs, uint8_t* prescaler, uint8_t* address, uint16_t* data)
+static inline void wcnaon_maxim_spi_unpack(uint8_t* startdone, uint8_t* cs, uint8_t* prescaler, uint8_t* address, uint16_t* data)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
 
@@ -1567,7 +1567,7 @@ __INLINE void wcnaon_maxim_spi_unpack(uint8_t* startdone, uint8_t* cs, uint8_t* 
  *
  * @return The current value of the START_DONE field in the MAXIM_SPI register.
  */
-__INLINE uint8_t wcnaon_start_done_getf(void)
+static inline uint8_t wcnaon_start_done_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
     return ((localVal & ((uint32_t)0x80000000)) >> 31);
@@ -1580,7 +1580,7 @@ __INLINE uint8_t wcnaon_start_done_getf(void)
  *
  * @param[in] startdone - The value to set the field to.
  */
-__INLINE void wcnaon_start_done_setf(uint8_t startdone)
+static inline void wcnaon_start_done_setf(uint8_t startdone)
 {
     REG_PL_WR(WCNAON_MAXIM_SPI_ADDR, (REG_PL_RD(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x80000000)) | ((uint32_t)startdone << 31));
 }
@@ -1592,7 +1592,7 @@ __INLINE void wcnaon_start_done_setf(uint8_t startdone)
  *
  * @return The current value of the CS field in the MAXIM_SPI register.
  */
-__INLINE uint8_t wcnaon_cs_getf(void)
+static inline uint8_t wcnaon_cs_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
     return ((localVal & ((uint32_t)0x01000000)) >> 24);
@@ -1605,7 +1605,7 @@ __INLINE uint8_t wcnaon_cs_getf(void)
  *
  * @param[in] cs - The value to set the field to.
  */
-__INLINE void wcnaon_cs_setf(uint8_t cs)
+static inline void wcnaon_cs_setf(uint8_t cs)
 {
     REG_PL_WR(WCNAON_MAXIM_SPI_ADDR, (REG_PL_RD(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x01000000)) | ((uint32_t)cs << 24));
 }
@@ -1617,7 +1617,7 @@ __INLINE void wcnaon_cs_setf(uint8_t cs)
  *
  * @return The current value of the PRESCALER field in the MAXIM_SPI register.
  */
-__INLINE uint8_t wcnaon_prescaler_getf(void)
+static inline uint8_t wcnaon_prescaler_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
     return ((localVal & ((uint32_t)0x00F00000)) >> 20);
@@ -1630,7 +1630,7 @@ __INLINE uint8_t wcnaon_prescaler_getf(void)
  *
  * @param[in] prescaler - The value to set the field to.
  */
-__INLINE void wcnaon_prescaler_setf(uint8_t prescaler)
+static inline void wcnaon_prescaler_setf(uint8_t prescaler)
 {
     REG_PL_WR(WCNAON_MAXIM_SPI_ADDR, (REG_PL_RD(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x00F00000)) | ((uint32_t)prescaler << 20));
 }
@@ -1642,7 +1642,7 @@ __INLINE void wcnaon_prescaler_setf(uint8_t prescaler)
  *
  * @return The current value of the ADDRESS field in the MAXIM_SPI register.
  */
-__INLINE uint8_t wcnaon_address_getf(void)
+static inline uint8_t wcnaon_address_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
     return ((localVal & ((uint32_t)0x000F0000)) >> 16);
@@ -1655,7 +1655,7 @@ __INLINE uint8_t wcnaon_address_getf(void)
  *
  * @param[in] address - The value to set the field to.
  */
-__INLINE void wcnaon_address_setf(uint8_t address)
+static inline void wcnaon_address_setf(uint8_t address)
 {
     REG_PL_WR(WCNAON_MAXIM_SPI_ADDR, (REG_PL_RD(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x000F0000)) | ((uint32_t)address << 16));
 }
@@ -1667,7 +1667,7 @@ __INLINE void wcnaon_address_setf(uint8_t address)
  *
  * @return The current value of the DATA field in the MAXIM_SPI register.
  */
-__INLINE uint16_t wcnaon_data_getf(void)
+static inline uint16_t wcnaon_data_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
     return ((localVal & ((uint32_t)0x00003FFF)) >> 0);
@@ -1680,7 +1680,7 @@ __INLINE uint16_t wcnaon_data_getf(void)
  *
  * @param[in] data - The value to set the field to.
  */
-__INLINE void wcnaon_data_setf(uint16_t data)
+static inline void wcnaon_data_setf(uint16_t data)
 {
     REG_PL_WR(WCNAON_MAXIM_SPI_ADDR, (REG_PL_RD(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x00003FFF)) | ((uint32_t)data << 0));
 }
@@ -1713,7 +1713,7 @@ __INLINE void wcnaon_data_setf(uint16_t data)
  * The CM_PU_CTRL register will be read and its value returned.
  * @return The current value of the CM_PU_CTRL register.
  */
-__INLINE uint32_t wcnaon_cm_pu_ctrl_get(void)
+static inline uint32_t wcnaon_cm_pu_ctrl_get(void)
 {
     return REG_PL_RD(WCNAON_CM_PU_CTRL_ADDR);
 }
@@ -1723,7 +1723,7 @@ __INLINE uint32_t wcnaon_cm_pu_ctrl_get(void)
  * The CM_PU_CTRL register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_cm_pu_ctrl_set(uint32_t value)
+static inline void wcnaon_cm_pu_ctrl_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_CM_PU_CTRL_ADDR, value);
 }
@@ -1750,7 +1750,7 @@ __INLINE void wcnaon_cm_pu_ctrl_set(uint32_t value)
  * @param[in] cmpubbplldr - The value to use for the cm_pu_bbpll_dr field.
  * @param[in] cmpubbpllreg - The value to use for the cm_pu_bbpll_reg field.
  */
-__INLINE void wcnaon_cm_pu_ctrl_pack(uint8_t cmpubbplldr, uint8_t cmpubbpllreg)
+static inline void wcnaon_cm_pu_ctrl_pack(uint8_t cmpubbplldr, uint8_t cmpubbpllreg)
 {
     REG_PL_WR(WCNAON_CM_PU_CTRL_ADDR,  ((uint32_t)cmpubbplldr << 11) | ((uint32_t)cmpubbpllreg << 10));
 }
@@ -1764,7 +1764,7 @@ __INLINE void wcnaon_cm_pu_ctrl_pack(uint8_t cmpubbplldr, uint8_t cmpubbpllreg)
  * @param[out] cmpubbplldr - Will be populated with the current value of this field from the register.
  * @param[out] cmpubbpllreg - Will be populated with the current value of this field from the register.
  */
-__INLINE void wcnaon_cm_pu_ctrl_unpack(uint8_t* cmpubbplldr, uint8_t* cmpubbpllreg)
+static inline void wcnaon_cm_pu_ctrl_unpack(uint8_t* cmpubbplldr, uint8_t* cmpubbpllreg)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_PU_CTRL_ADDR);
 
@@ -1779,7 +1779,7 @@ __INLINE void wcnaon_cm_pu_ctrl_unpack(uint8_t* cmpubbplldr, uint8_t* cmpubbpllr
  *
  * @return The current value of the cm_pu_bbpll_dr field in the CM_PU_CTRL register.
  */
-__INLINE uint8_t wcnaon_cm_pu_bbpll_dr_getf(void)
+static inline uint8_t wcnaon_cm_pu_bbpll_dr_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_PU_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000800)) >> 11);
@@ -1792,7 +1792,7 @@ __INLINE uint8_t wcnaon_cm_pu_bbpll_dr_getf(void)
  *
  * @param[in] cmpubbplldr - The value to set the field to.
  */
-__INLINE void wcnaon_cm_pu_bbpll_dr_setf(uint8_t cmpubbplldr)
+static inline void wcnaon_cm_pu_bbpll_dr_setf(uint8_t cmpubbplldr)
 {
     REG_PL_WR(WCNAON_CM_PU_CTRL_ADDR, (REG_PL_RD(WCNAON_CM_PU_CTRL_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)cmpubbplldr << 11));
 }
@@ -1804,7 +1804,7 @@ __INLINE void wcnaon_cm_pu_bbpll_dr_setf(uint8_t cmpubbplldr)
  *
  * @return The current value of the cm_pu_bbpll_reg field in the CM_PU_CTRL register.
  */
-__INLINE uint8_t wcnaon_cm_pu_bbpll_reg_getf(void)
+static inline uint8_t wcnaon_cm_pu_bbpll_reg_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_PU_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000400)) >> 10);
@@ -1817,7 +1817,7 @@ __INLINE uint8_t wcnaon_cm_pu_bbpll_reg_getf(void)
  *
  * @param[in] cmpubbpllreg - The value to set the field to.
  */
-__INLINE void wcnaon_cm_pu_bbpll_reg_setf(uint8_t cmpubbpllreg)
+static inline void wcnaon_cm_pu_bbpll_reg_setf(uint8_t cmpubbpllreg)
 {
     REG_PL_WR(WCNAON_CM_PU_CTRL_ADDR, (REG_PL_RD(WCNAON_CM_PU_CTRL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)cmpubbpllreg << 10));
 }
@@ -1850,7 +1850,7 @@ __INLINE void wcnaon_cm_pu_bbpll_reg_setf(uint8_t cmpubbpllreg)
  * The CM_MDLL_REG register will be read and its value returned.
  * @return The current value of the CM_MDLL_REG register.
  */
-__INLINE uint32_t wcnaon_cm_mdll_reg_get(void)
+static inline uint32_t wcnaon_cm_mdll_reg_get(void)
 {
     return REG_PL_RD(WCNAON_CM_MDLL_REG_ADDR);
 }
@@ -1860,7 +1860,7 @@ __INLINE uint32_t wcnaon_cm_mdll_reg_get(void)
  * The CM_MDLL_REG register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_cm_mdll_reg_set(uint32_t value)
+static inline void wcnaon_cm_mdll_reg_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_CM_MDLL_REG_ADDR, value);
 }
@@ -1889,7 +1889,7 @@ __INLINE void wcnaon_cm_mdll_reg_set(uint32_t value)
  * @param[in] cmmdllbandsel - The value to use for the cm_mdll_band_sel field.
  * @param[in] cmmdllbandbit - The value to use for the cm_mdll_band_bit field.
  */
-__INLINE void wcnaon_cm_mdll_reg_pack(uint8_t cmmdllbandsel, uint8_t cmmdllbandbit)
+static inline void wcnaon_cm_mdll_reg_pack(uint8_t cmmdllbandsel, uint8_t cmmdllbandbit)
 {
     REG_PL_WR(WCNAON_CM_MDLL_REG_ADDR,  ((uint32_t)cmmdllbandsel << 16) | ((uint32_t)cmmdllbandbit << 13));
 }
@@ -1903,7 +1903,7 @@ __INLINE void wcnaon_cm_mdll_reg_pack(uint8_t cmmdllbandsel, uint8_t cmmdllbandb
  * @param[out] cmmdllbandsel - Will be populated with the current value of this field from the register.
  * @param[out] cmmdllbandbit - Will be populated with the current value of this field from the register.
  */
-__INLINE void wcnaon_cm_mdll_reg_unpack(uint8_t* cmmdllbandsel, uint8_t* cmmdllbandbit)
+static inline void wcnaon_cm_mdll_reg_unpack(uint8_t* cmmdllbandsel, uint8_t* cmmdllbandbit)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_MDLL_REG_ADDR);
 
@@ -1918,7 +1918,7 @@ __INLINE void wcnaon_cm_mdll_reg_unpack(uint8_t* cmmdllbandsel, uint8_t* cmmdllb
  *
  * @return The current value of the cm_mdll_band_sel field in the CM_MDLL_REG register.
  */
-__INLINE uint8_t wcnaon_cm_mdll_band_sel_getf(void)
+static inline uint8_t wcnaon_cm_mdll_band_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_MDLL_REG_ADDR);
     return ((localVal & ((uint32_t)0x00010000)) >> 16);
@@ -1931,7 +1931,7 @@ __INLINE uint8_t wcnaon_cm_mdll_band_sel_getf(void)
  *
  * @param[in] cmmdllbandsel - The value to set the field to.
  */
-__INLINE void wcnaon_cm_mdll_band_sel_setf(uint8_t cmmdllbandsel)
+static inline void wcnaon_cm_mdll_band_sel_setf(uint8_t cmmdllbandsel)
 {
     REG_PL_WR(WCNAON_CM_MDLL_REG_ADDR, (REG_PL_RD(WCNAON_CM_MDLL_REG_ADDR) & ~((uint32_t)0x00010000)) | ((uint32_t)cmmdllbandsel << 16));
 }
@@ -1943,7 +1943,7 @@ __INLINE void wcnaon_cm_mdll_band_sel_setf(uint8_t cmmdllbandsel)
  *
  * @return The current value of the cm_mdll_band_bit field in the CM_MDLL_REG register.
  */
-__INLINE uint8_t wcnaon_cm_mdll_band_bit_getf(void)
+static inline uint8_t wcnaon_cm_mdll_band_bit_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_MDLL_REG_ADDR);
     return ((localVal & ((uint32_t)0x0000E000)) >> 13);
@@ -1956,7 +1956,7 @@ __INLINE uint8_t wcnaon_cm_mdll_band_bit_getf(void)
  *
  * @param[in] cmmdllbandbit - The value to set the field to.
  */
-__INLINE void wcnaon_cm_mdll_band_bit_setf(uint8_t cmmdllbandbit)
+static inline void wcnaon_cm_mdll_band_bit_setf(uint8_t cmmdllbandbit)
 {
     REG_PL_WR(WCNAON_CM_MDLL_REG_ADDR, (REG_PL_RD(WCNAON_CM_MDLL_REG_ADDR) & ~((uint32_t)0x0000E000)) | ((uint32_t)cmmdllbandbit << 13));
 }
@@ -1991,7 +1991,7 @@ __INLINE void wcnaon_cm_mdll_band_bit_setf(uint8_t cmmdllbandbit)
  * The CM_XTAL_REG register will be read and its value returned.
  * @return The current value of the CM_XTAL_REG register.
  */
-__INLINE uint32_t wcnaon_cm_xtal_reg_get(void)
+static inline uint32_t wcnaon_cm_xtal_reg_get(void)
 {
     return REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR);
 }
@@ -2001,7 +2001,7 @@ __INLINE uint32_t wcnaon_cm_xtal_reg_get(void)
  * The CM_XTAL_REG register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_cm_xtal_reg_set(uint32_t value)
+static inline void wcnaon_cm_xtal_reg_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_CM_XTAL_REG_ADDR, value);
 }
@@ -2042,7 +2042,7 @@ __INLINE void wcnaon_cm_xtal_reg_set(uint32_t value)
  * @param[in] cmxtalouten1 - The value to use for the cm_xtal_out_en1 field.
  * @param[in] cmxtalouten0 - The value to use for the cm_xtal_out_en0 field.
  */
-__INLINE void wcnaon_cm_xtal_reg_pack(uint8_t cmxtalbufavddsel, uint8_t cmxtalouten3, uint8_t cmxtalouten1, uint8_t cmxtalouten0)
+static inline void wcnaon_cm_xtal_reg_pack(uint8_t cmxtalbufavddsel, uint8_t cmxtalouten3, uint8_t cmxtalouten1, uint8_t cmxtalouten0)
 {
     REG_PL_WR(WCNAON_CM_XTAL_REG_ADDR,  ((uint32_t)cmxtalbufavddsel << 12) | ((uint32_t)cmxtalouten3 << 3) | ((uint32_t)cmxtalouten1 << 1) | ((uint32_t)cmxtalouten0 << 0));
 }
@@ -2058,7 +2058,7 @@ __INLINE void wcnaon_cm_xtal_reg_pack(uint8_t cmxtalbufavddsel, uint8_t cmxtalou
  * @param[out] cmxtalouten1 - Will be populated with the current value of this field from the register.
  * @param[out] cmxtalouten0 - Will be populated with the current value of this field from the register.
  */
-__INLINE void wcnaon_cm_xtal_reg_unpack(uint8_t* cmxtalbufavddsel, uint8_t* cmxtalouten3, uint8_t* cmxtalouten1, uint8_t* cmxtalouten0)
+static inline void wcnaon_cm_xtal_reg_unpack(uint8_t* cmxtalbufavddsel, uint8_t* cmxtalouten3, uint8_t* cmxtalouten1, uint8_t* cmxtalouten0)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR);
 
@@ -2075,7 +2075,7 @@ __INLINE void wcnaon_cm_xtal_reg_unpack(uint8_t* cmxtalbufavddsel, uint8_t* cmxt
  *
  * @return The current value of the cm_xtal_buf_avdd_sel field in the CM_XTAL_REG register.
  */
-__INLINE uint8_t wcnaon_cm_xtal_buf_avdd_sel_getf(void)
+static inline uint8_t wcnaon_cm_xtal_buf_avdd_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR);
     return ((localVal & ((uint32_t)0x00001000)) >> 12);
@@ -2088,7 +2088,7 @@ __INLINE uint8_t wcnaon_cm_xtal_buf_avdd_sel_getf(void)
  *
  * @param[in] cmxtalbufavddsel - The value to set the field to.
  */
-__INLINE void wcnaon_cm_xtal_buf_avdd_sel_setf(uint8_t cmxtalbufavddsel)
+static inline void wcnaon_cm_xtal_buf_avdd_sel_setf(uint8_t cmxtalbufavddsel)
 {
     REG_PL_WR(WCNAON_CM_XTAL_REG_ADDR, (REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)cmxtalbufavddsel << 12));
 }
@@ -2100,7 +2100,7 @@ __INLINE void wcnaon_cm_xtal_buf_avdd_sel_setf(uint8_t cmxtalbufavddsel)
  *
  * @return The current value of the cm_xtal_out_en3 field in the CM_XTAL_REG register.
  */
-__INLINE uint8_t wcnaon_cm_xtal_out_en_3_getf(void)
+static inline uint8_t wcnaon_cm_xtal_out_en_3_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000008)) >> 3);
@@ -2113,7 +2113,7 @@ __INLINE uint8_t wcnaon_cm_xtal_out_en_3_getf(void)
  *
  * @param[in] cmxtalouten3 - The value to set the field to.
  */
-__INLINE void wcnaon_cm_xtal_out_en_3_setf(uint8_t cmxtalouten3)
+static inline void wcnaon_cm_xtal_out_en_3_setf(uint8_t cmxtalouten3)
 {
     REG_PL_WR(WCNAON_CM_XTAL_REG_ADDR, (REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)cmxtalouten3 << 3));
 }
@@ -2125,7 +2125,7 @@ __INLINE void wcnaon_cm_xtal_out_en_3_setf(uint8_t cmxtalouten3)
  *
  * @return The current value of the cm_xtal_out_en1 field in the CM_XTAL_REG register.
  */
-__INLINE uint8_t wcnaon_cm_xtal_out_en_1_getf(void)
+static inline uint8_t wcnaon_cm_xtal_out_en_1_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000002)) >> 1);
@@ -2138,7 +2138,7 @@ __INLINE uint8_t wcnaon_cm_xtal_out_en_1_getf(void)
  *
  * @param[in] cmxtalouten1 - The value to set the field to.
  */
-__INLINE void wcnaon_cm_xtal_out_en_1_setf(uint8_t cmxtalouten1)
+static inline void wcnaon_cm_xtal_out_en_1_setf(uint8_t cmxtalouten1)
 {
     REG_PL_WR(WCNAON_CM_XTAL_REG_ADDR, (REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)cmxtalouten1 << 1));
 }
@@ -2150,7 +2150,7 @@ __INLINE void wcnaon_cm_xtal_out_en_1_setf(uint8_t cmxtalouten1)
  *
  * @return The current value of the cm_xtal_out_en0 field in the CM_XTAL_REG register.
  */
-__INLINE uint8_t wcnaon_cm_xtal_out_en_0_getf(void)
+static inline uint8_t wcnaon_cm_xtal_out_en_0_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
@@ -2163,7 +2163,7 @@ __INLINE uint8_t wcnaon_cm_xtal_out_en_0_getf(void)
  *
  * @param[in] cmxtalouten0 - The value to set the field to.
  */
-__INLINE void wcnaon_cm_xtal_out_en_0_setf(uint8_t cmxtalouten0)
+static inline void wcnaon_cm_xtal_out_en_0_setf(uint8_t cmxtalouten0)
 {
     REG_PL_WR(WCNAON_CM_XTAL_REG_ADDR, (REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)cmxtalouten0 << 0));
 }
@@ -2198,7 +2198,7 @@ __INLINE void wcnaon_cm_xtal_out_en_0_setf(uint8_t cmxtalouten0)
  * The CM_BBPLL_REG2 register will be read and its value returned.
  * @return The current value of the CM_BBPLL_REG2 register.
  */
-__INLINE uint32_t wcnaon_cm_bbpll_reg2_get(void)
+static inline uint32_t wcnaon_cm_bbpll_reg2_get(void)
 {
     return REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR);
 }
@@ -2208,7 +2208,7 @@ __INLINE uint32_t wcnaon_cm_bbpll_reg2_get(void)
  * The CM_BBPLL_REG2 register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_cm_bbpll_reg2_set(uint32_t value)
+static inline void wcnaon_cm_bbpll_reg2_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_CM_BBPLL_REG2_ADDR, value);
 }
@@ -2255,7 +2255,7 @@ __INLINE void wcnaon_cm_bbpll_reg2_set(uint32_t value)
  * @param[in] divlp5en - The value to use for the divlp5_en field.
  * @param[in] clkdivlp5en - The value to use for the clk_divlp5_en field.
  */
-__INLINE void wcnaon_cm_bbpll_reg2_pack(uint8_t clkvcoen, uint8_t clk80men, uint8_t divlp5en, uint8_t clkdivlp5en)
+static inline void wcnaon_cm_bbpll_reg2_pack(uint8_t clkvcoen, uint8_t clk80men, uint8_t divlp5en, uint8_t clkdivlp5en)
 {
     REG_PL_WR(WCNAON_CM_BBPLL_REG2_ADDR,  ((uint32_t)clkvcoen << 19) | ((uint32_t)clk80men << 17) | ((uint32_t)divlp5en << 2) | ((uint32_t)clkdivlp5en << 0));
 }
@@ -2271,7 +2271,7 @@ __INLINE void wcnaon_cm_bbpll_reg2_pack(uint8_t clkvcoen, uint8_t clk80men, uint
  * @param[out] divlp5en - Will be populated with the current value of this field from the register.
  * @param[out] clkdivlp5en - Will be populated with the current value of this field from the register.
  */
-__INLINE void wcnaon_cm_bbpll_reg2_unpack(uint8_t* clkvcoen, uint8_t* clk80men, uint8_t* divlp5en, uint8_t* clkdivlp5en)
+static inline void wcnaon_cm_bbpll_reg2_unpack(uint8_t* clkvcoen, uint8_t* clk80men, uint8_t* divlp5en, uint8_t* clkdivlp5en)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR);
 
@@ -2288,7 +2288,7 @@ __INLINE void wcnaon_cm_bbpll_reg2_unpack(uint8_t* clkvcoen, uint8_t* clk80men, 
  *
  * @return The current value of the clk_vco_en field in the CM_BBPLL_REG2 register.
  */
-__INLINE uint8_t wcnaon_clk_vco_en_getf(void)
+static inline uint8_t wcnaon_clk_vco_en_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR);
     return ((localVal & ((uint32_t)0x00180000)) >> 19);
@@ -2301,7 +2301,7 @@ __INLINE uint8_t wcnaon_clk_vco_en_getf(void)
  *
  * @param[in] clkvcoen - The value to set the field to.
  */
-__INLINE void wcnaon_clk_vco_en_setf(uint8_t clkvcoen)
+static inline void wcnaon_clk_vco_en_setf(uint8_t clkvcoen)
 {
     REG_PL_WR(WCNAON_CM_BBPLL_REG2_ADDR, (REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR) & ~((uint32_t)0x00180000)) | ((uint32_t)clkvcoen << 19));
 }
@@ -2313,7 +2313,7 @@ __INLINE void wcnaon_clk_vco_en_setf(uint8_t clkvcoen)
  *
  * @return The current value of the clk_80m_en field in the CM_BBPLL_REG2 register.
  */
-__INLINE uint8_t wcnaon_clk__80m_en_getf(void)
+static inline uint8_t wcnaon_clk__80m_en_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR);
     return ((localVal & ((uint32_t)0x00060000)) >> 17);
@@ -2326,7 +2326,7 @@ __INLINE uint8_t wcnaon_clk__80m_en_getf(void)
  *
  * @param[in] clk80men - The value to set the field to.
  */
-__INLINE void wcnaon_clk__80m_en_setf(uint8_t clk80men)
+static inline void wcnaon_clk__80m_en_setf(uint8_t clk80men)
 {
     REG_PL_WR(WCNAON_CM_BBPLL_REG2_ADDR, (REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR) & ~((uint32_t)0x00060000)) | ((uint32_t)clk80men << 17));
 }
@@ -2338,7 +2338,7 @@ __INLINE void wcnaon_clk__80m_en_setf(uint8_t clk80men)
  *
  * @return The current value of the divlp5_en field in the CM_BBPLL_REG2 register.
  */
-__INLINE uint8_t wcnaon_divlp_5_en_getf(void)
+static inline uint8_t wcnaon_divlp_5_en_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR);
     return ((localVal & ((uint32_t)0x00000004)) >> 2);
@@ -2351,7 +2351,7 @@ __INLINE uint8_t wcnaon_divlp_5_en_getf(void)
  *
  * @param[in] divlp5en - The value to set the field to.
  */
-__INLINE void wcnaon_divlp_5_en_setf(uint8_t divlp5en)
+static inline void wcnaon_divlp_5_en_setf(uint8_t divlp5en)
 {
     REG_PL_WR(WCNAON_CM_BBPLL_REG2_ADDR, (REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)divlp5en << 2));
 }
@@ -2363,7 +2363,7 @@ __INLINE void wcnaon_divlp_5_en_setf(uint8_t divlp5en)
  *
  * @return The current value of the clk_divlp5_en field in the CM_BBPLL_REG2 register.
  */
-__INLINE uint8_t wcnaon_clk_divlp_5_en_getf(void)
+static inline uint8_t wcnaon_clk_divlp_5_en_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR);
     return ((localVal & ((uint32_t)0x00000003)) >> 0);
@@ -2376,7 +2376,7 @@ __INLINE uint8_t wcnaon_clk_divlp_5_en_getf(void)
  *
  * @param[in] clkdivlp5en - The value to set the field to.
  */
-__INLINE void wcnaon_clk_divlp_5_en_setf(uint8_t clkdivlp5en)
+static inline void wcnaon_clk_divlp_5_en_setf(uint8_t clkdivlp5en)
 {
     REG_PL_WR(WCNAON_CM_BBPLL_REG2_ADDR, (REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)clkdivlp5en << 0));
 }
@@ -2408,7 +2408,7 @@ __INLINE void wcnaon_clk_divlp_5_en_setf(uint8_t clkdivlp5en)
  * The CM_BBPLL_CTRL register will be read and its value returned.
  * @return The current value of the CM_BBPLL_CTRL register.
  */
-__INLINE uint32_t wcnaon_cm_bbpll_ctrl_get(void)
+static inline uint32_t wcnaon_cm_bbpll_ctrl_get(void)
 {
     return REG_PL_RD(WCNAON_CM_BBPLL_CTRL_ADDR);
 }
@@ -2418,7 +2418,7 @@ __INLINE uint32_t wcnaon_cm_bbpll_ctrl_get(void)
  * The CM_BBPLL_CTRL register will be written.
  * @param value - The value to write.
  */
-__INLINE void wcnaon_cm_bbpll_ctrl_set(uint32_t value)
+static inline void wcnaon_cm_bbpll_ctrl_set(uint32_t value)
 {
     REG_PL_WR(WCNAON_CM_BBPLL_CTRL_ADDR, value);
 }
@@ -2439,7 +2439,7 @@ __INLINE void wcnaon_cm_bbpll_ctrl_set(uint32_t value)
  *
  * @return The current value of the cm_rf_alwayson field in the CM_BBPLL_CTRL register.
  */
-__INLINE uint8_t wcnaon_cm_rf_alwayson_getf(void)
+static inline uint8_t wcnaon_cm_rf_alwayson_getf(void)
 {
     uint32_t localVal = REG_PL_RD(WCNAON_CM_BBPLL_CTRL_ADDR);
     return (localVal >> 24);
@@ -2452,7 +2452,7 @@ __INLINE uint8_t wcnaon_cm_rf_alwayson_getf(void)
  *
  * @param[in] cmrfalwayson - The value to set the field to.
  */
-__INLINE void wcnaon_cm_rf_alwayson_setf(uint8_t cmrfalwayson)
+static inline void wcnaon_cm_rf_alwayson_setf(uint8_t cmrfalwayson)
 {
     REG_PL_WR(WCNAON_CM_BBPLL_CTRL_ADDR, (uint32_t)cmrfalwayson << 24);
 }

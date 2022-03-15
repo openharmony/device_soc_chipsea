@@ -255,7 +255,12 @@
                  <filteritem type="filepath" name="cst85/liteos_m/sdk/modules/btdm/ble/ble_app/app_main/app_task.h" desc="InvalidCopyright file"/>
                  <filteritem type="filepath" name="cst85/liteos_m/sdk/modules/wifi/console/fhost_console.c" desc="InvalidCopyright file"/>
                  <filteritem type="filepath" name="cst85/liteos_m/sdk/modules/wifi/macif/tx_swdesc.h" desc="InvalidCopyright file"/>
+                 <filteritem type="filepath" name="cst85/liteos_m/sdk/modules/lwip-2.1/porting/src/net_al.c" desc="InvalidCopyright file"/>
+                 <filteritem type="filepath" name="cst85/liteos_m/sdk/modules/lwip-2.1/porting/include/net_tg_al.h" desc="InvalidCopyright file"/>
+                 <filteritem type="filepath" name="cst85/liteos_m/sdk/modules/lwip-2.1/porting/include/net_def.h" desc="InvalidCopyright file"/>
+                 <filteritem type="filepath" name="cst85/liteos_m/sdk/modules/lwip-2.1/porting/include/net_al.h" desc="InvalidCopyright file"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>
 </configuration>
+

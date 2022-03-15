@@ -54,10 +54,12 @@ module_group(module_name) {
     "sdk/modules/btdm",
     "sdk/modules/common",
     "sdk/modules/dbg",
-    "sdk/modules/lwip",
+    "sdk/modules/lwip-2.1",
     "sdk/modules/rtos",
     "sdk/modules/wb_coex",
     "sdk/modules/wifi",
+    #"sdk/modules/wifi/wifilib",
+    #"sdk/modules/wifi/wpalib",
     "sdk/modules/console",
   ]
 }

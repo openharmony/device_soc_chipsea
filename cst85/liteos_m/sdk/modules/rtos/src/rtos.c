@@ -235,22 +235,22 @@ void rtos_main(void)
     fhost_init(NULL);
     #endif /* CONFIG_RWNX_LWIP */
     #endif /* PLF_WIFI_STACK */
-    if (pwrctrl_pwrmd_cpusys_sw_record_getf() >= CPU_SYS_POWER_DOWN) {
-        // restore data
-        sleep_data_restore();
-        #if PLF_WIFI_STACK
-        #ifdef CONFIG_RWNX_LWIP
-        fhost_data_restore();
-        lwip_data_restore();
-        if (wlan_connected) {
-            fhost_sta_ipc_rxbuf_recover();
-        }
-        //wpas_data_restore();
-        #endif /* CONFIG_RWNX_LWIP */
-        #endif /* PLF_WIFI_STACK */
-       // user_data_restore();
-        sys_wakeup_indicate();
-    }
+    // if (pwrctrl_pwrmd_cpusys_sw_record_getf() >= CPU_SYS_POWER_DOWN) {
+    //     // restore data
+    //     sleep_data_restore();
+    //     #if PLF_WIFI_STACK
+    //     #ifdef CONFIG_RWNX_LWIP
+    //     fhost_data_restore();
+    //     lwip_data_restore();
+    //     if (wlan_connected) {
+    //         fhost_sta_ipc_rxbuf_recover();
+    //     }
+    //     //wpas_data_restore();
+    //     #endif /* CONFIG_RWNX_LWIP */
+    //     #endif /* PLF_WIFI_STACK */
+    //    // user_data_restore();
+    //     sys_wakeup_indicate();
+    // }
 
     #if PLF_DSP
     dsp_task_init();

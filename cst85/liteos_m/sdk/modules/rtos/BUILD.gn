@@ -19,7 +19,6 @@ kernel_module(module_name) {
     "src/os_al/rtos_al.c",
     "src/rtos.c"
   ]
-  configs += ["../lwip:lwip_public_configs"]
 
   deps = [ "//base/hiviewdfx/hilog_lite/frameworks/featured:hilog_static" ]
 

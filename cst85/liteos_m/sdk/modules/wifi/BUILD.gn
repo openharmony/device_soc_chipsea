@@ -18,12 +18,18 @@ kernel_module(module_name) {
   sources = [
     "fhost/fhost_config.c",
     "macif/rom_patch.c",
-    #"wifi_sta_demo.c",
-    #"wifi_ap_demo.c",
     "console/fhost_console.c",
     "console/fhost_command_common.c"
   ]
-  configs += ["../lwip:lwip_public_configs"]
+  configs += ["../lwip-2.1:lwip_public_configs"]
+}
+
+config("wifi_public_configs") {
+  include_dirs = [
+    "fhost",
+    "fhost/application",
+    "macif",
+    "wlan" ]
 }
 
 config("public") {
