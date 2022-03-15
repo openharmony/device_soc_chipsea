@@ -23,6 +23,7 @@
 #include "wlan_if.h"
 #include "wifi_config.h"
 #include "securec.h"
+#include "dbg.h"
 
 #define IP_MASK 0x00FFFFFF
 #define DEFAULT_AP_VIF 0

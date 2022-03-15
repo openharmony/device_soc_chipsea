@@ -31,12 +31,12 @@
 #define IPC_APP2EMB_TRIGGER_INDEX  0x00000000
 #define IPC_APP2EMB_TRIGGER_RESET  0x00000000
 
-__INLINE uint32_t ipc_app2emb_trigger_get(void)
+static inline uint32_t ipc_app2emb_trigger_get(void)
 {
     return REG_PL_RD(IPC_APP2EMB_TRIGGER_ADDR);
 }
 
-__INLINE void ipc_app2emb_trigger_set(uint32_t value)
+static inline void ipc_app2emb_trigger_set(uint32_t value)
 {
     REG_PL_WR(IPC_APP2EMB_TRIGGER_ADDR, value);
 }
@@ -54,7 +54,7 @@ __INLINE void ipc_app2emb_trigger_set(uint32_t value)
 #define IPC_EMB2APP_RAWSTATUS_INDEX  0x00000001
 #define IPC_EMB2APP_RAWSTATUS_RESET  0x00000000
 
-__INLINE uint32_t ipc_emb2app_rawstatus_get(void)
+static inline uint32_t ipc_emb2app_rawstatus_get(void)
 {
     return REG_PL_RD(IPC_EMB2APP_RAWSTATUS_ADDR);
 }
@@ -72,12 +72,12 @@ __INLINE uint32_t ipc_emb2app_rawstatus_get(void)
 #define IPC_EMB2APP_ACK_INDEX  0x00000002
 #define IPC_EMB2APP_ACK_RESET  0x00000000
 
-__INLINE uint32_t ipc_emb2app_ack_get(void)
+static inline uint32_t ipc_emb2app_ack_get(void)
 {
     return REG_PL_RD(IPC_EMB2APP_ACK_ADDR);
 }
 
-__INLINE void ipc_emb2app_ack_clear(uint32_t value)
+static inline void ipc_emb2app_ack_clear(uint32_t value)
 {
     REG_PL_WR(IPC_EMB2APP_ACK_ADDR, value);
 }
@@ -95,12 +95,12 @@ __INLINE void ipc_emb2app_ack_clear(uint32_t value)
 #define IPC_EMB2APP_UNMASK_SET_INDEX  0x00000003
 #define IPC_EMB2APP_UNMASK_SET_RESET  0x00000000
 
-__INLINE uint32_t ipc_emb2app_unmask_get(void)
+static inline uint32_t ipc_emb2app_unmask_get(void)
 {
     return REG_PL_RD(IPC_EMB2APP_UNMASK_SET_ADDR);
 }
 
-__INLINE void ipc_emb2app_unmask_set(uint32_t value)
+static inline void ipc_emb2app_unmask_set(uint32_t value)
 {
     REG_PL_WR(IPC_EMB2APP_UNMASK_SET_ADDR, value);
 }
@@ -118,7 +118,7 @@ __INLINE void ipc_emb2app_unmask_set(uint32_t value)
 #define IPC_EMB2APP_UNMASK_CLEAR_INDEX  0x00000004
 #define IPC_EMB2APP_UNMASK_CLEAR_RESET  0x00000000
 
-__INLINE void ipc_emb2app_unmask_clear(uint32_t value)
+static inline void ipc_emb2app_unmask_clear(uint32_t value)
 {
     REG_PL_WR(IPC_EMB2APP_UNMASK_CLEAR_ADDR, value);
 }
@@ -151,12 +151,12 @@ __INLINE void ipc_emb2app_unmask_clear(uint32_t value)
 #define IPC_EMB2APP_LINE_SEL_LOW_INDEX  0x00000005
 #define IPC_EMB2APP_LINE_SEL_LOW_RESET  0x00000000
 
-__INLINE uint32_t ipc_emb2app_line_sel_low_get(void)
+static inline uint32_t ipc_emb2app_line_sel_low_get(void)
 {
     return REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
 }
 
-__INLINE void ipc_emb2app_line_sel_low_set(uint32_t value)
+static inline void ipc_emb2app_line_sel_low_set(uint32_t value)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, value);
 }
@@ -228,12 +228,12 @@ __INLINE void ipc_emb2app_line_sel_low_set(uint32_t value)
 #define IPC_EMB2APP1_SEL_RST     0x0
 #define IPC_EMB2APP0_SEL_RST     0x0
 
-__INLINE void ipc_emb2app_line_sel_low_pack(uint8_t emb2app15sel, uint8_t emb2app14sel, uint8_t emb2app13sel, uint8_t emb2app12sel, uint8_t emb2app11sel, uint8_t emb2app10sel, uint8_t emb2app9sel, uint8_t emb2app8sel, uint8_t emb2app7sel, uint8_t emb2app6sel, uint8_t emb2app5sel, uint8_t emb2app4sel, uint8_t emb2app3sel, uint8_t emb2app2sel, uint8_t emb2app1sel, uint8_t emb2app0sel)
+static inline void ipc_emb2app_line_sel_low_pack(uint8_t emb2app15sel, uint8_t emb2app14sel, uint8_t emb2app13sel, uint8_t emb2app12sel, uint8_t emb2app11sel, uint8_t emb2app10sel, uint8_t emb2app9sel, uint8_t emb2app8sel, uint8_t emb2app7sel, uint8_t emb2app6sel, uint8_t emb2app5sel, uint8_t emb2app4sel, uint8_t emb2app3sel, uint8_t emb2app2sel, uint8_t emb2app1sel, uint8_t emb2app0sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR,  ((uint32_t)emb2app15sel << 30) | ((uint32_t)emb2app14sel << 28) | ((uint32_t)emb2app13sel << 26) | ((uint32_t)emb2app12sel << 24) | ((uint32_t)emb2app11sel << 22) | ((uint32_t)emb2app10sel << 20) | ((uint32_t)emb2app9sel << 18) | ((uint32_t)emb2app8sel << 16) | ((uint32_t)emb2app7sel << 14) | ((uint32_t)emb2app6sel << 12) | ((uint32_t)emb2app5sel << 10) | ((uint32_t)emb2app4sel << 8) | ((uint32_t)emb2app3sel << 6) | ((uint32_t)emb2app2sel << 4) | ((uint32_t)emb2app1sel << 2) | ((uint32_t)emb2app0sel << 0));
 }
 
-__INLINE void ipc_emb2app_line_sel_low_unpack(uint8_t* emb2app15sel, uint8_t* emb2app14sel, uint8_t* emb2app13sel, uint8_t* emb2app12sel, uint8_t* emb2app11sel, uint8_t* emb2app10sel, uint8_t* emb2app9sel, uint8_t* emb2app8sel, uint8_t* emb2app7sel, uint8_t* emb2app6sel, uint8_t* emb2app5sel, uint8_t* emb2app4sel, uint8_t* emb2app3sel, uint8_t* emb2app2sel, uint8_t* emb2app1sel, uint8_t* emb2app0sel)
+static inline void ipc_emb2app_line_sel_low_unpack(uint8_t* emb2app15sel, uint8_t* emb2app14sel, uint8_t* emb2app13sel, uint8_t* emb2app12sel, uint8_t* emb2app11sel, uint8_t* emb2app10sel, uint8_t* emb2app9sel, uint8_t* emb2app8sel, uint8_t* emb2app7sel, uint8_t* emb2app6sel, uint8_t* emb2app5sel, uint8_t* emb2app4sel, uint8_t* emb2app3sel, uint8_t* emb2app2sel, uint8_t* emb2app1sel, uint8_t* emb2app0sel)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
 
@@ -255,178 +255,178 @@ __INLINE void ipc_emb2app_line_sel_low_unpack(uint8_t* emb2app15sel, uint8_t* em
     *emb2app0sel = (localVal & ((uint32_t)0x00000003)) >> 0;
 }
 
-__INLINE uint8_t ipc_emb2app15_sel_getf(void)
+static inline uint8_t ipc_emb2app15_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0xC0000000)) >> 30);
 }
 
-__INLINE void ipc_emb2app15_sel_setf(uint8_t emb2app15sel)
+static inline void ipc_emb2app15_sel_setf(uint8_t emb2app15sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0xC0000000)) | ((uint32_t)emb2app15sel << 30));
 }
 
-__INLINE uint8_t ipc_emb2app14_sel_getf(void)
+static inline uint8_t ipc_emb2app14_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x30000000)) >> 28);
 }
 
-__INLINE void ipc_emb2app14_sel_setf(uint8_t emb2app14sel)
+static inline void ipc_emb2app14_sel_setf(uint8_t emb2app14sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x30000000)) | ((uint32_t)emb2app14sel << 28));
 }
 
-__INLINE uint8_t ipc_emb2app13_sel_getf(void)
+static inline uint8_t ipc_emb2app13_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x0C000000)) >> 26);
 }
 
-__INLINE void ipc_emb2app13_sel_setf(uint8_t emb2app13sel)
+static inline void ipc_emb2app13_sel_setf(uint8_t emb2app13sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x0C000000)) | ((uint32_t)emb2app13sel << 26));
 }
 
-__INLINE uint8_t ipc_emb2app12_sel_getf(void)
+static inline uint8_t ipc_emb2app12_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x03000000)) >> 24);
 }
 
-__INLINE void ipc_emb2app12_sel_setf(uint8_t emb2app12sel)
+static inline void ipc_emb2app12_sel_setf(uint8_t emb2app12sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x03000000)) | ((uint32_t)emb2app12sel << 24));
 }
 
-__INLINE uint8_t ipc_emb2app11_sel_getf(void)
+static inline uint8_t ipc_emb2app11_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00C00000)) >> 22);
 }
 
-__INLINE void ipc_emb2app11_sel_setf(uint8_t emb2app11sel)
+static inline void ipc_emb2app11_sel_setf(uint8_t emb2app11sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00C00000)) | ((uint32_t)emb2app11sel << 22));
 }
 
-__INLINE uint8_t ipc_emb2app10_sel_getf(void)
+static inline uint8_t ipc_emb2app10_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00300000)) >> 20);
 }
 
-__INLINE void ipc_emb2app10_sel_setf(uint8_t emb2app10sel)
+static inline void ipc_emb2app10_sel_setf(uint8_t emb2app10sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00300000)) | ((uint32_t)emb2app10sel << 20));
 }
 
-__INLINE uint8_t ipc_emb2app9_sel_getf(void)
+static inline uint8_t ipc_emb2app9_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x000C0000)) >> 18);
 }
 
-__INLINE void ipc_emb2app9_sel_setf(uint8_t emb2app9sel)
+static inline void ipc_emb2app9_sel_setf(uint8_t emb2app9sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x000C0000)) | ((uint32_t)emb2app9sel << 18));
 }
 
-__INLINE uint8_t ipc_emb2app8_sel_getf(void)
+static inline uint8_t ipc_emb2app8_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00030000)) >> 16);
 }
 
-__INLINE void ipc_emb2app8_sel_setf(uint8_t emb2app8sel)
+static inline void ipc_emb2app8_sel_setf(uint8_t emb2app8sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00030000)) | ((uint32_t)emb2app8sel << 16));
 }
 
-__INLINE uint8_t ipc_emb2app7_sel_getf(void)
+static inline uint8_t ipc_emb2app7_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x0000C000)) >> 14);
 }
 
-__INLINE void ipc_emb2app7_sel_setf(uint8_t emb2app7sel)
+static inline void ipc_emb2app7_sel_setf(uint8_t emb2app7sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x0000C000)) | ((uint32_t)emb2app7sel << 14));
 }
 
-__INLINE uint8_t ipc_emb2app6_sel_getf(void)
+static inline uint8_t ipc_emb2app6_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00003000)) >> 12);
 }
 
-__INLINE void ipc_emb2app6_sel_setf(uint8_t emb2app6sel)
+static inline void ipc_emb2app6_sel_setf(uint8_t emb2app6sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00003000)) | ((uint32_t)emb2app6sel << 12));
 }
 
-__INLINE uint8_t ipc_emb2app5_sel_getf(void)
+static inline uint8_t ipc_emb2app5_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00000C00)) >> 10);
 }
 
-__INLINE void ipc_emb2app5_sel_setf(uint8_t emb2app5sel)
+static inline void ipc_emb2app5_sel_setf(uint8_t emb2app5sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00000C00)) | ((uint32_t)emb2app5sel << 10));
 }
 
-__INLINE uint8_t ipc_emb2app4_sel_getf(void)
+static inline uint8_t ipc_emb2app4_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00000300)) >> 8);
 }
 
-__INLINE void ipc_emb2app4_sel_setf(uint8_t emb2app4sel)
+static inline void ipc_emb2app4_sel_setf(uint8_t emb2app4sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00000300)) | ((uint32_t)emb2app4sel << 8));
 }
 
-__INLINE uint8_t ipc_emb2app3_sel_getf(void)
+static inline uint8_t ipc_emb2app3_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x000000C0)) >> 6);
 }
 
-__INLINE void ipc_emb2app3_sel_setf(uint8_t emb2app3sel)
+static inline void ipc_emb2app3_sel_setf(uint8_t emb2app3sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x000000C0)) | ((uint32_t)emb2app3sel << 6));
 }
 
-__INLINE uint8_t ipc_emb2app2_sel_getf(void)
+static inline uint8_t ipc_emb2app2_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00000030)) >> 4);
 }
 
-__INLINE void ipc_emb2app2_sel_setf(uint8_t emb2app2sel)
+static inline void ipc_emb2app2_sel_setf(uint8_t emb2app2sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00000030)) | ((uint32_t)emb2app2sel << 4));
 }
 
-__INLINE uint8_t ipc_emb2app1_sel_getf(void)
+static inline uint8_t ipc_emb2app1_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x0000000C)) >> 2);
 }
 
-__INLINE void ipc_emb2app1_sel_setf(uint8_t emb2app1sel)
+static inline void ipc_emb2app1_sel_setf(uint8_t emb2app1sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x0000000C)) | ((uint32_t)emb2app1sel << 2));
 }
 
-__INLINE uint8_t ipc_emb2app0_sel_getf(void)
+static inline uint8_t ipc_emb2app0_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00000003)) >> 0);
 }
 
-__INLINE void ipc_emb2app0_sel_setf(uint8_t emb2app0sel)
+static inline void ipc_emb2app0_sel_setf(uint8_t emb2app0sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)emb2app0sel << 0));
 }
@@ -459,12 +459,12 @@ __INLINE void ipc_emb2app0_sel_setf(uint8_t emb2app0sel)
 #define IPC_EMB2APP_LINE_SEL_HIGH_INDEX  0x00000006
 #define IPC_EMB2APP_LINE_SEL_HIGH_RESET  0x00000000
 
-__INLINE uint32_t ipc_emb2app_line_sel_high_get(void)
+static inline uint32_t ipc_emb2app_line_sel_high_get(void)
 {
     return REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
 }
 
-__INLINE void ipc_emb2app_line_sel_high_set(uint32_t value)
+static inline void ipc_emb2app_line_sel_high_set(uint32_t value)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, value);
 }
@@ -536,12 +536,12 @@ __INLINE void ipc_emb2app_line_sel_high_set(uint32_t value)
 #define IPC_EMB2APP17_SEL_RST    0x0
 #define IPC_EMB2APP16_SEL_RST    0x0
 
-__INLINE void ipc_emb2app_line_sel_high_pack(uint8_t emb2app31sel, uint8_t emb2app30sel, uint8_t emb2app29sel, uint8_t emb2app28sel, uint8_t emb2app27sel, uint8_t emb2app26sel, uint8_t emb2app25sel, uint8_t emb2app24sel, uint8_t emb2app23sel, uint8_t emb2app22sel, uint8_t emb2app21sel, uint8_t emb2app20sel, uint8_t emb2app19sel, uint8_t emb2app18sel, uint8_t emb2app17sel, uint8_t emb2app16sel)
+static inline void ipc_emb2app_line_sel_high_pack(uint8_t emb2app31sel, uint8_t emb2app30sel, uint8_t emb2app29sel, uint8_t emb2app28sel, uint8_t emb2app27sel, uint8_t emb2app26sel, uint8_t emb2app25sel, uint8_t emb2app24sel, uint8_t emb2app23sel, uint8_t emb2app22sel, uint8_t emb2app21sel, uint8_t emb2app20sel, uint8_t emb2app19sel, uint8_t emb2app18sel, uint8_t emb2app17sel, uint8_t emb2app16sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR,  ((uint32_t)emb2app31sel << 30) | ((uint32_t)emb2app30sel << 28) | ((uint32_t)emb2app29sel << 26) | ((uint32_t)emb2app28sel << 24) | ((uint32_t)emb2app27sel << 22) | ((uint32_t)emb2app26sel << 20) | ((uint32_t)emb2app25sel << 18) | ((uint32_t)emb2app24sel << 16) | ((uint32_t)emb2app23sel << 14) | ((uint32_t)emb2app22sel << 12) | ((uint32_t)emb2app21sel << 10) | ((uint32_t)emb2app20sel << 8) | ((uint32_t)emb2app19sel << 6) | ((uint32_t)emb2app18sel << 4) | ((uint32_t)emb2app17sel << 2) | ((uint32_t)emb2app16sel << 0));
 }
 
-__INLINE void ipc_emb2app_line_sel_high_unpack(uint8_t* emb2app31sel, uint8_t* emb2app30sel, uint8_t* emb2app29sel, uint8_t* emb2app28sel, uint8_t* emb2app27sel, uint8_t* emb2app26sel, uint8_t* emb2app25sel, uint8_t* emb2app24sel, uint8_t* emb2app23sel, uint8_t* emb2app22sel, uint8_t* emb2app21sel, uint8_t* emb2app20sel, uint8_t* emb2app19sel, uint8_t* emb2app18sel, uint8_t* emb2app17sel, uint8_t* emb2app16sel)
+static inline void ipc_emb2app_line_sel_high_unpack(uint8_t* emb2app31sel, uint8_t* emb2app30sel, uint8_t* emb2app29sel, uint8_t* emb2app28sel, uint8_t* emb2app27sel, uint8_t* emb2app26sel, uint8_t* emb2app25sel, uint8_t* emb2app24sel, uint8_t* emb2app23sel, uint8_t* emb2app22sel, uint8_t* emb2app21sel, uint8_t* emb2app20sel, uint8_t* emb2app19sel, uint8_t* emb2app18sel, uint8_t* emb2app17sel, uint8_t* emb2app16sel)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
 
@@ -563,178 +563,178 @@ __INLINE void ipc_emb2app_line_sel_high_unpack(uint8_t* emb2app31sel, uint8_t* e
     *emb2app16sel = (localVal & ((uint32_t)0x00000003)) >> 0;
 }
 
-__INLINE uint8_t ipc_emb2app31_sel_getf(void)
+static inline uint8_t ipc_emb2app31_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0xC0000000)) >> 30);
 }
 
-__INLINE void ipc_emb2app31_sel_setf(uint8_t emb2app31sel)
+static inline void ipc_emb2app31_sel_setf(uint8_t emb2app31sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0xC0000000)) | ((uint32_t)emb2app31sel << 30));
 }
 
-__INLINE uint8_t ipc_emb2app30_sel_getf(void)
+static inline uint8_t ipc_emb2app30_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x30000000)) >> 28);
 }
 
-__INLINE void ipc_emb2app30_sel_setf(uint8_t emb2app30sel)
+static inline void ipc_emb2app30_sel_setf(uint8_t emb2app30sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x30000000)) | ((uint32_t)emb2app30sel << 28));
 }
 
-__INLINE uint8_t ipc_emb2app29_sel_getf(void)
+static inline uint8_t ipc_emb2app29_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x0C000000)) >> 26);
 }
 
-__INLINE void ipc_emb2app29_sel_setf(uint8_t emb2app29sel)
+static inline void ipc_emb2app29_sel_setf(uint8_t emb2app29sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x0C000000)) | ((uint32_t)emb2app29sel << 26));
 }
 
-__INLINE uint8_t ipc_emb2app28_sel_getf(void)
+static inline uint8_t ipc_emb2app28_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x03000000)) >> 24);
 }
 
-__INLINE void ipc_emb2app28_sel_setf(uint8_t emb2app28sel)
+static inline void ipc_emb2app28_sel_setf(uint8_t emb2app28sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x03000000)) | ((uint32_t)emb2app28sel << 24));
 }
 
-__INLINE uint8_t ipc_emb2app27_sel_getf(void)
+static inline uint8_t ipc_emb2app27_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00C00000)) >> 22);
 }
 
-__INLINE void ipc_emb2app27_sel_setf(uint8_t emb2app27sel)
+static inline void ipc_emb2app27_sel_setf(uint8_t emb2app27sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00C00000)) | ((uint32_t)emb2app27sel << 22));
 }
 
-__INLINE uint8_t ipc_emb2app26_sel_getf(void)
+static inline uint8_t ipc_emb2app26_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00300000)) >> 20);
 }
 
-__INLINE void ipc_emb2app26_sel_setf(uint8_t emb2app26sel)
+static inline void ipc_emb2app26_sel_setf(uint8_t emb2app26sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00300000)) | ((uint32_t)emb2app26sel << 20));
 }
 
-__INLINE uint8_t ipc_emb2app25_sel_getf(void)
+static inline uint8_t ipc_emb2app25_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x000C0000)) >> 18);
 }
 
-__INLINE void ipc_emb2app25_sel_setf(uint8_t emb2app25sel)
+static inline void ipc_emb2app25_sel_setf(uint8_t emb2app25sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x000C0000)) | ((uint32_t)emb2app25sel << 18));
 }
 
-__INLINE uint8_t ipc_emb2app24_sel_getf(void)
+static inline uint8_t ipc_emb2app24_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00030000)) >> 16);
 }
 
-__INLINE void ipc_emb2app24_sel_setf(uint8_t emb2app24sel)
+static inline void ipc_emb2app24_sel_setf(uint8_t emb2app24sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00030000)) | ((uint32_t)emb2app24sel << 16));
 }
 
-__INLINE uint8_t ipc_emb2app23_sel_getf(void)
+static inline uint8_t ipc_emb2app23_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x0000C000)) >> 14);
 }
 
-__INLINE void ipc_emb2app23_sel_setf(uint8_t emb2app23sel)
+static inline void ipc_emb2app23_sel_setf(uint8_t emb2app23sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x0000C000)) | ((uint32_t)emb2app23sel << 14));
 }
 
-__INLINE uint8_t ipc_emb2app22_sel_getf(void)
+static inline uint8_t ipc_emb2app22_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00003000)) >> 12);
 }
 
-__INLINE void ipc_emb2app22_sel_setf(uint8_t emb2app22sel)
+static inline void ipc_emb2app22_sel_setf(uint8_t emb2app22sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00003000)) | ((uint32_t)emb2app22sel << 12));
 }
 
-__INLINE uint8_t ipc_emb2app21_sel_getf(void)
+static inline uint8_t ipc_emb2app21_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00000C00)) >> 10);
 }
 
-__INLINE void ipc_emb2app21_sel_setf(uint8_t emb2app21sel)
+static inline void ipc_emb2app21_sel_setf(uint8_t emb2app21sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00000C00)) | ((uint32_t)emb2app21sel << 10));
 }
 
-__INLINE uint8_t ipc_emb2app20_sel_getf(void)
+static inline uint8_t ipc_emb2app20_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00000300)) >> 8);
 }
 
-__INLINE void ipc_emb2app20_sel_setf(uint8_t emb2app20sel)
+static inline void ipc_emb2app20_sel_setf(uint8_t emb2app20sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00000300)) | ((uint32_t)emb2app20sel << 8));
 }
 
-__INLINE uint8_t ipc_emb2app19_sel_getf(void)
+static inline uint8_t ipc_emb2app19_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x000000C0)) >> 6);
 }
 
-__INLINE void ipc_emb2app19_sel_setf(uint8_t emb2app19sel)
+static inline void ipc_emb2app19_sel_setf(uint8_t emb2app19sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x000000C0)) | ((uint32_t)emb2app19sel << 6));
 }
 
-__INLINE uint8_t ipc_emb2app18_sel_getf(void)
+static inline uint8_t ipc_emb2app18_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00000030)) >> 4);
 }
 
-__INLINE void ipc_emb2app18_sel_setf(uint8_t emb2app18sel)
+static inline void ipc_emb2app18_sel_setf(uint8_t emb2app18sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00000030)) | ((uint32_t)emb2app18sel << 4));
 }
 
-__INLINE uint8_t ipc_emb2app17_sel_getf(void)
+static inline uint8_t ipc_emb2app17_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x0000000C)) >> 2);
 }
 
-__INLINE void ipc_emb2app17_sel_setf(uint8_t emb2app17sel)
+static inline void ipc_emb2app17_sel_setf(uint8_t emb2app17sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x0000000C)) | ((uint32_t)emb2app17sel << 2));
 }
 
-__INLINE uint8_t ipc_emb2app16_sel_getf(void)
+static inline uint8_t ipc_emb2app16_sel_getf(void)
 {
     uint32_t localVal = REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00000003)) >> 0);
 }
 
-__INLINE void ipc_emb2app16_sel_setf(uint8_t emb2app16sel)
+static inline void ipc_emb2app16_sel_setf(uint8_t emb2app16sel)
 {
     REG_PL_WR(IPC_EMB2APP_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_EMB2APP_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)emb2app16sel << 0));
 }
@@ -753,7 +753,7 @@ __INLINE void ipc_emb2app16_sel_setf(uint8_t emb2app16sel)
 #define IPC_EMB2APP_STATUS_INDEX  0x00000007
 #define IPC_EMB2APP_STATUS_RESET  0x00000000
 
-__INLINE uint32_t ipc_emb2app_status_get(void)
+static inline uint32_t ipc_emb2app_status_get(void)
 {
     return REG_PL_RD(IPC_EMB2APP_STATUS_ADDR);
 }

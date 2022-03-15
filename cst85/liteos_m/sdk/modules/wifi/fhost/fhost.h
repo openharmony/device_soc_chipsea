@@ -423,7 +423,7 @@ extern struct fhost_env_tag fhost_env;
  * @return A pointer to the corresponding MAC VIF
  ****************************************************************************************
  */
-__INLINE struct vif_info_tag *fhost_to_mac_vif(uint8_t fhost_vif_idx)
+static inline struct vif_info_tag *fhost_to_mac_vif(uint8_t fhost_vif_idx)
 {
     struct vif_info_tag *mac_vif = fhost_env.vif[fhost_vif_idx].mac_vif;
 
@@ -444,7 +444,7 @@ __INLINE struct vif_info_tag *fhost_to_mac_vif(uint8_t fhost_vif_idx)
  * @return A pointer to the corresponding FHOST VIF
  ****************************************************************************************
  */
-__INLINE struct fhost_vif_tag *fhost_from_mac_vif(uint8_t mac_vif_idx)
+static inline struct fhost_vif_tag *fhost_from_mac_vif(uint8_t mac_vif_idx)
 {
     struct fhost_vif_tag *fhost_vif;
 

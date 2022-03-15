@@ -62,7 +62,7 @@ enum
     TASK_STACK_SIZE_DSP                  = 512,
     TASK_STACK_SIZE_WIFI_VOICE           = 512,
     TASK_STACK_SIZE_WIFI_TCPIP           = 2048,
-    TASK_STACK_SIZE_WIFI_CNTRL           = 1024,
+    TASK_STACK_SIZE_WIFI_CNTRL           = 3072,
     TASK_STACK_SIZE_WIFI_IPC             = 2048,
     TASK_STACK_SIZE_WIFI_WPA             = 3072,
     TASK_STACK_SIZE_WIFI_TG_SEND         = 1024,

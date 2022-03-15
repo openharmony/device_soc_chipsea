@@ -25,5 +25,5 @@ kernel_module(module_name) {
   deps = [ "//foundation/communication/wifi_lite:wifi" ]
   include_dirs = [ "./" ]
   visibility += [ "../../.." ]
-  configs += ["//device/soc/chipsea/cst85/liteos_m/sdk/modules/lwip:lwip_public_configs"]
+  configs += ["//device/soc/chipsea/cst85/liteos_m/sdk/modules/lwip-2.1:lwip_public_configs"]
 }
