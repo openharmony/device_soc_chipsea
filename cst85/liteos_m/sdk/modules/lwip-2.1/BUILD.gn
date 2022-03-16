@@ -39,7 +39,6 @@ kernel_module(module_name) {
     "./porting/src/net_al.c",
     "./dhcps/dhcps.c",
   ]
-  configs += ["../lwip-2.1:lwip_public_configs"]
 }
 
 config("lwip_public_configs") {

@@ -36,6 +36,7 @@
 #endif /* CONFIG_RWNX_LWIP */
 #include "mac.h"
 #include "fhost_api.h"
+#include "cfgrwnx.h"
 #include "plf.h"
 
 /*

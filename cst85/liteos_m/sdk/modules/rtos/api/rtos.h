@@ -18,6 +18,7 @@
  ****************************************************************************************
  */
 #include "rtos_al.h"
+#include "task_al.h"
 
 /*
  * DEFINITIONS
@@ -47,32 +48,6 @@ enum
     TASK_PRIORITY_WIFI_USER            = RTOS_TASK_PRIORITY(1),
     TASK_PRIORITY_USB_BT               = RTOS_TASK_PRIORITY(2),
     TASK_PRIORITY_MAX                  = RTOS_TASK_PRIORITY(5),
-};
-
-/// Definitions of the different FHOST task stack size requirements
-enum
-{
-    TASK_STACK_SIZE_CONSOLE              = 512,
-    TASK_STACK_SIZE_TEST                 = 2048,
-    TASK_STACK_SIZE_BT_TASK              = 3072,
-    TASK_STACK_SIZE_ASIO                 = 2048,
-    TASK_STACK_SIZE_AUDIO                = 2048,
-    TASK_STACK_SIZE_BLE_TASK_ONLY        = 2048,
-    TASK_STACK_SIZE_BT_BLE_TASK          = 4096,
-    TASK_STACK_SIZE_DSP                  = 512,
-    TASK_STACK_SIZE_WIFI_VOICE           = 512,
-    TASK_STACK_SIZE_WIFI_TCPIP           = 2048,
-    TASK_STACK_SIZE_WIFI_CNTRL           = 3072,
-    TASK_STACK_SIZE_WIFI_IPC             = 2048,
-    TASK_STACK_SIZE_WIFI_WPA             = 3072,
-    TASK_STACK_SIZE_WIFI_TG_SEND         = 1024,
-    TASK_STACK_SIZE_WIFI_PING_SEND       = 512,
-    TASK_STACK_SIZE_WIFI_IPERF           = 1024,
-    TASK_STACK_SIZE_WIFI_SMARTCONF       = 1024,
-    TASK_STACK_SIZE_WIFI_TX              = 1024,
-    TASK_STACK_SIZE_CO_MAIN              = 1024,
-    TASK_STACK_SIZE_WIFI_USER            = 512,
-    TASK_STACK_SIZE_USB_BT               = 512,
 };
 
 typedef struct {

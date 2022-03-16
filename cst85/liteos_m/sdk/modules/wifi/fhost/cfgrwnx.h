@@ -17,6 +17,7 @@
 #include "rwnx_config.h"
 #include "msg.h"
 #include "fhost_api.h"
+#include "rtos_def.h"
 
 /**
  ****************************************************************************************
