@@ -189,7 +189,12 @@ sudo apt-get install build-essential gcc g++ make zlib* libffi-dev e2fsprogs pkg
 hb set
 
 chipsea
- > wblink_demo
+  xts_demo
+  wblink_demo
+
+其中
+"xts_demo"为兼容性测试的编译目标。
+"wblink_demo"为正常连接模组的编译目标。
 
 选择wblink_demo
 
