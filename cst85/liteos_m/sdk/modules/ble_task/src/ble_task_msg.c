@@ -15,7 +15,7 @@
 /*chipsea_ohos proguard begin*/
 #include "cs_proguard.h"
 /*chipsea_ohos proguard end*/
-#include "rtos.h"
+#include "al_rtos.h"
 #include "ble_task_msg.h"
 #if PLF_CONSOLE
 #include "console.h"

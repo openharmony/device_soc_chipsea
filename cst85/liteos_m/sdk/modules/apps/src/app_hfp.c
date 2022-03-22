@@ -18,7 +18,7 @@
 #include "cs_target_config.h"
 #if APP_SUPPORT_HFP == 1
 #include "cs_adp_api.h"
-#include "rtos.h"
+#include "al_rtos.h"
 #include "app_bt.h"
 #include "app_hfp.h"
 #include "app_a2dp.h"

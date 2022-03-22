@@ -1,19 +1,16 @@
-/* File: startup_ARMCM4.s
- * Purpose: startup file for Cortex-M3/M4 devices. Should use with
- *   GNU Tools for ARM Embedded Processors
- * Version: V1.1
- * Date: 17 June 2011
+/*
+ * Copyright (c) 2021 Chipsea Technologies (Shenzhen) Corp., Ltd. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Copyright (C) 2011 ARM Limited. All rights reserved.
- * ARM Limited (ARM) is supplying this software for use with Cortex-M3/M4
- * processor based microcontrollers.  This file can be freely distributed
- * within development tools that are supporting such ARM based processors.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
- * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
- * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
- * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
     .syntax unified
     .arch armv7-m

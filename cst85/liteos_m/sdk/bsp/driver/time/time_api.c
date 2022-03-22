@@ -37,7 +37,7 @@
 #if USE_LP_TICKER_READ
 #include "lp_ticker_api.h"
 #elif USE_RTOS_TICKCOUNT
-#include "rtos_al.h"
+#include "rtos_ohos_al.h"
 #endif
 
 static uint32_t epoch_sec;

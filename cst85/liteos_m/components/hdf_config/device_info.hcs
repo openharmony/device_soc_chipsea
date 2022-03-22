@@ -22,12 +22,21 @@ root {
             priority = 50;
             device_gpio :: device {
                 gpio0 :: deviceNode {
-                    policy = 2;
+                    policy = 0;
                     priority = 100;
-                    moduleName = "led_driver";
-                    serviceName = "led_driver";
-                    deviceMatchAttr = "";
+                    moduleName = "HDF_PLATFORM_GPIO";
+                    serviceName = "HDF_PLATFORM_GPIO";
+                    deviceMatchAttr = "gpio_config";
                 }
+            }
+        }
+        led :: host {
+            led0 :: device {
+                policy = 2;
+                priority = 100;
+                moduleName = "led_driver";
+                serviceName = "led_driver";
+                deviceMatchAttr = "led_config";
             }
         }
     }

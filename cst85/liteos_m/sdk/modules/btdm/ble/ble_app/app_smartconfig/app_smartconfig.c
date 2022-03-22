@@ -1,24 +1,19 @@
-/**
- ****************************************************************************************
+/*
+ * Copyright (c) 2021 Chipsea Technologies (Shenzhen) Corp., Ltd. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * @file app_smartconfig.c
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * @brief Smartconfig Application entry point
- *
- * Copyright (C) CS
- *
- *
- ****************************************************************************************
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
-/**
- ****************************************************************************************
- * @addtogroup APP
- * @{
- ****************************************************************************************
- */
-
-#include "rwip_config.h"     // SW configuration
+#include "ble_ip_config.h"     // SW configuration
 
 #if (BLE_APP_SMARTCONFIG)
 
@@ -26,17 +21,17 @@
  * INCLUDE FILES
  ****************************************************************************************
  */
-#include "app.h"
-#include "app_task.h"
+#include "app_present.h"
+#include "app_present_task.h"
 #include "app_smartconfig.h"
 #include "smartconfig_task.h"
-#include "co_bt.h"
-#include "prf_types.h"
-#include "prf_utils.h"
+#include "bt_common.h"
+#include "hal_prf_types.h"
+#include "hal_profile_utils.h"
 #include "arch.h"
-#include "prf.h"
+#include "hal_profile.h"
 #include "string.h"
-#include "ble_utils.h"
+#include "ble_common_utils.h"
 
 /*
  * LOCAL VARIABLE DEFINITIONS
@@ -317,5 +312,3 @@ const struct ke_msg_handler app_smartconfig_msg_handler_list[] =
 const struct app_subtask_handlers app_smartconfig_handlers = APP_HANDLERS(app_smartconfig);
 
 #endif //BLE_APP_SMARTCONFIG
-
-/// @} APP

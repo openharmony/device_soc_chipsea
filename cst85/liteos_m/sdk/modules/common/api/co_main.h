@@ -16,7 +16,7 @@
 #define _CO_MAIN_H_
 
 #include <stdbool.h>
-#include "co_list.h"
+#include "wb_co_list.h"
 #include "co_message.h"
 #include "pinname.h"
 

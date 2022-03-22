@@ -15,7 +15,7 @@
 #ifndef _REG_IPC_MUTEX_H_
 #define _REG_IPC_MUTEX_H_
 
-#include "reg_access.h"
+#include "reg_access_wrapper.h"
 #include "chip.h"
 
 /**
@@ -25,12 +25,12 @@
 
 __INLINE uint32_t ipc_mutex_get(int idx)
 {
-    return REG_PL_RD(IPC_MUTEX_BASE_ADDR + (idx << 2));
+    return PLATFORM_REG_READ(IPC_MUTEX_BASE_ADDR + (idx << 2));
 }
 
 __INLINE void ipc_mutex_set(int idx, uint32_t value)
 {
-    REG_PL_WR(IPC_MUTEX_BASE_ADDR + (idx << 2), value);
+    PLATFORM_REG_WRITE(IPC_MUTEX_BASE_ADDR + (idx << 2), value);
 }
 
 /**

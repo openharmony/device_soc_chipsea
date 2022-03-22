@@ -25,10 +25,10 @@
 #ifndef _REG_RIU_H_
 #define _REG_RIU_H_
 
-#include "co_int.h"
+#include "wb_co_int.h"
 #include "compiler.h"
 #include "arch.h"
-#include "reg_access.h"
+#include "reg_access_wrapper.h"
 
 /** @brief Number of registers in the REG_RIU peripheral.
  */
@@ -76,7 +76,7 @@
  */
 __INLINE uint32_t riu_rwnxversion_get(void)
 {
-    return REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
 }
 
 // field definitions
@@ -187,7 +187,7 @@ __INLINE uint32_t riu_rwnxversion_get(void)
  */
 __INLINE void riu_rwnxversion_unpack(uint8_t* reserved, uint8_t* agcrammode, uint8_t* iqcomp, uint8_t* dssscorr, uint8_t* fiqcomp, uint8_t* agcsnr, uint8_t* radar, uint8_t* dssscck, uint8_t* chbw, uint8_t* nss, uint8_t* ntx, uint8_t* nrx)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
 
     *reserved = (localVal & ((uint32_t)0xFF000000)) >> 24;
     *agcrammode = (localVal & ((uint32_t)0x00C00000)) >> 22;
@@ -212,7 +212,7 @@ __INLINE void riu_rwnxversion_unpack(uint8_t* reserved, uint8_t* agcrammode, uin
  */
 __INLINE uint8_t riu_reserved_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
     return ((localVal & ((uint32_t)0xFF000000)) >> 24);
 }
 
@@ -225,7 +225,7 @@ __INLINE uint8_t riu_reserved_getf(void)
  */
 __INLINE uint8_t riu_agcrammode_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
     return ((localVal & ((uint32_t)0x00C00000)) >> 22);
 }
 
@@ -238,7 +238,7 @@ __INLINE uint8_t riu_agcrammode_getf(void)
  */
 __INLINE uint8_t riu_iqcomp_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
     return ((localVal & ((uint32_t)0x00200000)) >> 21);
 }
 
@@ -251,7 +251,7 @@ __INLINE uint8_t riu_iqcomp_getf(void)
  */
 __INLINE uint8_t riu_dssscorr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
     return ((localVal & ((uint32_t)0x00100000)) >> 20);
 }
 
@@ -264,7 +264,7 @@ __INLINE uint8_t riu_dssscorr_getf(void)
  */
 __INLINE uint8_t riu_fiqcomp_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
     return ((localVal & ((uint32_t)0x00080000)) >> 19);
 }
 
@@ -277,7 +277,7 @@ __INLINE uint8_t riu_fiqcomp_getf(void)
  */
 __INLINE uint8_t riu_agcsnr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
     return ((localVal & ((uint32_t)0x00040000)) >> 18);
 }
 
@@ -290,7 +290,7 @@ __INLINE uint8_t riu_agcsnr_getf(void)
  */
 __INLINE uint8_t riu_radar_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
     return ((localVal & ((uint32_t)0x00010000)) >> 16);
 }
 
@@ -303,7 +303,7 @@ __INLINE uint8_t riu_radar_getf(void)
  */
 __INLINE uint8_t riu_dssscck_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
     return ((localVal & ((uint32_t)0x00004000)) >> 14);
 }
 
@@ -316,7 +316,7 @@ __INLINE uint8_t riu_dssscck_getf(void)
  */
 __INLINE uint8_t riu_chbw_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
     return ((localVal & ((uint32_t)0x00003000)) >> 12);
 }
 
@@ -329,7 +329,7 @@ __INLINE uint8_t riu_chbw_getf(void)
  */
 __INLINE uint8_t riu_nss_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
     return ((localVal & ((uint32_t)0x00000F00)) >> 8);
 }
 
@@ -342,7 +342,7 @@ __INLINE uint8_t riu_nss_getf(void)
  */
 __INLINE uint8_t riu_ntx_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
     return ((localVal & ((uint32_t)0x000000F0)) >> 4);
 }
 
@@ -355,7 +355,7 @@ __INLINE uint8_t riu_ntx_getf(void)
  */
 __INLINE uint8_t riu_nrx_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXVERSION_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXVERSION_ADDR);
     return ((localVal & ((uint32_t)0x0000000F)) >> 0);
 }
 
@@ -388,7 +388,7 @@ __INLINE uint8_t riu_nrx_getf(void)
  */
 __INLINE uint32_t riu_rwnxstaticconfig_get(void)
 {
-    return REG_PL_RD(RIU_RWNXSTATICCONFIG_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXSTATICCONFIG_ADDR);
 }
 
 /**
@@ -398,7 +398,7 @@ __INLINE uint32_t riu_rwnxstaticconfig_get(void)
  */
 __INLINE void riu_rwnxstaticconfig_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXSTATICCONFIG_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXSTATICCONFIG_ADDR, value);
 }
 
 // field definitions
@@ -421,7 +421,7 @@ __INLINE void riu_rwnxstaticconfig_set(uint32_t value)
  */
 __INLINE uint8_t riu_activeant_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXSTATICCONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXSTATICCONFIG_ADDR);
     return (localVal >> 0);
 }
 
@@ -434,7 +434,7 @@ __INLINE uint8_t riu_activeant_getf(void)
  */
 __INLINE void riu_activeant_setf(uint8_t activeant)
 {
-    REG_PL_WR(RIU_RWNXSTATICCONFIG_ADDR, (uint32_t)activeant << 0);
+    PLATFORM_REG_WRITE(RIU_RWNXSTATICCONFIG_ADDR, (uint32_t)activeant << 0);
 }
 
 /// @}
@@ -466,7 +466,7 @@ __INLINE void riu_activeant_setf(uint8_t activeant)
  */
 __INLINE uint32_t riu_rwnxdynamicconfig_get(void)
 {
-    return REG_PL_RD(RIU_RWNXDYNAMICCONFIG_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXDYNAMICCONFIG_ADDR);
 }
 
 /**
@@ -476,7 +476,7 @@ __INLINE uint32_t riu_rwnxdynamicconfig_get(void)
  */
 __INLINE void riu_rwnxdynamicconfig_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXDYNAMICCONFIG_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXDYNAMICCONFIG_ADDR, value);
 }
 
 // field definitions
@@ -497,7 +497,7 @@ __INLINE void riu_rwnxdynamicconfig_set(uint32_t value)
  */
 __INLINE uint8_t riu_agcinbdpowstartcapture_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXDYNAMICCONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXDYNAMICCONFIG_ADDR);
     return (localVal >> 16);
 }
 
@@ -510,7 +510,7 @@ __INLINE uint8_t riu_agcinbdpowstartcapture_getf(void)
  */
 __INLINE void riu_agcinbdpowstartcapture_setf(uint8_t agcinbdpowstartcapture)
 {
-    REG_PL_WR(RIU_RWNXDYNAMICCONFIG_ADDR, (uint32_t)agcinbdpowstartcapture << 16);
+    PLATFORM_REG_WRITE(RIU_RWNXDYNAMICCONFIG_ADDR, (uint32_t)agcinbdpowstartcapture << 16);
 }
 
 /// @}
@@ -555,7 +555,7 @@ __INLINE void riu_agcinbdpowstartcapture_setf(uint8_t agcinbdpowstartcapture)
  */
 __INLINE uint32_t riu_rwnxiqctrl_get(void)
 {
-    return REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
 }
 
 /**
@@ -565,7 +565,7 @@ __INLINE uint32_t riu_rwnxiqctrl_get(void)
  */
 __INLINE void riu_rwnxiqctrl_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, value);
 }
 
 // field definitions
@@ -676,7 +676,7 @@ __INLINE void riu_rwnxiqctrl_set(uint32_t value)
  */
 __INLINE void riu_rwnxiqctrl_pack(uint8_t txiqswappath1, uint8_t txiqswappath0, uint8_t rxiqswappath1, uint8_t rxiqswappath0, uint8_t txiqdelpathq1, uint8_t txiqdelpathi1, uint8_t txiqdelpathq0, uint8_t txiqdelpathi0, uint8_t rxiqdelpathq1, uint8_t rxiqdelpathi1, uint8_t rxiqdelpathq0, uint8_t rxiqdelpathi0, uint8_t txc2sdisbcfg, uint8_t rxc2sdisbcfg)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR,  ((uint32_t)txiqswappath1 << 28) | ((uint32_t)txiqswappath0 << 27) | ((uint32_t)rxiqswappath1 << 23) | ((uint32_t)rxiqswappath0 << 22) | ((uint32_t)txiqdelpathq1 << 15) | ((uint32_t)txiqdelpathi1 << 14) | ((uint32_t)txiqdelpathq0 << 13) | ((uint32_t)txiqdelpathi0 << 12) | ((uint32_t)rxiqdelpathq1 << 5) | ((uint32_t)rxiqdelpathi1 << 4) | ((uint32_t)rxiqdelpathq0 << 3) | ((uint32_t)rxiqdelpathi0 << 2) | ((uint32_t)txc2sdisbcfg << 1) | ((uint32_t)rxc2sdisbcfg << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR,  ((uint32_t)txiqswappath1 << 28) | ((uint32_t)txiqswappath0 << 27) | ((uint32_t)rxiqswappath1 << 23) | ((uint32_t)rxiqswappath0 << 22) | ((uint32_t)txiqdelpathq1 << 15) | ((uint32_t)txiqdelpathi1 << 14) | ((uint32_t)txiqdelpathq0 << 13) | ((uint32_t)txiqdelpathi0 << 12) | ((uint32_t)rxiqdelpathq1 << 5) | ((uint32_t)rxiqdelpathi1 << 4) | ((uint32_t)rxiqdelpathq0 << 3) | ((uint32_t)rxiqdelpathi0 << 2) | ((uint32_t)txc2sdisbcfg << 1) | ((uint32_t)rxc2sdisbcfg << 0));
 }
 
 /**
@@ -702,7 +702,7 @@ __INLINE void riu_rwnxiqctrl_pack(uint8_t txiqswappath1, uint8_t txiqswappath0, 
  */
 __INLINE void riu_rwnxiqctrl_unpack(uint8_t* txiqswappath1, uint8_t* txiqswappath0, uint8_t* rxiqswappath1, uint8_t* rxiqswappath0, uint8_t* txiqdelpathq1, uint8_t* txiqdelpathi1, uint8_t* txiqdelpathq0, uint8_t* txiqdelpathi0, uint8_t* rxiqdelpathq1, uint8_t* rxiqdelpathi1, uint8_t* rxiqdelpathq0, uint8_t* rxiqdelpathi0, uint8_t* txc2sdisbcfg, uint8_t* rxc2sdisbcfg)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
 
     *txiqswappath1 = (localVal & ((uint32_t)0x10000000)) >> 28;
     *txiqswappath0 = (localVal & ((uint32_t)0x08000000)) >> 27;
@@ -729,7 +729,7 @@ __INLINE void riu_rwnxiqctrl_unpack(uint8_t* txiqswappath1, uint8_t* txiqswappat
  */
 __INLINE uint8_t riu_txiqswappath1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x10000000)) >> 28);
 }
 
@@ -742,7 +742,7 @@ __INLINE uint8_t riu_txiqswappath1_getf(void)
  */
 __INLINE void riu_txiqswappath1_setf(uint8_t txiqswappath1)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x10000000)) | ((uint32_t)txiqswappath1 << 28));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x10000000)) | ((uint32_t)txiqswappath1 << 28));
 }
 
 /**
@@ -754,7 +754,7 @@ __INLINE void riu_txiqswappath1_setf(uint8_t txiqswappath1)
  */
 __INLINE uint8_t riu_txiqswappath0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x08000000)) >> 27);
 }
 
@@ -767,7 +767,7 @@ __INLINE uint8_t riu_txiqswappath0_getf(void)
  */
 __INLINE void riu_txiqswappath0_setf(uint8_t txiqswappath0)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x08000000)) | ((uint32_t)txiqswappath0 << 27));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x08000000)) | ((uint32_t)txiqswappath0 << 27));
 }
 
 /**
@@ -779,7 +779,7 @@ __INLINE void riu_txiqswappath0_setf(uint8_t txiqswappath0)
  */
 __INLINE uint8_t riu_rxiqswappath1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00800000)) >> 23);
 }
 
@@ -792,7 +792,7 @@ __INLINE uint8_t riu_rxiqswappath1_getf(void)
  */
 __INLINE void riu_rxiqswappath1_setf(uint8_t rxiqswappath1)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00800000)) | ((uint32_t)rxiqswappath1 << 23));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00800000)) | ((uint32_t)rxiqswappath1 << 23));
 }
 
 /**
@@ -804,7 +804,7 @@ __INLINE void riu_rxiqswappath1_setf(uint8_t rxiqswappath1)
  */
 __INLINE uint8_t riu_rxiqswappath0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00400000)) >> 22);
 }
 
@@ -817,7 +817,7 @@ __INLINE uint8_t riu_rxiqswappath0_getf(void)
  */
 __INLINE void riu_rxiqswappath0_setf(uint8_t rxiqswappath0)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00400000)) | ((uint32_t)rxiqswappath0 << 22));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00400000)) | ((uint32_t)rxiqswappath0 << 22));
 }
 
 /**
@@ -829,7 +829,7 @@ __INLINE void riu_rxiqswappath0_setf(uint8_t rxiqswappath0)
  */
 __INLINE uint8_t riu_txiqdelpathq1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00008000)) >> 15);
 }
 
@@ -842,7 +842,7 @@ __INLINE uint8_t riu_txiqdelpathq1_getf(void)
  */
 __INLINE void riu_txiqdelpathq1_setf(uint8_t txiqdelpathq1)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00008000)) | ((uint32_t)txiqdelpathq1 << 15));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00008000)) | ((uint32_t)txiqdelpathq1 << 15));
 }
 
 /**
@@ -854,7 +854,7 @@ __INLINE void riu_txiqdelpathq1_setf(uint8_t txiqdelpathq1)
  */
 __INLINE uint8_t riu_txiqdelpathi1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00004000)) >> 14);
 }
 
@@ -867,7 +867,7 @@ __INLINE uint8_t riu_txiqdelpathi1_getf(void)
  */
 __INLINE void riu_txiqdelpathi1_setf(uint8_t txiqdelpathi1)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00004000)) | ((uint32_t)txiqdelpathi1 << 14));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00004000)) | ((uint32_t)txiqdelpathi1 << 14));
 }
 
 /**
@@ -879,7 +879,7 @@ __INLINE void riu_txiqdelpathi1_setf(uint8_t txiqdelpathi1)
  */
 __INLINE uint8_t riu_txiqdelpathq0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00002000)) >> 13);
 }
 
@@ -892,7 +892,7 @@ __INLINE uint8_t riu_txiqdelpathq0_getf(void)
  */
 __INLINE void riu_txiqdelpathq0_setf(uint8_t txiqdelpathq0)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00002000)) | ((uint32_t)txiqdelpathq0 << 13));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00002000)) | ((uint32_t)txiqdelpathq0 << 13));
 }
 
 /**
@@ -904,7 +904,7 @@ __INLINE void riu_txiqdelpathq0_setf(uint8_t txiqdelpathq0)
  */
 __INLINE uint8_t riu_txiqdelpathi0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00001000)) >> 12);
 }
 
@@ -917,7 +917,7 @@ __INLINE uint8_t riu_txiqdelpathi0_getf(void)
  */
 __INLINE void riu_txiqdelpathi0_setf(uint8_t txiqdelpathi0)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)txiqdelpathi0 << 12));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)txiqdelpathi0 << 12));
 }
 
 /**
@@ -929,7 +929,7 @@ __INLINE void riu_txiqdelpathi0_setf(uint8_t txiqdelpathi0)
  */
 __INLINE uint8_t riu_rxiqdelpathq1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000020)) >> 5);
 }
 
@@ -942,7 +942,7 @@ __INLINE uint8_t riu_rxiqdelpathq1_getf(void)
  */
 __INLINE void riu_rxiqdelpathq1_setf(uint8_t rxiqdelpathq1)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)rxiqdelpathq1 << 5));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)rxiqdelpathq1 << 5));
 }
 
 /**
@@ -954,7 +954,7 @@ __INLINE void riu_rxiqdelpathq1_setf(uint8_t rxiqdelpathq1)
  */
 __INLINE uint8_t riu_rxiqdelpathi1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000010)) >> 4);
 }
 
@@ -967,7 +967,7 @@ __INLINE uint8_t riu_rxiqdelpathi1_getf(void)
  */
 __INLINE void riu_rxiqdelpathi1_setf(uint8_t rxiqdelpathi1)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)rxiqdelpathi1 << 4));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)rxiqdelpathi1 << 4));
 }
 
 /**
@@ -979,7 +979,7 @@ __INLINE void riu_rxiqdelpathi1_setf(uint8_t rxiqdelpathi1)
  */
 __INLINE uint8_t riu_rxiqdelpathq0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000008)) >> 3);
 }
 
@@ -992,7 +992,7 @@ __INLINE uint8_t riu_rxiqdelpathq0_getf(void)
  */
 __INLINE void riu_rxiqdelpathq0_setf(uint8_t rxiqdelpathq0)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)rxiqdelpathq0 << 3));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)rxiqdelpathq0 << 3));
 }
 
 /**
@@ -1004,7 +1004,7 @@ __INLINE void riu_rxiqdelpathq0_setf(uint8_t rxiqdelpathq0)
  */
 __INLINE uint8_t riu_rxiqdelpathi0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000004)) >> 2);
 }
 
@@ -1017,7 +1017,7 @@ __INLINE uint8_t riu_rxiqdelpathi0_getf(void)
  */
 __INLINE void riu_rxiqdelpathi0_setf(uint8_t rxiqdelpathi0)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)rxiqdelpathi0 << 2));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)rxiqdelpathi0 << 2));
 }
 
 /**
@@ -1029,7 +1029,7 @@ __INLINE void riu_rxiqdelpathi0_setf(uint8_t rxiqdelpathi0)
  */
 __INLINE uint8_t riu_txc2sdisbcfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000002)) >> 1);
 }
 
@@ -1042,7 +1042,7 @@ __INLINE uint8_t riu_txc2sdisbcfg_getf(void)
  */
 __INLINE void riu_txc2sdisbcfg_setf(uint8_t txc2sdisbcfg)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)txc2sdisbcfg << 1));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)txc2sdisbcfg << 1));
 }
 
 /**
@@ -1054,7 +1054,7 @@ __INLINE void riu_txc2sdisbcfg_setf(uint8_t txc2sdisbcfg)
  */
 __INLINE uint8_t riu_rxc2sdisbcfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
@@ -1067,7 +1067,7 @@ __INLINE uint8_t riu_rxc2sdisbcfg_getf(void)
  */
 __INLINE void riu_rxc2sdisbcfg_setf(uint8_t rxc2sdisbcfg)
 {
-    REG_PL_WR(RIU_RWNXIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)rxc2sdisbcfg << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXIQCTRL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)rxc2sdisbcfg << 0));
 }
 
 /// @}
@@ -1102,7 +1102,7 @@ __INLINE void riu_rxc2sdisbcfg_setf(uint8_t rxc2sdisbcfg)
  */
 __INLINE uint32_t riu_rwnxmacstaticconfig_get(void)
 {
-    return REG_PL_RD(RIU_RWNXMACSTATICCONFIG_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXMACSTATICCONFIG_ADDR);
 }
 
 /**
@@ -1112,7 +1112,7 @@ __INLINE uint32_t riu_rwnxmacstaticconfig_get(void)
  */
 __INLINE void riu_rwnxmacstaticconfig_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXMACSTATICCONFIG_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXMACSTATICCONFIG_ADDR, value);
 }
 
 // field definitions
@@ -1155,7 +1155,7 @@ __INLINE void riu_rwnxmacstaticconfig_set(uint32_t value)
  */
 __INLINE void riu_rwnxmacstaticconfig_pack(uint8_t crx, uint8_t lnaen, uint8_t paen, uint8_t psselect)
 {
-    REG_PL_WR(RIU_RWNXMACSTATICCONFIG_ADDR,  ((uint32_t)crx << 30) | ((uint32_t)lnaen << 29) | ((uint32_t)paen << 27) | ((uint32_t)psselect << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXMACSTATICCONFIG_ADDR,  ((uint32_t)crx << 30) | ((uint32_t)lnaen << 29) | ((uint32_t)paen << 27) | ((uint32_t)psselect << 0));
 }
 
 /**
@@ -1171,7 +1171,7 @@ __INLINE void riu_rwnxmacstaticconfig_pack(uint8_t crx, uint8_t lnaen, uint8_t p
  */
 __INLINE void riu_rwnxmacstaticconfig_unpack(uint8_t* crx, uint8_t* lnaen, uint8_t* paen, uint8_t* psselect)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACSTATICCONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACSTATICCONFIG_ADDR);
 
     *crx = (localVal & ((uint32_t)0x40000000)) >> 30;
     *lnaen = (localVal & ((uint32_t)0x20000000)) >> 29;
@@ -1188,7 +1188,7 @@ __INLINE void riu_rwnxmacstaticconfig_unpack(uint8_t* crx, uint8_t* lnaen, uint8
  */
 __INLINE uint8_t riu_crx_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACSTATICCONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACSTATICCONFIG_ADDR);
     return ((localVal & ((uint32_t)0x40000000)) >> 30);
 }
 
@@ -1201,7 +1201,7 @@ __INLINE uint8_t riu_crx_getf(void)
  */
 __INLINE void riu_crx_setf(uint8_t crx)
 {
-    REG_PL_WR(RIU_RWNXMACSTATICCONFIG_ADDR, (REG_PL_RD(RIU_RWNXMACSTATICCONFIG_ADDR) & ~((uint32_t)0x40000000)) | ((uint32_t)crx << 30));
+    PLATFORM_REG_WRITE(RIU_RWNXMACSTATICCONFIG_ADDR, (PLATFORM_REG_READ(RIU_RWNXMACSTATICCONFIG_ADDR) & ~((uint32_t)0x40000000)) | ((uint32_t)crx << 30));
 }
 
 /**
@@ -1213,7 +1213,7 @@ __INLINE void riu_crx_setf(uint8_t crx)
  */
 __INLINE uint8_t riu_lna_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACSTATICCONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACSTATICCONFIG_ADDR);
     return ((localVal & ((uint32_t)0x20000000)) >> 29);
 }
 
@@ -1226,7 +1226,7 @@ __INLINE uint8_t riu_lna_en_getf(void)
  */
 __INLINE void riu_lna_en_setf(uint8_t lnaen)
 {
-    REG_PL_WR(RIU_RWNXMACSTATICCONFIG_ADDR, (REG_PL_RD(RIU_RWNXMACSTATICCONFIG_ADDR) & ~((uint32_t)0x20000000)) | ((uint32_t)lnaen << 29));
+    PLATFORM_REG_WRITE(RIU_RWNXMACSTATICCONFIG_ADDR, (PLATFORM_REG_READ(RIU_RWNXMACSTATICCONFIG_ADDR) & ~((uint32_t)0x20000000)) | ((uint32_t)lnaen << 29));
 }
 
 /**
@@ -1238,7 +1238,7 @@ __INLINE void riu_lna_en_setf(uint8_t lnaen)
  */
 __INLINE uint8_t riu_pa_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACSTATICCONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACSTATICCONFIG_ADDR);
     return ((localVal & ((uint32_t)0x08000000)) >> 27);
 }
 
@@ -1251,7 +1251,7 @@ __INLINE uint8_t riu_pa_en_getf(void)
  */
 __INLINE void riu_pa_en_setf(uint8_t paen)
 {
-    REG_PL_WR(RIU_RWNXMACSTATICCONFIG_ADDR, (REG_PL_RD(RIU_RWNXMACSTATICCONFIG_ADDR) & ~((uint32_t)0x08000000)) | ((uint32_t)paen << 27));
+    PLATFORM_REG_WRITE(RIU_RWNXMACSTATICCONFIG_ADDR, (PLATFORM_REG_READ(RIU_RWNXMACSTATICCONFIG_ADDR) & ~((uint32_t)0x08000000)) | ((uint32_t)paen << 27));
 }
 
 /**
@@ -1263,7 +1263,7 @@ __INLINE void riu_pa_en_setf(uint8_t paen)
  */
 __INLINE uint8_t riu_psselect_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACSTATICCONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACSTATICCONFIG_ADDR);
     return ((localVal & ((uint32_t)0x00000003)) >> 0);
 }
 
@@ -1276,7 +1276,7 @@ __INLINE uint8_t riu_psselect_getf(void)
  */
 __INLINE void riu_psselect_setf(uint8_t psselect)
 {
-    REG_PL_WR(RIU_RWNXMACSTATICCONFIG_ADDR, (REG_PL_RD(RIU_RWNXMACSTATICCONFIG_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)psselect << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXMACSTATICCONFIG_ADDR, (PLATFORM_REG_READ(RIU_RWNXMACSTATICCONFIG_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)psselect << 0));
 }
 
 /// @}
@@ -1310,7 +1310,7 @@ __INLINE void riu_psselect_setf(uint8_t psselect)
  */
 __INLINE uint32_t riu_rwnxfectrl0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFECTRL0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFECTRL0_ADDR);
 }
 
 /**
@@ -1320,7 +1320,7 @@ __INLINE uint32_t riu_rwnxfectrl0_get(void)
  */
 __INLINE void riu_rwnxfectrl0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFECTRL0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFECTRL0_ADDR, value);
 }
 
 // field definitions
@@ -1360,7 +1360,7 @@ __INLINE void riu_rwnxfectrl0_set(uint32_t value)
  */
 __INLINE void riu_rwnxfectrl0_pack(uint8_t tx80diggainlin0, uint8_t tx40diggainlin0, uint8_t tx20diggainlin0)
 {
-    REG_PL_WR(RIU_RWNXFECTRL0_ADDR,  ((uint32_t)tx80diggainlin0 << 16) | ((uint32_t)tx40diggainlin0 << 8) | ((uint32_t)tx20diggainlin0 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFECTRL0_ADDR,  ((uint32_t)tx80diggainlin0 << 16) | ((uint32_t)tx40diggainlin0 << 8) | ((uint32_t)tx20diggainlin0 << 0));
 }
 
 /**
@@ -1375,7 +1375,7 @@ __INLINE void riu_rwnxfectrl0_pack(uint8_t tx80diggainlin0, uint8_t tx40diggainl
  */
 __INLINE void riu_rwnxfectrl0_unpack(uint8_t* tx80diggainlin0, uint8_t* tx40diggainlin0, uint8_t* tx20diggainlin0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFECTRL0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFECTRL0_ADDR);
 
     *tx80diggainlin0 = (localVal & ((uint32_t)0x007F0000)) >> 16;
     *tx40diggainlin0 = (localVal & ((uint32_t)0x00007F00)) >> 8;
@@ -1391,7 +1391,7 @@ __INLINE void riu_rwnxfectrl0_unpack(uint8_t* tx80diggainlin0, uint8_t* tx40digg
  */
 __INLINE uint8_t riu_tx80diggainlin0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFECTRL0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFECTRL0_ADDR);
     return ((localVal & ((uint32_t)0x007F0000)) >> 16);
 }
 
@@ -1404,7 +1404,7 @@ __INLINE uint8_t riu_tx80diggainlin0_getf(void)
  */
 __INLINE void riu_tx80diggainlin0_setf(uint8_t tx80diggainlin0)
 {
-    REG_PL_WR(RIU_RWNXFECTRL0_ADDR, (REG_PL_RD(RIU_RWNXFECTRL0_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)tx80diggainlin0 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXFECTRL0_ADDR, (PLATFORM_REG_READ(RIU_RWNXFECTRL0_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)tx80diggainlin0 << 16));
 }
 
 /**
@@ -1416,7 +1416,7 @@ __INLINE void riu_tx80diggainlin0_setf(uint8_t tx80diggainlin0)
  */
 __INLINE uint8_t riu_tx40diggainlin0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFECTRL0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFECTRL0_ADDR);
     return ((localVal & ((uint32_t)0x00007F00)) >> 8);
 }
 
@@ -1429,7 +1429,7 @@ __INLINE uint8_t riu_tx40diggainlin0_getf(void)
  */
 __INLINE void riu_tx40diggainlin0_setf(uint8_t tx40diggainlin0)
 {
-    REG_PL_WR(RIU_RWNXFECTRL0_ADDR, (REG_PL_RD(RIU_RWNXFECTRL0_ADDR) & ~((uint32_t)0x00007F00)) | ((uint32_t)tx40diggainlin0 << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXFECTRL0_ADDR, (PLATFORM_REG_READ(RIU_RWNXFECTRL0_ADDR) & ~((uint32_t)0x00007F00)) | ((uint32_t)tx40diggainlin0 << 8));
 }
 
 /**
@@ -1441,7 +1441,7 @@ __INLINE void riu_tx40diggainlin0_setf(uint8_t tx40diggainlin0)
  */
 __INLINE uint8_t riu_tx20diggainlin0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFECTRL0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFECTRL0_ADDR);
     return ((localVal & ((uint32_t)0x0000007F)) >> 0);
 }
 
@@ -1454,7 +1454,7 @@ __INLINE uint8_t riu_tx20diggainlin0_getf(void)
  */
 __INLINE void riu_tx20diggainlin0_setf(uint8_t tx20diggainlin0)
 {
-    REG_PL_WR(RIU_RWNXFECTRL0_ADDR, (REG_PL_RD(RIU_RWNXFECTRL0_ADDR) & ~((uint32_t)0x0000007F)) | ((uint32_t)tx20diggainlin0 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFECTRL0_ADDR, (PLATFORM_REG_READ(RIU_RWNXFECTRL0_ADDR) & ~((uint32_t)0x0000007F)) | ((uint32_t)tx20diggainlin0 << 0));
 }
 
 /// @}
@@ -1488,7 +1488,7 @@ __INLINE void riu_tx20diggainlin0_setf(uint8_t tx20diggainlin0)
  */
 __INLINE uint32_t riu_rwnxfectrl1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFECTRL1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFECTRL1_ADDR);
 }
 
 /**
@@ -1498,7 +1498,7 @@ __INLINE uint32_t riu_rwnxfectrl1_get(void)
  */
 __INLINE void riu_rwnxfectrl1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFECTRL1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFECTRL1_ADDR, value);
 }
 
 // field definitions
@@ -1538,7 +1538,7 @@ __INLINE void riu_rwnxfectrl1_set(uint32_t value)
  */
 __INLINE void riu_rwnxfectrl1_pack(uint8_t tx80diggainlin1, uint8_t tx40diggainlin1, uint8_t tx20diggainlin1)
 {
-    REG_PL_WR(RIU_RWNXFECTRL1_ADDR,  ((uint32_t)tx80diggainlin1 << 16) | ((uint32_t)tx40diggainlin1 << 8) | ((uint32_t)tx20diggainlin1 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFECTRL1_ADDR,  ((uint32_t)tx80diggainlin1 << 16) | ((uint32_t)tx40diggainlin1 << 8) | ((uint32_t)tx20diggainlin1 << 0));
 }
 
 /**
@@ -1553,7 +1553,7 @@ __INLINE void riu_rwnxfectrl1_pack(uint8_t tx80diggainlin1, uint8_t tx40diggainl
  */
 __INLINE void riu_rwnxfectrl1_unpack(uint8_t* tx80diggainlin1, uint8_t* tx40diggainlin1, uint8_t* tx20diggainlin1)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFECTRL1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFECTRL1_ADDR);
 
     *tx80diggainlin1 = (localVal & ((uint32_t)0x007F0000)) >> 16;
     *tx40diggainlin1 = (localVal & ((uint32_t)0x00007F00)) >> 8;
@@ -1569,7 +1569,7 @@ __INLINE void riu_rwnxfectrl1_unpack(uint8_t* tx80diggainlin1, uint8_t* tx40digg
  */
 __INLINE uint8_t riu_tx80diggainlin1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFECTRL1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFECTRL1_ADDR);
     return ((localVal & ((uint32_t)0x007F0000)) >> 16);
 }
 
@@ -1582,7 +1582,7 @@ __INLINE uint8_t riu_tx80diggainlin1_getf(void)
  */
 __INLINE void riu_tx80diggainlin1_setf(uint8_t tx80diggainlin1)
 {
-    REG_PL_WR(RIU_RWNXFECTRL1_ADDR, (REG_PL_RD(RIU_RWNXFECTRL1_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)tx80diggainlin1 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXFECTRL1_ADDR, (PLATFORM_REG_READ(RIU_RWNXFECTRL1_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)tx80diggainlin1 << 16));
 }
 
 /**
@@ -1594,7 +1594,7 @@ __INLINE void riu_tx80diggainlin1_setf(uint8_t tx80diggainlin1)
  */
 __INLINE uint8_t riu_tx40diggainlin1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFECTRL1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFECTRL1_ADDR);
     return ((localVal & ((uint32_t)0x00007F00)) >> 8);
 }
 
@@ -1607,7 +1607,7 @@ __INLINE uint8_t riu_tx40diggainlin1_getf(void)
  */
 __INLINE void riu_tx40diggainlin1_setf(uint8_t tx40diggainlin1)
 {
-    REG_PL_WR(RIU_RWNXFECTRL1_ADDR, (REG_PL_RD(RIU_RWNXFECTRL1_ADDR) & ~((uint32_t)0x00007F00)) | ((uint32_t)tx40diggainlin1 << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXFECTRL1_ADDR, (PLATFORM_REG_READ(RIU_RWNXFECTRL1_ADDR) & ~((uint32_t)0x00007F00)) | ((uint32_t)tx40diggainlin1 << 8));
 }
 
 /**
@@ -1619,7 +1619,7 @@ __INLINE void riu_tx40diggainlin1_setf(uint8_t tx40diggainlin1)
  */
 __INLINE uint8_t riu_tx20diggainlin1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFECTRL1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFECTRL1_ADDR);
     return ((localVal & ((uint32_t)0x0000007F)) >> 0);
 }
 
@@ -1632,7 +1632,7 @@ __INLINE uint8_t riu_tx20diggainlin1_getf(void)
  */
 __INLINE void riu_tx20diggainlin1_setf(uint8_t tx20diggainlin1)
 {
-    REG_PL_WR(RIU_RWNXFECTRL1_ADDR, (REG_PL_RD(RIU_RWNXFECTRL1_ADDR) & ~((uint32_t)0x0000007F)) | ((uint32_t)tx20diggainlin1 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFECTRL1_ADDR, (PLATFORM_REG_READ(RIU_RWNXFECTRL1_ADDR) & ~((uint32_t)0x0000007F)) | ((uint32_t)tx20diggainlin1 << 0));
 }
 
 /// @}
@@ -1668,7 +1668,7 @@ __INLINE void riu_tx20diggainlin1_setf(uint8_t tx20diggainlin1)
  */
 __INLINE uint32_t riu_rwnxfetxiqcomp0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFETXIQCOMP0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP0_ADDR);
 }
 
 /**
@@ -1678,7 +1678,7 @@ __INLINE uint32_t riu_rwnxfetxiqcomp0_get(void)
  */
 __INLINE void riu_rwnxfetxiqcomp0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFETXIQCOMP0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFETXIQCOMP0_ADDR, value);
 }
 
 // field definitions
@@ -1723,7 +1723,7 @@ __INLINE void riu_rwnxfetxiqcomp0_set(uint32_t value)
  */
 __INLINE void riu_rwnxfetxiqcomp0_pack(uint8_t txiqphasecompen0, uint8_t txiqgaincompen0, uint16_t txiqphase0, uint16_t txiqgain0)
 {
-    REG_PL_WR(RIU_RWNXFETXIQCOMP0_ADDR,  ((uint32_t)txiqphasecompen0 << 29) | ((uint32_t)txiqgaincompen0 << 28) | ((uint32_t)txiqphase0 << 16) | ((uint32_t)txiqgain0 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFETXIQCOMP0_ADDR,  ((uint32_t)txiqphasecompen0 << 29) | ((uint32_t)txiqgaincompen0 << 28) | ((uint32_t)txiqphase0 << 16) | ((uint32_t)txiqgain0 << 0));
 }
 
 /**
@@ -1739,7 +1739,7 @@ __INLINE void riu_rwnxfetxiqcomp0_pack(uint8_t txiqphasecompen0, uint8_t txiqgai
  */
 __INLINE void riu_rwnxfetxiqcomp0_unpack(uint8_t* txiqphasecompen0, uint8_t* txiqgaincompen0, uint16_t* txiqphase0, uint16_t* txiqgain0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFETXIQCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP0_ADDR);
 
     *txiqphasecompen0 = (localVal & ((uint32_t)0x20000000)) >> 29;
     *txiqgaincompen0 = (localVal & ((uint32_t)0x10000000)) >> 28;
@@ -1756,7 +1756,7 @@ __INLINE void riu_rwnxfetxiqcomp0_unpack(uint8_t* txiqphasecompen0, uint8_t* txi
  */
 __INLINE uint8_t riu_txiqphasecompen0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFETXIQCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x20000000)) >> 29);
 }
 
@@ -1769,7 +1769,7 @@ __INLINE uint8_t riu_txiqphasecompen0_getf(void)
  */
 __INLINE void riu_txiqphasecompen0_setf(uint8_t txiqphasecompen0)
 {
-    REG_PL_WR(RIU_RWNXFETXIQCOMP0_ADDR, (REG_PL_RD(RIU_RWNXFETXIQCOMP0_ADDR) & ~((uint32_t)0x20000000)) | ((uint32_t)txiqphasecompen0 << 29));
+    PLATFORM_REG_WRITE(RIU_RWNXFETXIQCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP0_ADDR) & ~((uint32_t)0x20000000)) | ((uint32_t)txiqphasecompen0 << 29));
 }
 
 /**
@@ -1781,7 +1781,7 @@ __INLINE void riu_txiqphasecompen0_setf(uint8_t txiqphasecompen0)
  */
 __INLINE uint8_t riu_txiqgaincompen0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFETXIQCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x10000000)) >> 28);
 }
 
@@ -1794,7 +1794,7 @@ __INLINE uint8_t riu_txiqgaincompen0_getf(void)
  */
 __INLINE void riu_txiqgaincompen0_setf(uint8_t txiqgaincompen0)
 {
-    REG_PL_WR(RIU_RWNXFETXIQCOMP0_ADDR, (REG_PL_RD(RIU_RWNXFETXIQCOMP0_ADDR) & ~((uint32_t)0x10000000)) | ((uint32_t)txiqgaincompen0 << 28));
+    PLATFORM_REG_WRITE(RIU_RWNXFETXIQCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP0_ADDR) & ~((uint32_t)0x10000000)) | ((uint32_t)txiqgaincompen0 << 28));
 }
 
 /**
@@ -1806,7 +1806,7 @@ __INLINE void riu_txiqgaincompen0_setf(uint8_t txiqgaincompen0)
  */
 __INLINE uint16_t riu_txiqphase0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFETXIQCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x01FF0000)) >> 16);
 }
 
@@ -1819,7 +1819,7 @@ __INLINE uint16_t riu_txiqphase0_getf(void)
  */
 __INLINE void riu_txiqphase0_setf(uint16_t txiqphase0)
 {
-    REG_PL_WR(RIU_RWNXFETXIQCOMP0_ADDR, (REG_PL_RD(RIU_RWNXFETXIQCOMP0_ADDR) & ~((uint32_t)0x01FF0000)) | ((uint32_t)txiqphase0 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXFETXIQCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP0_ADDR) & ~((uint32_t)0x01FF0000)) | ((uint32_t)txiqphase0 << 16));
 }
 
 /**
@@ -1831,7 +1831,7 @@ __INLINE void riu_txiqphase0_setf(uint16_t txiqphase0)
  */
 __INLINE uint16_t riu_txiqgain0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFETXIQCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x000007FF)) >> 0);
 }
 
@@ -1844,7 +1844,7 @@ __INLINE uint16_t riu_txiqgain0_getf(void)
  */
 __INLINE void riu_txiqgain0_setf(uint16_t txiqgain0)
 {
-    REG_PL_WR(RIU_RWNXFETXIQCOMP0_ADDR, (REG_PL_RD(RIU_RWNXFETXIQCOMP0_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)txiqgain0 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFETXIQCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP0_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)txiqgain0 << 0));
 }
 
 #endif // RW_NX_IQ_COMP_EN
@@ -1881,7 +1881,7 @@ __INLINE void riu_txiqgain0_setf(uint16_t txiqgain0)
  */
 __INLINE uint32_t riu_rwnxfetxiqcomp1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFETXIQCOMP1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP1_ADDR);
 }
 
 /**
@@ -1891,7 +1891,7 @@ __INLINE uint32_t riu_rwnxfetxiqcomp1_get(void)
  */
 __INLINE void riu_rwnxfetxiqcomp1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFETXIQCOMP1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFETXIQCOMP1_ADDR, value);
 }
 
 // field definitions
@@ -1936,7 +1936,7 @@ __INLINE void riu_rwnxfetxiqcomp1_set(uint32_t value)
  */
 __INLINE void riu_rwnxfetxiqcomp1_pack(uint8_t txiqphasecompen1, uint8_t txiqgaincompen1, uint16_t txiqphase1, uint16_t txiqgain1)
 {
-    REG_PL_WR(RIU_RWNXFETXIQCOMP1_ADDR,  ((uint32_t)txiqphasecompen1 << 29) | ((uint32_t)txiqgaincompen1 << 28) | ((uint32_t)txiqphase1 << 16) | ((uint32_t)txiqgain1 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFETXIQCOMP1_ADDR,  ((uint32_t)txiqphasecompen1 << 29) | ((uint32_t)txiqgaincompen1 << 28) | ((uint32_t)txiqphase1 << 16) | ((uint32_t)txiqgain1 << 0));
 }
 
 /**
@@ -1952,7 +1952,7 @@ __INLINE void riu_rwnxfetxiqcomp1_pack(uint8_t txiqphasecompen1, uint8_t txiqgai
  */
 __INLINE void riu_rwnxfetxiqcomp1_unpack(uint8_t* txiqphasecompen1, uint8_t* txiqgaincompen1, uint16_t* txiqphase1, uint16_t* txiqgain1)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFETXIQCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP1_ADDR);
 
     *txiqphasecompen1 = (localVal & ((uint32_t)0x20000000)) >> 29;
     *txiqgaincompen1 = (localVal & ((uint32_t)0x10000000)) >> 28;
@@ -1969,7 +1969,7 @@ __INLINE void riu_rwnxfetxiqcomp1_unpack(uint8_t* txiqphasecompen1, uint8_t* txi
  */
 __INLINE uint8_t riu_txiqphasecompen1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFETXIQCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x20000000)) >> 29);
 }
 
@@ -1982,7 +1982,7 @@ __INLINE uint8_t riu_txiqphasecompen1_getf(void)
  */
 __INLINE void riu_txiqphasecompen1_setf(uint8_t txiqphasecompen1)
 {
-    REG_PL_WR(RIU_RWNXFETXIQCOMP1_ADDR, (REG_PL_RD(RIU_RWNXFETXIQCOMP1_ADDR) & ~((uint32_t)0x20000000)) | ((uint32_t)txiqphasecompen1 << 29));
+    PLATFORM_REG_WRITE(RIU_RWNXFETXIQCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP1_ADDR) & ~((uint32_t)0x20000000)) | ((uint32_t)txiqphasecompen1 << 29));
 }
 
 /**
@@ -1994,7 +1994,7 @@ __INLINE void riu_txiqphasecompen1_setf(uint8_t txiqphasecompen1)
  */
 __INLINE uint8_t riu_txiqgaincompen1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFETXIQCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x10000000)) >> 28);
 }
 
@@ -2007,7 +2007,7 @@ __INLINE uint8_t riu_txiqgaincompen1_getf(void)
  */
 __INLINE void riu_txiqgaincompen1_setf(uint8_t txiqgaincompen1)
 {
-    REG_PL_WR(RIU_RWNXFETXIQCOMP1_ADDR, (REG_PL_RD(RIU_RWNXFETXIQCOMP1_ADDR) & ~((uint32_t)0x10000000)) | ((uint32_t)txiqgaincompen1 << 28));
+    PLATFORM_REG_WRITE(RIU_RWNXFETXIQCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP1_ADDR) & ~((uint32_t)0x10000000)) | ((uint32_t)txiqgaincompen1 << 28));
 }
 
 /**
@@ -2019,7 +2019,7 @@ __INLINE void riu_txiqgaincompen1_setf(uint8_t txiqgaincompen1)
  */
 __INLINE uint16_t riu_txiqphase1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFETXIQCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x01FF0000)) >> 16);
 }
 
@@ -2032,7 +2032,7 @@ __INLINE uint16_t riu_txiqphase1_getf(void)
  */
 __INLINE void riu_txiqphase1_setf(uint16_t txiqphase1)
 {
-    REG_PL_WR(RIU_RWNXFETXIQCOMP1_ADDR, (REG_PL_RD(RIU_RWNXFETXIQCOMP1_ADDR) & ~((uint32_t)0x01FF0000)) | ((uint32_t)txiqphase1 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXFETXIQCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP1_ADDR) & ~((uint32_t)0x01FF0000)) | ((uint32_t)txiqphase1 << 16));
 }
 
 /**
@@ -2044,7 +2044,7 @@ __INLINE void riu_txiqphase1_setf(uint16_t txiqphase1)
  */
 __INLINE uint16_t riu_txiqgain1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFETXIQCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x000007FF)) >> 0);
 }
 
@@ -2057,7 +2057,7 @@ __INLINE uint16_t riu_txiqgain1_getf(void)
  */
 __INLINE void riu_txiqgain1_setf(uint16_t txiqgain1)
 {
-    REG_PL_WR(RIU_RWNXFETXIQCOMP1_ADDR, (REG_PL_RD(RIU_RWNXFETXIQCOMP1_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)txiqgain1 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFETXIQCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXFETXIQCOMP1_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)txiqgain1 << 0));
 }
 
 #endif // RW_NX_IQ_COMP_EN
@@ -2098,7 +2098,7 @@ __INLINE void riu_txiqgain1_setf(uint16_t txiqgain1)
  */
 __INLINE uint32_t riu_rwnxferxiqestctrl_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR);
 }
 
 /**
@@ -2108,7 +2108,7 @@ __INLINE uint32_t riu_rwnxferxiqestctrl_get(void)
  */
 __INLINE void riu_rwnxferxiqestctrl_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTCTRL_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTCTRL_ADDR, value);
 }
 
 // field definitions
@@ -2185,7 +2185,7 @@ __INLINE void riu_rwnxferxiqestctrl_set(uint32_t value)
  */
 __INLINE void riu_rwnxferxiqestctrl_pack(uint8_t iqestfomin, uint8_t iqestbwlist, uint8_t iqestmcsmin, uint8_t iqestsnrmin, uint8_t rxiqphaseesten, uint8_t rxiqgainesten, uint8_t rxiqphasecompen, uint8_t rxiqgaincompen)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTCTRL_ADDR,  ((uint32_t)iqestfomin << 24) | ((uint32_t)iqestbwlist << 20) | ((uint32_t)iqestmcsmin << 12) | ((uint32_t)iqestsnrmin << 4) | ((uint32_t)rxiqphaseesten << 3) | ((uint32_t)rxiqgainesten << 2) | ((uint32_t)rxiqphasecompen << 1) | ((uint32_t)rxiqgaincompen << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTCTRL_ADDR,  ((uint32_t)iqestfomin << 24) | ((uint32_t)iqestbwlist << 20) | ((uint32_t)iqestmcsmin << 12) | ((uint32_t)iqestsnrmin << 4) | ((uint32_t)rxiqphaseesten << 3) | ((uint32_t)rxiqgainesten << 2) | ((uint32_t)rxiqphasecompen << 1) | ((uint32_t)rxiqgaincompen << 0));
 }
 
 /**
@@ -2205,7 +2205,7 @@ __INLINE void riu_rwnxferxiqestctrl_pack(uint8_t iqestfomin, uint8_t iqestbwlist
  */
 __INLINE void riu_rwnxferxiqestctrl_unpack(uint8_t* iqestfomin, uint8_t* iqestbwlist, uint8_t* iqestmcsmin, uint8_t* iqestsnrmin, uint8_t* rxiqphaseesten, uint8_t* rxiqgainesten, uint8_t* rxiqphasecompen, uint8_t* rxiqgaincompen)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR);
 
     *iqestfomin = (localVal & ((uint32_t)0xFF000000)) >> 24;
     *iqestbwlist = (localVal & ((uint32_t)0x00700000)) >> 20;
@@ -2226,7 +2226,7 @@ __INLINE void riu_rwnxferxiqestctrl_unpack(uint8_t* iqestfomin, uint8_t* iqestbw
  */
 __INLINE uint8_t riu_iqestfomin_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR);
     return ((localVal & ((uint32_t)0xFF000000)) >> 24);
 }
 
@@ -2239,7 +2239,7 @@ __INLINE uint8_t riu_iqestfomin_getf(void)
  */
 __INLINE void riu_iqestfomin_setf(uint8_t iqestfomin)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTCTRL_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0xFF000000)) | ((uint32_t)iqestfomin << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0xFF000000)) | ((uint32_t)iqestfomin << 24));
 }
 
 /**
@@ -2251,7 +2251,7 @@ __INLINE void riu_iqestfomin_setf(uint8_t iqestfomin)
  */
 __INLINE uint8_t riu_iqestbwlist_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00700000)) >> 20);
 }
 
@@ -2264,7 +2264,7 @@ __INLINE uint8_t riu_iqestbwlist_getf(void)
  */
 __INLINE void riu_iqestbwlist_setf(uint8_t iqestbwlist)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTCTRL_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x00700000)) | ((uint32_t)iqestbwlist << 20));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x00700000)) | ((uint32_t)iqestbwlist << 20));
 }
 
 /**
@@ -2276,7 +2276,7 @@ __INLINE void riu_iqestbwlist_setf(uint8_t iqestbwlist)
  */
 __INLINE uint8_t riu_iqestmcsmin_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR);
     return ((localVal & ((uint32_t)0x0000F000)) >> 12);
 }
 
@@ -2289,7 +2289,7 @@ __INLINE uint8_t riu_iqestmcsmin_getf(void)
  */
 __INLINE void riu_iqestmcsmin_setf(uint8_t iqestmcsmin)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTCTRL_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x0000F000)) | ((uint32_t)iqestmcsmin << 12));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x0000F000)) | ((uint32_t)iqestmcsmin << 12));
 }
 
 /**
@@ -2301,7 +2301,7 @@ __INLINE void riu_iqestmcsmin_setf(uint8_t iqestmcsmin)
  */
 __INLINE uint8_t riu_iqestsnrmin_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000FF0)) >> 4);
 }
 
@@ -2314,7 +2314,7 @@ __INLINE uint8_t riu_iqestsnrmin_getf(void)
  */
 __INLINE void riu_iqestsnrmin_setf(uint8_t iqestsnrmin)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTCTRL_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x00000FF0)) | ((uint32_t)iqestsnrmin << 4));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x00000FF0)) | ((uint32_t)iqestsnrmin << 4));
 }
 
 /**
@@ -2326,7 +2326,7 @@ __INLINE void riu_iqestsnrmin_setf(uint8_t iqestsnrmin)
  */
 __INLINE uint8_t riu_rxiqphaseesten_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000008)) >> 3);
 }
 
@@ -2339,7 +2339,7 @@ __INLINE uint8_t riu_rxiqphaseesten_getf(void)
  */
 __INLINE void riu_rxiqphaseesten_setf(uint8_t rxiqphaseesten)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTCTRL_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)rxiqphaseesten << 3));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)rxiqphaseesten << 3));
 }
 
 /**
@@ -2351,7 +2351,7 @@ __INLINE void riu_rxiqphaseesten_setf(uint8_t rxiqphaseesten)
  */
 __INLINE uint8_t riu_rxiqgainesten_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000004)) >> 2);
 }
 
@@ -2364,7 +2364,7 @@ __INLINE uint8_t riu_rxiqgainesten_getf(void)
  */
 __INLINE void riu_rxiqgainesten_setf(uint8_t rxiqgainesten)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTCTRL_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)rxiqgainesten << 2));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)rxiqgainesten << 2));
 }
 
 /**
@@ -2376,7 +2376,7 @@ __INLINE void riu_rxiqgainesten_setf(uint8_t rxiqgainesten)
  */
 __INLINE uint8_t riu_rxiqphasecompen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000002)) >> 1);
 }
 
@@ -2389,7 +2389,7 @@ __INLINE uint8_t riu_rxiqphasecompen_getf(void)
  */
 __INLINE void riu_rxiqphasecompen_setf(uint8_t rxiqphasecompen)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTCTRL_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)rxiqphasecompen << 1));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)rxiqphasecompen << 1));
 }
 
 /**
@@ -2401,7 +2401,7 @@ __INLINE void riu_rxiqphasecompen_setf(uint8_t rxiqphasecompen)
  */
 __INLINE uint8_t riu_rxiqgaincompen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
@@ -2414,7 +2414,7 @@ __INLINE uint8_t riu_rxiqgaincompen_getf(void)
  */
 __INLINE void riu_rxiqgaincompen_setf(uint8_t rxiqgaincompen)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTCTRL_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)rxiqgaincompen << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTCTRL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)rxiqgaincompen << 0));
 }
 
 #endif // RW_NX_IQ_COMP_EN
@@ -2457,7 +2457,7 @@ __INLINE void riu_rxiqgaincompen_setf(uint8_t rxiqgaincompen)
  */
 __INLINE uint32_t riu_rwnxferxiqestloop_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR);
 }
 
 /**
@@ -2467,7 +2467,7 @@ __INLINE uint32_t riu_rwnxferxiqestloop_get(void)
  */
 __INLINE void riu_rwnxferxiqestloop_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTLOOP_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTLOOP_ADDR, value);
 }
 
 // field definitions
@@ -2570,7 +2570,7 @@ __INLINE void riu_rwnxferxiqestloop_set(uint32_t value)
  */
 __INLINE void riu_rwnxferxiqestloop_pack(uint8_t rxiqeststep4, uint8_t rxiqeststep3, uint8_t rxiqeststep2, uint8_t rxiqeststep1, uint8_t rxiqeststep0, uint8_t rxiqestphasestepstop, uint8_t rxiqestphasestepinit, uint8_t rxiqestgainstepstop, uint8_t rxiqestgainstepinit, uint8_t rxiqestdel)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTLOOP_ADDR,  ((uint32_t)rxiqeststep4 << 28) | ((uint32_t)rxiqeststep3 << 25) | ((uint32_t)rxiqeststep2 << 22) | ((uint32_t)rxiqeststep1 << 19) | ((uint32_t)rxiqeststep0 << 16) | ((uint32_t)rxiqestphasestepstop << 13) | ((uint32_t)rxiqestphasestepinit << 10) | ((uint32_t)rxiqestgainstepstop << 7) | ((uint32_t)rxiqestgainstepinit << 4) | ((uint32_t)rxiqestdel << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTLOOP_ADDR,  ((uint32_t)rxiqeststep4 << 28) | ((uint32_t)rxiqeststep3 << 25) | ((uint32_t)rxiqeststep2 << 22) | ((uint32_t)rxiqeststep1 << 19) | ((uint32_t)rxiqeststep0 << 16) | ((uint32_t)rxiqestphasestepstop << 13) | ((uint32_t)rxiqestphasestepinit << 10) | ((uint32_t)rxiqestgainstepstop << 7) | ((uint32_t)rxiqestgainstepinit << 4) | ((uint32_t)rxiqestdel << 0));
 }
 
 /**
@@ -2592,7 +2592,7 @@ __INLINE void riu_rwnxferxiqestloop_pack(uint8_t rxiqeststep4, uint8_t rxiqestst
  */
 __INLINE void riu_rwnxferxiqestloop_unpack(uint8_t* rxiqeststep4, uint8_t* rxiqeststep3, uint8_t* rxiqeststep2, uint8_t* rxiqeststep1, uint8_t* rxiqeststep0, uint8_t* rxiqestphasestepstop, uint8_t* rxiqestphasestepinit, uint8_t* rxiqestgainstepstop, uint8_t* rxiqestgainstepinit, uint8_t* rxiqestdel)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR);
 
     *rxiqeststep4 = (localVal & ((uint32_t)0x70000000)) >> 28;
     *rxiqeststep3 = (localVal & ((uint32_t)0x0E000000)) >> 25;
@@ -2615,7 +2615,7 @@ __INLINE void riu_rwnxferxiqestloop_unpack(uint8_t* rxiqeststep4, uint8_t* rxiqe
  */
 __INLINE uint8_t riu_rxiqeststep4_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR);
     return ((localVal & ((uint32_t)0x70000000)) >> 28);
 }
 
@@ -2628,7 +2628,7 @@ __INLINE uint8_t riu_rxiqeststep4_getf(void)
  */
 __INLINE void riu_rxiqeststep4_setf(uint8_t rxiqeststep4)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTLOOP_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x70000000)) | ((uint32_t)rxiqeststep4 << 28));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTLOOP_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x70000000)) | ((uint32_t)rxiqeststep4 << 28));
 }
 
 /**
@@ -2640,7 +2640,7 @@ __INLINE void riu_rxiqeststep4_setf(uint8_t rxiqeststep4)
  */
 __INLINE uint8_t riu_rxiqeststep3_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR);
     return ((localVal & ((uint32_t)0x0E000000)) >> 25);
 }
 
@@ -2653,7 +2653,7 @@ __INLINE uint8_t riu_rxiqeststep3_getf(void)
  */
 __INLINE void riu_rxiqeststep3_setf(uint8_t rxiqeststep3)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTLOOP_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x0E000000)) | ((uint32_t)rxiqeststep3 << 25));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTLOOP_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x0E000000)) | ((uint32_t)rxiqeststep3 << 25));
 }
 
 /**
@@ -2665,7 +2665,7 @@ __INLINE void riu_rxiqeststep3_setf(uint8_t rxiqeststep3)
  */
 __INLINE uint8_t riu_rxiqeststep2_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR);
     return ((localVal & ((uint32_t)0x01C00000)) >> 22);
 }
 
@@ -2678,7 +2678,7 @@ __INLINE uint8_t riu_rxiqeststep2_getf(void)
  */
 __INLINE void riu_rxiqeststep2_setf(uint8_t rxiqeststep2)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTLOOP_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x01C00000)) | ((uint32_t)rxiqeststep2 << 22));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTLOOP_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x01C00000)) | ((uint32_t)rxiqeststep2 << 22));
 }
 
 /**
@@ -2690,7 +2690,7 @@ __INLINE void riu_rxiqeststep2_setf(uint8_t rxiqeststep2)
  */
 __INLINE uint8_t riu_rxiqeststep1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR);
     return ((localVal & ((uint32_t)0x00380000)) >> 19);
 }
 
@@ -2703,7 +2703,7 @@ __INLINE uint8_t riu_rxiqeststep1_getf(void)
  */
 __INLINE void riu_rxiqeststep1_setf(uint8_t rxiqeststep1)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTLOOP_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x00380000)) | ((uint32_t)rxiqeststep1 << 19));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTLOOP_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x00380000)) | ((uint32_t)rxiqeststep1 << 19));
 }
 
 /**
@@ -2715,7 +2715,7 @@ __INLINE void riu_rxiqeststep1_setf(uint8_t rxiqeststep1)
  */
 __INLINE uint8_t riu_rxiqeststep0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR);
     return ((localVal & ((uint32_t)0x00070000)) >> 16);
 }
 
@@ -2728,7 +2728,7 @@ __INLINE uint8_t riu_rxiqeststep0_getf(void)
  */
 __INLINE void riu_rxiqeststep0_setf(uint8_t rxiqeststep0)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTLOOP_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x00070000)) | ((uint32_t)rxiqeststep0 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTLOOP_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x00070000)) | ((uint32_t)rxiqeststep0 << 16));
 }
 
 /**
@@ -2740,7 +2740,7 @@ __INLINE void riu_rxiqeststep0_setf(uint8_t rxiqeststep0)
  */
 __INLINE uint8_t riu_rxiqestphasestepstop_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR);
     return ((localVal & ((uint32_t)0x0000E000)) >> 13);
 }
 
@@ -2753,7 +2753,7 @@ __INLINE uint8_t riu_rxiqestphasestepstop_getf(void)
  */
 __INLINE void riu_rxiqestphasestepstop_setf(uint8_t rxiqestphasestepstop)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTLOOP_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x0000E000)) | ((uint32_t)rxiqestphasestepstop << 13));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTLOOP_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x0000E000)) | ((uint32_t)rxiqestphasestepstop << 13));
 }
 
 /**
@@ -2765,7 +2765,7 @@ __INLINE void riu_rxiqestphasestepstop_setf(uint8_t rxiqestphasestepstop)
  */
 __INLINE uint8_t riu_rxiqestphasestepinit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR);
     return ((localVal & ((uint32_t)0x00001C00)) >> 10);
 }
 
@@ -2778,7 +2778,7 @@ __INLINE uint8_t riu_rxiqestphasestepinit_getf(void)
  */
 __INLINE void riu_rxiqestphasestepinit_setf(uint8_t rxiqestphasestepinit)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTLOOP_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x00001C00)) | ((uint32_t)rxiqestphasestepinit << 10));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTLOOP_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x00001C00)) | ((uint32_t)rxiqestphasestepinit << 10));
 }
 
 /**
@@ -2790,7 +2790,7 @@ __INLINE void riu_rxiqestphasestepinit_setf(uint8_t rxiqestphasestepinit)
  */
 __INLINE uint8_t riu_rxiqestgainstepstop_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR);
     return ((localVal & ((uint32_t)0x00000380)) >> 7);
 }
 
@@ -2803,7 +2803,7 @@ __INLINE uint8_t riu_rxiqestgainstepstop_getf(void)
  */
 __INLINE void riu_rxiqestgainstepstop_setf(uint8_t rxiqestgainstepstop)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTLOOP_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x00000380)) | ((uint32_t)rxiqestgainstepstop << 7));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTLOOP_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x00000380)) | ((uint32_t)rxiqestgainstepstop << 7));
 }
 
 /**
@@ -2815,7 +2815,7 @@ __INLINE void riu_rxiqestgainstepstop_setf(uint8_t rxiqestgainstepstop)
  */
 __INLINE uint8_t riu_rxiqestgainstepinit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR);
     return ((localVal & ((uint32_t)0x00000070)) >> 4);
 }
 
@@ -2828,7 +2828,7 @@ __INLINE uint8_t riu_rxiqestgainstepinit_getf(void)
  */
 __INLINE void riu_rxiqestgainstepinit_setf(uint8_t rxiqestgainstepinit)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTLOOP_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x00000070)) | ((uint32_t)rxiqestgainstepinit << 4));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTLOOP_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x00000070)) | ((uint32_t)rxiqestgainstepinit << 4));
 }
 
 /**
@@ -2840,7 +2840,7 @@ __INLINE void riu_rxiqestgainstepinit_setf(uint8_t rxiqestgainstepinit)
  */
 __INLINE uint8_t riu_rxiqestdel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR);
     return ((localVal & ((uint32_t)0x00000007)) >> 0);
 }
 
@@ -2853,7 +2853,7 @@ __INLINE uint8_t riu_rxiqestdel_getf(void)
  */
 __INLINE void riu_rxiqestdel_setf(uint8_t rxiqestdel)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTLOOP_ADDR, (REG_PL_RD(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x00000007)) | ((uint32_t)rxiqestdel << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTLOOP_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQESTLOOP_ADDR) & ~((uint32_t)0x00000007)) | ((uint32_t)rxiqestdel << 0));
 }
 
 #endif // RW_NX_IQ_COMP_EN
@@ -2887,7 +2887,7 @@ __INLINE void riu_rxiqestdel_setf(uint8_t rxiqestdel)
  */
 __INLINE uint32_t riu_rwnxferxiqestclr_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQESTCLR_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQESTCLR_ADDR);
 }
 
 /**
@@ -2897,7 +2897,7 @@ __INLINE uint32_t riu_rwnxferxiqestclr_get(void)
  */
 __INLINE void riu_rwnxferxiqestclr_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTCLR_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTCLR_ADDR, value);
 }
 
 // field definitions
@@ -2918,7 +2918,7 @@ __INLINE void riu_rwnxferxiqestclr_set(uint32_t value)
  */
 __INLINE uint8_t riu_iqestiterclr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQESTCLR_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQESTCLR_ADDR);
     return (localVal >> 0);
 }
 
@@ -2931,7 +2931,7 @@ __INLINE uint8_t riu_iqestiterclr_getf(void)
  */
 __INLINE void riu_iqestiterclr_setf(uint8_t iqestiterclr)
 {
-    REG_PL_WR(RIU_RWNXFERXIQESTCLR_ADDR, (uint32_t)iqestiterclr << 0);
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQESTCLR_ADDR, (uint32_t)iqestiterclr << 0);
 }
 
 #endif // RW_NX_IQ_COMP_EN
@@ -2966,7 +2966,7 @@ __INLINE void riu_iqestiterclr_setf(uint8_t iqestiterclr)
  */
 __INLINE uint32_t riu_rwnxferxiqcomp0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQCOMP0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQCOMP0_ADDR);
 }
 
 /**
@@ -2976,7 +2976,7 @@ __INLINE uint32_t riu_rwnxferxiqcomp0_get(void)
  */
 __INLINE void riu_rwnxferxiqcomp0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFERXIQCOMP0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQCOMP0_ADDR, value);
 }
 
 // field definitions
@@ -3007,7 +3007,7 @@ __INLINE void riu_rwnxferxiqcomp0_set(uint32_t value)
  */
 __INLINE void riu_rwnxferxiqcomp0_pack(uint16_t rxiqphase0, uint16_t rxiqgain0)
 {
-    REG_PL_WR(RIU_RWNXFERXIQCOMP0_ADDR,  ((uint32_t)rxiqphase0 << 16) | ((uint32_t)rxiqgain0 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQCOMP0_ADDR,  ((uint32_t)rxiqphase0 << 16) | ((uint32_t)rxiqgain0 << 0));
 }
 
 /**
@@ -3021,7 +3021,7 @@ __INLINE void riu_rwnxferxiqcomp0_pack(uint16_t rxiqphase0, uint16_t rxiqgain0)
  */
 __INLINE void riu_rwnxferxiqcomp0_unpack(uint16_t* rxiqphase0, uint16_t* rxiqgain0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQCOMP0_ADDR);
 
     *rxiqphase0 = (localVal & ((uint32_t)0x01FF0000)) >> 16;
     *rxiqgain0 = (localVal & ((uint32_t)0x000007FF)) >> 0;
@@ -3036,7 +3036,7 @@ __INLINE void riu_rwnxferxiqcomp0_unpack(uint16_t* rxiqphase0, uint16_t* rxiqgai
  */
 __INLINE uint16_t riu_rxiqphase0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x01FF0000)) >> 16);
 }
 
@@ -3049,7 +3049,7 @@ __INLINE uint16_t riu_rxiqphase0_getf(void)
  */
 __INLINE void riu_rxiqphase0_setf(uint16_t rxiqphase0)
 {
-    REG_PL_WR(RIU_RWNXFERXIQCOMP0_ADDR, (REG_PL_RD(RIU_RWNXFERXIQCOMP0_ADDR) & ~((uint32_t)0x01FF0000)) | ((uint32_t)rxiqphase0 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQCOMP0_ADDR) & ~((uint32_t)0x01FF0000)) | ((uint32_t)rxiqphase0 << 16));
 }
 
 /**
@@ -3061,7 +3061,7 @@ __INLINE void riu_rxiqphase0_setf(uint16_t rxiqphase0)
  */
 __INLINE uint16_t riu_rxiqgain0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x000007FF)) >> 0);
 }
 
@@ -3074,7 +3074,7 @@ __INLINE uint16_t riu_rxiqgain0_getf(void)
  */
 __INLINE void riu_rxiqgain0_setf(uint16_t rxiqgain0)
 {
-    REG_PL_WR(RIU_RWNXFERXIQCOMP0_ADDR, (REG_PL_RD(RIU_RWNXFERXIQCOMP0_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)rxiqgain0 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQCOMP0_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)rxiqgain0 << 0));
 }
 
 #endif // RW_NX_IQ_COMP_EN
@@ -3109,7 +3109,7 @@ __INLINE void riu_rxiqgain0_setf(uint16_t rxiqgain0)
  */
 __INLINE uint32_t riu_rwnxferxiqcomp1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQCOMP1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQCOMP1_ADDR);
 }
 
 /**
@@ -3119,7 +3119,7 @@ __INLINE uint32_t riu_rwnxferxiqcomp1_get(void)
  */
 __INLINE void riu_rwnxferxiqcomp1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFERXIQCOMP1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQCOMP1_ADDR, value);
 }
 
 // field definitions
@@ -3150,7 +3150,7 @@ __INLINE void riu_rwnxferxiqcomp1_set(uint32_t value)
  */
 __INLINE void riu_rwnxferxiqcomp1_pack(uint16_t rxiqphase1, uint16_t rxiqgain1)
 {
-    REG_PL_WR(RIU_RWNXFERXIQCOMP1_ADDR,  ((uint32_t)rxiqphase1 << 16) | ((uint32_t)rxiqgain1 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQCOMP1_ADDR,  ((uint32_t)rxiqphase1 << 16) | ((uint32_t)rxiqgain1 << 0));
 }
 
 /**
@@ -3164,7 +3164,7 @@ __INLINE void riu_rwnxferxiqcomp1_pack(uint16_t rxiqphase1, uint16_t rxiqgain1)
  */
 __INLINE void riu_rwnxferxiqcomp1_unpack(uint16_t* rxiqphase1, uint16_t* rxiqgain1)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQCOMP1_ADDR);
 
     *rxiqphase1 = (localVal & ((uint32_t)0x01FF0000)) >> 16;
     *rxiqgain1 = (localVal & ((uint32_t)0x000007FF)) >> 0;
@@ -3179,7 +3179,7 @@ __INLINE void riu_rwnxferxiqcomp1_unpack(uint16_t* rxiqphase1, uint16_t* rxiqgai
  */
 __INLINE uint16_t riu_rxiqphase1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x01FF0000)) >> 16);
 }
 
@@ -3192,7 +3192,7 @@ __INLINE uint16_t riu_rxiqphase1_getf(void)
  */
 __INLINE void riu_rxiqphase1_setf(uint16_t rxiqphase1)
 {
-    REG_PL_WR(RIU_RWNXFERXIQCOMP1_ADDR, (REG_PL_RD(RIU_RWNXFERXIQCOMP1_ADDR) & ~((uint32_t)0x01FF0000)) | ((uint32_t)rxiqphase1 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQCOMP1_ADDR) & ~((uint32_t)0x01FF0000)) | ((uint32_t)rxiqphase1 << 16));
 }
 
 /**
@@ -3204,7 +3204,7 @@ __INLINE void riu_rxiqphase1_setf(uint16_t rxiqphase1)
  */
 __INLINE uint16_t riu_rxiqgain1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x000007FF)) >> 0);
 }
 
@@ -3217,7 +3217,7 @@ __INLINE uint16_t riu_rxiqgain1_getf(void)
  */
 __INLINE void riu_rxiqgain1_setf(uint16_t rxiqgain1)
 {
-    REG_PL_WR(RIU_RWNXFERXIQCOMP1_ADDR, (REG_PL_RD(RIU_RWNXFERXIQCOMP1_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)rxiqgain1 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFERXIQCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXFERXIQCOMP1_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)rxiqgain1 << 0));
 }
 
 #endif // RW_NX_IQ_COMP_EN
@@ -3255,7 +3255,7 @@ __INLINE void riu_rxiqgain1_setf(uint16_t rxiqgain1)
  */
 __INLINE uint32_t riu_rwnxfefiqctrl_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQCTRL_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQCTRL_ADDR);
 }
 
 /**
@@ -3265,7 +3265,7 @@ __INLINE uint32_t riu_rwnxfefiqctrl_get(void)
  */
 __INLINE void riu_rwnxfefiqctrl_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCTRL_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCTRL_ADDR, value);
 }
 
 // field definitions
@@ -3313,7 +3313,7 @@ __INLINE void riu_rwnxfefiqctrl_set(uint32_t value)
  */
 __INLINE void riu_rwnxfefiqctrl_pack(uint8_t fiqpathsel, uint8_t fiqtxrx, uint8_t fiqrxbypass, uint8_t fiqtxbypass, uint8_t fiqcalen)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCTRL_ADDR,  ((uint32_t)fiqpathsel << 12) | ((uint32_t)fiqtxrx << 8) | ((uint32_t)fiqrxbypass << 2) | ((uint32_t)fiqtxbypass << 1) | ((uint32_t)fiqcalen << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCTRL_ADDR,  ((uint32_t)fiqpathsel << 12) | ((uint32_t)fiqtxrx << 8) | ((uint32_t)fiqrxbypass << 2) | ((uint32_t)fiqtxbypass << 1) | ((uint32_t)fiqcalen << 0));
 }
 
 /**
@@ -3330,7 +3330,7 @@ __INLINE void riu_rwnxfefiqctrl_pack(uint8_t fiqpathsel, uint8_t fiqtxrx, uint8_
  */
 __INLINE void riu_rwnxfefiqctrl_unpack(uint8_t* fiqpathsel, uint8_t* fiqtxrx, uint8_t* fiqrxbypass, uint8_t* fiqtxbypass, uint8_t* fiqcalen)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCTRL_ADDR);
 
     *fiqpathsel = (localVal & ((uint32_t)0x00001000)) >> 12;
     *fiqtxrx = (localVal & ((uint32_t)0x00000100)) >> 8;
@@ -3348,7 +3348,7 @@ __INLINE void riu_rwnxfefiqctrl_unpack(uint8_t* fiqpathsel, uint8_t* fiqtxrx, ui
  */
 __INLINE uint8_t riu_fiqpathsel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00001000)) >> 12);
 }
 
@@ -3361,7 +3361,7 @@ __INLINE uint8_t riu_fiqpathsel_getf(void)
  */
 __INLINE void riu_fiqpathsel_setf(uint8_t fiqpathsel)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXFEFIQCTRL_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)fiqpathsel << 12));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQCTRL_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)fiqpathsel << 12));
 }
 
 /**
@@ -3373,7 +3373,7 @@ __INLINE void riu_fiqpathsel_setf(uint8_t fiqpathsel)
  */
 __INLINE uint8_t riu_fiqtxrx_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -3386,7 +3386,7 @@ __INLINE uint8_t riu_fiqtxrx_getf(void)
  */
 __INLINE void riu_fiqtxrx_setf(uint8_t fiqtxrx)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXFEFIQCTRL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)fiqtxrx << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQCTRL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)fiqtxrx << 8));
 }
 
 /**
@@ -3398,7 +3398,7 @@ __INLINE void riu_fiqtxrx_setf(uint8_t fiqtxrx)
  */
 __INLINE uint8_t riu_fiqrxbypass_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000004)) >> 2);
 }
 
@@ -3411,7 +3411,7 @@ __INLINE uint8_t riu_fiqrxbypass_getf(void)
  */
 __INLINE void riu_fiqrxbypass_setf(uint8_t fiqrxbypass)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXFEFIQCTRL_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)fiqrxbypass << 2));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQCTRL_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)fiqrxbypass << 2));
 }
 
 /**
@@ -3423,7 +3423,7 @@ __INLINE void riu_fiqrxbypass_setf(uint8_t fiqrxbypass)
  */
 __INLINE uint8_t riu_fiqtxbypass_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000002)) >> 1);
 }
 
@@ -3436,7 +3436,7 @@ __INLINE uint8_t riu_fiqtxbypass_getf(void)
  */
 __INLINE void riu_fiqtxbypass_setf(uint8_t fiqtxbypass)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXFEFIQCTRL_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)fiqtxbypass << 1));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQCTRL_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)fiqtxbypass << 1));
 }
 
 /**
@@ -3448,7 +3448,7 @@ __INLINE void riu_fiqtxbypass_setf(uint8_t fiqtxbypass)
  */
 __INLINE uint8_t riu_fiqcalen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
@@ -3461,7 +3461,7 @@ __INLINE uint8_t riu_fiqcalen_getf(void)
  */
 __INLINE void riu_fiqcalen_setf(uint8_t fiqcalen)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCTRL_ADDR, (REG_PL_RD(RIU_RWNXFEFIQCTRL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)fiqcalen << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQCTRL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)fiqcalen << 0));
 }
 
 #endif // RW_NX_FIQ_COMP_EN
@@ -3498,7 +3498,7 @@ __INLINE void riu_fiqcalen_setf(uint8_t fiqcalen)
  */
 __INLINE uint32_t riu_rwnxfefiqcoll_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQCOLL_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQCOLL_ADDR);
 }
 
 /**
@@ -3508,7 +3508,7 @@ __INLINE uint32_t riu_rwnxfefiqcoll_get(void)
  */
 __INLINE void riu_rwnxfefiqcoll_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCOLL_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCOLL_ADDR, value);
 }
 
 // field definitions
@@ -3555,7 +3555,7 @@ __INLINE void riu_rwnxfefiqcoll_set(uint32_t value)
  */
 __INLINE void riu_rwnxfefiqcoll_pack(uint8_t fiqcollwroffset, uint8_t fiqcollrdoffset, uint8_t fiqcollsize, uint8_t fiqcollpath)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCOLL_ADDR,  ((uint32_t)fiqcollwroffset << 24) | ((uint32_t)fiqcollrdoffset << 16) | ((uint32_t)fiqcollsize << 8) | ((uint32_t)fiqcollpath << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCOLL_ADDR,  ((uint32_t)fiqcollwroffset << 24) | ((uint32_t)fiqcollrdoffset << 16) | ((uint32_t)fiqcollsize << 8) | ((uint32_t)fiqcollpath << 0));
 }
 
 /**
@@ -3571,7 +3571,7 @@ __INLINE void riu_rwnxfefiqcoll_pack(uint8_t fiqcollwroffset, uint8_t fiqcollrdo
  */
 __INLINE void riu_rwnxfefiqcoll_unpack(uint8_t* fiqcollwroffset, uint8_t* fiqcollrdoffset, uint8_t* fiqcollsize, uint8_t* fiqcollpath)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCOLL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCOLL_ADDR);
 
     *fiqcollwroffset = (localVal & ((uint32_t)0xFF000000)) >> 24;
     *fiqcollrdoffset = (localVal & ((uint32_t)0x00FF0000)) >> 16;
@@ -3588,7 +3588,7 @@ __INLINE void riu_rwnxfefiqcoll_unpack(uint8_t* fiqcollwroffset, uint8_t* fiqcol
  */
 __INLINE uint8_t riu_fiqcollwroffset_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCOLL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCOLL_ADDR);
     return ((localVal & ((uint32_t)0xFF000000)) >> 24);
 }
 
@@ -3601,7 +3601,7 @@ __INLINE uint8_t riu_fiqcollwroffset_getf(void)
  */
 __INLINE void riu_fiqcollwroffset_setf(uint8_t fiqcollwroffset)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCOLL_ADDR, (REG_PL_RD(RIU_RWNXFEFIQCOLL_ADDR) & ~((uint32_t)0xFF000000)) | ((uint32_t)fiqcollwroffset << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCOLL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQCOLL_ADDR) & ~((uint32_t)0xFF000000)) | ((uint32_t)fiqcollwroffset << 24));
 }
 
 /**
@@ -3613,7 +3613,7 @@ __INLINE void riu_fiqcollwroffset_setf(uint8_t fiqcollwroffset)
  */
 __INLINE uint8_t riu_fiqcollrdoffset_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCOLL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCOLL_ADDR);
     return ((localVal & ((uint32_t)0x00FF0000)) >> 16);
 }
 
@@ -3626,7 +3626,7 @@ __INLINE uint8_t riu_fiqcollrdoffset_getf(void)
  */
 __INLINE void riu_fiqcollrdoffset_setf(uint8_t fiqcollrdoffset)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCOLL_ADDR, (REG_PL_RD(RIU_RWNXFEFIQCOLL_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)fiqcollrdoffset << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCOLL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQCOLL_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)fiqcollrdoffset << 16));
 }
 
 /**
@@ -3638,7 +3638,7 @@ __INLINE void riu_fiqcollrdoffset_setf(uint8_t fiqcollrdoffset)
  */
 __INLINE uint8_t riu_fiqcollsize_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCOLL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCOLL_ADDR);
     return ((localVal & ((uint32_t)0x0000FF00)) >> 8);
 }
 
@@ -3651,7 +3651,7 @@ __INLINE uint8_t riu_fiqcollsize_getf(void)
  */
 __INLINE void riu_fiqcollsize_setf(uint8_t fiqcollsize)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCOLL_ADDR, (REG_PL_RD(RIU_RWNXFEFIQCOLL_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)fiqcollsize << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCOLL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQCOLL_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)fiqcollsize << 8));
 }
 
 /**
@@ -3663,7 +3663,7 @@ __INLINE void riu_fiqcollsize_setf(uint8_t fiqcollsize)
  */
 __INLINE uint8_t riu_fiqcollpath_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCOLL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCOLL_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
@@ -3676,7 +3676,7 @@ __INLINE uint8_t riu_fiqcollpath_getf(void)
  */
 __INLINE void riu_fiqcollpath_setf(uint8_t fiqcollpath)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCOLL_ADDR, (REG_PL_RD(RIU_RWNXFEFIQCOLL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)fiqcollpath << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCOLL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQCOLL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)fiqcollpath << 0));
 }
 
 #endif // RW_NX_FIQ_COMP_EN
@@ -3712,7 +3712,7 @@ __INLINE void riu_fiqcollpath_setf(uint8_t fiqcollpath)
  */
 __INLINE uint32_t riu_rwnxfefiqest0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQEST0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQEST0_ADDR);
 }
 
 /**
@@ -3722,7 +3722,7 @@ __INLINE uint32_t riu_rwnxfefiqest0_get(void)
  */
 __INLINE void riu_rwnxfefiqest0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFEFIQEST0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQEST0_ADDR, value);
 }
 
 // field definitions
@@ -3762,7 +3762,7 @@ __INLINE void riu_rwnxfefiqest0_set(uint32_t value)
  */
 __INLINE void riu_rwnxfefiqest0_pack(uint8_t fiqestqoffset, uint8_t fiqestioffset, uint8_t fiqestsize)
 {
-    REG_PL_WR(RIU_RWNXFEFIQEST0_ADDR,  ((uint32_t)fiqestqoffset << 24) | ((uint32_t)fiqestioffset << 16) | ((uint32_t)fiqestsize << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQEST0_ADDR,  ((uint32_t)fiqestqoffset << 24) | ((uint32_t)fiqestioffset << 16) | ((uint32_t)fiqestsize << 0));
 }
 
 /**
@@ -3777,7 +3777,7 @@ __INLINE void riu_rwnxfefiqest0_pack(uint8_t fiqestqoffset, uint8_t fiqestioffse
  */
 __INLINE void riu_rwnxfefiqest0_unpack(uint8_t* fiqestqoffset, uint8_t* fiqestioffset, uint8_t* fiqestsize)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQEST0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQEST0_ADDR);
 
     *fiqestqoffset = (localVal & ((uint32_t)0xFF000000)) >> 24;
     *fiqestioffset = (localVal & ((uint32_t)0x00FF0000)) >> 16;
@@ -3793,7 +3793,7 @@ __INLINE void riu_rwnxfefiqest0_unpack(uint8_t* fiqestqoffset, uint8_t* fiqestio
  */
 __INLINE uint8_t riu_fiqestqoffset_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQEST0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQEST0_ADDR);
     return ((localVal & ((uint32_t)0xFF000000)) >> 24);
 }
 
@@ -3806,7 +3806,7 @@ __INLINE uint8_t riu_fiqestqoffset_getf(void)
  */
 __INLINE void riu_fiqestqoffset_setf(uint8_t fiqestqoffset)
 {
-    REG_PL_WR(RIU_RWNXFEFIQEST0_ADDR, (REG_PL_RD(RIU_RWNXFEFIQEST0_ADDR) & ~((uint32_t)0xFF000000)) | ((uint32_t)fiqestqoffset << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQEST0_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQEST0_ADDR) & ~((uint32_t)0xFF000000)) | ((uint32_t)fiqestqoffset << 24));
 }
 
 /**
@@ -3818,7 +3818,7 @@ __INLINE void riu_fiqestqoffset_setf(uint8_t fiqestqoffset)
  */
 __INLINE uint8_t riu_fiqestioffset_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQEST0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQEST0_ADDR);
     return ((localVal & ((uint32_t)0x00FF0000)) >> 16);
 }
 
@@ -3831,7 +3831,7 @@ __INLINE uint8_t riu_fiqestioffset_getf(void)
  */
 __INLINE void riu_fiqestioffset_setf(uint8_t fiqestioffset)
 {
-    REG_PL_WR(RIU_RWNXFEFIQEST0_ADDR, (REG_PL_RD(RIU_RWNXFEFIQEST0_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)fiqestioffset << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQEST0_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQEST0_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)fiqestioffset << 16));
 }
 
 /**
@@ -3843,7 +3843,7 @@ __INLINE void riu_fiqestioffset_setf(uint8_t fiqestioffset)
  */
 __INLINE uint8_t riu_fiqestsize_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQEST0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQEST0_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -3856,7 +3856,7 @@ __INLINE uint8_t riu_fiqestsize_getf(void)
  */
 __INLINE void riu_fiqestsize_setf(uint8_t fiqestsize)
 {
-    REG_PL_WR(RIU_RWNXFEFIQEST0_ADDR, (REG_PL_RD(RIU_RWNXFEFIQEST0_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)fiqestsize << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQEST0_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQEST0_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)fiqestsize << 0));
 }
 
 #endif // RW_NX_FIQ_COMP_EN
@@ -3891,7 +3891,7 @@ __INLINE void riu_fiqestsize_setf(uint8_t fiqestsize)
  */
 __INLINE uint32_t riu_rwnxfefiqest1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQEST1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQEST1_ADDR);
 }
 
 /**
@@ -3901,7 +3901,7 @@ __INLINE uint32_t riu_rwnxfefiqest1_get(void)
  */
 __INLINE void riu_rwnxfefiqest1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFEFIQEST1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQEST1_ADDR, value);
 }
 
 // field definitions
@@ -3932,7 +3932,7 @@ __INLINE void riu_rwnxfefiqest1_set(uint32_t value)
  */
 __INLINE void riu_rwnxfefiqest1_pack(uint8_t fiqeststep, uint16_t fiqestnite)
 {
-    REG_PL_WR(RIU_RWNXFEFIQEST1_ADDR,  ((uint32_t)fiqeststep << 16) | ((uint32_t)fiqestnite << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQEST1_ADDR,  ((uint32_t)fiqeststep << 16) | ((uint32_t)fiqestnite << 0));
 }
 
 /**
@@ -3946,7 +3946,7 @@ __INLINE void riu_rwnxfefiqest1_pack(uint8_t fiqeststep, uint16_t fiqestnite)
  */
 __INLINE void riu_rwnxfefiqest1_unpack(uint8_t* fiqeststep, uint16_t* fiqestnite)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQEST1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQEST1_ADDR);
 
     *fiqeststep = (localVal & ((uint32_t)0x000F0000)) >> 16;
     *fiqestnite = (localVal & ((uint32_t)0x0000FFFF)) >> 0;
@@ -3961,7 +3961,7 @@ __INLINE void riu_rwnxfefiqest1_unpack(uint8_t* fiqeststep, uint16_t* fiqestnite
  */
 __INLINE uint8_t riu_fiqeststep_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQEST1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQEST1_ADDR);
     return ((localVal & ((uint32_t)0x000F0000)) >> 16);
 }
 
@@ -3974,7 +3974,7 @@ __INLINE uint8_t riu_fiqeststep_getf(void)
  */
 __INLINE void riu_fiqeststep_setf(uint8_t fiqeststep)
 {
-    REG_PL_WR(RIU_RWNXFEFIQEST1_ADDR, (REG_PL_RD(RIU_RWNXFEFIQEST1_ADDR) & ~((uint32_t)0x000F0000)) | ((uint32_t)fiqeststep << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQEST1_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQEST1_ADDR) & ~((uint32_t)0x000F0000)) | ((uint32_t)fiqeststep << 16));
 }
 
 /**
@@ -3986,7 +3986,7 @@ __INLINE void riu_fiqeststep_setf(uint8_t fiqeststep)
  */
 __INLINE uint16_t riu_fiqestnite_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQEST1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQEST1_ADDR);
     return ((localVal & ((uint32_t)0x0000FFFF)) >> 0);
 }
 
@@ -3999,7 +3999,7 @@ __INLINE uint16_t riu_fiqestnite_getf(void)
  */
 __INLINE void riu_fiqestnite_setf(uint16_t fiqestnite)
 {
-    REG_PL_WR(RIU_RWNXFEFIQEST1_ADDR, (REG_PL_RD(RIU_RWNXFEFIQEST1_ADDR) & ~((uint32_t)0x0000FFFF)) | ((uint32_t)fiqestnite << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQEST1_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQEST1_ADDR) & ~((uint32_t)0x0000FFFF)) | ((uint32_t)fiqestnite << 0));
 }
 
 #endif // RW_NX_FIQ_COMP_EN
@@ -4035,7 +4035,7 @@ __INLINE void riu_fiqestnite_setf(uint16_t fiqestnite)
  */
 __INLINE uint32_t riu_rwnxfefiqdel_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQDEL_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQDEL_ADDR);
 }
 
 /**
@@ -4045,7 +4045,7 @@ __INLINE uint32_t riu_rwnxfefiqdel_get(void)
  */
 __INLINE void riu_rwnxfefiqdel_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFEFIQDEL_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQDEL_ADDR, value);
 }
 
 // field definitions
@@ -4085,7 +4085,7 @@ __INLINE void riu_rwnxfefiqdel_set(uint32_t value)
  */
 __INLINE void riu_rwnxfefiqdel_pack(uint8_t fiqrxdel, uint8_t fiqtxdel, uint8_t fiqcolldel)
 {
-    REG_PL_WR(RIU_RWNXFEFIQDEL_ADDR,  ((uint32_t)fiqrxdel << 24) | ((uint32_t)fiqtxdel << 16) | ((uint32_t)fiqcolldel << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQDEL_ADDR,  ((uint32_t)fiqrxdel << 24) | ((uint32_t)fiqtxdel << 16) | ((uint32_t)fiqcolldel << 0));
 }
 
 /**
@@ -4100,7 +4100,7 @@ __INLINE void riu_rwnxfefiqdel_pack(uint8_t fiqrxdel, uint8_t fiqtxdel, uint8_t 
  */
 __INLINE void riu_rwnxfefiqdel_unpack(uint8_t* fiqrxdel, uint8_t* fiqtxdel, uint8_t* fiqcolldel)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQDEL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQDEL_ADDR);
 
     *fiqrxdel = (localVal & ((uint32_t)0x1F000000)) >> 24;
     *fiqtxdel = (localVal & ((uint32_t)0x001F0000)) >> 16;
@@ -4116,7 +4116,7 @@ __INLINE void riu_rwnxfefiqdel_unpack(uint8_t* fiqrxdel, uint8_t* fiqtxdel, uint
  */
 __INLINE uint8_t riu_fiqrxdel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQDEL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQDEL_ADDR);
     return ((localVal & ((uint32_t)0x1F000000)) >> 24);
 }
 
@@ -4129,7 +4129,7 @@ __INLINE uint8_t riu_fiqrxdel_getf(void)
  */
 __INLINE void riu_fiqrxdel_setf(uint8_t fiqrxdel)
 {
-    REG_PL_WR(RIU_RWNXFEFIQDEL_ADDR, (REG_PL_RD(RIU_RWNXFEFIQDEL_ADDR) & ~((uint32_t)0x1F000000)) | ((uint32_t)fiqrxdel << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQDEL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQDEL_ADDR) & ~((uint32_t)0x1F000000)) | ((uint32_t)fiqrxdel << 24));
 }
 
 /**
@@ -4141,7 +4141,7 @@ __INLINE void riu_fiqrxdel_setf(uint8_t fiqrxdel)
  */
 __INLINE uint8_t riu_fiqtxdel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQDEL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQDEL_ADDR);
     return ((localVal & ((uint32_t)0x001F0000)) >> 16);
 }
 
@@ -4154,7 +4154,7 @@ __INLINE uint8_t riu_fiqtxdel_getf(void)
  */
 __INLINE void riu_fiqtxdel_setf(uint8_t fiqtxdel)
 {
-    REG_PL_WR(RIU_RWNXFEFIQDEL_ADDR, (REG_PL_RD(RIU_RWNXFEFIQDEL_ADDR) & ~((uint32_t)0x001F0000)) | ((uint32_t)fiqtxdel << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQDEL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQDEL_ADDR) & ~((uint32_t)0x001F0000)) | ((uint32_t)fiqtxdel << 16));
 }
 
 /**
@@ -4166,7 +4166,7 @@ __INLINE void riu_fiqtxdel_setf(uint8_t fiqtxdel)
  */
 __INLINE uint8_t riu_fiqcolldel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQDEL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQDEL_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -4179,7 +4179,7 @@ __INLINE uint8_t riu_fiqcolldel_getf(void)
  */
 __INLINE void riu_fiqcolldel_setf(uint8_t fiqcolldel)
 {
-    REG_PL_WR(RIU_RWNXFEFIQDEL_ADDR, (REG_PL_RD(RIU_RWNXFEFIQDEL_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)fiqcolldel << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQDEL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEFIQDEL_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)fiqcolldel << 0));
 }
 
 #endif // RW_NX_FIQ_COMP_EN
@@ -4216,7 +4216,7 @@ __INLINE void riu_fiqcolldel_setf(uint8_t fiqcolldel)
  */
 __INLINE uint32_t riu_rwnxfefiqcoeff_get(int reg_idx)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQCOEFF_ADDR + reg_idx * 4);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQCOEFF_ADDR + reg_idx * 4);
 }
 
 /**
@@ -4227,7 +4227,7 @@ __INLINE uint32_t riu_rwnxfefiqcoeff_get(int reg_idx)
  */
 __INLINE void riu_rwnxfefiqcoeff_set(int reg_idx, uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCOEFF_ADDR + reg_idx * 4, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCOEFF_ADDR + reg_idx * 4, value);
 }
 
 // field definitions
@@ -4251,7 +4251,7 @@ __INLINE void riu_rwnxfefiqcoeff_set(int reg_idx, uint32_t value)
  */
 __INLINE uint16_t riu_fiqcoeff_getf(int reg_idx)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCOEFF_ADDR + reg_idx * 4);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCOEFF_ADDR + reg_idx * 4);
     return (localVal >> 0);
 }
 
@@ -4265,7 +4265,7 @@ __INLINE uint16_t riu_fiqcoeff_getf(int reg_idx)
  */
 __INLINE void riu_fiqcoeff_setf(int reg_idx, uint16_t fiqcoeff)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCOEFF_ADDR + reg_idx * 4, (uint32_t)fiqcoeff << 0);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCOEFF_ADDR + reg_idx * 4, (uint32_t)fiqcoeff << 0);
 }
 
 #endif // RW_NX_FIQ_COMP_EN
@@ -4299,7 +4299,7 @@ __INLINE void riu_fiqcoeff_setf(int reg_idx, uint16_t fiqcoeff)
  */
 __INLINE uint32_t riu_rwnxfefiqcoeffupdate_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQCOEFFUPDATE_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQCOEFFUPDATE_ADDR);
 }
 
 /**
@@ -4309,7 +4309,7 @@ __INLINE uint32_t riu_rwnxfefiqcoeffupdate_get(void)
  */
 __INLINE void riu_rwnxfefiqcoeffupdate_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCOEFFUPDATE_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCOEFFUPDATE_ADDR, value);
 }
 
 // field definitions
@@ -4330,7 +4330,7 @@ __INLINE void riu_rwnxfefiqcoeffupdate_set(uint32_t value)
  */
 __INLINE uint8_t riu_fiqcoeffupdate_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCOEFFUPDATE_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCOEFFUPDATE_ADDR);
     return (localVal >> 0);
 }
 
@@ -4343,7 +4343,7 @@ __INLINE uint8_t riu_fiqcoeffupdate_getf(void)
  */
 __INLINE void riu_fiqcoeffupdate_setf(uint8_t fiqcoeffupdate)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCOEFFUPDATE_ADDR, (uint32_t)fiqcoeffupdate << 0);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCOEFFUPDATE_ADDR, (uint32_t)fiqcoeffupdate << 0);
 }
 
 #endif // RW_NX_FIQ_COMP_EN
@@ -4377,7 +4377,7 @@ __INLINE void riu_fiqcoeffupdate_setf(uint8_t fiqcoeffupdate)
  */
 __INLINE uint32_t riu_rwnxfefiqcoeffreq_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQCOEFFREQ_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQCOEFFREQ_ADDR);
 }
 
 /**
@@ -4387,7 +4387,7 @@ __INLINE uint32_t riu_rwnxfefiqcoeffreq_get(void)
  */
 __INLINE void riu_rwnxfefiqcoeffreq_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCOEFFREQ_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCOEFFREQ_ADDR, value);
 }
 
 // field definitions
@@ -4408,7 +4408,7 @@ __INLINE void riu_rwnxfefiqcoeffreq_set(uint32_t value)
  */
 __INLINE uint8_t riu_fiqcoeffreq_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQCOEFFREQ_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQCOEFFREQ_ADDR);
     return (localVal >> 0);
 }
 
@@ -4421,7 +4421,7 @@ __INLINE uint8_t riu_fiqcoeffreq_getf(void)
  */
 __INLINE void riu_fiqcoeffreq_setf(uint8_t fiqcoeffreq)
 {
-    REG_PL_WR(RIU_RWNXFEFIQCOEFFREQ_ADDR, (uint32_t)fiqcoeffreq << 0);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQCOEFFREQ_ADDR, (uint32_t)fiqcoeffreq << 0);
 }
 
 #endif // RW_NX_FIQ_COMP_EN
@@ -4456,7 +4456,7 @@ __INLINE void riu_fiqcoeffreq_setf(uint8_t fiqcoeffreq)
  */
 __INLINE uint32_t riu_rwnxfefiqstart_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQSTART_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQSTART_ADDR);
 }
 
 /**
@@ -4466,7 +4466,7 @@ __INLINE uint32_t riu_rwnxfefiqstart_get(void)
  */
 __INLINE void riu_rwnxfefiqstart_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFEFIQSTART_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQSTART_ADDR, value);
 }
 
 // field definitions
@@ -4493,7 +4493,7 @@ __INLINE void riu_rwnxfefiqstart_set(uint32_t value)
  */
 __INLINE void riu_rwnxfefiqstart_pack(uint8_t fiqeststart, uint8_t fiqcollstart)
 {
-    REG_PL_WR(RIU_RWNXFEFIQSTART_ADDR,  ((uint32_t)fiqeststart << 16) | ((uint32_t)fiqcollstart << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQSTART_ADDR,  ((uint32_t)fiqeststart << 16) | ((uint32_t)fiqcollstart << 0));
 }
 
 /**
@@ -4507,7 +4507,7 @@ __INLINE void riu_rwnxfefiqstart_pack(uint8_t fiqeststart, uint8_t fiqcollstart)
  */
 __INLINE void riu_rwnxfefiqstart_unpack(uint8_t* fiqeststart, uint8_t* fiqcollstart)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQSTART_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQSTART_ADDR);
 
     *fiqeststart = (localVal & ((uint32_t)0x00010000)) >> 16;
     *fiqcollstart = (localVal & ((uint32_t)0x00000001)) >> 0;
@@ -4522,7 +4522,7 @@ __INLINE void riu_rwnxfefiqstart_unpack(uint8_t* fiqeststart, uint8_t* fiqcollst
  */
 __INLINE uint8_t riu_fiqeststart_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQSTART_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQSTART_ADDR);
     return ((localVal & ((uint32_t)0x00010000)) >> 16);
 }
 
@@ -4535,7 +4535,7 @@ __INLINE uint8_t riu_fiqeststart_getf(void)
  */
 __INLINE void riu_fiqeststart_setf(uint8_t fiqeststart)
 {
-    REG_PL_WR(RIU_RWNXFEFIQSTART_ADDR, (uint32_t)fiqeststart << 16);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQSTART_ADDR, (uint32_t)fiqeststart << 16);
 }
 
 /**
@@ -4547,7 +4547,7 @@ __INLINE void riu_fiqeststart_setf(uint8_t fiqeststart)
  */
 __INLINE uint8_t riu_fiqcollstart_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQSTART_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQSTART_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
@@ -4560,7 +4560,7 @@ __INLINE uint8_t riu_fiqcollstart_getf(void)
  */
 __INLINE void riu_fiqcollstart_setf(uint8_t fiqcollstart)
 {
-    REG_PL_WR(RIU_RWNXFEFIQSTART_ADDR, (uint32_t)fiqcollstart << 0);
+    PLATFORM_REG_WRITE(RIU_RWNXFEFIQSTART_ADDR, (uint32_t)fiqcollstart << 0);
 }
 
 #endif // RW_NX_FIQ_COMP_EN
@@ -4594,7 +4594,7 @@ __INLINE void riu_fiqcollstart_setf(uint8_t fiqcollstart)
  */
 __INLINE uint32_t riu_agcgainstat_get(void)
 {
-    return REG_PL_RD(RIU_AGCGAINSTAT_ADDR);
+    return PLATFORM_REG_READ(RIU_AGCGAINSTAT_ADDR);
 }
 
 // field definitions
@@ -4627,7 +4627,7 @@ __INLINE uint32_t riu_agcgainstat_get(void)
  */
 __INLINE void riu_agcgainstat_unpack(uint8_t* agcgain1, uint8_t* agcgain0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCGAINSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCGAINSTAT_ADDR);
 
     *agcgain1 = (localVal & ((uint32_t)0x0000FF00)) >> 8;
     *agcgain0 = (localVal & ((uint32_t)0x000000FF)) >> 0;
@@ -4642,7 +4642,7 @@ __INLINE void riu_agcgainstat_unpack(uint8_t* agcgain1, uint8_t* agcgain0)
  */
 __INLINE uint8_t riu_agcgain1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCGAINSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCGAINSTAT_ADDR);
     return ((localVal & ((uint32_t)0x0000FF00)) >> 8);
 }
 
@@ -4655,7 +4655,7 @@ __INLINE uint8_t riu_agcgain1_getf(void)
  */
 __INLINE uint8_t riu_agcgain0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCGAINSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCGAINSTAT_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -4689,7 +4689,7 @@ __INLINE uint8_t riu_agcgain0_getf(void)
  */
 __INLINE uint32_t riu_agcadcpowstat_get(void)
 {
-    return REG_PL_RD(RIU_AGCADCPOWSTAT_ADDR);
+    return PLATFORM_REG_READ(RIU_AGCADCPOWSTAT_ADDR);
 }
 
 // field definitions
@@ -4722,7 +4722,7 @@ __INLINE uint32_t riu_agcadcpowstat_get(void)
  */
 __INLINE void riu_agcadcpowstat_unpack(uint8_t* adcpowdbv1, uint8_t* adcpowdbv0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCADCPOWSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCADCPOWSTAT_ADDR);
 
     *adcpowdbv1 = (localVal & ((uint32_t)0x00007F00)) >> 8;
     *adcpowdbv0 = (localVal & ((uint32_t)0x0000007F)) >> 0;
@@ -4737,7 +4737,7 @@ __INLINE void riu_agcadcpowstat_unpack(uint8_t* adcpowdbv1, uint8_t* adcpowdbv0)
  */
 __INLINE uint8_t riu_adcpowdbv1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCADCPOWSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCADCPOWSTAT_ADDR);
     return ((localVal & ((uint32_t)0x00007F00)) >> 8);
 }
 
@@ -4750,7 +4750,7 @@ __INLINE uint8_t riu_adcpowdbv1_getf(void)
  */
 __INLINE uint8_t riu_adcpowdbv0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCADCPOWSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCADCPOWSTAT_ADDR);
     return ((localVal & ((uint32_t)0x0000007F)) >> 0);
 }
 
@@ -4784,7 +4784,7 @@ __INLINE uint8_t riu_adcpowdbv0_getf(void)
  */
 __INLINE uint32_t riu_agcinbdpow20pstat_get(void)
 {
-    return REG_PL_RD(RIU_AGCINBDPOW20PSTAT_ADDR);
+    return PLATFORM_REG_READ(RIU_AGCINBDPOW20PSTAT_ADDR);
 }
 
 // field definitions
@@ -4817,7 +4817,7 @@ __INLINE uint32_t riu_agcinbdpow20pstat_get(void)
  */
 __INLINE void riu_agcinbdpow20pstat_unpack(uint8_t* inbdpow20pdbm1, uint8_t* inbdpow20pdbm0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCINBDPOW20PSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCINBDPOW20PSTAT_ADDR);
 
     *inbdpow20pdbm1 = (localVal & ((uint32_t)0x0000FF00)) >> 8;
     *inbdpow20pdbm0 = (localVal & ((uint32_t)0x000000FF)) >> 0;
@@ -4832,7 +4832,7 @@ __INLINE void riu_agcinbdpow20pstat_unpack(uint8_t* inbdpow20pdbm1, uint8_t* inb
  */
 __INLINE uint8_t riu_inbdpow20pdbm1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCINBDPOW20PSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCINBDPOW20PSTAT_ADDR);
     return ((localVal & ((uint32_t)0x0000FF00)) >> 8);
 }
 
@@ -4845,7 +4845,7 @@ __INLINE uint8_t riu_inbdpow20pdbm1_getf(void)
  */
 __INLINE uint8_t riu_inbdpow20pdbm0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCINBDPOW20PSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCINBDPOW20PSTAT_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -4880,7 +4880,7 @@ __INLINE uint8_t riu_inbdpow20pdbm0_getf(void)
  */
 __INLINE uint32_t riu_agcdiggain0stat_get(void)
 {
-    return REG_PL_RD(RIU_AGCDIGGAIN0STAT_ADDR);
+    return PLATFORM_REG_READ(RIU_AGCDIGGAIN0STAT_ADDR);
 }
 
 // field definitions
@@ -4922,7 +4922,7 @@ __INLINE uint32_t riu_agcdiggain0stat_get(void)
  */
 __INLINE void riu_agcdiggain0stat_unpack(uint8_t* diggain80ant0, uint8_t* diggain40ant0, uint8_t* diggain20ant0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCDIGGAIN0STAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCDIGGAIN0STAT_ADDR);
 
     *diggain80ant0 = (localVal & ((uint32_t)0x007F0000)) >> 16;
     *diggain40ant0 = (localVal & ((uint32_t)0x00007F00)) >> 8;
@@ -4938,7 +4938,7 @@ __INLINE void riu_agcdiggain0stat_unpack(uint8_t* diggain80ant0, uint8_t* diggai
  */
 __INLINE uint8_t riu_diggain80ant0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCDIGGAIN0STAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCDIGGAIN0STAT_ADDR);
     return ((localVal & ((uint32_t)0x007F0000)) >> 16);
 }
 
@@ -4951,7 +4951,7 @@ __INLINE uint8_t riu_diggain80ant0_getf(void)
  */
 __INLINE uint8_t riu_diggain40ant0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCDIGGAIN0STAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCDIGGAIN0STAT_ADDR);
     return ((localVal & ((uint32_t)0x00007F00)) >> 8);
 }
 
@@ -4964,7 +4964,7 @@ __INLINE uint8_t riu_diggain40ant0_getf(void)
  */
 __INLINE uint8_t riu_diggain20ant0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCDIGGAIN0STAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCDIGGAIN0STAT_ADDR);
     return ((localVal & ((uint32_t)0x0000007F)) >> 0);
 }
 
@@ -4999,7 +4999,7 @@ __INLINE uint8_t riu_diggain20ant0_getf(void)
  */
 __INLINE uint32_t riu_agcdiggain1stat_get(void)
 {
-    return REG_PL_RD(RIU_AGCDIGGAIN1STAT_ADDR);
+    return PLATFORM_REG_READ(RIU_AGCDIGGAIN1STAT_ADDR);
 }
 
 // field definitions
@@ -5041,7 +5041,7 @@ __INLINE uint32_t riu_agcdiggain1stat_get(void)
  */
 __INLINE void riu_agcdiggain1stat_unpack(uint8_t* diggain80ant1, uint8_t* diggain40ant1, uint8_t* diggain20ant1)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCDIGGAIN1STAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCDIGGAIN1STAT_ADDR);
 
     *diggain80ant1 = (localVal & ((uint32_t)0x007F0000)) >> 16;
     *diggain40ant1 = (localVal & ((uint32_t)0x00007F00)) >> 8;
@@ -5057,7 +5057,7 @@ __INLINE void riu_agcdiggain1stat_unpack(uint8_t* diggain80ant1, uint8_t* diggai
  */
 __INLINE uint8_t riu_diggain80ant1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCDIGGAIN1STAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCDIGGAIN1STAT_ADDR);
     return ((localVal & ((uint32_t)0x007F0000)) >> 16);
 }
 
@@ -5070,7 +5070,7 @@ __INLINE uint8_t riu_diggain80ant1_getf(void)
  */
 __INLINE uint8_t riu_diggain40ant1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCDIGGAIN1STAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCDIGGAIN1STAT_ADDR);
     return ((localVal & ((uint32_t)0x00007F00)) >> 8);
 }
 
@@ -5083,7 +5083,7 @@ __INLINE uint8_t riu_diggain40ant1_getf(void)
  */
 __INLINE uint8_t riu_diggain20ant1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCDIGGAIN1STAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCDIGGAIN1STAT_ADDR);
     return ((localVal & ((uint32_t)0x0000007F)) >> 0);
 }
 
@@ -5117,7 +5117,7 @@ __INLINE uint8_t riu_diggain20ant1_getf(void)
  */
 __INLINE uint32_t riu_radarfifostat_get(void)
 {
-    return REG_PL_RD(RIU_RADARFIFOSTAT_ADDR);
+    return PLATFORM_REG_READ(RIU_RADARFIFOSTAT_ADDR);
 }
 
 // field definitions
@@ -5138,7 +5138,7 @@ __INLINE uint32_t riu_radarfifostat_get(void)
  */
 __INLINE uint8_t riu_radfifoempty_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RADARFIFOSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RADARFIFOSTAT_ADDR);
     return (localVal >> 0);
 }
 
@@ -5173,7 +5173,7 @@ __INLINE uint8_t riu_radfifoempty_getf(void)
  */
 __INLINE uint32_t riu_agcinbdpow20pnoisestat_get(void)
 {
-    return REG_PL_RD(RIU_AGCINBDPOW20PNOISESTAT_ADDR);
+    return PLATFORM_REG_READ(RIU_AGCINBDPOW20PNOISESTAT_ADDR);
 }
 
 // field definitions
@@ -5206,7 +5206,7 @@ __INLINE uint32_t riu_agcinbdpow20pnoisestat_get(void)
  */
 __INLINE void riu_agcinbdpow20pnoisestat_unpack(uint8_t* inbdpow20pnoisedbm1, uint8_t* inbdpow20pnoisedbm0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCINBDPOW20PNOISESTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCINBDPOW20PNOISESTAT_ADDR);
 
     *inbdpow20pnoisedbm1 = (localVal & ((uint32_t)0x0000FF00)) >> 8;
     *inbdpow20pnoisedbm0 = (localVal & ((uint32_t)0x000000FF)) >> 0;
@@ -5221,7 +5221,7 @@ __INLINE void riu_agcinbdpow20pnoisestat_unpack(uint8_t* inbdpow20pnoisedbm1, ui
  */
 __INLINE uint8_t riu_inbdpow20pnoisedbm1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCINBDPOW20PNOISESTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCINBDPOW20PNOISESTAT_ADDR);
     return ((localVal & ((uint32_t)0x0000FF00)) >> 8);
 }
 
@@ -5234,7 +5234,7 @@ __INLINE uint8_t riu_inbdpow20pnoisedbm1_getf(void)
  */
 __INLINE uint8_t riu_inbdpow20pnoisedbm0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCINBDPOW20PNOISESTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCINBDPOW20PNOISESTAT_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -5268,7 +5268,7 @@ __INLINE uint8_t riu_inbdpow20pnoisedbm0_getf(void)
  */
 __INLINE uint32_t riu_agcinbdpowsecstat_get(void)
 {
-    return REG_PL_RD(RIU_AGCINBDPOWSECSTAT_ADDR);
+    return PLATFORM_REG_READ(RIU_AGCINBDPOWSECSTAT_ADDR);
 }
 
 // field definitions
@@ -5301,7 +5301,7 @@ __INLINE uint32_t riu_agcinbdpowsecstat_get(void)
  */
 __INLINE void riu_agcinbdpowsecstat_unpack(uint8_t* inbdpow40sdbm, uint8_t* inbdpow20sdbm)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCINBDPOWSECSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCINBDPOWSECSTAT_ADDR);
 
     *inbdpow40sdbm = (localVal & ((uint32_t)0x00FF0000)) >> 16;
     *inbdpow20sdbm = (localVal & ((uint32_t)0x000000FF)) >> 0;
@@ -5316,7 +5316,7 @@ __INLINE void riu_agcinbdpowsecstat_unpack(uint8_t* inbdpow40sdbm, uint8_t* inbd
  */
 __INLINE uint8_t riu_inbdpow40sdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCINBDPOWSECSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCINBDPOWSECSTAT_ADDR);
     return ((localVal & ((uint32_t)0x00FF0000)) >> 16);
 }
 
@@ -5329,7 +5329,7 @@ __INLINE uint8_t riu_inbdpow40sdbm_getf(void)
  */
 __INLINE uint8_t riu_inbdpow20sdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCINBDPOWSECSTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCINBDPOWSECSTAT_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -5363,7 +5363,7 @@ __INLINE uint8_t riu_inbdpow20sdbm_getf(void)
  */
 __INLINE uint32_t riu_agcinbdpowsecnoisestat_get(void)
 {
-    return REG_PL_RD(RIU_AGCINBDPOWSECNOISESTAT_ADDR);
+    return PLATFORM_REG_READ(RIU_AGCINBDPOWSECNOISESTAT_ADDR);
 }
 
 // field definitions
@@ -5396,7 +5396,7 @@ __INLINE uint32_t riu_agcinbdpowsecnoisestat_get(void)
  */
 __INLINE void riu_agcinbdpowsecnoisestat_unpack(uint8_t* inbdpow40snoisedbm, uint8_t* inbdpow20snoisedbm)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCINBDPOWSECNOISESTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCINBDPOWSECNOISESTAT_ADDR);
 
     *inbdpow40snoisedbm = (localVal & ((uint32_t)0x00FF0000)) >> 16;
     *inbdpow20snoisedbm = (localVal & ((uint32_t)0x000000FF)) >> 0;
@@ -5411,7 +5411,7 @@ __INLINE void riu_agcinbdpowsecnoisestat_unpack(uint8_t* inbdpow40snoisedbm, uin
  */
 __INLINE uint8_t riu_inbdpow40snoisedbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCINBDPOWSECNOISESTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCINBDPOWSECNOISESTAT_ADDR);
     return ((localVal & ((uint32_t)0x00FF0000)) >> 16);
 }
 
@@ -5424,7 +5424,7 @@ __INLINE uint8_t riu_inbdpow40snoisedbm_getf(void)
  */
 __INLINE uint8_t riu_inbdpow20snoisedbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_AGCINBDPOWSECNOISESTAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_AGCINBDPOWSECNOISESTAT_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -5458,7 +5458,7 @@ __INLINE uint8_t riu_inbdpow20snoisedbm_getf(void)
  */
 __INLINE uint32_t riu_rwnxferxiqstatvari0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQSTATVARI0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQSTATVARI0_ADDR);
 }
 
 // field definitions
@@ -5481,7 +5481,7 @@ __INLINE uint32_t riu_rwnxferxiqstatvari0_get(void)
  */
 __INLINE uint32_t riu_rxiqvari0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQSTATVARI0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQSTATVARI0_ADDR);
     return (localVal >> 0);
 }
 
@@ -5516,7 +5516,7 @@ __INLINE uint32_t riu_rxiqvari0_getf(void)
  */
 __INLINE uint32_t riu_rwnxferxiqstatvarq0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQSTATVARQ0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQSTATVARQ0_ADDR);
 }
 
 // field definitions
@@ -5539,7 +5539,7 @@ __INLINE uint32_t riu_rwnxferxiqstatvarq0_get(void)
  */
 __INLINE uint32_t riu_rxiqvarq0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQSTATVARQ0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQSTATVARQ0_ADDR);
     return (localVal >> 0);
 }
 
@@ -5574,7 +5574,7 @@ __INLINE uint32_t riu_rxiqvarq0_getf(void)
  */
 __INLINE uint32_t riu_rwnxferxiqstatmiq0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQSTATMIQ0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQSTATMIQ0_ADDR);
 }
 
 // field definitions
@@ -5597,7 +5597,7 @@ __INLINE uint32_t riu_rwnxferxiqstatmiq0_get(void)
  */
 __INLINE uint32_t riu_rxiqstatmiq0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQSTATMIQ0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQSTATMIQ0_ADDR);
     return (localVal >> 0);
 }
 
@@ -5633,7 +5633,7 @@ __INLINE uint32_t riu_rxiqstatmiq0_getf(void)
  */
 __INLINE uint32_t riu_rwnxferxiqstat0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQSTAT0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQSTAT0_ADDR);
 }
 
 // field definitions
@@ -5666,7 +5666,7 @@ __INLINE uint32_t riu_rwnxferxiqstat0_get(void)
  */
 __INLINE void riu_rwnxferxiqstat0_unpack(uint16_t* rxiqstatphase0, uint16_t* rxiqstatgain0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQSTAT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQSTAT0_ADDR);
 
     *rxiqstatphase0 = (localVal & ((uint32_t)0x01FF0000)) >> 16;
     *rxiqstatgain0 = (localVal & ((uint32_t)0x000007FF)) >> 0;
@@ -5681,7 +5681,7 @@ __INLINE void riu_rwnxferxiqstat0_unpack(uint16_t* rxiqstatphase0, uint16_t* rxi
  */
 __INLINE uint16_t riu_rxiqstatphase0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQSTAT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQSTAT0_ADDR);
     return ((localVal & ((uint32_t)0x01FF0000)) >> 16);
 }
 
@@ -5694,7 +5694,7 @@ __INLINE uint16_t riu_rxiqstatphase0_getf(void)
  */
 __INLINE uint16_t riu_rxiqstatgain0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQSTAT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQSTAT0_ADDR);
     return ((localVal & ((uint32_t)0x000007FF)) >> 0);
 }
 
@@ -5729,7 +5729,7 @@ __INLINE uint16_t riu_rxiqstatgain0_getf(void)
  */
 __INLINE uint32_t riu_rwnxferxiqstatvari1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQSTATVARI1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQSTATVARI1_ADDR);
 }
 
 // field definitions
@@ -5752,7 +5752,7 @@ __INLINE uint32_t riu_rwnxferxiqstatvari1_get(void)
  */
 __INLINE uint32_t riu_rxiqvari1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQSTATVARI1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQSTATVARI1_ADDR);
     return (localVal >> 0);
 }
 
@@ -5787,7 +5787,7 @@ __INLINE uint32_t riu_rxiqvari1_getf(void)
  */
 __INLINE uint32_t riu_rwnxferxiqstatvarq1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQSTATVARQ1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQSTATVARQ1_ADDR);
 }
 
 // field definitions
@@ -5810,7 +5810,7 @@ __INLINE uint32_t riu_rwnxferxiqstatvarq1_get(void)
  */
 __INLINE uint32_t riu_rxiqvarq1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQSTATVARQ1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQSTATVARQ1_ADDR);
     return (localVal >> 0);
 }
 
@@ -5845,7 +5845,7 @@ __INLINE uint32_t riu_rxiqvarq1_getf(void)
  */
 __INLINE uint32_t riu_rwnxferxiqstatmiq1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQSTATMIQ1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQSTATMIQ1_ADDR);
 }
 
 // field definitions
@@ -5868,7 +5868,7 @@ __INLINE uint32_t riu_rwnxferxiqstatmiq1_get(void)
  */
 __INLINE uint32_t riu_rxiqstatmiq1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQSTATMIQ1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQSTATMIQ1_ADDR);
     return (localVal >> 0);
 }
 
@@ -5904,7 +5904,7 @@ __INLINE uint32_t riu_rxiqstatmiq1_getf(void)
  */
 __INLINE uint32_t riu_rwnxferxiqstat1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFERXIQSTAT1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFERXIQSTAT1_ADDR);
 }
 
 // field definitions
@@ -5937,7 +5937,7 @@ __INLINE uint32_t riu_rwnxferxiqstat1_get(void)
  */
 __INLINE void riu_rwnxferxiqstat1_unpack(uint16_t* rxiqstatphase1, uint16_t* rxiqstatgain1)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQSTAT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQSTAT1_ADDR);
 
     *rxiqstatphase1 = (localVal & ((uint32_t)0x01FF0000)) >> 16;
     *rxiqstatgain1 = (localVal & ((uint32_t)0x000007FF)) >> 0;
@@ -5952,7 +5952,7 @@ __INLINE void riu_rwnxferxiqstat1_unpack(uint16_t* rxiqstatphase1, uint16_t* rxi
  */
 __INLINE uint16_t riu_rxiqstatphase1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQSTAT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQSTAT1_ADDR);
     return ((localVal & ((uint32_t)0x01FF0000)) >> 16);
 }
 
@@ -5965,7 +5965,7 @@ __INLINE uint16_t riu_rxiqstatphase1_getf(void)
  */
 __INLINE uint16_t riu_rxiqstatgain1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFERXIQSTAT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFERXIQSTAT1_ADDR);
     return ((localVal & ((uint32_t)0x000007FF)) >> 0);
 }
 
@@ -6001,7 +6001,7 @@ __INLINE uint16_t riu_rxiqstatgain1_getf(void)
  */
 __INLINE uint32_t riu_rwnxfefiqdone_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQDONE_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQDONE_ADDR);
 }
 
 // field definitions
@@ -6030,7 +6030,7 @@ __INLINE uint32_t riu_rwnxfefiqdone_get(void)
  */
 __INLINE void riu_rwnxfefiqdone_unpack(uint8_t* fiqestdone, uint8_t* fiqcolldone)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQDONE_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQDONE_ADDR);
 
     *fiqestdone = (localVal & ((uint32_t)0x00010000)) >> 16;
     *fiqcolldone = (localVal & ((uint32_t)0x00000001)) >> 0;
@@ -6045,7 +6045,7 @@ __INLINE void riu_rwnxfefiqdone_unpack(uint8_t* fiqestdone, uint8_t* fiqcolldone
  */
 __INLINE uint8_t riu_fiqestdone_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQDONE_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQDONE_ADDR);
     return ((localVal & ((uint32_t)0x00010000)) >> 16);
 }
 
@@ -6058,7 +6058,7 @@ __INLINE uint8_t riu_fiqestdone_getf(void)
  */
 __INLINE uint8_t riu_fiqcolldone_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQDONE_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQDONE_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
@@ -6094,7 +6094,7 @@ __INLINE uint8_t riu_fiqcolldone_getf(void)
  */
 __INLINE uint32_t riu_rwnxfefiqstat0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQSTAT0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQSTAT0_ADDR);
 }
 
 // field definitions
@@ -6127,7 +6127,7 @@ __INLINE uint32_t riu_rwnxfefiqstat0_get(void)
  */
 __INLINE void riu_rwnxfefiqstat0_unpack(uint16_t* fiqtxesterror0, uint16_t* fiqrxesterror0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQSTAT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQSTAT0_ADDR);
 
     *fiqtxesterror0 = (localVal & ((uint32_t)0x1FFF0000)) >> 16;
     *fiqrxesterror0 = (localVal & ((uint32_t)0x00001FFF)) >> 0;
@@ -6142,7 +6142,7 @@ __INLINE void riu_rwnxfefiqstat0_unpack(uint16_t* fiqtxesterror0, uint16_t* fiqr
  */
 __INLINE uint16_t riu_fiqtxesterror0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQSTAT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQSTAT0_ADDR);
     return ((localVal & ((uint32_t)0x1FFF0000)) >> 16);
 }
 
@@ -6155,7 +6155,7 @@ __INLINE uint16_t riu_fiqtxesterror0_getf(void)
  */
 __INLINE uint16_t riu_fiqrxesterror0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQSTAT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQSTAT0_ADDR);
     return ((localVal & ((uint32_t)0x00001FFF)) >> 0);
 }
 
@@ -6191,7 +6191,7 @@ __INLINE uint16_t riu_fiqrxesterror0_getf(void)
  */
 __INLINE uint32_t riu_rwnxfefiqstat1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQSTAT1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQSTAT1_ADDR);
 }
 
 // field definitions
@@ -6224,7 +6224,7 @@ __INLINE uint32_t riu_rwnxfefiqstat1_get(void)
  */
 __INLINE void riu_rwnxfefiqstat1_unpack(uint16_t* fiqtxesterror1, uint16_t* fiqrxesterror1)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQSTAT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQSTAT1_ADDR);
 
     *fiqtxesterror1 = (localVal & ((uint32_t)0x1FFF0000)) >> 16;
     *fiqrxesterror1 = (localVal & ((uint32_t)0x00001FFF)) >> 0;
@@ -6239,7 +6239,7 @@ __INLINE void riu_rwnxfefiqstat1_unpack(uint16_t* fiqtxesterror1, uint16_t* fiqr
  */
 __INLINE uint16_t riu_fiqtxesterror1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQSTAT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQSTAT1_ADDR);
     return ((localVal & ((uint32_t)0x1FFF0000)) >> 16);
 }
 
@@ -6252,7 +6252,7 @@ __INLINE uint16_t riu_fiqtxesterror1_getf(void)
  */
 __INLINE uint16_t riu_fiqrxesterror1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQSTAT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQSTAT1_ADDR);
     return ((localVal & ((uint32_t)0x00001FFF)) >> 0);
 }
 
@@ -6290,7 +6290,7 @@ __INLINE uint16_t riu_fiqrxesterror1_getf(void)
  */
 __INLINE uint32_t riu_rwnxfefiqstatcoeff_get(int reg_idx)
 {
-    return REG_PL_RD(RIU_RWNXFEFIQSTATCOEFF_ADDR + reg_idx * 4);
+    return PLATFORM_REG_READ(RIU_RWNXFEFIQSTATCOEFF_ADDR + reg_idx * 4);
 }
 
 // field definitions
@@ -6314,7 +6314,7 @@ __INLINE uint32_t riu_rwnxfefiqstatcoeff_get(int reg_idx)
  */
 __INLINE uint16_t riu_fiqstatcoeff_getf(int reg_idx)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEFIQSTATCOEFF_ADDR + reg_idx * 4);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEFIQSTATCOEFF_ADDR + reg_idx * 4);
     return (localVal >> 0);
 }
 
@@ -6349,7 +6349,7 @@ __INLINE uint16_t riu_fiqstatcoeff_getf(int reg_idx)
  */
 __INLINE uint32_t riu_rwnxagcantloss_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCANTLOSS_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCANTLOSS_ADDR);
 }
 
 /**
@@ -6359,7 +6359,7 @@ __INLINE uint32_t riu_rwnxagcantloss_get(void)
  */
 __INLINE void riu_rwnxagcantloss_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCANTLOSS_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCANTLOSS_ADDR, value);
 }
 
 // field definitions
@@ -6390,7 +6390,7 @@ __INLINE void riu_rwnxagcantloss_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcantloss_pack(uint8_t rflossant1db, uint8_t rflossant0db)
 {
-    REG_PL_WR(RIU_RWNXAGCANTLOSS_ADDR,  ((uint32_t)rflossant1db << 8) | ((uint32_t)rflossant0db << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCANTLOSS_ADDR,  ((uint32_t)rflossant1db << 8) | ((uint32_t)rflossant0db << 0));
 }
 
 /**
@@ -6404,7 +6404,7 @@ __INLINE void riu_rwnxagcantloss_pack(uint8_t rflossant1db, uint8_t rflossant0db
  */
 __INLINE void riu_rwnxagcantloss_unpack(uint8_t* rflossant1db, uint8_t* rflossant0db)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCANTLOSS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCANTLOSS_ADDR);
 
     *rflossant1db = (localVal & ((uint32_t)0x00000F00)) >> 8;
     *rflossant0db = (localVal & ((uint32_t)0x0000000F)) >> 0;
@@ -6419,7 +6419,7 @@ __INLINE void riu_rwnxagcantloss_unpack(uint8_t* rflossant1db, uint8_t* rflossan
  */
 __INLINE uint8_t riu_rflossant1db_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCANTLOSS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCANTLOSS_ADDR);
     return ((localVal & ((uint32_t)0x00000F00)) >> 8);
 }
 
@@ -6432,7 +6432,7 @@ __INLINE uint8_t riu_rflossant1db_getf(void)
  */
 __INLINE void riu_rflossant1db_setf(uint8_t rflossant1db)
 {
-    REG_PL_WR(RIU_RWNXAGCANTLOSS_ADDR, (REG_PL_RD(RIU_RWNXAGCANTLOSS_ADDR) & ~((uint32_t)0x00000F00)) | ((uint32_t)rflossant1db << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCANTLOSS_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCANTLOSS_ADDR) & ~((uint32_t)0x00000F00)) | ((uint32_t)rflossant1db << 8));
 }
 
 /**
@@ -6444,7 +6444,7 @@ __INLINE void riu_rflossant1db_setf(uint8_t rflossant1db)
  */
 __INLINE uint8_t riu_rflossant0db_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCANTLOSS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCANTLOSS_ADDR);
     return ((localVal & ((uint32_t)0x0000000F)) >> 0);
 }
 
@@ -6457,7 +6457,7 @@ __INLINE uint8_t riu_rflossant0db_getf(void)
  */
 __INLINE void riu_rflossant0db_setf(uint8_t rflossant0db)
 {
-    REG_PL_WR(RIU_RWNXAGCANTLOSS_ADDR, (REG_PL_RD(RIU_RWNXAGCANTLOSS_ADDR) & ~((uint32_t)0x0000000F)) | ((uint32_t)rflossant0db << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCANTLOSS_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCANTLOSS_ADDR) & ~((uint32_t)0x0000000F)) | ((uint32_t)rflossant0db << 0));
 }
 
 /// @}
@@ -6492,7 +6492,7 @@ __INLINE void riu_rflossant0db_setf(uint8_t rflossant0db)
  */
 __INLINE uint32_t riu_rwnxagcgainrange_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCGAINRANGE_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCGAINRANGE_ADDR);
 }
 
 /**
@@ -6502,7 +6502,7 @@ __INLINE uint32_t riu_rwnxagcgainrange_get(void)
  */
 __INLINE void riu_rwnxagcgainrange_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCGAINRANGE_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCGAINRANGE_ADDR, value);
 }
 
 // field definitions
@@ -6551,7 +6551,7 @@ __INLINE void riu_rwnxagcgainrange_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcgainrange_pack(uint8_t rfgainmax4detdb, uint8_t rfgainmin4detdb, uint8_t rfgainmaxdb, uint8_t rfgainmindb)
 {
-    REG_PL_WR(RIU_RWNXAGCGAINRANGE_ADDR,  ((uint32_t)rfgainmax4detdb << 24) | ((uint32_t)rfgainmin4detdb << 16) | ((uint32_t)rfgainmaxdb << 8) | ((uint32_t)rfgainmindb << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCGAINRANGE_ADDR,  ((uint32_t)rfgainmax4detdb << 24) | ((uint32_t)rfgainmin4detdb << 16) | ((uint32_t)rfgainmaxdb << 8) | ((uint32_t)rfgainmindb << 0));
 }
 
 /**
@@ -6567,7 +6567,7 @@ __INLINE void riu_rwnxagcgainrange_pack(uint8_t rfgainmax4detdb, uint8_t rfgainm
  */
 __INLINE void riu_rwnxagcgainrange_unpack(uint8_t* rfgainmax4detdb, uint8_t* rfgainmin4detdb, uint8_t* rfgainmaxdb, uint8_t* rfgainmindb)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCGAINRANGE_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCGAINRANGE_ADDR);
 
     *rfgainmax4detdb = (localVal & ((uint32_t)0x7F000000)) >> 24;
     *rfgainmin4detdb = (localVal & ((uint32_t)0x007F0000)) >> 16;
@@ -6584,7 +6584,7 @@ __INLINE void riu_rwnxagcgainrange_unpack(uint8_t* rfgainmax4detdb, uint8_t* rfg
  */
 __INLINE uint8_t riu_rfgainmax4detdb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCGAINRANGE_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCGAINRANGE_ADDR);
     return ((localVal & ((uint32_t)0x7F000000)) >> 24);
 }
 
@@ -6597,7 +6597,7 @@ __INLINE uint8_t riu_rfgainmax4detdb_getf(void)
  */
 __INLINE void riu_rfgainmax4detdb_setf(uint8_t rfgainmax4detdb)
 {
-    REG_PL_WR(RIU_RWNXAGCGAINRANGE_ADDR, (REG_PL_RD(RIU_RWNXAGCGAINRANGE_ADDR) & ~((uint32_t)0x7F000000)) | ((uint32_t)rfgainmax4detdb << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCGAINRANGE_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCGAINRANGE_ADDR) & ~((uint32_t)0x7F000000)) | ((uint32_t)rfgainmax4detdb << 24));
 }
 
 /**
@@ -6609,7 +6609,7 @@ __INLINE void riu_rfgainmax4detdb_setf(uint8_t rfgainmax4detdb)
  */
 __INLINE uint8_t riu_rfgainmin4detdb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCGAINRANGE_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCGAINRANGE_ADDR);
     return ((localVal & ((uint32_t)0x007F0000)) >> 16);
 }
 
@@ -6622,7 +6622,7 @@ __INLINE uint8_t riu_rfgainmin4detdb_getf(void)
  */
 __INLINE void riu_rfgainmin4detdb_setf(uint8_t rfgainmin4detdb)
 {
-    REG_PL_WR(RIU_RWNXAGCGAINRANGE_ADDR, (REG_PL_RD(RIU_RWNXAGCGAINRANGE_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)rfgainmin4detdb << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCGAINRANGE_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCGAINRANGE_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)rfgainmin4detdb << 16));
 }
 
 /**
@@ -6634,7 +6634,7 @@ __INLINE void riu_rfgainmin4detdb_setf(uint8_t rfgainmin4detdb)
  */
 __INLINE uint8_t riu_rfgainmaxdb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCGAINRANGE_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCGAINRANGE_ADDR);
     return ((localVal & ((uint32_t)0x00007F00)) >> 8);
 }
 
@@ -6647,7 +6647,7 @@ __INLINE uint8_t riu_rfgainmaxdb_getf(void)
  */
 __INLINE void riu_rfgainmaxdb_setf(uint8_t rfgainmaxdb)
 {
-    REG_PL_WR(RIU_RWNXAGCGAINRANGE_ADDR, (REG_PL_RD(RIU_RWNXAGCGAINRANGE_ADDR) & ~((uint32_t)0x00007F00)) | ((uint32_t)rfgainmaxdb << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCGAINRANGE_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCGAINRANGE_ADDR) & ~((uint32_t)0x00007F00)) | ((uint32_t)rfgainmaxdb << 8));
 }
 
 /**
@@ -6659,7 +6659,7 @@ __INLINE void riu_rfgainmaxdb_setf(uint8_t rfgainmaxdb)
  */
 __INLINE uint8_t riu_rfgainmindb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCGAINRANGE_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCGAINRANGE_ADDR);
     return ((localVal & ((uint32_t)0x0000007F)) >> 0);
 }
 
@@ -6672,7 +6672,7 @@ __INLINE uint8_t riu_rfgainmindb_getf(void)
  */
 __INLINE void riu_rfgainmindb_setf(uint8_t rfgainmindb)
 {
-    REG_PL_WR(RIU_RWNXAGCGAINRANGE_ADDR, (REG_PL_RD(RIU_RWNXAGCGAINRANGE_ADDR) & ~((uint32_t)0x0000007F)) | ((uint32_t)rfgainmindb << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCGAINRANGE_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCGAINRANGE_ADDR) & ~((uint32_t)0x0000007F)) | ((uint32_t)rfgainmindb << 0));
 }
 
 /// @}
@@ -6705,7 +6705,7 @@ __INLINE void riu_rfgainmindb_setf(uint8_t rfgainmindb)
  */
 __INLINE uint32_t riu_rwnxagcdiggainconf_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCDIGGAINCONF_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCDIGGAINCONF_ADDR);
 }
 
 /**
@@ -6715,7 +6715,7 @@ __INLINE uint32_t riu_rwnxagcdiggainconf_get(void)
  */
 __INLINE void riu_rwnxagcdiggainconf_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCDIGGAINCONF_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDIGGAINCONF_ADDR, value);
 }
 
 // field definitions
@@ -6746,7 +6746,7 @@ __INLINE void riu_rwnxagcdiggainconf_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcdiggainconf_pack(uint8_t diggain80vs20, uint8_t diggain40vs20)
 {
-    REG_PL_WR(RIU_RWNXAGCDIGGAINCONF_ADDR,  ((uint32_t)diggain80vs20 << 16) | ((uint32_t)diggain40vs20 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDIGGAINCONF_ADDR,  ((uint32_t)diggain80vs20 << 16) | ((uint32_t)diggain40vs20 << 0));
 }
 
 /**
@@ -6760,7 +6760,7 @@ __INLINE void riu_rwnxagcdiggainconf_pack(uint8_t diggain80vs20, uint8_t diggain
  */
 __INLINE void riu_rwnxagcdiggainconf_unpack(uint8_t* diggain80vs20, uint8_t* diggain40vs20)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDIGGAINCONF_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDIGGAINCONF_ADDR);
 
     *diggain80vs20 = (localVal & ((uint32_t)0x000F0000)) >> 16;
     *diggain40vs20 = (localVal & ((uint32_t)0x0000000F)) >> 0;
@@ -6775,7 +6775,7 @@ __INLINE void riu_rwnxagcdiggainconf_unpack(uint8_t* diggain80vs20, uint8_t* dig
  */
 __INLINE uint8_t riu_diggain80vs20_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDIGGAINCONF_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDIGGAINCONF_ADDR);
     return ((localVal & ((uint32_t)0x000F0000)) >> 16);
 }
 
@@ -6788,7 +6788,7 @@ __INLINE uint8_t riu_diggain80vs20_getf(void)
  */
 __INLINE void riu_diggain80vs20_setf(uint8_t diggain80vs20)
 {
-    REG_PL_WR(RIU_RWNXAGCDIGGAINCONF_ADDR, (REG_PL_RD(RIU_RWNXAGCDIGGAINCONF_ADDR) & ~((uint32_t)0x000F0000)) | ((uint32_t)diggain80vs20 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDIGGAINCONF_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDIGGAINCONF_ADDR) & ~((uint32_t)0x000F0000)) | ((uint32_t)diggain80vs20 << 16));
 }
 
 /**
@@ -6800,7 +6800,7 @@ __INLINE void riu_diggain80vs20_setf(uint8_t diggain80vs20)
  */
 __INLINE uint8_t riu_diggain40vs20_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDIGGAINCONF_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDIGGAINCONF_ADDR);
     return ((localVal & ((uint32_t)0x0000000F)) >> 0);
 }
 
@@ -6813,7 +6813,7 @@ __INLINE uint8_t riu_diggain40vs20_getf(void)
  */
 __INLINE void riu_diggain40vs20_setf(uint8_t diggain40vs20)
 {
-    REG_PL_WR(RIU_RWNXAGCDIGGAINCONF_ADDR, (REG_PL_RD(RIU_RWNXAGCDIGGAINCONF_ADDR) & ~((uint32_t)0x0000000F)) | ((uint32_t)diggain40vs20 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDIGGAINCONF_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDIGGAINCONF_ADDR) & ~((uint32_t)0x0000000F)) | ((uint32_t)diggain40vs20 << 0));
 }
 
 /// @}
@@ -6846,7 +6846,7 @@ __INLINE void riu_diggain40vs20_setf(uint8_t diggain40vs20)
  */
 __INLINE uint32_t riu_rwnxagcnoiseconf_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCNOISECONF_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCNOISECONF_ADDR);
 }
 
 /**
@@ -6856,7 +6856,7 @@ __INLINE uint32_t riu_rwnxagcnoiseconf_get(void)
  */
 __INLINE void riu_rwnxagcnoiseconf_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCNOISECONF_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCNOISECONF_ADDR, value);
 }
 
 // field definitions
@@ -6877,7 +6877,7 @@ __INLINE void riu_rwnxagcnoiseconf_set(uint32_t value)
  */
 __INLINE uint8_t riu_snrmeassel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCNOISECONF_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCNOISECONF_ADDR);
     return (localVal >> 16);
 }
 
@@ -6890,7 +6890,7 @@ __INLINE uint8_t riu_snrmeassel_getf(void)
  */
 __INLINE void riu_snrmeassel_setf(uint8_t snrmeassel)
 {
-    REG_PL_WR(RIU_RWNXAGCNOISECONF_ADDR, (uint32_t)snrmeassel << 16);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCNOISECONF_ADDR, (uint32_t)snrmeassel << 16);
 }
 
 #endif // RW_NX_AGC_SNR_EN
@@ -6926,7 +6926,7 @@ __INLINE void riu_snrmeassel_setf(uint8_t snrmeassel)
  */
 __INLINE uint32_t riu_rwnxagcaci20marg0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCACI20MARG0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG0_ADDR);
 }
 
 /**
@@ -6936,7 +6936,7 @@ __INLINE uint32_t riu_rwnxagcaci20marg0_get(void)
  */
 __INLINE void riu_rwnxagcaci20marg0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG0_ADDR, value);
 }
 
 // field definitions
@@ -6985,7 +6985,7 @@ __INLINE void riu_rwnxagcaci20marg0_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcaci20marg0_pack(uint8_t aci20margmcs3, uint8_t aci20margmcs2, uint8_t aci20margmcs1, uint8_t aci20margmcs0)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG0_ADDR,  ((uint32_t)aci20margmcs3 << 24) | ((uint32_t)aci20margmcs2 << 16) | ((uint32_t)aci20margmcs1 << 8) | ((uint32_t)aci20margmcs0 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG0_ADDR,  ((uint32_t)aci20margmcs3 << 24) | ((uint32_t)aci20margmcs2 << 16) | ((uint32_t)aci20margmcs1 << 8) | ((uint32_t)aci20margmcs0 << 0));
 }
 
 /**
@@ -7001,7 +7001,7 @@ __INLINE void riu_rwnxagcaci20marg0_pack(uint8_t aci20margmcs3, uint8_t aci20mar
  */
 __INLINE void riu_rwnxagcaci20marg0_unpack(uint8_t* aci20margmcs3, uint8_t* aci20margmcs2, uint8_t* aci20margmcs1, uint8_t* aci20margmcs0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG0_ADDR);
 
     *aci20margmcs3 = (localVal & ((uint32_t)0x3F000000)) >> 24;
     *aci20margmcs2 = (localVal & ((uint32_t)0x003F0000)) >> 16;
@@ -7018,7 +7018,7 @@ __INLINE void riu_rwnxagcaci20marg0_unpack(uint8_t* aci20margmcs3, uint8_t* aci2
  */
 __INLINE uint8_t riu_aci20margmcs3_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG0_ADDR);
     return ((localVal & ((uint32_t)0x3F000000)) >> 24);
 }
 
@@ -7031,7 +7031,7 @@ __INLINE uint8_t riu_aci20margmcs3_getf(void)
  */
 __INLINE void riu_aci20margmcs3_setf(uint8_t aci20margmcs3)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG0_ADDR, (REG_PL_RD(RIU_RWNXAGCACI20MARG0_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)aci20margmcs3 << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG0_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)aci20margmcs3 << 24));
 }
 
 /**
@@ -7043,7 +7043,7 @@ __INLINE void riu_aci20margmcs3_setf(uint8_t aci20margmcs3)
  */
 __INLINE uint8_t riu_aci20margmcs2_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG0_ADDR);
     return ((localVal & ((uint32_t)0x003F0000)) >> 16);
 }
 
@@ -7056,7 +7056,7 @@ __INLINE uint8_t riu_aci20margmcs2_getf(void)
  */
 __INLINE void riu_aci20margmcs2_setf(uint8_t aci20margmcs2)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG0_ADDR, (REG_PL_RD(RIU_RWNXAGCACI20MARG0_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)aci20margmcs2 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG0_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)aci20margmcs2 << 16));
 }
 
 /**
@@ -7068,7 +7068,7 @@ __INLINE void riu_aci20margmcs2_setf(uint8_t aci20margmcs2)
  */
 __INLINE uint8_t riu_aci20margmcs1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG0_ADDR);
     return ((localVal & ((uint32_t)0x00003F00)) >> 8);
 }
 
@@ -7081,7 +7081,7 @@ __INLINE uint8_t riu_aci20margmcs1_getf(void)
  */
 __INLINE void riu_aci20margmcs1_setf(uint8_t aci20margmcs1)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG0_ADDR, (REG_PL_RD(RIU_RWNXAGCACI20MARG0_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci20margmcs1 << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG0_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci20margmcs1 << 8));
 }
 
 /**
@@ -7093,7 +7093,7 @@ __INLINE void riu_aci20margmcs1_setf(uint8_t aci20margmcs1)
  */
 __INLINE uint8_t riu_aci20margmcs0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG0_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -7106,7 +7106,7 @@ __INLINE uint8_t riu_aci20margmcs0_getf(void)
  */
 __INLINE void riu_aci20margmcs0_setf(uint8_t aci20margmcs0)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG0_ADDR, (REG_PL_RD(RIU_RWNXAGCACI20MARG0_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci20margmcs0 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG0_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci20margmcs0 << 0));
 }
 
 /// @}
@@ -7141,7 +7141,7 @@ __INLINE void riu_aci20margmcs0_setf(uint8_t aci20margmcs0)
  */
 __INLINE uint32_t riu_rwnxagcaci20marg1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCACI20MARG1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG1_ADDR);
 }
 
 /**
@@ -7151,7 +7151,7 @@ __INLINE uint32_t riu_rwnxagcaci20marg1_get(void)
  */
 __INLINE void riu_rwnxagcaci20marg1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG1_ADDR, value);
 }
 
 // field definitions
@@ -7200,7 +7200,7 @@ __INLINE void riu_rwnxagcaci20marg1_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcaci20marg1_pack(uint8_t aci20margmcs7, uint8_t aci20margmcs6, uint8_t aci20margmcs5, uint8_t aci20margmcs4)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG1_ADDR,  ((uint32_t)aci20margmcs7 << 24) | ((uint32_t)aci20margmcs6 << 16) | ((uint32_t)aci20margmcs5 << 8) | ((uint32_t)aci20margmcs4 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG1_ADDR,  ((uint32_t)aci20margmcs7 << 24) | ((uint32_t)aci20margmcs6 << 16) | ((uint32_t)aci20margmcs5 << 8) | ((uint32_t)aci20margmcs4 << 0));
 }
 
 /**
@@ -7216,7 +7216,7 @@ __INLINE void riu_rwnxagcaci20marg1_pack(uint8_t aci20margmcs7, uint8_t aci20mar
  */
 __INLINE void riu_rwnxagcaci20marg1_unpack(uint8_t* aci20margmcs7, uint8_t* aci20margmcs6, uint8_t* aci20margmcs5, uint8_t* aci20margmcs4)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG1_ADDR);
 
     *aci20margmcs7 = (localVal & ((uint32_t)0x3F000000)) >> 24;
     *aci20margmcs6 = (localVal & ((uint32_t)0x003F0000)) >> 16;
@@ -7233,7 +7233,7 @@ __INLINE void riu_rwnxagcaci20marg1_unpack(uint8_t* aci20margmcs7, uint8_t* aci2
  */
 __INLINE uint8_t riu_aci20margmcs7_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG1_ADDR);
     return ((localVal & ((uint32_t)0x3F000000)) >> 24);
 }
 
@@ -7246,7 +7246,7 @@ __INLINE uint8_t riu_aci20margmcs7_getf(void)
  */
 __INLINE void riu_aci20margmcs7_setf(uint8_t aci20margmcs7)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG1_ADDR, (REG_PL_RD(RIU_RWNXAGCACI20MARG1_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)aci20margmcs7 << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG1_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)aci20margmcs7 << 24));
 }
 
 /**
@@ -7258,7 +7258,7 @@ __INLINE void riu_aci20margmcs7_setf(uint8_t aci20margmcs7)
  */
 __INLINE uint8_t riu_aci20margmcs6_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG1_ADDR);
     return ((localVal & ((uint32_t)0x003F0000)) >> 16);
 }
 
@@ -7271,7 +7271,7 @@ __INLINE uint8_t riu_aci20margmcs6_getf(void)
  */
 __INLINE void riu_aci20margmcs6_setf(uint8_t aci20margmcs6)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG1_ADDR, (REG_PL_RD(RIU_RWNXAGCACI20MARG1_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)aci20margmcs6 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG1_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)aci20margmcs6 << 16));
 }
 
 /**
@@ -7283,7 +7283,7 @@ __INLINE void riu_aci20margmcs6_setf(uint8_t aci20margmcs6)
  */
 __INLINE uint8_t riu_aci20margmcs5_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG1_ADDR);
     return ((localVal & ((uint32_t)0x00003F00)) >> 8);
 }
 
@@ -7296,7 +7296,7 @@ __INLINE uint8_t riu_aci20margmcs5_getf(void)
  */
 __INLINE void riu_aci20margmcs5_setf(uint8_t aci20margmcs5)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG1_ADDR, (REG_PL_RD(RIU_RWNXAGCACI20MARG1_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci20margmcs5 << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG1_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci20margmcs5 << 8));
 }
 
 /**
@@ -7308,7 +7308,7 @@ __INLINE void riu_aci20margmcs5_setf(uint8_t aci20margmcs5)
  */
 __INLINE uint8_t riu_aci20margmcs4_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG1_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -7321,7 +7321,7 @@ __INLINE uint8_t riu_aci20margmcs4_getf(void)
  */
 __INLINE void riu_aci20margmcs4_setf(uint8_t aci20margmcs4)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG1_ADDR, (REG_PL_RD(RIU_RWNXAGCACI20MARG1_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci20margmcs4 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG1_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci20margmcs4 << 0));
 }
 
 /// @}
@@ -7354,7 +7354,7 @@ __INLINE void riu_aci20margmcs4_setf(uint8_t aci20margmcs4)
  */
 __INLINE uint32_t riu_rwnxagcaci20marg2_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCACI20MARG2_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG2_ADDR);
 }
 
 /**
@@ -7364,7 +7364,7 @@ __INLINE uint32_t riu_rwnxagcaci20marg2_get(void)
  */
 __INLINE void riu_rwnxagcaci20marg2_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG2_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG2_ADDR, value);
 }
 
 // field definitions
@@ -7395,7 +7395,7 @@ __INLINE void riu_rwnxagcaci20marg2_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcaci20marg2_pack(uint8_t aci20margmcs9, uint8_t aci20margmcs8)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG2_ADDR,  ((uint32_t)aci20margmcs9 << 8) | ((uint32_t)aci20margmcs8 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG2_ADDR,  ((uint32_t)aci20margmcs9 << 8) | ((uint32_t)aci20margmcs8 << 0));
 }
 
 /**
@@ -7409,7 +7409,7 @@ __INLINE void riu_rwnxagcaci20marg2_pack(uint8_t aci20margmcs9, uint8_t aci20mar
  */
 __INLINE void riu_rwnxagcaci20marg2_unpack(uint8_t* aci20margmcs9, uint8_t* aci20margmcs8)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG2_ADDR);
 
     *aci20margmcs9 = (localVal & ((uint32_t)0x00003F00)) >> 8;
     *aci20margmcs8 = (localVal & ((uint32_t)0x0000003F)) >> 0;
@@ -7424,7 +7424,7 @@ __INLINE void riu_rwnxagcaci20marg2_unpack(uint8_t* aci20margmcs9, uint8_t* aci2
  */
 __INLINE uint8_t riu_aci20margmcs9_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG2_ADDR);
     return ((localVal & ((uint32_t)0x00003F00)) >> 8);
 }
 
@@ -7437,7 +7437,7 @@ __INLINE uint8_t riu_aci20margmcs9_getf(void)
  */
 __INLINE void riu_aci20margmcs9_setf(uint8_t aci20margmcs9)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG2_ADDR, (REG_PL_RD(RIU_RWNXAGCACI20MARG2_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci20margmcs9 << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG2_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci20margmcs9 << 8));
 }
 
 /**
@@ -7449,7 +7449,7 @@ __INLINE void riu_aci20margmcs9_setf(uint8_t aci20margmcs9)
  */
 __INLINE uint8_t riu_aci20margmcs8_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI20MARG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG2_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -7462,7 +7462,7 @@ __INLINE uint8_t riu_aci20margmcs8_getf(void)
  */
 __INLINE void riu_aci20margmcs8_setf(uint8_t aci20margmcs8)
 {
-    REG_PL_WR(RIU_RWNXAGCACI20MARG2_ADDR, (REG_PL_RD(RIU_RWNXAGCACI20MARG2_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci20margmcs8 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI20MARG2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI20MARG2_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci20margmcs8 << 0));
 }
 
 /// @}
@@ -7497,7 +7497,7 @@ __INLINE void riu_aci20margmcs8_setf(uint8_t aci20margmcs8)
  */
 __INLINE uint32_t riu_rwnxagcaci40marg0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCACI40MARG0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG0_ADDR);
 }
 
 /**
@@ -7507,7 +7507,7 @@ __INLINE uint32_t riu_rwnxagcaci40marg0_get(void)
  */
 __INLINE void riu_rwnxagcaci40marg0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG0_ADDR, value);
 }
 
 // field definitions
@@ -7556,7 +7556,7 @@ __INLINE void riu_rwnxagcaci40marg0_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcaci40marg0_pack(uint8_t aci40margmcs3, uint8_t aci40margmcs2, uint8_t aci40margmcs1, uint8_t aci40margmcs0)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG0_ADDR,  ((uint32_t)aci40margmcs3 << 24) | ((uint32_t)aci40margmcs2 << 16) | ((uint32_t)aci40margmcs1 << 8) | ((uint32_t)aci40margmcs0 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG0_ADDR,  ((uint32_t)aci40margmcs3 << 24) | ((uint32_t)aci40margmcs2 << 16) | ((uint32_t)aci40margmcs1 << 8) | ((uint32_t)aci40margmcs0 << 0));
 }
 
 /**
@@ -7572,7 +7572,7 @@ __INLINE void riu_rwnxagcaci40marg0_pack(uint8_t aci40margmcs3, uint8_t aci40mar
  */
 __INLINE void riu_rwnxagcaci40marg0_unpack(uint8_t* aci40margmcs3, uint8_t* aci40margmcs2, uint8_t* aci40margmcs1, uint8_t* aci40margmcs0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG0_ADDR);
 
     *aci40margmcs3 = (localVal & ((uint32_t)0x3F000000)) >> 24;
     *aci40margmcs2 = (localVal & ((uint32_t)0x003F0000)) >> 16;
@@ -7589,7 +7589,7 @@ __INLINE void riu_rwnxagcaci40marg0_unpack(uint8_t* aci40margmcs3, uint8_t* aci4
  */
 __INLINE uint8_t riu_aci40margmcs3_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG0_ADDR);
     return ((localVal & ((uint32_t)0x3F000000)) >> 24);
 }
 
@@ -7602,7 +7602,7 @@ __INLINE uint8_t riu_aci40margmcs3_getf(void)
  */
 __INLINE void riu_aci40margmcs3_setf(uint8_t aci40margmcs3)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG0_ADDR, (REG_PL_RD(RIU_RWNXAGCACI40MARG0_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)aci40margmcs3 << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG0_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)aci40margmcs3 << 24));
 }
 
 /**
@@ -7614,7 +7614,7 @@ __INLINE void riu_aci40margmcs3_setf(uint8_t aci40margmcs3)
  */
 __INLINE uint8_t riu_aci40margmcs2_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG0_ADDR);
     return ((localVal & ((uint32_t)0x003F0000)) >> 16);
 }
 
@@ -7627,7 +7627,7 @@ __INLINE uint8_t riu_aci40margmcs2_getf(void)
  */
 __INLINE void riu_aci40margmcs2_setf(uint8_t aci40margmcs2)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG0_ADDR, (REG_PL_RD(RIU_RWNXAGCACI40MARG0_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)aci40margmcs2 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG0_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)aci40margmcs2 << 16));
 }
 
 /**
@@ -7639,7 +7639,7 @@ __INLINE void riu_aci40margmcs2_setf(uint8_t aci40margmcs2)
  */
 __INLINE uint8_t riu_aci40margmcs1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG0_ADDR);
     return ((localVal & ((uint32_t)0x00003F00)) >> 8);
 }
 
@@ -7652,7 +7652,7 @@ __INLINE uint8_t riu_aci40margmcs1_getf(void)
  */
 __INLINE void riu_aci40margmcs1_setf(uint8_t aci40margmcs1)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG0_ADDR, (REG_PL_RD(RIU_RWNXAGCACI40MARG0_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci40margmcs1 << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG0_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci40margmcs1 << 8));
 }
 
 /**
@@ -7664,7 +7664,7 @@ __INLINE void riu_aci40margmcs1_setf(uint8_t aci40margmcs1)
  */
 __INLINE uint8_t riu_aci40margmcs0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG0_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -7677,7 +7677,7 @@ __INLINE uint8_t riu_aci40margmcs0_getf(void)
  */
 __INLINE void riu_aci40margmcs0_setf(uint8_t aci40margmcs0)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG0_ADDR, (REG_PL_RD(RIU_RWNXAGCACI40MARG0_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci40margmcs0 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG0_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci40margmcs0 << 0));
 }
 
 /// @}
@@ -7712,7 +7712,7 @@ __INLINE void riu_aci40margmcs0_setf(uint8_t aci40margmcs0)
  */
 __INLINE uint32_t riu_rwnxagcaci40marg1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCACI40MARG1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG1_ADDR);
 }
 
 /**
@@ -7722,7 +7722,7 @@ __INLINE uint32_t riu_rwnxagcaci40marg1_get(void)
  */
 __INLINE void riu_rwnxagcaci40marg1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG1_ADDR, value);
 }
 
 // field definitions
@@ -7771,7 +7771,7 @@ __INLINE void riu_rwnxagcaci40marg1_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcaci40marg1_pack(uint8_t aci40margmcs7, uint8_t aci40margmcs6, uint8_t aci40margmcs5, uint8_t aci40margmcs4)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG1_ADDR,  ((uint32_t)aci40margmcs7 << 24) | ((uint32_t)aci40margmcs6 << 16) | ((uint32_t)aci40margmcs5 << 8) | ((uint32_t)aci40margmcs4 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG1_ADDR,  ((uint32_t)aci40margmcs7 << 24) | ((uint32_t)aci40margmcs6 << 16) | ((uint32_t)aci40margmcs5 << 8) | ((uint32_t)aci40margmcs4 << 0));
 }
 
 /**
@@ -7787,7 +7787,7 @@ __INLINE void riu_rwnxagcaci40marg1_pack(uint8_t aci40margmcs7, uint8_t aci40mar
  */
 __INLINE void riu_rwnxagcaci40marg1_unpack(uint8_t* aci40margmcs7, uint8_t* aci40margmcs6, uint8_t* aci40margmcs5, uint8_t* aci40margmcs4)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG1_ADDR);
 
     *aci40margmcs7 = (localVal & ((uint32_t)0x3F000000)) >> 24;
     *aci40margmcs6 = (localVal & ((uint32_t)0x003F0000)) >> 16;
@@ -7804,7 +7804,7 @@ __INLINE void riu_rwnxagcaci40marg1_unpack(uint8_t* aci40margmcs7, uint8_t* aci4
  */
 __INLINE uint8_t riu_aci40margmcs7_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG1_ADDR);
     return ((localVal & ((uint32_t)0x3F000000)) >> 24);
 }
 
@@ -7817,7 +7817,7 @@ __INLINE uint8_t riu_aci40margmcs7_getf(void)
  */
 __INLINE void riu_aci40margmcs7_setf(uint8_t aci40margmcs7)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG1_ADDR, (REG_PL_RD(RIU_RWNXAGCACI40MARG1_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)aci40margmcs7 << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG1_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)aci40margmcs7 << 24));
 }
 
 /**
@@ -7829,7 +7829,7 @@ __INLINE void riu_aci40margmcs7_setf(uint8_t aci40margmcs7)
  */
 __INLINE uint8_t riu_aci40margmcs6_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG1_ADDR);
     return ((localVal & ((uint32_t)0x003F0000)) >> 16);
 }
 
@@ -7842,7 +7842,7 @@ __INLINE uint8_t riu_aci40margmcs6_getf(void)
  */
 __INLINE void riu_aci40margmcs6_setf(uint8_t aci40margmcs6)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG1_ADDR, (REG_PL_RD(RIU_RWNXAGCACI40MARG1_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)aci40margmcs6 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG1_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)aci40margmcs6 << 16));
 }
 
 /**
@@ -7854,7 +7854,7 @@ __INLINE void riu_aci40margmcs6_setf(uint8_t aci40margmcs6)
  */
 __INLINE uint8_t riu_aci40margmcs5_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG1_ADDR);
     return ((localVal & ((uint32_t)0x00003F00)) >> 8);
 }
 
@@ -7867,7 +7867,7 @@ __INLINE uint8_t riu_aci40margmcs5_getf(void)
  */
 __INLINE void riu_aci40margmcs5_setf(uint8_t aci40margmcs5)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG1_ADDR, (REG_PL_RD(RIU_RWNXAGCACI40MARG1_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci40margmcs5 << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG1_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci40margmcs5 << 8));
 }
 
 /**
@@ -7879,7 +7879,7 @@ __INLINE void riu_aci40margmcs5_setf(uint8_t aci40margmcs5)
  */
 __INLINE uint8_t riu_aci40margmcs4_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG1_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -7892,7 +7892,7 @@ __INLINE uint8_t riu_aci40margmcs4_getf(void)
  */
 __INLINE void riu_aci40margmcs4_setf(uint8_t aci40margmcs4)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG1_ADDR, (REG_PL_RD(RIU_RWNXAGCACI40MARG1_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci40margmcs4 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG1_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci40margmcs4 << 0));
 }
 
 /// @}
@@ -7925,7 +7925,7 @@ __INLINE void riu_aci40margmcs4_setf(uint8_t aci40margmcs4)
  */
 __INLINE uint32_t riu_rwnxagcaci40marg2_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCACI40MARG2_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG2_ADDR);
 }
 
 /**
@@ -7935,7 +7935,7 @@ __INLINE uint32_t riu_rwnxagcaci40marg2_get(void)
  */
 __INLINE void riu_rwnxagcaci40marg2_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG2_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG2_ADDR, value);
 }
 
 // field definitions
@@ -7966,7 +7966,7 @@ __INLINE void riu_rwnxagcaci40marg2_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcaci40marg2_pack(uint8_t aci40margmcs9, uint8_t aci40margmcs8)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG2_ADDR,  ((uint32_t)aci40margmcs9 << 8) | ((uint32_t)aci40margmcs8 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG2_ADDR,  ((uint32_t)aci40margmcs9 << 8) | ((uint32_t)aci40margmcs8 << 0));
 }
 
 /**
@@ -7980,7 +7980,7 @@ __INLINE void riu_rwnxagcaci40marg2_pack(uint8_t aci40margmcs9, uint8_t aci40mar
  */
 __INLINE void riu_rwnxagcaci40marg2_unpack(uint8_t* aci40margmcs9, uint8_t* aci40margmcs8)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG2_ADDR);
 
     *aci40margmcs9 = (localVal & ((uint32_t)0x00003F00)) >> 8;
     *aci40margmcs8 = (localVal & ((uint32_t)0x0000003F)) >> 0;
@@ -7995,7 +7995,7 @@ __INLINE void riu_rwnxagcaci40marg2_unpack(uint8_t* aci40margmcs9, uint8_t* aci4
  */
 __INLINE uint8_t riu_aci40margmcs9_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG2_ADDR);
     return ((localVal & ((uint32_t)0x00003F00)) >> 8);
 }
 
@@ -8008,7 +8008,7 @@ __INLINE uint8_t riu_aci40margmcs9_getf(void)
  */
 __INLINE void riu_aci40margmcs9_setf(uint8_t aci40margmcs9)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG2_ADDR, (REG_PL_RD(RIU_RWNXAGCACI40MARG2_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci40margmcs9 << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG2_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci40margmcs9 << 8));
 }
 
 /**
@@ -8020,7 +8020,7 @@ __INLINE void riu_aci40margmcs9_setf(uint8_t aci40margmcs9)
  */
 __INLINE uint8_t riu_aci40margmcs8_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI40MARG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG2_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -8033,7 +8033,7 @@ __INLINE uint8_t riu_aci40margmcs8_getf(void)
  */
 __INLINE void riu_aci40margmcs8_setf(uint8_t aci40margmcs8)
 {
-    REG_PL_WR(RIU_RWNXAGCACI40MARG2_ADDR, (REG_PL_RD(RIU_RWNXAGCACI40MARG2_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci40margmcs8 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI40MARG2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI40MARG2_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci40margmcs8 << 0));
 }
 
 /// @}
@@ -8068,7 +8068,7 @@ __INLINE void riu_aci40margmcs8_setf(uint8_t aci40margmcs8)
  */
 __INLINE uint32_t riu_rwnxagcaci80marg0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCACI80MARG0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG0_ADDR);
 }
 
 /**
@@ -8078,7 +8078,7 @@ __INLINE uint32_t riu_rwnxagcaci80marg0_get(void)
  */
 __INLINE void riu_rwnxagcaci80marg0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG0_ADDR, value);
 }
 
 // field definitions
@@ -8127,7 +8127,7 @@ __INLINE void riu_rwnxagcaci80marg0_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcaci80marg0_pack(uint8_t aci80margmcs3, uint8_t aci80margmcs2, uint8_t aci80margmcs1, uint8_t aci80margmcs0)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG0_ADDR,  ((uint32_t)aci80margmcs3 << 24) | ((uint32_t)aci80margmcs2 << 16) | ((uint32_t)aci80margmcs1 << 8) | ((uint32_t)aci80margmcs0 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG0_ADDR,  ((uint32_t)aci80margmcs3 << 24) | ((uint32_t)aci80margmcs2 << 16) | ((uint32_t)aci80margmcs1 << 8) | ((uint32_t)aci80margmcs0 << 0));
 }
 
 /**
@@ -8143,7 +8143,7 @@ __INLINE void riu_rwnxagcaci80marg0_pack(uint8_t aci80margmcs3, uint8_t aci80mar
  */
 __INLINE void riu_rwnxagcaci80marg0_unpack(uint8_t* aci80margmcs3, uint8_t* aci80margmcs2, uint8_t* aci80margmcs1, uint8_t* aci80margmcs0)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG0_ADDR);
 
     *aci80margmcs3 = (localVal & ((uint32_t)0x3F000000)) >> 24;
     *aci80margmcs2 = (localVal & ((uint32_t)0x003F0000)) >> 16;
@@ -8160,7 +8160,7 @@ __INLINE void riu_rwnxagcaci80marg0_unpack(uint8_t* aci80margmcs3, uint8_t* aci8
  */
 __INLINE uint8_t riu_aci80margmcs3_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG0_ADDR);
     return ((localVal & ((uint32_t)0x3F000000)) >> 24);
 }
 
@@ -8173,7 +8173,7 @@ __INLINE uint8_t riu_aci80margmcs3_getf(void)
  */
 __INLINE void riu_aci80margmcs3_setf(uint8_t aci80margmcs3)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG0_ADDR, (REG_PL_RD(RIU_RWNXAGCACI80MARG0_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)aci80margmcs3 << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG0_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)aci80margmcs3 << 24));
 }
 
 /**
@@ -8185,7 +8185,7 @@ __INLINE void riu_aci80margmcs3_setf(uint8_t aci80margmcs3)
  */
 __INLINE uint8_t riu_aci80margmcs2_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG0_ADDR);
     return ((localVal & ((uint32_t)0x003F0000)) >> 16);
 }
 
@@ -8198,7 +8198,7 @@ __INLINE uint8_t riu_aci80margmcs2_getf(void)
  */
 __INLINE void riu_aci80margmcs2_setf(uint8_t aci80margmcs2)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG0_ADDR, (REG_PL_RD(RIU_RWNXAGCACI80MARG0_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)aci80margmcs2 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG0_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)aci80margmcs2 << 16));
 }
 
 /**
@@ -8210,7 +8210,7 @@ __INLINE void riu_aci80margmcs2_setf(uint8_t aci80margmcs2)
  */
 __INLINE uint8_t riu_aci80margmcs1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG0_ADDR);
     return ((localVal & ((uint32_t)0x00003F00)) >> 8);
 }
 
@@ -8223,7 +8223,7 @@ __INLINE uint8_t riu_aci80margmcs1_getf(void)
  */
 __INLINE void riu_aci80margmcs1_setf(uint8_t aci80margmcs1)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG0_ADDR, (REG_PL_RD(RIU_RWNXAGCACI80MARG0_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci80margmcs1 << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG0_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci80margmcs1 << 8));
 }
 
 /**
@@ -8235,7 +8235,7 @@ __INLINE void riu_aci80margmcs1_setf(uint8_t aci80margmcs1)
  */
 __INLINE uint8_t riu_aci80margmcs0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG0_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -8248,7 +8248,7 @@ __INLINE uint8_t riu_aci80margmcs0_getf(void)
  */
 __INLINE void riu_aci80margmcs0_setf(uint8_t aci80margmcs0)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG0_ADDR, (REG_PL_RD(RIU_RWNXAGCACI80MARG0_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci80margmcs0 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG0_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci80margmcs0 << 0));
 }
 
 /// @}
@@ -8283,7 +8283,7 @@ __INLINE void riu_aci80margmcs0_setf(uint8_t aci80margmcs0)
  */
 __INLINE uint32_t riu_rwnxagcaci80marg1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCACI80MARG1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG1_ADDR);
 }
 
 /**
@@ -8293,7 +8293,7 @@ __INLINE uint32_t riu_rwnxagcaci80marg1_get(void)
  */
 __INLINE void riu_rwnxagcaci80marg1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG1_ADDR, value);
 }
 
 // field definitions
@@ -8342,7 +8342,7 @@ __INLINE void riu_rwnxagcaci80marg1_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcaci80marg1_pack(uint8_t aci80margmcs7, uint8_t aci80margmcs6, uint8_t aci80margmcs5, uint8_t aci80margmcs4)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG1_ADDR,  ((uint32_t)aci80margmcs7 << 24) | ((uint32_t)aci80margmcs6 << 16) | ((uint32_t)aci80margmcs5 << 8) | ((uint32_t)aci80margmcs4 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG1_ADDR,  ((uint32_t)aci80margmcs7 << 24) | ((uint32_t)aci80margmcs6 << 16) | ((uint32_t)aci80margmcs5 << 8) | ((uint32_t)aci80margmcs4 << 0));
 }
 
 /**
@@ -8358,7 +8358,7 @@ __INLINE void riu_rwnxagcaci80marg1_pack(uint8_t aci80margmcs7, uint8_t aci80mar
  */
 __INLINE void riu_rwnxagcaci80marg1_unpack(uint8_t* aci80margmcs7, uint8_t* aci80margmcs6, uint8_t* aci80margmcs5, uint8_t* aci80margmcs4)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG1_ADDR);
 
     *aci80margmcs7 = (localVal & ((uint32_t)0x3F000000)) >> 24;
     *aci80margmcs6 = (localVal & ((uint32_t)0x003F0000)) >> 16;
@@ -8375,7 +8375,7 @@ __INLINE void riu_rwnxagcaci80marg1_unpack(uint8_t* aci80margmcs7, uint8_t* aci8
  */
 __INLINE uint8_t riu_aci80margmcs7_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG1_ADDR);
     return ((localVal & ((uint32_t)0x3F000000)) >> 24);
 }
 
@@ -8388,7 +8388,7 @@ __INLINE uint8_t riu_aci80margmcs7_getf(void)
  */
 __INLINE void riu_aci80margmcs7_setf(uint8_t aci80margmcs7)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG1_ADDR, (REG_PL_RD(RIU_RWNXAGCACI80MARG1_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)aci80margmcs7 << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG1_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)aci80margmcs7 << 24));
 }
 
 /**
@@ -8400,7 +8400,7 @@ __INLINE void riu_aci80margmcs7_setf(uint8_t aci80margmcs7)
  */
 __INLINE uint8_t riu_aci80margmcs6_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG1_ADDR);
     return ((localVal & ((uint32_t)0x003F0000)) >> 16);
 }
 
@@ -8413,7 +8413,7 @@ __INLINE uint8_t riu_aci80margmcs6_getf(void)
  */
 __INLINE void riu_aci80margmcs6_setf(uint8_t aci80margmcs6)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG1_ADDR, (REG_PL_RD(RIU_RWNXAGCACI80MARG1_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)aci80margmcs6 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG1_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)aci80margmcs6 << 16));
 }
 
 /**
@@ -8425,7 +8425,7 @@ __INLINE void riu_aci80margmcs6_setf(uint8_t aci80margmcs6)
  */
 __INLINE uint8_t riu_aci80margmcs5_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG1_ADDR);
     return ((localVal & ((uint32_t)0x00003F00)) >> 8);
 }
 
@@ -8438,7 +8438,7 @@ __INLINE uint8_t riu_aci80margmcs5_getf(void)
  */
 __INLINE void riu_aci80margmcs5_setf(uint8_t aci80margmcs5)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG1_ADDR, (REG_PL_RD(RIU_RWNXAGCACI80MARG1_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci80margmcs5 << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG1_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci80margmcs5 << 8));
 }
 
 /**
@@ -8450,7 +8450,7 @@ __INLINE void riu_aci80margmcs5_setf(uint8_t aci80margmcs5)
  */
 __INLINE uint8_t riu_aci80margmcs4_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG1_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -8463,7 +8463,7 @@ __INLINE uint8_t riu_aci80margmcs4_getf(void)
  */
 __INLINE void riu_aci80margmcs4_setf(uint8_t aci80margmcs4)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG1_ADDR, (REG_PL_RD(RIU_RWNXAGCACI80MARG1_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci80margmcs4 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG1_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci80margmcs4 << 0));
 }
 
 /// @}
@@ -8496,7 +8496,7 @@ __INLINE void riu_aci80margmcs4_setf(uint8_t aci80margmcs4)
  */
 __INLINE uint32_t riu_rwnxagcaci80marg2_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCACI80MARG2_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG2_ADDR);
 }
 
 /**
@@ -8506,7 +8506,7 @@ __INLINE uint32_t riu_rwnxagcaci80marg2_get(void)
  */
 __INLINE void riu_rwnxagcaci80marg2_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG2_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG2_ADDR, value);
 }
 
 // field definitions
@@ -8537,7 +8537,7 @@ __INLINE void riu_rwnxagcaci80marg2_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcaci80marg2_pack(uint8_t aci80margmcs9, uint8_t aci80margmcs8)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG2_ADDR,  ((uint32_t)aci80margmcs9 << 8) | ((uint32_t)aci80margmcs8 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG2_ADDR,  ((uint32_t)aci80margmcs9 << 8) | ((uint32_t)aci80margmcs8 << 0));
 }
 
 /**
@@ -8551,7 +8551,7 @@ __INLINE void riu_rwnxagcaci80marg2_pack(uint8_t aci80margmcs9, uint8_t aci80mar
  */
 __INLINE void riu_rwnxagcaci80marg2_unpack(uint8_t* aci80margmcs9, uint8_t* aci80margmcs8)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG2_ADDR);
 
     *aci80margmcs9 = (localVal & ((uint32_t)0x00003F00)) >> 8;
     *aci80margmcs8 = (localVal & ((uint32_t)0x0000003F)) >> 0;
@@ -8566,7 +8566,7 @@ __INLINE void riu_rwnxagcaci80marg2_unpack(uint8_t* aci80margmcs9, uint8_t* aci8
  */
 __INLINE uint8_t riu_aci80margmcs9_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG2_ADDR);
     return ((localVal & ((uint32_t)0x00003F00)) >> 8);
 }
 
@@ -8579,7 +8579,7 @@ __INLINE uint8_t riu_aci80margmcs9_getf(void)
  */
 __INLINE void riu_aci80margmcs9_setf(uint8_t aci80margmcs9)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG2_ADDR, (REG_PL_RD(RIU_RWNXAGCACI80MARG2_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci80margmcs9 << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG2_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)aci80margmcs9 << 8));
 }
 
 /**
@@ -8591,7 +8591,7 @@ __INLINE void riu_aci80margmcs9_setf(uint8_t aci80margmcs9)
  */
 __INLINE uint8_t riu_aci80margmcs8_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCACI80MARG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG2_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -8604,7 +8604,7 @@ __INLINE uint8_t riu_aci80margmcs8_getf(void)
  */
 __INLINE void riu_aci80margmcs8_setf(uint8_t aci80margmcs8)
 {
-    REG_PL_WR(RIU_RWNXAGCACI80MARG2_ADDR, (REG_PL_RD(RIU_RWNXAGCACI80MARG2_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci80margmcs8 << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCACI80MARG2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCACI80MARG2_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)aci80margmcs8 << 0));
 }
 
 /// @}
@@ -8639,7 +8639,7 @@ __INLINE void riu_aci80margmcs8_setf(uint8_t aci80margmcs8)
  */
 __INLINE uint32_t riu_rwnxagcsat_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCSAT_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCSAT_ADDR);
 }
 
 /**
@@ -8649,7 +8649,7 @@ __INLINE uint32_t riu_rwnxagcsat_get(void)
  */
 __INLINE void riu_rwnxagcsat_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCSAT_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCSAT_ADDR, value);
 }
 
 // field definitions
@@ -8698,7 +8698,7 @@ __INLINE void riu_rwnxagcsat_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcsat_pack(uint8_t satdelay50ns, uint8_t sathighthrdbv, uint8_t satlowthrdbv, uint8_t satthrdbv)
 {
-    REG_PL_WR(RIU_RWNXAGCSAT_ADDR,  ((uint32_t)satdelay50ns << 24) | ((uint32_t)sathighthrdbv << 16) | ((uint32_t)satlowthrdbv << 8) | ((uint32_t)satthrdbv << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCSAT_ADDR,  ((uint32_t)satdelay50ns << 24) | ((uint32_t)sathighthrdbv << 16) | ((uint32_t)satlowthrdbv << 8) | ((uint32_t)satthrdbv << 0));
 }
 
 /**
@@ -8714,7 +8714,7 @@ __INLINE void riu_rwnxagcsat_pack(uint8_t satdelay50ns, uint8_t sathighthrdbv, u
  */
 __INLINE void riu_rwnxagcsat_unpack(uint8_t* satdelay50ns, uint8_t* sathighthrdbv, uint8_t* satlowthrdbv, uint8_t* satthrdbv)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCSAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCSAT_ADDR);
 
     *satdelay50ns = (localVal & ((uint32_t)0x1F000000)) >> 24;
     *sathighthrdbv = (localVal & ((uint32_t)0x003F0000)) >> 16;
@@ -8731,7 +8731,7 @@ __INLINE void riu_rwnxagcsat_unpack(uint8_t* satdelay50ns, uint8_t* sathighthrdb
  */
 __INLINE uint8_t riu_satdelay50ns_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCSAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCSAT_ADDR);
     return ((localVal & ((uint32_t)0x1F000000)) >> 24);
 }
 
@@ -8744,7 +8744,7 @@ __INLINE uint8_t riu_satdelay50ns_getf(void)
  */
 __INLINE void riu_satdelay50ns_setf(uint8_t satdelay50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCSAT_ADDR, (REG_PL_RD(RIU_RWNXAGCSAT_ADDR) & ~((uint32_t)0x1F000000)) | ((uint32_t)satdelay50ns << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCSAT_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCSAT_ADDR) & ~((uint32_t)0x1F000000)) | ((uint32_t)satdelay50ns << 24));
 }
 
 /**
@@ -8756,7 +8756,7 @@ __INLINE void riu_satdelay50ns_setf(uint8_t satdelay50ns)
  */
 __INLINE uint8_t riu_sathighthrdbv_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCSAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCSAT_ADDR);
     return ((localVal & ((uint32_t)0x003F0000)) >> 16);
 }
 
@@ -8769,7 +8769,7 @@ __INLINE uint8_t riu_sathighthrdbv_getf(void)
  */
 __INLINE void riu_sathighthrdbv_setf(uint8_t sathighthrdbv)
 {
-    REG_PL_WR(RIU_RWNXAGCSAT_ADDR, (REG_PL_RD(RIU_RWNXAGCSAT_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)sathighthrdbv << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCSAT_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCSAT_ADDR) & ~((uint32_t)0x003F0000)) | ((uint32_t)sathighthrdbv << 16));
 }
 
 /**
@@ -8781,7 +8781,7 @@ __INLINE void riu_sathighthrdbv_setf(uint8_t sathighthrdbv)
  */
 __INLINE uint8_t riu_satlowthrdbv_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCSAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCSAT_ADDR);
     return ((localVal & ((uint32_t)0x00003F00)) >> 8);
 }
 
@@ -8794,7 +8794,7 @@ __INLINE uint8_t riu_satlowthrdbv_getf(void)
  */
 __INLINE void riu_satlowthrdbv_setf(uint8_t satlowthrdbv)
 {
-    REG_PL_WR(RIU_RWNXAGCSAT_ADDR, (REG_PL_RD(RIU_RWNXAGCSAT_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)satlowthrdbv << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCSAT_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCSAT_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)satlowthrdbv << 8));
 }
 
 /**
@@ -8806,7 +8806,7 @@ __INLINE void riu_satlowthrdbv_setf(uint8_t satlowthrdbv)
  */
 __INLINE uint8_t riu_satthrdbv_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCSAT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCSAT_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -8819,7 +8819,7 @@ __INLINE uint8_t riu_satthrdbv_getf(void)
  */
 __INLINE void riu_satthrdbv_setf(uint8_t satthrdbv)
 {
-    REG_PL_WR(RIU_RWNXAGCSAT_ADDR, (REG_PL_RD(RIU_RWNXAGCSAT_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)satthrdbv << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCSAT_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCSAT_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)satthrdbv << 0));
 }
 
 /// @}
@@ -8852,7 +8852,7 @@ __INLINE void riu_satthrdbv_setf(uint8_t satthrdbv)
  */
 __INLINE uint32_t riu_rwnxagccross_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCCROSS_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCCROSS_ADDR);
 }
 
 /**
@@ -8862,7 +8862,7 @@ __INLINE uint32_t riu_rwnxagccross_get(void)
  */
 __INLINE void riu_rwnxagccross_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCCROSS_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCROSS_ADDR, value);
 }
 
 // field definitions
@@ -8893,7 +8893,7 @@ __INLINE void riu_rwnxagccross_set(uint32_t value)
  */
 __INLINE void riu_rwnxagccross_pack(uint16_t crossdnthrqdbm, uint16_t crossupthrqdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCROSS_ADDR,  ((uint32_t)crossdnthrqdbm << 12) | ((uint32_t)crossupthrqdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCROSS_ADDR,  ((uint32_t)crossdnthrqdbm << 12) | ((uint32_t)crossupthrqdbm << 0));
 }
 
 /**
@@ -8907,7 +8907,7 @@ __INLINE void riu_rwnxagccross_pack(uint16_t crossdnthrqdbm, uint16_t crossupthr
  */
 __INLINE void riu_rwnxagccross_unpack(uint16_t* crossdnthrqdbm, uint16_t* crossupthrqdbm)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCROSS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCROSS_ADDR);
 
     *crossdnthrqdbm = (localVal & ((uint32_t)0x003FF000)) >> 12;
     *crossupthrqdbm = (localVal & ((uint32_t)0x000003FF)) >> 0;
@@ -8922,7 +8922,7 @@ __INLINE void riu_rwnxagccross_unpack(uint16_t* crossdnthrqdbm, uint16_t* crossu
  */
 __INLINE uint16_t riu_crossdnthrqdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCROSS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCROSS_ADDR);
     return ((localVal & ((uint32_t)0x003FF000)) >> 12);
 }
 
@@ -8935,7 +8935,7 @@ __INLINE uint16_t riu_crossdnthrqdbm_getf(void)
  */
 __INLINE void riu_crossdnthrqdbm_setf(uint16_t crossdnthrqdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCROSS_ADDR, (REG_PL_RD(RIU_RWNXAGCCROSS_ADDR) & ~((uint32_t)0x003FF000)) | ((uint32_t)crossdnthrqdbm << 12));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCROSS_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCROSS_ADDR) & ~((uint32_t)0x003FF000)) | ((uint32_t)crossdnthrqdbm << 12));
 }
 
 /**
@@ -8947,7 +8947,7 @@ __INLINE void riu_crossdnthrqdbm_setf(uint16_t crossdnthrqdbm)
  */
 __INLINE uint16_t riu_crossupthrqdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCROSS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCROSS_ADDR);
     return ((localVal & ((uint32_t)0x000003FF)) >> 0);
 }
 
@@ -8960,7 +8960,7 @@ __INLINE uint16_t riu_crossupthrqdbm_getf(void)
  */
 __INLINE void riu_crossupthrqdbm_setf(uint16_t crossupthrqdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCROSS_ADDR, (REG_PL_RD(RIU_RWNXAGCCROSS_ADDR) & ~((uint32_t)0x000003FF)) | ((uint32_t)crossupthrqdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCROSS_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCROSS_ADDR) & ~((uint32_t)0x000003FF)) | ((uint32_t)crossupthrqdbm << 0));
 }
 
 /// @}
@@ -8995,7 +8995,7 @@ __INLINE void riu_crossupthrqdbm_setf(uint16_t crossupthrqdbm)
  */
 __INLINE uint32_t riu_rwnxagcramp_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCRAMP_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCRAMP_ADDR);
 }
 
 /**
@@ -9005,7 +9005,7 @@ __INLINE uint32_t riu_rwnxagcramp_get(void)
  */
 __INLINE void riu_rwnxagcramp_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCRAMP_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRAMP_ADDR, value);
 }
 
 // field definitions
@@ -9054,7 +9054,7 @@ __INLINE void riu_rwnxagcramp_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcramp_pack(uint8_t rampdnndlindex, uint8_t rampdngapqdb, uint8_t rampupndlindex, uint8_t rampupgapqdb)
 {
-    REG_PL_WR(RIU_RWNXAGCRAMP_ADDR,  ((uint32_t)rampdnndlindex << 24) | ((uint32_t)rampdngapqdb << 16) | ((uint32_t)rampupndlindex << 8) | ((uint32_t)rampupgapqdb << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRAMP_ADDR,  ((uint32_t)rampdnndlindex << 24) | ((uint32_t)rampdngapqdb << 16) | ((uint32_t)rampupndlindex << 8) | ((uint32_t)rampupgapqdb << 0));
 }
 
 /**
@@ -9070,7 +9070,7 @@ __INLINE void riu_rwnxagcramp_pack(uint8_t rampdnndlindex, uint8_t rampdngapqdb,
  */
 __INLINE void riu_rwnxagcramp_unpack(uint8_t* rampdnndlindex, uint8_t* rampdngapqdb, uint8_t* rampupndlindex, uint8_t* rampupgapqdb)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRAMP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRAMP_ADDR);
 
     *rampdnndlindex = (localVal & ((uint32_t)0x07000000)) >> 24;
     *rampdngapqdb = (localVal & ((uint32_t)0x00FF0000)) >> 16;
@@ -9087,7 +9087,7 @@ __INLINE void riu_rwnxagcramp_unpack(uint8_t* rampdnndlindex, uint8_t* rampdngap
  */
 __INLINE uint8_t riu_rampdnndlindex_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRAMP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRAMP_ADDR);
     return ((localVal & ((uint32_t)0x07000000)) >> 24);
 }
 
@@ -9100,7 +9100,7 @@ __INLINE uint8_t riu_rampdnndlindex_getf(void)
  */
 __INLINE void riu_rampdnndlindex_setf(uint8_t rampdnndlindex)
 {
-    REG_PL_WR(RIU_RWNXAGCRAMP_ADDR, (REG_PL_RD(RIU_RWNXAGCRAMP_ADDR) & ~((uint32_t)0x07000000)) | ((uint32_t)rampdnndlindex << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRAMP_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCRAMP_ADDR) & ~((uint32_t)0x07000000)) | ((uint32_t)rampdnndlindex << 24));
 }
 
 /**
@@ -9112,7 +9112,7 @@ __INLINE void riu_rampdnndlindex_setf(uint8_t rampdnndlindex)
  */
 __INLINE uint8_t riu_rampdngapqdb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRAMP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRAMP_ADDR);
     return ((localVal & ((uint32_t)0x00FF0000)) >> 16);
 }
 
@@ -9125,7 +9125,7 @@ __INLINE uint8_t riu_rampdngapqdb_getf(void)
  */
 __INLINE void riu_rampdngapqdb_setf(uint8_t rampdngapqdb)
 {
-    REG_PL_WR(RIU_RWNXAGCRAMP_ADDR, (REG_PL_RD(RIU_RWNXAGCRAMP_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)rampdngapqdb << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRAMP_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCRAMP_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)rampdngapqdb << 16));
 }
 
 /**
@@ -9137,7 +9137,7 @@ __INLINE void riu_rampdngapqdb_setf(uint8_t rampdngapqdb)
  */
 __INLINE uint8_t riu_rampupndlindex_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRAMP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRAMP_ADDR);
     return ((localVal & ((uint32_t)0x00000700)) >> 8);
 }
 
@@ -9150,7 +9150,7 @@ __INLINE uint8_t riu_rampupndlindex_getf(void)
  */
 __INLINE void riu_rampupndlindex_setf(uint8_t rampupndlindex)
 {
-    REG_PL_WR(RIU_RWNXAGCRAMP_ADDR, (REG_PL_RD(RIU_RWNXAGCRAMP_ADDR) & ~((uint32_t)0x00000700)) | ((uint32_t)rampupndlindex << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRAMP_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCRAMP_ADDR) & ~((uint32_t)0x00000700)) | ((uint32_t)rampupndlindex << 8));
 }
 
 /**
@@ -9162,7 +9162,7 @@ __INLINE void riu_rampupndlindex_setf(uint8_t rampupndlindex)
  */
 __INLINE uint8_t riu_rampupgapqdb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRAMP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRAMP_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -9175,7 +9175,7 @@ __INLINE uint8_t riu_rampupgapqdb_getf(void)
  */
 __INLINE void riu_rampupgapqdb_setf(uint8_t rampupgapqdb)
 {
-    REG_PL_WR(RIU_RWNXAGCRAMP_ADDR, (REG_PL_RD(RIU_RWNXAGCRAMP_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)rampupgapqdb << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRAMP_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCRAMP_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)rampupgapqdb << 0));
 }
 
 /// @}
@@ -9210,7 +9210,7 @@ __INLINE void riu_rampupgapqdb_setf(uint8_t rampupgapqdb)
  */
 __INLINE uint32_t riu_rwnxagcstabdis_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCSTABDIS_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCSTABDIS_ADDR);
 }
 
 /**
@@ -9220,7 +9220,7 @@ __INLINE uint32_t riu_rwnxagcstabdis_get(void)
  */
 __INLINE void riu_rwnxagcstabdis_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCSTABDIS_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCSTABDIS_ADDR, value);
 }
 
 // field definitions
@@ -9269,7 +9269,7 @@ __INLINE void riu_rwnxagcstabdis_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcstabdis_pack(uint8_t adcpowdisndl, uint8_t adcpowdisthrdbv, uint8_t platndlindex, uint8_t platdpqdb)
 {
-    REG_PL_WR(RIU_RWNXAGCSTABDIS_ADDR,  ((uint32_t)adcpowdisndl << 24) | ((uint32_t)adcpowdisthrdbv << 16) | ((uint32_t)platndlindex << 8) | ((uint32_t)platdpqdb << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCSTABDIS_ADDR,  ((uint32_t)adcpowdisndl << 24) | ((uint32_t)adcpowdisthrdbv << 16) | ((uint32_t)platndlindex << 8) | ((uint32_t)platdpqdb << 0));
 }
 
 /**
@@ -9285,7 +9285,7 @@ __INLINE void riu_rwnxagcstabdis_pack(uint8_t adcpowdisndl, uint8_t adcpowdisthr
  */
 __INLINE void riu_rwnxagcstabdis_unpack(uint8_t* adcpowdisndl, uint8_t* adcpowdisthrdbv, uint8_t* platndlindex, uint8_t* platdpqdb)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCSTABDIS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCSTABDIS_ADDR);
 
     *adcpowdisndl = (localVal & ((uint32_t)0x0F000000)) >> 24;
     *adcpowdisthrdbv = (localVal & ((uint32_t)0x007F0000)) >> 16;
@@ -9302,7 +9302,7 @@ __INLINE void riu_rwnxagcstabdis_unpack(uint8_t* adcpowdisndl, uint8_t* adcpowdi
  */
 __INLINE uint8_t riu_adcpowdisndl_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCSTABDIS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCSTABDIS_ADDR);
     return ((localVal & ((uint32_t)0x0F000000)) >> 24);
 }
 
@@ -9315,7 +9315,7 @@ __INLINE uint8_t riu_adcpowdisndl_getf(void)
  */
 __INLINE void riu_adcpowdisndl_setf(uint8_t adcpowdisndl)
 {
-    REG_PL_WR(RIU_RWNXAGCSTABDIS_ADDR, (REG_PL_RD(RIU_RWNXAGCSTABDIS_ADDR) & ~((uint32_t)0x0F000000)) | ((uint32_t)adcpowdisndl << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCSTABDIS_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCSTABDIS_ADDR) & ~((uint32_t)0x0F000000)) | ((uint32_t)adcpowdisndl << 24));
 }
 
 /**
@@ -9327,7 +9327,7 @@ __INLINE void riu_adcpowdisndl_setf(uint8_t adcpowdisndl)
  */
 __INLINE uint8_t riu_adcpowdisthrdbv_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCSTABDIS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCSTABDIS_ADDR);
     return ((localVal & ((uint32_t)0x007F0000)) >> 16);
 }
 
@@ -9340,7 +9340,7 @@ __INLINE uint8_t riu_adcpowdisthrdbv_getf(void)
  */
 __INLINE void riu_adcpowdisthrdbv_setf(uint8_t adcpowdisthrdbv)
 {
-    REG_PL_WR(RIU_RWNXAGCSTABDIS_ADDR, (REG_PL_RD(RIU_RWNXAGCSTABDIS_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)adcpowdisthrdbv << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCSTABDIS_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCSTABDIS_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)adcpowdisthrdbv << 16));
 }
 
 /**
@@ -9352,7 +9352,7 @@ __INLINE void riu_adcpowdisthrdbv_setf(uint8_t adcpowdisthrdbv)
  */
 __INLINE uint8_t riu_platndlindex_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCSTABDIS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCSTABDIS_ADDR);
     return ((localVal & ((uint32_t)0x00000700)) >> 8);
 }
 
@@ -9365,7 +9365,7 @@ __INLINE uint8_t riu_platndlindex_getf(void)
  */
 __INLINE void riu_platndlindex_setf(uint8_t platndlindex)
 {
-    REG_PL_WR(RIU_RWNXAGCSTABDIS_ADDR, (REG_PL_RD(RIU_RWNXAGCSTABDIS_ADDR) & ~((uint32_t)0x00000700)) | ((uint32_t)platndlindex << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCSTABDIS_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCSTABDIS_ADDR) & ~((uint32_t)0x00000700)) | ((uint32_t)platndlindex << 8));
 }
 
 /**
@@ -9377,7 +9377,7 @@ __INLINE void riu_platndlindex_setf(uint8_t platndlindex)
  */
 __INLINE uint8_t riu_platdpqdb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCSTABDIS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCSTABDIS_ADDR);
     return ((localVal & ((uint32_t)0x0000001F)) >> 0);
 }
 
@@ -9390,7 +9390,7 @@ __INLINE uint8_t riu_platdpqdb_getf(void)
  */
 __INLINE void riu_platdpqdb_setf(uint8_t platdpqdb)
 {
-    REG_PL_WR(RIU_RWNXAGCSTABDIS_ADDR, (REG_PL_RD(RIU_RWNXAGCSTABDIS_ADDR) & ~((uint32_t)0x0000001F)) | ((uint32_t)platdpqdb << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCSTABDIS_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCSTABDIS_ADDR) & ~((uint32_t)0x0000001F)) | ((uint32_t)platdpqdb << 0));
 }
 
 /// @}
@@ -9427,7 +9427,7 @@ __INLINE void riu_platdpqdb_setf(uint8_t platdpqdb)
  */
 __INLINE uint32_t riu_rwnxagcdccomp0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR);
 }
 
 /**
@@ -9437,7 +9437,7 @@ __INLINE uint32_t riu_rwnxagcdccomp0_get(void)
  */
 __INLINE void riu_rwnxagcdccomp0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP0_ADDR, value);
 }
 
 // field definitions
@@ -9504,7 +9504,7 @@ __INLINE void riu_rwnxagcdccomp0_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcdccomp0_pack(uint8_t dcdssstype, uint8_t dccenteredtype, uint8_t dcagc20type, uint8_t dcadctype, uint8_t dcadcholdtime50ns, uint8_t dcadczerotime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP0_ADDR,  ((uint32_t)dcdssstype << 28) | ((uint32_t)dccenteredtype << 24) | ((uint32_t)dcagc20type << 20) | ((uint32_t)dcadctype << 16) | ((uint32_t)dcadcholdtime50ns << 8) | ((uint32_t)dcadczerotime50ns << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP0_ADDR,  ((uint32_t)dcdssstype << 28) | ((uint32_t)dccenteredtype << 24) | ((uint32_t)dcagc20type << 20) | ((uint32_t)dcadctype << 16) | ((uint32_t)dcadcholdtime50ns << 8) | ((uint32_t)dcadczerotime50ns << 0));
 }
 
 /**
@@ -9522,7 +9522,7 @@ __INLINE void riu_rwnxagcdccomp0_pack(uint8_t dcdssstype, uint8_t dccenteredtype
  */
 __INLINE void riu_rwnxagcdccomp0_unpack(uint8_t* dcdssstype, uint8_t* dccenteredtype, uint8_t* dcagc20type, uint8_t* dcadctype, uint8_t* dcadcholdtime50ns, uint8_t* dcadczerotime50ns)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR);
 
     *dcdssstype = (localVal & ((uint32_t)0x30000000)) >> 28;
     *dccenteredtype = (localVal & ((uint32_t)0x03000000)) >> 24;
@@ -9541,7 +9541,7 @@ __INLINE void riu_rwnxagcdccomp0_unpack(uint8_t* dcdssstype, uint8_t* dccentered
  */
 __INLINE uint8_t riu_dcdssstype_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x30000000)) >> 28);
 }
 
@@ -9554,7 +9554,7 @@ __INLINE uint8_t riu_dcdssstype_getf(void)
  */
 __INLINE void riu_dcdssstype_setf(uint8_t dcdssstype)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP0_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR) & ~((uint32_t)0x30000000)) | ((uint32_t)dcdssstype << 28));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR) & ~((uint32_t)0x30000000)) | ((uint32_t)dcdssstype << 28));
 }
 
 /**
@@ -9566,7 +9566,7 @@ __INLINE void riu_dcdssstype_setf(uint8_t dcdssstype)
  */
 __INLINE uint8_t riu_dccenteredtype_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x03000000)) >> 24);
 }
 
@@ -9579,7 +9579,7 @@ __INLINE uint8_t riu_dccenteredtype_getf(void)
  */
 __INLINE void riu_dccenteredtype_setf(uint8_t dccenteredtype)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP0_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR) & ~((uint32_t)0x03000000)) | ((uint32_t)dccenteredtype << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR) & ~((uint32_t)0x03000000)) | ((uint32_t)dccenteredtype << 24));
 }
 
 /**
@@ -9591,7 +9591,7 @@ __INLINE void riu_dccenteredtype_setf(uint8_t dccenteredtype)
  */
 __INLINE uint8_t riu_dcagc20type_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x00300000)) >> 20);
 }
 
@@ -9604,7 +9604,7 @@ __INLINE uint8_t riu_dcagc20type_getf(void)
  */
 __INLINE void riu_dcagc20type_setf(uint8_t dcagc20type)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP0_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR) & ~((uint32_t)0x00300000)) | ((uint32_t)dcagc20type << 20));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR) & ~((uint32_t)0x00300000)) | ((uint32_t)dcagc20type << 20));
 }
 
 /**
@@ -9616,7 +9616,7 @@ __INLINE void riu_dcagc20type_setf(uint8_t dcagc20type)
  */
 __INLINE uint8_t riu_dcadctype_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x00030000)) >> 16);
 }
 
@@ -9629,7 +9629,7 @@ __INLINE uint8_t riu_dcadctype_getf(void)
  */
 __INLINE void riu_dcadctype_setf(uint8_t dcadctype)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP0_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR) & ~((uint32_t)0x00030000)) | ((uint32_t)dcadctype << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR) & ~((uint32_t)0x00030000)) | ((uint32_t)dcadctype << 16));
 }
 
 /**
@@ -9641,7 +9641,7 @@ __INLINE void riu_dcadctype_setf(uint8_t dcadctype)
  */
 __INLINE uint8_t riu_dcadcholdtime50ns_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x00007F00)) >> 8);
 }
 
@@ -9654,7 +9654,7 @@ __INLINE uint8_t riu_dcadcholdtime50ns_getf(void)
  */
 __INLINE void riu_dcadcholdtime50ns_setf(uint8_t dcadcholdtime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP0_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR) & ~((uint32_t)0x00007F00)) | ((uint32_t)dcadcholdtime50ns << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR) & ~((uint32_t)0x00007F00)) | ((uint32_t)dcadcholdtime50ns << 8));
 }
 
 /**
@@ -9666,7 +9666,7 @@ __INLINE void riu_dcadcholdtime50ns_setf(uint8_t dcadcholdtime50ns)
  */
 __INLINE uint8_t riu_dcadczerotime50ns_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x0000007F)) >> 0);
 }
 
@@ -9679,7 +9679,7 @@ __INLINE uint8_t riu_dcadczerotime50ns_getf(void)
  */
 __INLINE void riu_dcadczerotime50ns_setf(uint8_t dcadczerotime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP0_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP0_ADDR) & ~((uint32_t)0x0000007F)) | ((uint32_t)dcadczerotime50ns << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP0_ADDR) & ~((uint32_t)0x0000007F)) | ((uint32_t)dcadczerotime50ns << 0));
 }
 
 /// @}
@@ -9714,7 +9714,7 @@ __INLINE void riu_dcadczerotime50ns_setf(uint8_t dcadczerotime50ns)
  */
 __INLINE uint32_t riu_rwnxagcdccomp1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCDCCOMP1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP1_ADDR);
 }
 
 /**
@@ -9724,7 +9724,7 @@ __INLINE uint32_t riu_rwnxagcdccomp1_get(void)
  */
 __INLINE void riu_rwnxagcdccomp1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP1_ADDR, value);
 }
 
 // field definitions
@@ -9773,7 +9773,7 @@ __INLINE void riu_rwnxagcdccomp1_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcdccomp1_pack(uint8_t dccenteredholdtime50ns, uint8_t dccenteredzerotime50ns, uint8_t dcagc20holdtime50ns, uint8_t dcagc20zerotime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP1_ADDR,  ((uint32_t)dccenteredholdtime50ns << 24) | ((uint32_t)dccenteredzerotime50ns << 16) | ((uint32_t)dcagc20holdtime50ns << 8) | ((uint32_t)dcagc20zerotime50ns << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP1_ADDR,  ((uint32_t)dccenteredholdtime50ns << 24) | ((uint32_t)dccenteredzerotime50ns << 16) | ((uint32_t)dcagc20holdtime50ns << 8) | ((uint32_t)dcagc20zerotime50ns << 0));
 }
 
 /**
@@ -9789,7 +9789,7 @@ __INLINE void riu_rwnxagcdccomp1_pack(uint8_t dccenteredholdtime50ns, uint8_t dc
  */
 __INLINE void riu_rwnxagcdccomp1_unpack(uint8_t* dccenteredholdtime50ns, uint8_t* dccenteredzerotime50ns, uint8_t* dcagc20holdtime50ns, uint8_t* dcagc20zerotime50ns)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP1_ADDR);
 
     *dccenteredholdtime50ns = (localVal & ((uint32_t)0x7F000000)) >> 24;
     *dccenteredzerotime50ns = (localVal & ((uint32_t)0x007F0000)) >> 16;
@@ -9806,7 +9806,7 @@ __INLINE void riu_rwnxagcdccomp1_unpack(uint8_t* dccenteredholdtime50ns, uint8_t
  */
 __INLINE uint8_t riu_dccenteredholdtime50ns_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x7F000000)) >> 24);
 }
 
@@ -9819,7 +9819,7 @@ __INLINE uint8_t riu_dccenteredholdtime50ns_getf(void)
  */
 __INLINE void riu_dccenteredholdtime50ns_setf(uint8_t dccenteredholdtime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP1_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP1_ADDR) & ~((uint32_t)0x7F000000)) | ((uint32_t)dccenteredholdtime50ns << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP1_ADDR) & ~((uint32_t)0x7F000000)) | ((uint32_t)dccenteredholdtime50ns << 24));
 }
 
 /**
@@ -9831,7 +9831,7 @@ __INLINE void riu_dccenteredholdtime50ns_setf(uint8_t dccenteredholdtime50ns)
  */
 __INLINE uint8_t riu_dccenteredzerotime50ns_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x007F0000)) >> 16);
 }
 
@@ -9844,7 +9844,7 @@ __INLINE uint8_t riu_dccenteredzerotime50ns_getf(void)
  */
 __INLINE void riu_dccenteredzerotime50ns_setf(uint8_t dccenteredzerotime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP1_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP1_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)dccenteredzerotime50ns << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP1_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)dccenteredzerotime50ns << 16));
 }
 
 /**
@@ -9856,7 +9856,7 @@ __INLINE void riu_dccenteredzerotime50ns_setf(uint8_t dccenteredzerotime50ns)
  */
 __INLINE uint8_t riu_dcagc20holdtime50ns_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x00007F00)) >> 8);
 }
 
@@ -9869,7 +9869,7 @@ __INLINE uint8_t riu_dcagc20holdtime50ns_getf(void)
  */
 __INLINE void riu_dcagc20holdtime50ns_setf(uint8_t dcagc20holdtime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP1_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP1_ADDR) & ~((uint32_t)0x00007F00)) | ((uint32_t)dcagc20holdtime50ns << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP1_ADDR) & ~((uint32_t)0x00007F00)) | ((uint32_t)dcagc20holdtime50ns << 8));
 }
 
 /**
@@ -9881,7 +9881,7 @@ __INLINE void riu_dcagc20holdtime50ns_setf(uint8_t dcagc20holdtime50ns)
  */
 __INLINE uint8_t riu_dcagc20zerotime50ns_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x0000007F)) >> 0);
 }
 
@@ -9894,7 +9894,7 @@ __INLINE uint8_t riu_dcagc20zerotime50ns_getf(void)
  */
 __INLINE void riu_dcagc20zerotime50ns_setf(uint8_t dcagc20zerotime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP1_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP1_ADDR) & ~((uint32_t)0x0000007F)) | ((uint32_t)dcagc20zerotime50ns << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP1_ADDR) & ~((uint32_t)0x0000007F)) | ((uint32_t)dcagc20zerotime50ns << 0));
 }
 
 /// @}
@@ -9928,7 +9928,7 @@ __INLINE void riu_dcagc20zerotime50ns_setf(uint8_t dcagc20zerotime50ns)
  */
 __INLINE uint32_t riu_rwnxagcdccomp2_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCDCCOMP2_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP2_ADDR);
 }
 
 /**
@@ -9938,7 +9938,7 @@ __INLINE uint32_t riu_rwnxagcdccomp2_get(void)
  */
 __INLINE void riu_rwnxagcdccomp2_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP2_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP2_ADDR, value);
 }
 
 // field definitions
@@ -9978,7 +9978,7 @@ __INLINE void riu_rwnxagcdccomp2_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcdccomp2_pack(uint8_t dcdsssholdtime50ns, uint8_t dcdssszerotime50ns, uint8_t deldcstablecc)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP2_ADDR,  ((uint32_t)dcdsssholdtime50ns << 24) | ((uint32_t)dcdssszerotime50ns << 16) | ((uint32_t)deldcstablecc << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP2_ADDR,  ((uint32_t)dcdsssholdtime50ns << 24) | ((uint32_t)dcdssszerotime50ns << 16) | ((uint32_t)deldcstablecc << 0));
 }
 
 /**
@@ -9993,7 +9993,7 @@ __INLINE void riu_rwnxagcdccomp2_pack(uint8_t dcdsssholdtime50ns, uint8_t dcdsss
  */
 __INLINE void riu_rwnxagcdccomp2_unpack(uint8_t* dcdsssholdtime50ns, uint8_t* dcdssszerotime50ns, uint8_t* deldcstablecc)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP2_ADDR);
 
     *dcdsssholdtime50ns = (localVal & ((uint32_t)0x7F000000)) >> 24;
     *dcdssszerotime50ns = (localVal & ((uint32_t)0x007F0000)) >> 16;
@@ -10009,7 +10009,7 @@ __INLINE void riu_rwnxagcdccomp2_unpack(uint8_t* dcdsssholdtime50ns, uint8_t* dc
  */
 __INLINE uint8_t riu_dcdsssholdtime50ns_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP2_ADDR);
     return ((localVal & ((uint32_t)0x7F000000)) >> 24);
 }
 
@@ -10022,7 +10022,7 @@ __INLINE uint8_t riu_dcdsssholdtime50ns_getf(void)
  */
 __INLINE void riu_dcdsssholdtime50ns_setf(uint8_t dcdsssholdtime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP2_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP2_ADDR) & ~((uint32_t)0x7F000000)) | ((uint32_t)dcdsssholdtime50ns << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP2_ADDR) & ~((uint32_t)0x7F000000)) | ((uint32_t)dcdsssholdtime50ns << 24));
 }
 
 /**
@@ -10034,7 +10034,7 @@ __INLINE void riu_dcdsssholdtime50ns_setf(uint8_t dcdsssholdtime50ns)
  */
 __INLINE uint8_t riu_dcdssszerotime50ns_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP2_ADDR);
     return ((localVal & ((uint32_t)0x007F0000)) >> 16);
 }
 
@@ -10047,7 +10047,7 @@ __INLINE uint8_t riu_dcdssszerotime50ns_getf(void)
  */
 __INLINE void riu_dcdssszerotime50ns_setf(uint8_t dcdssszerotime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP2_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP2_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)dcdssszerotime50ns << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP2_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)dcdssszerotime50ns << 16));
 }
 
 /**
@@ -10059,7 +10059,7 @@ __INLINE void riu_dcdssszerotime50ns_setf(uint8_t dcdssszerotime50ns)
  */
 __INLINE uint8_t riu_deldcstablecc_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMP2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP2_ADDR);
     return ((localVal & ((uint32_t)0x0000007F)) >> 0);
 }
 
@@ -10072,7 +10072,7 @@ __INLINE uint8_t riu_deldcstablecc_getf(void)
  */
 __INLINE void riu_deldcstablecc_setf(uint8_t deldcstablecc)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMP2_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMP2_ADDR) & ~((uint32_t)0x0000007F)) | ((uint32_t)deldcstablecc << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMP2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMP2_ADDR) & ~((uint32_t)0x0000007F)) | ((uint32_t)deldcstablecc << 0));
 }
 
 /// @}
@@ -10109,7 +10109,7 @@ __INLINE void riu_deldcstablecc_setf(uint8_t deldcstablecc)
  */
 __INLINE uint32_t riu_rwnxagcevt0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCEVT0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR);
 }
 
 /**
@@ -10119,7 +10119,7 @@ __INLINE uint32_t riu_rwnxagcevt0_get(void)
  */
 __INLINE void riu_rwnxagcevt0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT0_ADDR, value);
 }
 
 // field definitions
@@ -10184,7 +10184,7 @@ __INLINE void riu_rwnxagcevt0_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcevt0_pack(uint8_t evt0op1, uint8_t evt0op2, uint8_t evt0op3, uint8_t evt0pathcomb, uint8_t evt0opcomb, uint16_t evt0tgtadd)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT0_ADDR,  ((uint32_t)evt0op1 << 26) | ((uint32_t)evt0op2 << 20) | ((uint32_t)evt0op3 << 14) | ((uint32_t)evt0pathcomb << 13) | ((uint32_t)evt0opcomb << 10) | ((uint32_t)evt0tgtadd << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT0_ADDR,  ((uint32_t)evt0op1 << 26) | ((uint32_t)evt0op2 << 20) | ((uint32_t)evt0op3 << 14) | ((uint32_t)evt0pathcomb << 13) | ((uint32_t)evt0opcomb << 10) | ((uint32_t)evt0tgtadd << 0));
 }
 
 /**
@@ -10202,7 +10202,7 @@ __INLINE void riu_rwnxagcevt0_pack(uint8_t evt0op1, uint8_t evt0op2, uint8_t evt
  */
 __INLINE void riu_rwnxagcevt0_unpack(uint8_t* evt0op1, uint8_t* evt0op2, uint8_t* evt0op3, uint8_t* evt0pathcomb, uint8_t* evt0opcomb, uint16_t* evt0tgtadd)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR);
 
     *evt0op1 = (localVal & ((uint32_t)0xFC000000)) >> 26;
     *evt0op2 = (localVal & ((uint32_t)0x03F00000)) >> 20;
@@ -10221,7 +10221,7 @@ __INLINE void riu_rwnxagcevt0_unpack(uint8_t* evt0op1, uint8_t* evt0op2, uint8_t
  */
 __INLINE uint8_t riu_evt0op1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR);
     return ((localVal & ((uint32_t)0xFC000000)) >> 26);
 }
 
@@ -10234,7 +10234,7 @@ __INLINE uint8_t riu_evt0op1_getf(void)
  */
 __INLINE void riu_evt0op1_setf(uint8_t evt0op1)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT0_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT0_ADDR) & ~((uint32_t)0xFC000000)) | ((uint32_t)evt0op1 << 26));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR) & ~((uint32_t)0xFC000000)) | ((uint32_t)evt0op1 << 26));
 }
 
 /**
@@ -10246,7 +10246,7 @@ __INLINE void riu_evt0op1_setf(uint8_t evt0op1)
  */
 __INLINE uint8_t riu_evt0op2_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR);
     return ((localVal & ((uint32_t)0x03F00000)) >> 20);
 }
 
@@ -10259,7 +10259,7 @@ __INLINE uint8_t riu_evt0op2_getf(void)
  */
 __INLINE void riu_evt0op2_setf(uint8_t evt0op2)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT0_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT0_ADDR) & ~((uint32_t)0x03F00000)) | ((uint32_t)evt0op2 << 20));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR) & ~((uint32_t)0x03F00000)) | ((uint32_t)evt0op2 << 20));
 }
 
 /**
@@ -10271,7 +10271,7 @@ __INLINE void riu_evt0op2_setf(uint8_t evt0op2)
  */
 __INLINE uint8_t riu_evt0op3_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR);
     return ((localVal & ((uint32_t)0x000FC000)) >> 14);
 }
 
@@ -10284,7 +10284,7 @@ __INLINE uint8_t riu_evt0op3_getf(void)
  */
 __INLINE void riu_evt0op3_setf(uint8_t evt0op3)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT0_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT0_ADDR) & ~((uint32_t)0x000FC000)) | ((uint32_t)evt0op3 << 14));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR) & ~((uint32_t)0x000FC000)) | ((uint32_t)evt0op3 << 14));
 }
 
 /**
@@ -10296,7 +10296,7 @@ __INLINE void riu_evt0op3_setf(uint8_t evt0op3)
  */
 __INLINE uint8_t riu_evt0pathcomb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR);
     return ((localVal & ((uint32_t)0x00002000)) >> 13);
 }
 
@@ -10309,7 +10309,7 @@ __INLINE uint8_t riu_evt0pathcomb_getf(void)
  */
 __INLINE void riu_evt0pathcomb_setf(uint8_t evt0pathcomb)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT0_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT0_ADDR) & ~((uint32_t)0x00002000)) | ((uint32_t)evt0pathcomb << 13));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR) & ~((uint32_t)0x00002000)) | ((uint32_t)evt0pathcomb << 13));
 }
 
 /**
@@ -10321,7 +10321,7 @@ __INLINE void riu_evt0pathcomb_setf(uint8_t evt0pathcomb)
  */
 __INLINE uint8_t riu_evt0opcomb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR);
     return ((localVal & ((uint32_t)0x00001C00)) >> 10);
 }
 
@@ -10334,7 +10334,7 @@ __INLINE uint8_t riu_evt0opcomb_getf(void)
  */
 __INLINE void riu_evt0opcomb_setf(uint8_t evt0opcomb)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT0_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT0_ADDR) & ~((uint32_t)0x00001C00)) | ((uint32_t)evt0opcomb << 10));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR) & ~((uint32_t)0x00001C00)) | ((uint32_t)evt0opcomb << 10));
 }
 
 /**
@@ -10346,7 +10346,7 @@ __INLINE void riu_evt0opcomb_setf(uint8_t evt0opcomb)
  */
 __INLINE uint16_t riu_evt0tgtadd_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR);
     return ((localVal & ((uint32_t)0x000001FF)) >> 0);
 }
 
@@ -10359,7 +10359,7 @@ __INLINE uint16_t riu_evt0tgtadd_getf(void)
  */
 __INLINE void riu_evt0tgtadd_setf(uint16_t evt0tgtadd)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT0_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT0_ADDR) & ~((uint32_t)0x000001FF)) | ((uint32_t)evt0tgtadd << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT0_ADDR) & ~((uint32_t)0x000001FF)) | ((uint32_t)evt0tgtadd << 0));
 }
 
 /// @}
@@ -10396,7 +10396,7 @@ __INLINE void riu_evt0tgtadd_setf(uint16_t evt0tgtadd)
  */
 __INLINE uint32_t riu_rwnxagcevt1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCEVT1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR);
 }
 
 /**
@@ -10406,7 +10406,7 @@ __INLINE uint32_t riu_rwnxagcevt1_get(void)
  */
 __INLINE void riu_rwnxagcevt1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT1_ADDR, value);
 }
 
 // field definitions
@@ -10471,7 +10471,7 @@ __INLINE void riu_rwnxagcevt1_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcevt1_pack(uint8_t evt1op1, uint8_t evt1op2, uint8_t evt1op3, uint8_t evt1pathcomb, uint8_t evt1opcomb, uint16_t evt1tgtadd)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT1_ADDR,  ((uint32_t)evt1op1 << 26) | ((uint32_t)evt1op2 << 20) | ((uint32_t)evt1op3 << 14) | ((uint32_t)evt1pathcomb << 13) | ((uint32_t)evt1opcomb << 10) | ((uint32_t)evt1tgtadd << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT1_ADDR,  ((uint32_t)evt1op1 << 26) | ((uint32_t)evt1op2 << 20) | ((uint32_t)evt1op3 << 14) | ((uint32_t)evt1pathcomb << 13) | ((uint32_t)evt1opcomb << 10) | ((uint32_t)evt1tgtadd << 0));
 }
 
 /**
@@ -10489,7 +10489,7 @@ __INLINE void riu_rwnxagcevt1_pack(uint8_t evt1op1, uint8_t evt1op2, uint8_t evt
  */
 __INLINE void riu_rwnxagcevt1_unpack(uint8_t* evt1op1, uint8_t* evt1op2, uint8_t* evt1op3, uint8_t* evt1pathcomb, uint8_t* evt1opcomb, uint16_t* evt1tgtadd)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR);
 
     *evt1op1 = (localVal & ((uint32_t)0xFC000000)) >> 26;
     *evt1op2 = (localVal & ((uint32_t)0x03F00000)) >> 20;
@@ -10508,7 +10508,7 @@ __INLINE void riu_rwnxagcevt1_unpack(uint8_t* evt1op1, uint8_t* evt1op2, uint8_t
  */
 __INLINE uint8_t riu_evt1op1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR);
     return ((localVal & ((uint32_t)0xFC000000)) >> 26);
 }
 
@@ -10521,7 +10521,7 @@ __INLINE uint8_t riu_evt1op1_getf(void)
  */
 __INLINE void riu_evt1op1_setf(uint8_t evt1op1)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT1_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT1_ADDR) & ~((uint32_t)0xFC000000)) | ((uint32_t)evt1op1 << 26));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR) & ~((uint32_t)0xFC000000)) | ((uint32_t)evt1op1 << 26));
 }
 
 /**
@@ -10533,7 +10533,7 @@ __INLINE void riu_evt1op1_setf(uint8_t evt1op1)
  */
 __INLINE uint8_t riu_evt1op2_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR);
     return ((localVal & ((uint32_t)0x03F00000)) >> 20);
 }
 
@@ -10546,7 +10546,7 @@ __INLINE uint8_t riu_evt1op2_getf(void)
  */
 __INLINE void riu_evt1op2_setf(uint8_t evt1op2)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT1_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT1_ADDR) & ~((uint32_t)0x03F00000)) | ((uint32_t)evt1op2 << 20));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR) & ~((uint32_t)0x03F00000)) | ((uint32_t)evt1op2 << 20));
 }
 
 /**
@@ -10558,7 +10558,7 @@ __INLINE void riu_evt1op2_setf(uint8_t evt1op2)
  */
 __INLINE uint8_t riu_evt1op3_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR);
     return ((localVal & ((uint32_t)0x000FC000)) >> 14);
 }
 
@@ -10571,7 +10571,7 @@ __INLINE uint8_t riu_evt1op3_getf(void)
  */
 __INLINE void riu_evt1op3_setf(uint8_t evt1op3)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT1_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT1_ADDR) & ~((uint32_t)0x000FC000)) | ((uint32_t)evt1op3 << 14));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR) & ~((uint32_t)0x000FC000)) | ((uint32_t)evt1op3 << 14));
 }
 
 /**
@@ -10583,7 +10583,7 @@ __INLINE void riu_evt1op3_setf(uint8_t evt1op3)
  */
 __INLINE uint8_t riu_evt1pathcomb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR);
     return ((localVal & ((uint32_t)0x00002000)) >> 13);
 }
 
@@ -10596,7 +10596,7 @@ __INLINE uint8_t riu_evt1pathcomb_getf(void)
  */
 __INLINE void riu_evt1pathcomb_setf(uint8_t evt1pathcomb)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT1_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT1_ADDR) & ~((uint32_t)0x00002000)) | ((uint32_t)evt1pathcomb << 13));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR) & ~((uint32_t)0x00002000)) | ((uint32_t)evt1pathcomb << 13));
 }
 
 /**
@@ -10608,7 +10608,7 @@ __INLINE void riu_evt1pathcomb_setf(uint8_t evt1pathcomb)
  */
 __INLINE uint8_t riu_evt1opcomb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR);
     return ((localVal & ((uint32_t)0x00001C00)) >> 10);
 }
 
@@ -10621,7 +10621,7 @@ __INLINE uint8_t riu_evt1opcomb_getf(void)
  */
 __INLINE void riu_evt1opcomb_setf(uint8_t evt1opcomb)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT1_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT1_ADDR) & ~((uint32_t)0x00001C00)) | ((uint32_t)evt1opcomb << 10));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR) & ~((uint32_t)0x00001C00)) | ((uint32_t)evt1opcomb << 10));
 }
 
 /**
@@ -10633,7 +10633,7 @@ __INLINE void riu_evt1opcomb_setf(uint8_t evt1opcomb)
  */
 __INLINE uint16_t riu_evt1tgtadd_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR);
     return ((localVal & ((uint32_t)0x000001FF)) >> 0);
 }
 
@@ -10646,7 +10646,7 @@ __INLINE uint16_t riu_evt1tgtadd_getf(void)
  */
 __INLINE void riu_evt1tgtadd_setf(uint16_t evt1tgtadd)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT1_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT1_ADDR) & ~((uint32_t)0x000001FF)) | ((uint32_t)evt1tgtadd << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT1_ADDR) & ~((uint32_t)0x000001FF)) | ((uint32_t)evt1tgtadd << 0));
 }
 
 /// @}
@@ -10683,7 +10683,7 @@ __INLINE void riu_evt1tgtadd_setf(uint16_t evt1tgtadd)
  */
 __INLINE uint32_t riu_rwnxagcevt2_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCEVT2_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR);
 }
 
 /**
@@ -10693,7 +10693,7 @@ __INLINE uint32_t riu_rwnxagcevt2_get(void)
  */
 __INLINE void riu_rwnxagcevt2_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT2_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT2_ADDR, value);
 }
 
 // field definitions
@@ -10758,7 +10758,7 @@ __INLINE void riu_rwnxagcevt2_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcevt2_pack(uint8_t evt2op1, uint8_t evt2op2, uint8_t evt2op3, uint8_t evt2pathcomb, uint8_t evt2opcomb, uint16_t evt2tgtadd)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT2_ADDR,  ((uint32_t)evt2op1 << 26) | ((uint32_t)evt2op2 << 20) | ((uint32_t)evt2op3 << 14) | ((uint32_t)evt2pathcomb << 13) | ((uint32_t)evt2opcomb << 10) | ((uint32_t)evt2tgtadd << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT2_ADDR,  ((uint32_t)evt2op1 << 26) | ((uint32_t)evt2op2 << 20) | ((uint32_t)evt2op3 << 14) | ((uint32_t)evt2pathcomb << 13) | ((uint32_t)evt2opcomb << 10) | ((uint32_t)evt2tgtadd << 0));
 }
 
 /**
@@ -10776,7 +10776,7 @@ __INLINE void riu_rwnxagcevt2_pack(uint8_t evt2op1, uint8_t evt2op2, uint8_t evt
  */
 __INLINE void riu_rwnxagcevt2_unpack(uint8_t* evt2op1, uint8_t* evt2op2, uint8_t* evt2op3, uint8_t* evt2pathcomb, uint8_t* evt2opcomb, uint16_t* evt2tgtadd)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR);
 
     *evt2op1 = (localVal & ((uint32_t)0xFC000000)) >> 26;
     *evt2op2 = (localVal & ((uint32_t)0x03F00000)) >> 20;
@@ -10795,7 +10795,7 @@ __INLINE void riu_rwnxagcevt2_unpack(uint8_t* evt2op1, uint8_t* evt2op2, uint8_t
  */
 __INLINE uint8_t riu_evt2op1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR);
     return ((localVal & ((uint32_t)0xFC000000)) >> 26);
 }
 
@@ -10808,7 +10808,7 @@ __INLINE uint8_t riu_evt2op1_getf(void)
  */
 __INLINE void riu_evt2op1_setf(uint8_t evt2op1)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT2_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT2_ADDR) & ~((uint32_t)0xFC000000)) | ((uint32_t)evt2op1 << 26));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR) & ~((uint32_t)0xFC000000)) | ((uint32_t)evt2op1 << 26));
 }
 
 /**
@@ -10820,7 +10820,7 @@ __INLINE void riu_evt2op1_setf(uint8_t evt2op1)
  */
 __INLINE uint8_t riu_evt2op2_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR);
     return ((localVal & ((uint32_t)0x03F00000)) >> 20);
 }
 
@@ -10833,7 +10833,7 @@ __INLINE uint8_t riu_evt2op2_getf(void)
  */
 __INLINE void riu_evt2op2_setf(uint8_t evt2op2)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT2_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT2_ADDR) & ~((uint32_t)0x03F00000)) | ((uint32_t)evt2op2 << 20));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR) & ~((uint32_t)0x03F00000)) | ((uint32_t)evt2op2 << 20));
 }
 
 /**
@@ -10845,7 +10845,7 @@ __INLINE void riu_evt2op2_setf(uint8_t evt2op2)
  */
 __INLINE uint8_t riu_evt2op3_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR);
     return ((localVal & ((uint32_t)0x000FC000)) >> 14);
 }
 
@@ -10858,7 +10858,7 @@ __INLINE uint8_t riu_evt2op3_getf(void)
  */
 __INLINE void riu_evt2op3_setf(uint8_t evt2op3)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT2_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT2_ADDR) & ~((uint32_t)0x000FC000)) | ((uint32_t)evt2op3 << 14));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR) & ~((uint32_t)0x000FC000)) | ((uint32_t)evt2op3 << 14));
 }
 
 /**
@@ -10870,7 +10870,7 @@ __INLINE void riu_evt2op3_setf(uint8_t evt2op3)
  */
 __INLINE uint8_t riu_evt2pathcomb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR);
     return ((localVal & ((uint32_t)0x00002000)) >> 13);
 }
 
@@ -10883,7 +10883,7 @@ __INLINE uint8_t riu_evt2pathcomb_getf(void)
  */
 __INLINE void riu_evt2pathcomb_setf(uint8_t evt2pathcomb)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT2_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT2_ADDR) & ~((uint32_t)0x00002000)) | ((uint32_t)evt2pathcomb << 13));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR) & ~((uint32_t)0x00002000)) | ((uint32_t)evt2pathcomb << 13));
 }
 
 /**
@@ -10895,7 +10895,7 @@ __INLINE void riu_evt2pathcomb_setf(uint8_t evt2pathcomb)
  */
 __INLINE uint8_t riu_evt2opcomb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR);
     return ((localVal & ((uint32_t)0x00001C00)) >> 10);
 }
 
@@ -10908,7 +10908,7 @@ __INLINE uint8_t riu_evt2opcomb_getf(void)
  */
 __INLINE void riu_evt2opcomb_setf(uint8_t evt2opcomb)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT2_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT2_ADDR) & ~((uint32_t)0x00001C00)) | ((uint32_t)evt2opcomb << 10));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR) & ~((uint32_t)0x00001C00)) | ((uint32_t)evt2opcomb << 10));
 }
 
 /**
@@ -10920,7 +10920,7 @@ __INLINE void riu_evt2opcomb_setf(uint8_t evt2opcomb)
  */
 __INLINE uint16_t riu_evt2tgtadd_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR);
     return ((localVal & ((uint32_t)0x000001FF)) >> 0);
 }
 
@@ -10933,7 +10933,7 @@ __INLINE uint16_t riu_evt2tgtadd_getf(void)
  */
 __INLINE void riu_evt2tgtadd_setf(uint16_t evt2tgtadd)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT2_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT2_ADDR) & ~((uint32_t)0x000001FF)) | ((uint32_t)evt2tgtadd << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT2_ADDR) & ~((uint32_t)0x000001FF)) | ((uint32_t)evt2tgtadd << 0));
 }
 
 /// @}
@@ -10970,7 +10970,7 @@ __INLINE void riu_evt2tgtadd_setf(uint16_t evt2tgtadd)
  */
 __INLINE uint32_t riu_rwnxagcevt3_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCEVT3_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR);
 }
 
 /**
@@ -10980,7 +10980,7 @@ __INLINE uint32_t riu_rwnxagcevt3_get(void)
  */
 __INLINE void riu_rwnxagcevt3_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT3_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT3_ADDR, value);
 }
 
 // field definitions
@@ -11045,7 +11045,7 @@ __INLINE void riu_rwnxagcevt3_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcevt3_pack(uint8_t evt3op1, uint8_t evt3op2, uint8_t evt3op3, uint8_t evt3pathcomb, uint8_t evt3opcomb, uint16_t evt3tgtadd)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT3_ADDR,  ((uint32_t)evt3op1 << 26) | ((uint32_t)evt3op2 << 20) | ((uint32_t)evt3op3 << 14) | ((uint32_t)evt3pathcomb << 13) | ((uint32_t)evt3opcomb << 10) | ((uint32_t)evt3tgtadd << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT3_ADDR,  ((uint32_t)evt3op1 << 26) | ((uint32_t)evt3op2 << 20) | ((uint32_t)evt3op3 << 14) | ((uint32_t)evt3pathcomb << 13) | ((uint32_t)evt3opcomb << 10) | ((uint32_t)evt3tgtadd << 0));
 }
 
 /**
@@ -11063,7 +11063,7 @@ __INLINE void riu_rwnxagcevt3_pack(uint8_t evt3op1, uint8_t evt3op2, uint8_t evt
  */
 __INLINE void riu_rwnxagcevt3_unpack(uint8_t* evt3op1, uint8_t* evt3op2, uint8_t* evt3op3, uint8_t* evt3pathcomb, uint8_t* evt3opcomb, uint16_t* evt3tgtadd)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR);
 
     *evt3op1 = (localVal & ((uint32_t)0xFC000000)) >> 26;
     *evt3op2 = (localVal & ((uint32_t)0x03F00000)) >> 20;
@@ -11082,7 +11082,7 @@ __INLINE void riu_rwnxagcevt3_unpack(uint8_t* evt3op1, uint8_t* evt3op2, uint8_t
  */
 __INLINE uint8_t riu_evt3op1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR);
     return ((localVal & ((uint32_t)0xFC000000)) >> 26);
 }
 
@@ -11095,7 +11095,7 @@ __INLINE uint8_t riu_evt3op1_getf(void)
  */
 __INLINE void riu_evt3op1_setf(uint8_t evt3op1)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT3_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT3_ADDR) & ~((uint32_t)0xFC000000)) | ((uint32_t)evt3op1 << 26));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT3_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR) & ~((uint32_t)0xFC000000)) | ((uint32_t)evt3op1 << 26));
 }
 
 /**
@@ -11107,7 +11107,7 @@ __INLINE void riu_evt3op1_setf(uint8_t evt3op1)
  */
 __INLINE uint8_t riu_evt3op2_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR);
     return ((localVal & ((uint32_t)0x03F00000)) >> 20);
 }
 
@@ -11120,7 +11120,7 @@ __INLINE uint8_t riu_evt3op2_getf(void)
  */
 __INLINE void riu_evt3op2_setf(uint8_t evt3op2)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT3_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT3_ADDR) & ~((uint32_t)0x03F00000)) | ((uint32_t)evt3op2 << 20));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT3_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR) & ~((uint32_t)0x03F00000)) | ((uint32_t)evt3op2 << 20));
 }
 
 /**
@@ -11132,7 +11132,7 @@ __INLINE void riu_evt3op2_setf(uint8_t evt3op2)
  */
 __INLINE uint8_t riu_evt3op3_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR);
     return ((localVal & ((uint32_t)0x000FC000)) >> 14);
 }
 
@@ -11145,7 +11145,7 @@ __INLINE uint8_t riu_evt3op3_getf(void)
  */
 __INLINE void riu_evt3op3_setf(uint8_t evt3op3)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT3_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT3_ADDR) & ~((uint32_t)0x000FC000)) | ((uint32_t)evt3op3 << 14));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT3_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR) & ~((uint32_t)0x000FC000)) | ((uint32_t)evt3op3 << 14));
 }
 
 /**
@@ -11157,7 +11157,7 @@ __INLINE void riu_evt3op3_setf(uint8_t evt3op3)
  */
 __INLINE uint8_t riu_evt3pathcomb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR);
     return ((localVal & ((uint32_t)0x00002000)) >> 13);
 }
 
@@ -11170,7 +11170,7 @@ __INLINE uint8_t riu_evt3pathcomb_getf(void)
  */
 __INLINE void riu_evt3pathcomb_setf(uint8_t evt3pathcomb)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT3_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT3_ADDR) & ~((uint32_t)0x00002000)) | ((uint32_t)evt3pathcomb << 13));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT3_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR) & ~((uint32_t)0x00002000)) | ((uint32_t)evt3pathcomb << 13));
 }
 
 /**
@@ -11182,7 +11182,7 @@ __INLINE void riu_evt3pathcomb_setf(uint8_t evt3pathcomb)
  */
 __INLINE uint8_t riu_evt3opcomb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR);
     return ((localVal & ((uint32_t)0x00001C00)) >> 10);
 }
 
@@ -11195,7 +11195,7 @@ __INLINE uint8_t riu_evt3opcomb_getf(void)
  */
 __INLINE void riu_evt3opcomb_setf(uint8_t evt3opcomb)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT3_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT3_ADDR) & ~((uint32_t)0x00001C00)) | ((uint32_t)evt3opcomb << 10));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT3_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR) & ~((uint32_t)0x00001C00)) | ((uint32_t)evt3opcomb << 10));
 }
 
 /**
@@ -11207,7 +11207,7 @@ __INLINE void riu_evt3opcomb_setf(uint8_t evt3opcomb)
  */
 __INLINE uint16_t riu_evt3tgtadd_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCEVT3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR);
     return ((localVal & ((uint32_t)0x000001FF)) >> 0);
 }
 
@@ -11220,7 +11220,7 @@ __INLINE uint16_t riu_evt3tgtadd_getf(void)
  */
 __INLINE void riu_evt3tgtadd_setf(uint16_t evt3tgtadd)
 {
-    REG_PL_WR(RIU_RWNXAGCEVT3_ADDR, (REG_PL_RD(RIU_RWNXAGCEVT3_ADDR) & ~((uint32_t)0x000001FF)) | ((uint32_t)evt3tgtadd << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCEVT3_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCEVT3_ADDR) & ~((uint32_t)0x000001FF)) | ((uint32_t)evt3tgtadd << 0));
 }
 
 /// @}
@@ -11261,7 +11261,7 @@ __INLINE void riu_evt3tgtadd_setf(uint16_t evt3tgtadd)
  */
 __INLINE uint32_t riu_rwnxagccntl_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCCNTL_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR);
 }
 
 /**
@@ -11271,7 +11271,7 @@ __INLINE uint32_t riu_rwnxagccntl_get(void)
  */
 __INLINE void riu_rwnxagccntl_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCCNTL_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCNTL_ADDR, value);
 }
 
 // field definitions
@@ -11360,7 +11360,7 @@ __INLINE void riu_rwnxagccntl_set(uint32_t value)
  */
 __INLINE void riu_rwnxagccntl_pack(uint8_t agcramready, uint8_t agcrommodesel, uint8_t htstfgainen, uint8_t agcfsmreset, uint8_t radardeten, uint8_t rifsdeten, uint8_t dsssonly, uint8_t ofdmonly, uint8_t gpstatus, uint8_t combpathsel)
 {
-    REG_PL_WR(RIU_RWNXAGCCNTL_ADDR,  ((uint32_t)agcramready << 19) | ((uint32_t)agcrommodesel << 17) | ((uint32_t)htstfgainen << 16) | ((uint32_t)agcfsmreset << 12) | ((uint32_t)radardeten << 11) | ((uint32_t)rifsdeten << 10) | ((uint32_t)dsssonly << 9) | ((uint32_t)ofdmonly << 8) | ((uint32_t)gpstatus << 4) | ((uint32_t)combpathsel << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCNTL_ADDR,  ((uint32_t)agcramready << 19) | ((uint32_t)agcrommodesel << 17) | ((uint32_t)htstfgainen << 16) | ((uint32_t)agcfsmreset << 12) | ((uint32_t)radardeten << 11) | ((uint32_t)rifsdeten << 10) | ((uint32_t)dsssonly << 9) | ((uint32_t)ofdmonly << 8) | ((uint32_t)gpstatus << 4) | ((uint32_t)combpathsel << 0));
 }
 
 /**
@@ -11382,7 +11382,7 @@ __INLINE void riu_rwnxagccntl_pack(uint8_t agcramready, uint8_t agcrommodesel, u
  */
 __INLINE void riu_rwnxagccntl_unpack(uint8_t* agcramready, uint8_t* agcrommodesel, uint8_t* htstfgainen, uint8_t* agcfsmreset, uint8_t* radardeten, uint8_t* rifsdeten, uint8_t* dsssonly, uint8_t* ofdmonly, uint8_t* gpstatus, uint8_t* combpathsel)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR);
 
     *agcramready = (localVal & ((uint32_t)0x00080000)) >> 19;
     *agcrommodesel = (localVal & ((uint32_t)0x00060000)) >> 17;
@@ -11405,7 +11405,7 @@ __INLINE void riu_rwnxagccntl_unpack(uint8_t* agcramready, uint8_t* agcrommodese
  */
 __INLINE uint8_t riu_agcram_ready_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00080000)) >> 19);
 }
 
@@ -11418,7 +11418,7 @@ __INLINE uint8_t riu_agcram_ready_getf(void)
  */
 __INLINE void riu_agcram_ready_setf(uint8_t agcramready)
 {
-    REG_PL_WR(RIU_RWNXAGCCNTL_ADDR, (REG_PL_RD(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00080000)) | ((uint32_t)agcramready << 19));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00080000)) | ((uint32_t)agcramready << 19));
 }
 
 /**
@@ -11430,7 +11430,7 @@ __INLINE void riu_agcram_ready_setf(uint8_t agcramready)
  */
 __INLINE uint8_t riu_agcrom_mode_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00060000)) >> 17);
 }
 
@@ -11443,7 +11443,7 @@ __INLINE uint8_t riu_agcrom_mode_sel_getf(void)
  */
 __INLINE void riu_agcrom_mode_sel_setf(uint8_t agcrommodesel)
 {
-    REG_PL_WR(RIU_RWNXAGCCNTL_ADDR, (REG_PL_RD(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00060000)) | ((uint32_t)agcrommodesel << 17));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00060000)) | ((uint32_t)agcrommodesel << 17));
 }
 
 /**
@@ -11455,7 +11455,7 @@ __INLINE void riu_agcrom_mode_sel_setf(uint8_t agcrommodesel)
  */
 __INLINE uint8_t riu_htstfgainen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00010000)) >> 16);
 }
 
@@ -11468,7 +11468,7 @@ __INLINE uint8_t riu_htstfgainen_getf(void)
  */
 __INLINE void riu_htstfgainen_setf(uint8_t htstfgainen)
 {
-    REG_PL_WR(RIU_RWNXAGCCNTL_ADDR, (REG_PL_RD(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00010000)) | ((uint32_t)htstfgainen << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00010000)) | ((uint32_t)htstfgainen << 16));
 }
 
 /**
@@ -11480,7 +11480,7 @@ __INLINE void riu_htstfgainen_setf(uint8_t htstfgainen)
  */
 __INLINE uint8_t riu_agcfsmreset_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00001000)) >> 12);
 }
 
@@ -11493,7 +11493,7 @@ __INLINE uint8_t riu_agcfsmreset_getf(void)
  */
 __INLINE void riu_agcfsmreset_setf(uint8_t agcfsmreset)
 {
-    REG_PL_WR(RIU_RWNXAGCCNTL_ADDR, (REG_PL_RD(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)agcfsmreset << 12));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)agcfsmreset << 12));
 }
 
 /**
@@ -11505,7 +11505,7 @@ __INLINE void riu_agcfsmreset_setf(uint8_t agcfsmreset)
  */
 __INLINE uint8_t riu_radardeten_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00000800)) >> 11);
 }
 
@@ -11518,7 +11518,7 @@ __INLINE uint8_t riu_radardeten_getf(void)
  */
 __INLINE void riu_radardeten_setf(uint8_t radardeten)
 {
-    REG_PL_WR(RIU_RWNXAGCCNTL_ADDR, (REG_PL_RD(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)radardeten << 11));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)radardeten << 11));
 }
 
 /**
@@ -11530,7 +11530,7 @@ __INLINE void riu_radardeten_setf(uint8_t radardeten)
  */
 __INLINE uint8_t riu_rifsdeten_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00000400)) >> 10);
 }
 
@@ -11543,7 +11543,7 @@ __INLINE uint8_t riu_rifsdeten_getf(void)
  */
 __INLINE void riu_rifsdeten_setf(uint8_t rifsdeten)
 {
-    REG_PL_WR(RIU_RWNXAGCCNTL_ADDR, (REG_PL_RD(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)rifsdeten << 10));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)rifsdeten << 10));
 }
 
 /**
@@ -11555,7 +11555,7 @@ __INLINE void riu_rifsdeten_setf(uint8_t rifsdeten)
  */
 __INLINE uint8_t riu_dsssonly_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00000200)) >> 9);
 }
 
@@ -11568,7 +11568,7 @@ __INLINE uint8_t riu_dsssonly_getf(void)
  */
 __INLINE void riu_dsssonly_setf(uint8_t dsssonly)
 {
-    REG_PL_WR(RIU_RWNXAGCCNTL_ADDR, (REG_PL_RD(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)dsssonly << 9));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)dsssonly << 9));
 }
 
 /**
@@ -11580,7 +11580,7 @@ __INLINE void riu_dsssonly_setf(uint8_t dsssonly)
  */
 __INLINE uint8_t riu_ofdmonly_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -11593,7 +11593,7 @@ __INLINE uint8_t riu_ofdmonly_getf(void)
  */
 __INLINE void riu_ofdmonly_setf(uint8_t ofdmonly)
 {
-    REG_PL_WR(RIU_RWNXAGCCNTL_ADDR, (REG_PL_RD(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)ofdmonly << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)ofdmonly << 8));
 }
 
 /**
@@ -11605,7 +11605,7 @@ __INLINE void riu_ofdmonly_setf(uint8_t ofdmonly)
  */
 __INLINE uint8_t riu_gpstatus_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR);
     return ((localVal & ((uint32_t)0x000000F0)) >> 4);
 }
 
@@ -11618,7 +11618,7 @@ __INLINE uint8_t riu_gpstatus_getf(void)
  */
 __INLINE void riu_gpstatus_setf(uint8_t gpstatus)
 {
-    REG_PL_WR(RIU_RWNXAGCCNTL_ADDR, (REG_PL_RD(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x000000F0)) | ((uint32_t)gpstatus << 4));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x000000F0)) | ((uint32_t)gpstatus << 4));
 }
 
 /**
@@ -11630,7 +11630,7 @@ __INLINE void riu_gpstatus_setf(uint8_t gpstatus)
  */
 __INLINE uint8_t riu_combpathsel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00000003)) >> 0);
 }
 
@@ -11643,7 +11643,7 @@ __INLINE uint8_t riu_combpathsel_getf(void)
  */
 __INLINE void riu_combpathsel_setf(uint8_t combpathsel)
 {
-    REG_PL_WR(RIU_RWNXAGCCNTL_ADDR, (REG_PL_RD(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)combpathsel << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCNTL_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)combpathsel << 0));
 }
 
 /// @}
@@ -11678,7 +11678,7 @@ __INLINE void riu_combpathsel_setf(uint8_t combpathsel)
  */
 __INLINE uint32_t riu_rwnxagcdsp0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCDSP0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCDSP0_ADDR);
 }
 
 /**
@@ -11688,7 +11688,7 @@ __INLINE uint32_t riu_rwnxagcdsp0_get(void)
  */
 __INLINE void riu_rwnxagcdsp0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP0_ADDR, value);
 }
 
 // field definitions
@@ -11737,7 +11737,7 @@ __INLINE void riu_rwnxagcdsp0_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcdsp0_pack(uint8_t nbitadc, uint8_t vpeakadcqdbv, uint8_t adcpowmindbv, uint8_t adcpowbiasqdbv)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP0_ADDR,  ((uint32_t)nbitadc << 24) | ((uint32_t)vpeakadcqdbv << 16) | ((uint32_t)adcpowmindbv << 8) | ((uint32_t)adcpowbiasqdbv << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP0_ADDR,  ((uint32_t)nbitadc << 24) | ((uint32_t)vpeakadcqdbv << 16) | ((uint32_t)adcpowmindbv << 8) | ((uint32_t)adcpowbiasqdbv << 0));
 }
 
 /**
@@ -11753,7 +11753,7 @@ __INLINE void riu_rwnxagcdsp0_pack(uint8_t nbitadc, uint8_t vpeakadcqdbv, uint8_
  */
 __INLINE void riu_rwnxagcdsp0_unpack(uint8_t* nbitadc, uint8_t* vpeakadcqdbv, uint8_t* adcpowmindbv, uint8_t* adcpowbiasqdbv)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP0_ADDR);
 
     *nbitadc = (localVal & ((uint32_t)0x0F000000)) >> 24;
     *vpeakadcqdbv = (localVal & ((uint32_t)0x00FF0000)) >> 16;
@@ -11770,7 +11770,7 @@ __INLINE void riu_rwnxagcdsp0_unpack(uint8_t* nbitadc, uint8_t* vpeakadcqdbv, ui
  */
 __INLINE uint8_t riu_nbitadc_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP0_ADDR);
     return ((localVal & ((uint32_t)0x0F000000)) >> 24);
 }
 
@@ -11783,7 +11783,7 @@ __INLINE uint8_t riu_nbitadc_getf(void)
  */
 __INLINE void riu_nbitadc_setf(uint8_t nbitadc)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP0_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP0_ADDR) & ~((uint32_t)0x0F000000)) | ((uint32_t)nbitadc << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP0_ADDR) & ~((uint32_t)0x0F000000)) | ((uint32_t)nbitadc << 24));
 }
 
 /**
@@ -11795,7 +11795,7 @@ __INLINE void riu_nbitadc_setf(uint8_t nbitadc)
  */
 __INLINE uint8_t riu_vpeakadcqdbv_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP0_ADDR);
     return ((localVal & ((uint32_t)0x00FF0000)) >> 16);
 }
 
@@ -11808,7 +11808,7 @@ __INLINE uint8_t riu_vpeakadcqdbv_getf(void)
  */
 __INLINE void riu_vpeakadcqdbv_setf(uint8_t vpeakadcqdbv)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP0_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP0_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)vpeakadcqdbv << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP0_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)vpeakadcqdbv << 16));
 }
 
 /**
@@ -11820,7 +11820,7 @@ __INLINE void riu_vpeakadcqdbv_setf(uint8_t vpeakadcqdbv)
  */
 __INLINE uint8_t riu_adcpowmindbv_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP0_ADDR);
     return ((localVal & ((uint32_t)0x0000FF00)) >> 8);
 }
 
@@ -11833,7 +11833,7 @@ __INLINE uint8_t riu_adcpowmindbv_getf(void)
  */
 __INLINE void riu_adcpowmindbv_setf(uint8_t adcpowmindbv)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP0_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP0_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)adcpowmindbv << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP0_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)adcpowmindbv << 8));
 }
 
 /**
@@ -11845,7 +11845,7 @@ __INLINE void riu_adcpowmindbv_setf(uint8_t adcpowmindbv)
  */
 __INLINE uint8_t riu_adcpowbiasqdbv_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP0_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -11858,7 +11858,7 @@ __INLINE uint8_t riu_adcpowbiasqdbv_getf(void)
  */
 __INLINE void riu_adcpowbiasqdbv_setf(uint8_t adcpowbiasqdbv)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP0_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP0_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)adcpowbiasqdbv << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP0_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)adcpowbiasqdbv << 0));
 }
 
 /// @}
@@ -11891,7 +11891,7 @@ __INLINE void riu_adcpowbiasqdbv_setf(uint8_t adcpowbiasqdbv)
  */
 __INLINE uint32_t riu_rwnxagcdsp1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCDSP1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCDSP1_ADDR);
 }
 
 /**
@@ -11901,7 +11901,7 @@ __INLINE uint32_t riu_rwnxagcdsp1_get(void)
  */
 __INLINE void riu_rwnxagcdsp1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP1_ADDR, value);
 }
 
 // field definitions
@@ -11932,7 +11932,7 @@ __INLINE void riu_rwnxagcdsp1_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcdsp1_pack(uint8_t adcpowmindbm, uint8_t adcpowbiasqdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP1_ADDR,  ((uint32_t)adcpowmindbm << 8) | ((uint32_t)adcpowbiasqdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP1_ADDR,  ((uint32_t)adcpowmindbm << 8) | ((uint32_t)adcpowbiasqdbm << 0));
 }
 
 /**
@@ -11946,7 +11946,7 @@ __INLINE void riu_rwnxagcdsp1_pack(uint8_t adcpowmindbm, uint8_t adcpowbiasqdbm)
  */
 __INLINE void riu_rwnxagcdsp1_unpack(uint8_t* adcpowmindbm, uint8_t* adcpowbiasqdbm)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP1_ADDR);
 
     *adcpowmindbm = (localVal & ((uint32_t)0x0000FF00)) >> 8;
     *adcpowbiasqdbm = (localVal & ((uint32_t)0x000000FF)) >> 0;
@@ -11961,7 +11961,7 @@ __INLINE void riu_rwnxagcdsp1_unpack(uint8_t* adcpowmindbm, uint8_t* adcpowbiasq
  */
 __INLINE uint8_t riu_adcpowmindbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP1_ADDR);
     return ((localVal & ((uint32_t)0x0000FF00)) >> 8);
 }
 
@@ -11974,7 +11974,7 @@ __INLINE uint8_t riu_adcpowmindbm_getf(void)
  */
 __INLINE void riu_adcpowmindbm_setf(uint8_t adcpowmindbm)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP1_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP1_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)adcpowmindbm << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP1_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)adcpowmindbm << 8));
 }
 
 /**
@@ -11986,7 +11986,7 @@ __INLINE void riu_adcpowmindbm_setf(uint8_t adcpowmindbm)
  */
 __INLINE uint8_t riu_adcpowbiasqdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP1_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -11999,7 +11999,7 @@ __INLINE uint8_t riu_adcpowbiasqdbm_getf(void)
  */
 __INLINE void riu_adcpowbiasqdbm_setf(uint8_t adcpowbiasqdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP1_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP1_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)adcpowbiasqdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP1_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)adcpowbiasqdbm << 0));
 }
 
 /// @}
@@ -12033,7 +12033,7 @@ __INLINE void riu_adcpowbiasqdbm_setf(uint8_t adcpowbiasqdbm)
  */
 __INLINE uint32_t riu_rwnxagcdsp2_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCDSP2_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCDSP2_ADDR);
 }
 
 /**
@@ -12043,7 +12043,7 @@ __INLINE uint32_t riu_rwnxagcdsp2_get(void)
  */
 __INLINE void riu_rwnxagcdsp2_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP2_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP2_ADDR, value);
 }
 
 // field definitions
@@ -12083,7 +12083,7 @@ __INLINE void riu_rwnxagcdsp2_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcdsp2_pack(uint8_t inbdpow40sbiasqdb, uint8_t inbdpow20sbiasqdb, uint8_t inbdpow20pbiasqdb)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP2_ADDR,  ((uint32_t)inbdpow40sbiasqdb << 16) | ((uint32_t)inbdpow20sbiasqdb << 8) | ((uint32_t)inbdpow20pbiasqdb << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP2_ADDR,  ((uint32_t)inbdpow40sbiasqdb << 16) | ((uint32_t)inbdpow20sbiasqdb << 8) | ((uint32_t)inbdpow20pbiasqdb << 0));
 }
 
 /**
@@ -12098,7 +12098,7 @@ __INLINE void riu_rwnxagcdsp2_pack(uint8_t inbdpow40sbiasqdb, uint8_t inbdpow20s
  */
 __INLINE void riu_rwnxagcdsp2_unpack(uint8_t* inbdpow40sbiasqdb, uint8_t* inbdpow20sbiasqdb, uint8_t* inbdpow20pbiasqdb)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP2_ADDR);
 
     *inbdpow40sbiasqdb = (localVal & ((uint32_t)0x00FF0000)) >> 16;
     *inbdpow20sbiasqdb = (localVal & ((uint32_t)0x0000FF00)) >> 8;
@@ -12114,7 +12114,7 @@ __INLINE void riu_rwnxagcdsp2_unpack(uint8_t* inbdpow40sbiasqdb, uint8_t* inbdpo
  */
 __INLINE uint8_t riu_inbdpow40sbiasqdb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP2_ADDR);
     return ((localVal & ((uint32_t)0x00FF0000)) >> 16);
 }
 
@@ -12127,7 +12127,7 @@ __INLINE uint8_t riu_inbdpow40sbiasqdb_getf(void)
  */
 __INLINE void riu_inbdpow40sbiasqdb_setf(uint8_t inbdpow40sbiasqdb)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP2_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP2_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)inbdpow40sbiasqdb << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP2_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)inbdpow40sbiasqdb << 16));
 }
 
 /**
@@ -12139,7 +12139,7 @@ __INLINE void riu_inbdpow40sbiasqdb_setf(uint8_t inbdpow40sbiasqdb)
  */
 __INLINE uint8_t riu_inbdpow20sbiasqdb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP2_ADDR);
     return ((localVal & ((uint32_t)0x0000FF00)) >> 8);
 }
 
@@ -12152,7 +12152,7 @@ __INLINE uint8_t riu_inbdpow20sbiasqdb_getf(void)
  */
 __INLINE void riu_inbdpow20sbiasqdb_setf(uint8_t inbdpow20sbiasqdb)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP2_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP2_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)inbdpow20sbiasqdb << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP2_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)inbdpow20sbiasqdb << 8));
 }
 
 /**
@@ -12164,7 +12164,7 @@ __INLINE void riu_inbdpow20sbiasqdb_setf(uint8_t inbdpow20sbiasqdb)
  */
 __INLINE uint8_t riu_inbdpow20pbiasqdb_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP2_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -12177,7 +12177,7 @@ __INLINE uint8_t riu_inbdpow20pbiasqdb_getf(void)
  */
 __INLINE void riu_inbdpow20pbiasqdb_setf(uint8_t inbdpow20pbiasqdb)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP2_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP2_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)inbdpow20pbiasqdb << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP2_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)inbdpow20pbiasqdb << 0));
 }
 
 /// @}
@@ -12211,7 +12211,7 @@ __INLINE void riu_inbdpow20pbiasqdb_setf(uint8_t inbdpow20pbiasqdb)
  */
 __INLINE uint32_t riu_rwnxagcdsp3_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCDSP3_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCDSP3_ADDR);
 }
 
 /**
@@ -12221,7 +12221,7 @@ __INLINE uint32_t riu_rwnxagcdsp3_get(void)
  */
 __INLINE void riu_rwnxagcdsp3_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP3_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP3_ADDR, value);
 }
 
 // field definitions
@@ -12261,7 +12261,7 @@ __INLINE void riu_rwnxagcdsp3_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcdsp3_pack(uint8_t inbdpowmindbv, uint8_t inbdrnd, uint8_t inbdpowmindbm)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP3_ADDR,  ((uint32_t)inbdpowmindbv << 20) | ((uint32_t)inbdrnd << 16) | ((uint32_t)inbdpowmindbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP3_ADDR,  ((uint32_t)inbdpowmindbv << 20) | ((uint32_t)inbdrnd << 16) | ((uint32_t)inbdpowmindbm << 0));
 }
 
 /**
@@ -12276,7 +12276,7 @@ __INLINE void riu_rwnxagcdsp3_pack(uint8_t inbdpowmindbv, uint8_t inbdrnd, uint8
  */
 __INLINE void riu_rwnxagcdsp3_unpack(uint8_t* inbdpowmindbv, uint8_t* inbdrnd, uint8_t* inbdpowmindbm)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP3_ADDR);
 
     *inbdpowmindbv = (localVal & ((uint32_t)0x0FF00000)) >> 20;
     *inbdrnd = (localVal & ((uint32_t)0x00030000)) >> 16;
@@ -12292,7 +12292,7 @@ __INLINE void riu_rwnxagcdsp3_unpack(uint8_t* inbdpowmindbv, uint8_t* inbdrnd, u
  */
 __INLINE uint8_t riu_inbdpowmindbv_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP3_ADDR);
     return ((localVal & ((uint32_t)0x0FF00000)) >> 20);
 }
 
@@ -12305,7 +12305,7 @@ __INLINE uint8_t riu_inbdpowmindbv_getf(void)
  */
 __INLINE void riu_inbdpowmindbv_setf(uint8_t inbdpowmindbv)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP3_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP3_ADDR) & ~((uint32_t)0x0FF00000)) | ((uint32_t)inbdpowmindbv << 20));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP3_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP3_ADDR) & ~((uint32_t)0x0FF00000)) | ((uint32_t)inbdpowmindbv << 20));
 }
 
 /**
@@ -12317,7 +12317,7 @@ __INLINE void riu_inbdpowmindbv_setf(uint8_t inbdpowmindbv)
  */
 __INLINE uint8_t riu_inbdrnd_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP3_ADDR);
     return ((localVal & ((uint32_t)0x00030000)) >> 16);
 }
 
@@ -12330,7 +12330,7 @@ __INLINE uint8_t riu_inbdrnd_getf(void)
  */
 __INLINE void riu_inbdrnd_setf(uint8_t inbdrnd)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP3_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP3_ADDR) & ~((uint32_t)0x00030000)) | ((uint32_t)inbdrnd << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP3_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP3_ADDR) & ~((uint32_t)0x00030000)) | ((uint32_t)inbdrnd << 16));
 }
 
 /**
@@ -12342,7 +12342,7 @@ __INLINE void riu_inbdrnd_setf(uint8_t inbdrnd)
  */
 __INLINE uint8_t riu_inbdpowmindbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP3_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -12355,7 +12355,7 @@ __INLINE uint8_t riu_inbdpowmindbm_getf(void)
  */
 __INLINE void riu_inbdpowmindbm_setf(uint8_t inbdpowmindbm)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP3_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP3_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)inbdpowmindbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP3_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP3_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)inbdpowmindbm << 0));
 }
 
 /// @}
@@ -12388,7 +12388,7 @@ __INLINE void riu_inbdpowmindbm_setf(uint8_t inbdpowmindbm)
  */
 __INLINE uint32_t riu_rwnxagcdsp4_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCDSP4_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCDSP4_ADDR);
 }
 
 /**
@@ -12398,7 +12398,7 @@ __INLINE uint32_t riu_rwnxagcdsp4_get(void)
  */
 __INLINE void riu_rwnxagcdsp4_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP4_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP4_ADDR, value);
 }
 
 // field definitions
@@ -12429,7 +12429,7 @@ __INLINE void riu_rwnxagcdsp4_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcdsp4_pack(uint8_t fe40gain, uint8_t fe20gain)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP4_ADDR,  ((uint32_t)fe40gain << 8) | ((uint32_t)fe20gain << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP4_ADDR,  ((uint32_t)fe40gain << 8) | ((uint32_t)fe20gain << 0));
 }
 
 /**
@@ -12443,7 +12443,7 @@ __INLINE void riu_rwnxagcdsp4_pack(uint8_t fe40gain, uint8_t fe20gain)
  */
 __INLINE void riu_rwnxagcdsp4_unpack(uint8_t* fe40gain, uint8_t* fe20gain)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP4_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP4_ADDR);
 
     *fe40gain = (localVal & ((uint32_t)0x0000FF00)) >> 8;
     *fe20gain = (localVal & ((uint32_t)0x000000FF)) >> 0;
@@ -12458,7 +12458,7 @@ __INLINE void riu_rwnxagcdsp4_unpack(uint8_t* fe40gain, uint8_t* fe20gain)
  */
 __INLINE uint8_t riu_fe40gain_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP4_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP4_ADDR);
     return ((localVal & ((uint32_t)0x0000FF00)) >> 8);
 }
 
@@ -12471,7 +12471,7 @@ __INLINE uint8_t riu_fe40gain_getf(void)
  */
 __INLINE void riu_fe40gain_setf(uint8_t fe40gain)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP4_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP4_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)fe40gain << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP4_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP4_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)fe40gain << 8));
 }
 
 /**
@@ -12483,7 +12483,7 @@ __INLINE void riu_fe40gain_setf(uint8_t fe40gain)
  */
 __INLINE uint8_t riu_fe20gain_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDSP4_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDSP4_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -12496,7 +12496,7 @@ __INLINE uint8_t riu_fe20gain_getf(void)
  */
 __INLINE void riu_fe20gain_setf(uint8_t fe20gain)
 {
-    REG_PL_WR(RIU_RWNXAGCDSP4_ADDR, (REG_PL_RD(RIU_RWNXAGCDSP4_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)fe20gain << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDSP4_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDSP4_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)fe20gain << 0));
 }
 
 /// @}
@@ -12531,7 +12531,7 @@ __INLINE void riu_fe20gain_setf(uint8_t fe20gain)
  */
 __INLINE uint32_t riu_rwnxagccca0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCCCA0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCCCA0_ADDR);
 }
 
 /**
@@ -12541,7 +12541,7 @@ __INLINE uint32_t riu_rwnxagccca0_get(void)
  */
 __INLINE void riu_rwnxagccca0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA0_ADDR, value);
 }
 
 // field definitions
@@ -12590,7 +12590,7 @@ __INLINE void riu_rwnxagccca0_set(uint32_t value)
  */
 __INLINE void riu_rwnxagccca0_pack(uint8_t delccarampdntap, uint8_t delccarampuptap, uint8_t ccadetrampdn, uint8_t ccadetrampup)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA0_ADDR,  ((uint32_t)delccarampdntap << 20) | ((uint32_t)delccarampuptap << 16) | ((uint32_t)ccadetrampdn << 8) | ((uint32_t)ccadetrampup << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA0_ADDR,  ((uint32_t)delccarampdntap << 20) | ((uint32_t)delccarampuptap << 16) | ((uint32_t)ccadetrampdn << 8) | ((uint32_t)ccadetrampup << 0));
 }
 
 /**
@@ -12606,7 +12606,7 @@ __INLINE void riu_rwnxagccca0_pack(uint8_t delccarampdntap, uint8_t delccarampup
  */
 __INLINE void riu_rwnxagccca0_unpack(uint8_t* delccarampdntap, uint8_t* delccarampuptap, uint8_t* ccadetrampdn, uint8_t* ccadetrampup)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA0_ADDR);
 
     *delccarampdntap = (localVal & ((uint32_t)0x00700000)) >> 20;
     *delccarampuptap = (localVal & ((uint32_t)0x00070000)) >> 16;
@@ -12623,7 +12623,7 @@ __INLINE void riu_rwnxagccca0_unpack(uint8_t* delccarampdntap, uint8_t* delccara
  */
 __INLINE uint8_t riu_delccarampdntap_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA0_ADDR);
     return ((localVal & ((uint32_t)0x00700000)) >> 20);
 }
 
@@ -12636,7 +12636,7 @@ __INLINE uint8_t riu_delccarampdntap_getf(void)
  */
 __INLINE void riu_delccarampdntap_setf(uint8_t delccarampdntap)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA0_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA0_ADDR) & ~((uint32_t)0x00700000)) | ((uint32_t)delccarampdntap << 20));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA0_ADDR) & ~((uint32_t)0x00700000)) | ((uint32_t)delccarampdntap << 20));
 }
 
 /**
@@ -12648,7 +12648,7 @@ __INLINE void riu_delccarampdntap_setf(uint8_t delccarampdntap)
  */
 __INLINE uint8_t riu_delccarampuptap_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA0_ADDR);
     return ((localVal & ((uint32_t)0x00070000)) >> 16);
 }
 
@@ -12661,7 +12661,7 @@ __INLINE uint8_t riu_delccarampuptap_getf(void)
  */
 __INLINE void riu_delccarampuptap_setf(uint8_t delccarampuptap)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA0_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA0_ADDR) & ~((uint32_t)0x00070000)) | ((uint32_t)delccarampuptap << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA0_ADDR) & ~((uint32_t)0x00070000)) | ((uint32_t)delccarampuptap << 16));
 }
 
 /**
@@ -12673,7 +12673,7 @@ __INLINE void riu_delccarampuptap_setf(uint8_t delccarampuptap)
  */
 __INLINE uint8_t riu_ccadetrampdn_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA0_ADDR);
     return ((localVal & ((uint32_t)0x00003F00)) >> 8);
 }
 
@@ -12686,7 +12686,7 @@ __INLINE uint8_t riu_ccadetrampdn_getf(void)
  */
 __INLINE void riu_ccadetrampdn_setf(uint8_t ccadetrampdn)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA0_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA0_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)ccadetrampdn << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA0_ADDR) & ~((uint32_t)0x00003F00)) | ((uint32_t)ccadetrampdn << 8));
 }
 
 /**
@@ -12698,7 +12698,7 @@ __INLINE void riu_ccadetrampdn_setf(uint8_t ccadetrampdn)
  */
 __INLINE uint8_t riu_ccadetrampup_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA0_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -12711,7 +12711,7 @@ __INLINE uint8_t riu_ccadetrampup_getf(void)
  */
 __INLINE void riu_ccadetrampup_setf(uint8_t ccadetrampup)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA0_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA0_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)ccadetrampup << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA0_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)ccadetrampup << 0));
 }
 
 /// @}
@@ -12747,7 +12747,7 @@ __INLINE void riu_ccadetrampup_setf(uint8_t ccadetrampup)
  */
 __INLINE uint32_t riu_rwnxagccca1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCCCA1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCCCA1_ADDR);
 }
 
 /**
@@ -12757,7 +12757,7 @@ __INLINE uint32_t riu_rwnxagccca1_get(void)
  */
 __INLINE void riu_rwnxagccca1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA1_ADDR, value);
 }
 
 // field definitions
@@ -12811,7 +12811,7 @@ __INLINE void riu_rwnxagccca1_set(uint32_t value)
  */
 __INLINE void riu_rwnxagccca1_pack(uint16_t inbdcca20ppowmindbm, uint8_t cca20pfallthrdbm, uint8_t disccaen, uint8_t satccaen, uint8_t cca20prisethrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA1_ADDR,  ((uint32_t)inbdcca20ppowmindbm << 20) | ((uint32_t)cca20pfallthrdbm << 12) | ((uint32_t)disccaen << 9) | ((uint32_t)satccaen << 8) | ((uint32_t)cca20prisethrdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA1_ADDR,  ((uint32_t)inbdcca20ppowmindbm << 20) | ((uint32_t)cca20pfallthrdbm << 12) | ((uint32_t)disccaen << 9) | ((uint32_t)satccaen << 8) | ((uint32_t)cca20prisethrdbm << 0));
 }
 
 /**
@@ -12828,7 +12828,7 @@ __INLINE void riu_rwnxagccca1_pack(uint16_t inbdcca20ppowmindbm, uint8_t cca20pf
  */
 __INLINE void riu_rwnxagccca1_unpack(uint16_t* inbdcca20ppowmindbm, uint8_t* cca20pfallthrdbm, uint8_t* disccaen, uint8_t* satccaen, uint8_t* cca20prisethrdbm)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA1_ADDR);
 
     *inbdcca20ppowmindbm = (localVal & ((uint32_t)0x1FF00000)) >> 20;
     *cca20pfallthrdbm = (localVal & ((uint32_t)0x000FF000)) >> 12;
@@ -12846,7 +12846,7 @@ __INLINE void riu_rwnxagccca1_unpack(uint16_t* inbdcca20ppowmindbm, uint8_t* cca
  */
 __INLINE uint16_t riu_inbdcca20ppowmindbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA1_ADDR);
     return ((localVal & ((uint32_t)0x1FF00000)) >> 20);
 }
 
@@ -12859,7 +12859,7 @@ __INLINE uint16_t riu_inbdcca20ppowmindbm_getf(void)
  */
 __INLINE void riu_inbdcca20ppowmindbm_setf(uint16_t inbdcca20ppowmindbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA1_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA1_ADDR) & ~((uint32_t)0x1FF00000)) | ((uint32_t)inbdcca20ppowmindbm << 20));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA1_ADDR) & ~((uint32_t)0x1FF00000)) | ((uint32_t)inbdcca20ppowmindbm << 20));
 }
 
 /**
@@ -12871,7 +12871,7 @@ __INLINE void riu_inbdcca20ppowmindbm_setf(uint16_t inbdcca20ppowmindbm)
  */
 __INLINE uint8_t riu_cca20pfallthrdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA1_ADDR);
     return ((localVal & ((uint32_t)0x000FF000)) >> 12);
 }
 
@@ -12884,7 +12884,7 @@ __INLINE uint8_t riu_cca20pfallthrdbm_getf(void)
  */
 __INLINE void riu_cca20pfallthrdbm_setf(uint8_t cca20pfallthrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA1_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA1_ADDR) & ~((uint32_t)0x000FF000)) | ((uint32_t)cca20pfallthrdbm << 12));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA1_ADDR) & ~((uint32_t)0x000FF000)) | ((uint32_t)cca20pfallthrdbm << 12));
 }
 
 /**
@@ -12896,7 +12896,7 @@ __INLINE void riu_cca20pfallthrdbm_setf(uint8_t cca20pfallthrdbm)
  */
 __INLINE uint8_t riu_disccaen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA1_ADDR);
     return ((localVal & ((uint32_t)0x00000200)) >> 9);
 }
 
@@ -12909,7 +12909,7 @@ __INLINE uint8_t riu_disccaen_getf(void)
  */
 __INLINE void riu_disccaen_setf(uint8_t disccaen)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA1_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA1_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)disccaen << 9));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA1_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)disccaen << 9));
 }
 
 /**
@@ -12921,7 +12921,7 @@ __INLINE void riu_disccaen_setf(uint8_t disccaen)
  */
 __INLINE uint8_t riu_satccaen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA1_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -12934,7 +12934,7 @@ __INLINE uint8_t riu_satccaen_getf(void)
  */
 __INLINE void riu_satccaen_setf(uint8_t satccaen)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA1_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA1_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)satccaen << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA1_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)satccaen << 8));
 }
 
 /**
@@ -12946,7 +12946,7 @@ __INLINE void riu_satccaen_setf(uint8_t satccaen)
  */
 __INLINE uint8_t riu_cca20prisethrdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA1_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -12959,7 +12959,7 @@ __INLINE uint8_t riu_cca20prisethrdbm_getf(void)
  */
 __INLINE void riu_cca20prisethrdbm_setf(uint8_t cca20prisethrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA1_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA1_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)cca20prisethrdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA1_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)cca20prisethrdbm << 0));
 }
 
 /// @}
@@ -13000,7 +13000,7 @@ __INLINE void riu_cca20prisethrdbm_setf(uint8_t cca20prisethrdbm)
  */
 __INLINE uint32_t riu_rwnxagcccactrl_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR);
 }
 
 /**
@@ -13010,7 +13010,7 @@ __INLINE uint32_t riu_rwnxagcccactrl_get(void)
  */
 __INLINE void riu_rwnxagcccactrl_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCCCACTRL_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCACTRL_ADDR, value);
 }
 
 // field definitions
@@ -13109,7 +13109,7 @@ __INLINE void riu_rwnxagcccactrl_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcccactrl_pack(uint8_t ccaflag3ctrl, uint8_t ccaflag2ctrl, uint8_t ccaflag1ctrl, uint8_t ccaflag0ctrl, uint8_t antselcca40s, uint8_t antselcca20s, uint8_t ccademod, uint8_t ccacsen, uint8_t ccarampuden, uint8_t ccaenergyen)
 {
-    REG_PL_WR(RIU_RWNXAGCCCACTRL_ADDR,  ((uint32_t)ccaflag3ctrl << 28) | ((uint32_t)ccaflag2ctrl << 24) | ((uint32_t)ccaflag1ctrl << 20) | ((uint32_t)ccaflag0ctrl << 16) | ((uint32_t)antselcca40s << 14) | ((uint32_t)antselcca20s << 12) | ((uint32_t)ccademod << 9) | ((uint32_t)ccacsen << 8) | ((uint32_t)ccarampuden << 4) | ((uint32_t)ccaenergyen << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCACTRL_ADDR,  ((uint32_t)ccaflag3ctrl << 28) | ((uint32_t)ccaflag2ctrl << 24) | ((uint32_t)ccaflag1ctrl << 20) | ((uint32_t)ccaflag0ctrl << 16) | ((uint32_t)antselcca40s << 14) | ((uint32_t)antselcca20s << 12) | ((uint32_t)ccademod << 9) | ((uint32_t)ccacsen << 8) | ((uint32_t)ccarampuden << 4) | ((uint32_t)ccaenergyen << 0));
 }
 
 /**
@@ -13131,7 +13131,7 @@ __INLINE void riu_rwnxagcccactrl_pack(uint8_t ccaflag3ctrl, uint8_t ccaflag2ctrl
  */
 __INLINE void riu_rwnxagcccactrl_unpack(uint8_t* ccaflag3ctrl, uint8_t* ccaflag2ctrl, uint8_t* ccaflag1ctrl, uint8_t* ccaflag0ctrl, uint8_t* antselcca40s, uint8_t* antselcca20s, uint8_t* ccademod, uint8_t* ccacsen, uint8_t* ccarampuden, uint8_t* ccaenergyen)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR);
 
     *ccaflag3ctrl = (localVal & ((uint32_t)0xF0000000)) >> 28;
     *ccaflag2ctrl = (localVal & ((uint32_t)0x0F000000)) >> 24;
@@ -13154,7 +13154,7 @@ __INLINE void riu_rwnxagcccactrl_unpack(uint8_t* ccaflag3ctrl, uint8_t* ccaflag2
  */
 __INLINE uint8_t riu_ccaflag3ctrl_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR);
     return ((localVal & ((uint32_t)0xF0000000)) >> 28);
 }
 
@@ -13167,7 +13167,7 @@ __INLINE uint8_t riu_ccaflag3ctrl_getf(void)
  */
 __INLINE void riu_ccaflag3ctrl_setf(uint8_t ccaflag3ctrl)
 {
-    REG_PL_WR(RIU_RWNXAGCCCACTRL_ADDR, (REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0xF0000000)) | ((uint32_t)ccaflag3ctrl << 28));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCACTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0xF0000000)) | ((uint32_t)ccaflag3ctrl << 28));
 }
 
 /**
@@ -13179,7 +13179,7 @@ __INLINE void riu_ccaflag3ctrl_setf(uint8_t ccaflag3ctrl)
  */
 __INLINE uint8_t riu_ccaflag2ctrl_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR);
     return ((localVal & ((uint32_t)0x0F000000)) >> 24);
 }
 
@@ -13192,7 +13192,7 @@ __INLINE uint8_t riu_ccaflag2ctrl_getf(void)
  */
 __INLINE void riu_ccaflag2ctrl_setf(uint8_t ccaflag2ctrl)
 {
-    REG_PL_WR(RIU_RWNXAGCCCACTRL_ADDR, (REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x0F000000)) | ((uint32_t)ccaflag2ctrl << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCACTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x0F000000)) | ((uint32_t)ccaflag2ctrl << 24));
 }
 
 /**
@@ -13204,7 +13204,7 @@ __INLINE void riu_ccaflag2ctrl_setf(uint8_t ccaflag2ctrl)
  */
 __INLINE uint8_t riu_ccaflag1ctrl_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR);
     return ((localVal & ((uint32_t)0x00F00000)) >> 20);
 }
 
@@ -13217,7 +13217,7 @@ __INLINE uint8_t riu_ccaflag1ctrl_getf(void)
  */
 __INLINE void riu_ccaflag1ctrl_setf(uint8_t ccaflag1ctrl)
 {
-    REG_PL_WR(RIU_RWNXAGCCCACTRL_ADDR, (REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x00F00000)) | ((uint32_t)ccaflag1ctrl << 20));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCACTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x00F00000)) | ((uint32_t)ccaflag1ctrl << 20));
 }
 
 /**
@@ -13229,7 +13229,7 @@ __INLINE void riu_ccaflag1ctrl_setf(uint8_t ccaflag1ctrl)
  */
 __INLINE uint8_t riu_ccaflag0ctrl_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR);
     return ((localVal & ((uint32_t)0x000F0000)) >> 16);
 }
 
@@ -13242,7 +13242,7 @@ __INLINE uint8_t riu_ccaflag0ctrl_getf(void)
  */
 __INLINE void riu_ccaflag0ctrl_setf(uint8_t ccaflag0ctrl)
 {
-    REG_PL_WR(RIU_RWNXAGCCCACTRL_ADDR, (REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x000F0000)) | ((uint32_t)ccaflag0ctrl << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCACTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x000F0000)) | ((uint32_t)ccaflag0ctrl << 16));
 }
 
 /**
@@ -13254,7 +13254,7 @@ __INLINE void riu_ccaflag0ctrl_setf(uint8_t ccaflag0ctrl)
  */
 __INLINE uint8_t riu_antselcca40s_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR);
     return ((localVal & ((uint32_t)0x0000C000)) >> 14);
 }
 
@@ -13267,7 +13267,7 @@ __INLINE uint8_t riu_antselcca40s_getf(void)
  */
 __INLINE void riu_antselcca40s_setf(uint8_t antselcca40s)
 {
-    REG_PL_WR(RIU_RWNXAGCCCACTRL_ADDR, (REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x0000C000)) | ((uint32_t)antselcca40s << 14));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCACTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x0000C000)) | ((uint32_t)antselcca40s << 14));
 }
 
 /**
@@ -13279,7 +13279,7 @@ __INLINE void riu_antselcca40s_setf(uint8_t antselcca40s)
  */
 __INLINE uint8_t riu_antselcca20s_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR);
     return ((localVal & ((uint32_t)0x00003000)) >> 12);
 }
 
@@ -13292,7 +13292,7 @@ __INLINE uint8_t riu_antselcca20s_getf(void)
  */
 __INLINE void riu_antselcca20s_setf(uint8_t antselcca20s)
 {
-    REG_PL_WR(RIU_RWNXAGCCCACTRL_ADDR, (REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x00003000)) | ((uint32_t)antselcca20s << 12));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCACTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x00003000)) | ((uint32_t)antselcca20s << 12));
 }
 
 /**
@@ -13304,7 +13304,7 @@ __INLINE void riu_antselcca20s_setf(uint8_t antselcca20s)
  */
 __INLINE uint8_t riu_ccademod_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000200)) >> 9);
 }
 
@@ -13317,7 +13317,7 @@ __INLINE uint8_t riu_ccademod_getf(void)
  */
 __INLINE void riu_ccademod_setf(uint8_t ccademod)
 {
-    REG_PL_WR(RIU_RWNXAGCCCACTRL_ADDR, (REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)ccademod << 9));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCACTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)ccademod << 9));
 }
 
 /**
@@ -13329,7 +13329,7 @@ __INLINE void riu_ccademod_setf(uint8_t ccademod)
  */
 __INLINE uint8_t riu_ccacsen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -13342,7 +13342,7 @@ __INLINE uint8_t riu_ccacsen_getf(void)
  */
 __INLINE void riu_ccacsen_setf(uint8_t ccacsen)
 {
-    REG_PL_WR(RIU_RWNXAGCCCACTRL_ADDR, (REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)ccacsen << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCACTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)ccacsen << 8));
 }
 
 /**
@@ -13354,7 +13354,7 @@ __INLINE void riu_ccacsen_setf(uint8_t ccacsen)
  */
 __INLINE uint8_t riu_ccarampuden_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000070)) >> 4);
 }
 
@@ -13367,7 +13367,7 @@ __INLINE uint8_t riu_ccarampuden_getf(void)
  */
 __INLINE void riu_ccarampuden_setf(uint8_t ccarampuden)
 {
-    REG_PL_WR(RIU_RWNXAGCCCACTRL_ADDR, (REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x00000070)) | ((uint32_t)ccarampuden << 4));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCACTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x00000070)) | ((uint32_t)ccarampuden << 4));
 }
 
 /**
@@ -13379,7 +13379,7 @@ __INLINE void riu_ccarampuden_setf(uint8_t ccarampuden)
  */
 __INLINE uint8_t riu_ccaenergyen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000007)) >> 0);
 }
 
@@ -13392,7 +13392,7 @@ __INLINE uint8_t riu_ccaenergyen_getf(void)
  */
 __INLINE void riu_ccaenergyen_setf(uint8_t ccaenergyen)
 {
-    REG_PL_WR(RIU_RWNXAGCCCACTRL_ADDR, (REG_PL_RD(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x00000007)) | ((uint32_t)ccaenergyen << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCACTRL_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCACTRL_ADDR) & ~((uint32_t)0x00000007)) | ((uint32_t)ccaenergyen << 0));
 }
 
 /// @}
@@ -13425,7 +13425,7 @@ __INLINE void riu_ccaenergyen_setf(uint8_t ccaenergyen)
  */
 __INLINE uint32_t riu_rwnxagcccastate0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCCCASTATE0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCCCASTATE0_ADDR);
 }
 
 /**
@@ -13435,7 +13435,7 @@ __INLINE uint32_t riu_rwnxagcccastate0_get(void)
  */
 __INLINE void riu_rwnxagcccastate0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCCCASTATE0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCASTATE0_ADDR, value);
 }
 
 // field definitions
@@ -13466,7 +13466,7 @@ __INLINE void riu_rwnxagcccastate0_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcccastate0_pack(uint16_t rxstatecca20ssel, uint16_t rxstatecca20psel)
 {
-    REG_PL_WR(RIU_RWNXAGCCCASTATE0_ADDR,  ((uint32_t)rxstatecca20ssel << 16) | ((uint32_t)rxstatecca20psel << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCASTATE0_ADDR,  ((uint32_t)rxstatecca20ssel << 16) | ((uint32_t)rxstatecca20psel << 0));
 }
 
 /**
@@ -13480,7 +13480,7 @@ __INLINE void riu_rwnxagcccastate0_pack(uint16_t rxstatecca20ssel, uint16_t rxst
  */
 __INLINE void riu_rwnxagcccastate0_unpack(uint16_t* rxstatecca20ssel, uint16_t* rxstatecca20psel)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCASTATE0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCASTATE0_ADDR);
 
     *rxstatecca20ssel = (localVal & ((uint32_t)0x07FF0000)) >> 16;
     *rxstatecca20psel = (localVal & ((uint32_t)0x000007FF)) >> 0;
@@ -13495,7 +13495,7 @@ __INLINE void riu_rwnxagcccastate0_unpack(uint16_t* rxstatecca20ssel, uint16_t* 
  */
 __INLINE uint16_t riu_rxstatecca20ssel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCASTATE0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCASTATE0_ADDR);
     return ((localVal & ((uint32_t)0x07FF0000)) >> 16);
 }
 
@@ -13508,7 +13508,7 @@ __INLINE uint16_t riu_rxstatecca20ssel_getf(void)
  */
 __INLINE void riu_rxstatecca20ssel_setf(uint16_t rxstatecca20ssel)
 {
-    REG_PL_WR(RIU_RWNXAGCCCASTATE0_ADDR, (REG_PL_RD(RIU_RWNXAGCCCASTATE0_ADDR) & ~((uint32_t)0x07FF0000)) | ((uint32_t)rxstatecca20ssel << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCASTATE0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCASTATE0_ADDR) & ~((uint32_t)0x07FF0000)) | ((uint32_t)rxstatecca20ssel << 16));
 }
 
 /**
@@ -13520,7 +13520,7 @@ __INLINE void riu_rxstatecca20ssel_setf(uint16_t rxstatecca20ssel)
  */
 __INLINE uint16_t riu_rxstatecca20psel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCASTATE0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCASTATE0_ADDR);
     return ((localVal & ((uint32_t)0x000007FF)) >> 0);
 }
 
@@ -13533,7 +13533,7 @@ __INLINE uint16_t riu_rxstatecca20psel_getf(void)
  */
 __INLINE void riu_rxstatecca20psel_setf(uint16_t rxstatecca20psel)
 {
-    REG_PL_WR(RIU_RWNXAGCCCASTATE0_ADDR, (REG_PL_RD(RIU_RWNXAGCCCASTATE0_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)rxstatecca20psel << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCASTATE0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCASTATE0_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)rxstatecca20psel << 0));
 }
 
 /// @}
@@ -13565,7 +13565,7 @@ __INLINE void riu_rxstatecca20psel_setf(uint16_t rxstatecca20psel)
  */
 __INLINE uint32_t riu_rwnxagcccastate1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCCCASTATE1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCCCASTATE1_ADDR);
 }
 
 /**
@@ -13575,7 +13575,7 @@ __INLINE uint32_t riu_rwnxagcccastate1_get(void)
  */
 __INLINE void riu_rwnxagcccastate1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCCCASTATE1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCASTATE1_ADDR, value);
 }
 
 // field definitions
@@ -13598,7 +13598,7 @@ __INLINE void riu_rwnxagcccastate1_set(uint32_t value)
  */
 __INLINE uint16_t riu_rxstatecca40ssel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCASTATE1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCASTATE1_ADDR);
     return (localVal >> 0);
 }
 
@@ -13611,7 +13611,7 @@ __INLINE uint16_t riu_rxstatecca40ssel_getf(void)
  */
 __INLINE void riu_rxstatecca40ssel_setf(uint16_t rxstatecca40ssel)
 {
-    REG_PL_WR(RIU_RWNXAGCCCASTATE1_ADDR, (uint32_t)rxstatecca40ssel << 0);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCASTATE1_ADDR, (uint32_t)rxstatecca40ssel << 0);
 }
 
 /// @}
@@ -13643,7 +13643,7 @@ __INLINE void riu_rxstatecca40ssel_setf(uint16_t rxstatecca40ssel)
  */
 __INLINE uint32_t riu_rwnxagcccatimeout_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCCCATIMEOUT_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCCCATIMEOUT_ADDR);
 }
 
 /**
@@ -13653,7 +13653,7 @@ __INLINE uint32_t riu_rwnxagcccatimeout_get(void)
  */
 __INLINE void riu_rwnxagcccatimeout_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCCCATIMEOUT_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCATIMEOUT_ADDR, value);
 }
 
 // field definitions
@@ -13676,7 +13676,7 @@ __INLINE void riu_rwnxagcccatimeout_set(uint32_t value)
  */
 __INLINE uint32_t riu_ccatimeout_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCATIMEOUT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCATIMEOUT_ADDR);
     return (localVal >> 0);
 }
 
@@ -13689,7 +13689,7 @@ __INLINE uint32_t riu_ccatimeout_getf(void)
  */
 __INLINE void riu_ccatimeout_setf(uint32_t ccatimeout)
 {
-    REG_PL_WR(RIU_RWNXAGCCCATIMEOUT_ADDR, (uint32_t)ccatimeout << 0);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCATIMEOUT_ADDR, (uint32_t)ccatimeout << 0);
 }
 
 /// @}
@@ -13724,7 +13724,7 @@ __INLINE void riu_ccatimeout_setf(uint32_t ccatimeout)
  */
 __INLINE uint32_t riu_rwnxagccomp0_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCCOMP0_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCCOMP0_ADDR);
 }
 
 /**
@@ -13734,7 +13734,7 @@ __INLINE uint32_t riu_rwnxagccomp0_get(void)
  */
 __INLINE void riu_rwnxagccomp0_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCCOMP0_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCOMP0_ADDR, value);
 }
 
 // field definitions
@@ -13783,7 +13783,7 @@ __INLINE void riu_rwnxagccomp0_set(uint32_t value)
  */
 __INLINE void riu_rwnxagccomp0_pack(uint8_t idinbdpowgapdnqdbm, uint8_t idinbdpowgapupqdbm, uint8_t inbdpowinfthrdbm, uint8_t inbdpowsupthrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCOMP0_ADDR,  ((uint32_t)idinbdpowgapdnqdbm << 24) | ((uint32_t)idinbdpowgapupqdbm << 16) | ((uint32_t)inbdpowinfthrdbm << 8) | ((uint32_t)inbdpowsupthrdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCOMP0_ADDR,  ((uint32_t)idinbdpowgapdnqdbm << 24) | ((uint32_t)idinbdpowgapupqdbm << 16) | ((uint32_t)inbdpowinfthrdbm << 8) | ((uint32_t)inbdpowsupthrdbm << 0));
 }
 
 /**
@@ -13799,7 +13799,7 @@ __INLINE void riu_rwnxagccomp0_pack(uint8_t idinbdpowgapdnqdbm, uint8_t idinbdpo
  */
 __INLINE void riu_rwnxagccomp0_unpack(uint8_t* idinbdpowgapdnqdbm, uint8_t* idinbdpowgapupqdbm, uint8_t* inbdpowinfthrdbm, uint8_t* inbdpowsupthrdbm)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCOMP0_ADDR);
 
     *idinbdpowgapdnqdbm = (localVal & ((uint32_t)0xFF000000)) >> 24;
     *idinbdpowgapupqdbm = (localVal & ((uint32_t)0x00FF0000)) >> 16;
@@ -13816,7 +13816,7 @@ __INLINE void riu_rwnxagccomp0_unpack(uint8_t* idinbdpowgapdnqdbm, uint8_t* idin
  */
 __INLINE uint8_t riu_idinbdpowgapdnqdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCOMP0_ADDR);
     return ((localVal & ((uint32_t)0xFF000000)) >> 24);
 }
 
@@ -13829,7 +13829,7 @@ __INLINE uint8_t riu_idinbdpowgapdnqdbm_getf(void)
  */
 __INLINE void riu_idinbdpowgapdnqdbm_setf(uint8_t idinbdpowgapdnqdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCOMP0_ADDR, (REG_PL_RD(RIU_RWNXAGCCOMP0_ADDR) & ~((uint32_t)0xFF000000)) | ((uint32_t)idinbdpowgapdnqdbm << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCOMP0_ADDR) & ~((uint32_t)0xFF000000)) | ((uint32_t)idinbdpowgapdnqdbm << 24));
 }
 
 /**
@@ -13841,7 +13841,7 @@ __INLINE void riu_idinbdpowgapdnqdbm_setf(uint8_t idinbdpowgapdnqdbm)
  */
 __INLINE uint8_t riu_idinbdpowgapupqdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x00FF0000)) >> 16);
 }
 
@@ -13854,7 +13854,7 @@ __INLINE uint8_t riu_idinbdpowgapupqdbm_getf(void)
  */
 __INLINE void riu_idinbdpowgapupqdbm_setf(uint8_t idinbdpowgapupqdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCOMP0_ADDR, (REG_PL_RD(RIU_RWNXAGCCOMP0_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)idinbdpowgapupqdbm << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCOMP0_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)idinbdpowgapupqdbm << 16));
 }
 
 /**
@@ -13866,7 +13866,7 @@ __INLINE void riu_idinbdpowgapupqdbm_setf(uint8_t idinbdpowgapupqdbm)
  */
 __INLINE uint8_t riu_inbdpowinfthrdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x0000FF00)) >> 8);
 }
 
@@ -13879,7 +13879,7 @@ __INLINE uint8_t riu_inbdpowinfthrdbm_getf(void)
  */
 __INLINE void riu_inbdpowinfthrdbm_setf(uint8_t inbdpowinfthrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCOMP0_ADDR, (REG_PL_RD(RIU_RWNXAGCCOMP0_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)inbdpowinfthrdbm << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCOMP0_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)inbdpowinfthrdbm << 8));
 }
 
 /**
@@ -13891,7 +13891,7 @@ __INLINE void riu_inbdpowinfthrdbm_setf(uint8_t inbdpowinfthrdbm)
  */
 __INLINE uint8_t riu_inbdpowsupthrdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCOMP0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCOMP0_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -13904,7 +13904,7 @@ __INLINE uint8_t riu_inbdpowsupthrdbm_getf(void)
  */
 __INLINE void riu_inbdpowsupthrdbm_setf(uint8_t inbdpowsupthrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCOMP0_ADDR, (REG_PL_RD(RIU_RWNXAGCCOMP0_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)inbdpowsupthrdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCOMP0_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCOMP0_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)inbdpowsupthrdbm << 0));
 }
 
 /// @}
@@ -13939,7 +13939,7 @@ __INLINE void riu_inbdpowsupthrdbm_setf(uint8_t inbdpowsupthrdbm)
  */
 __INLINE uint32_t riu_rwnxagccomp1_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCCOMP1_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCCOMP1_ADDR);
 }
 
 /**
@@ -13949,7 +13949,7 @@ __INLINE uint32_t riu_rwnxagccomp1_get(void)
  */
 __INLINE void riu_rwnxagccomp1_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCCOMP1_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCOMP1_ADDR, value);
 }
 
 // field definitions
@@ -13998,7 +13998,7 @@ __INLINE void riu_rwnxagccomp1_set(uint32_t value)
  */
 __INLINE void riu_rwnxagccomp1_pack(uint8_t adcpowinfthrdbv, uint8_t adcpowsupthrdbv, uint8_t adcpowinfthrdbm, uint8_t adcpowsupthrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCOMP1_ADDR,  ((uint32_t)adcpowinfthrdbv << 24) | ((uint32_t)adcpowsupthrdbv << 16) | ((uint32_t)adcpowinfthrdbm << 8) | ((uint32_t)adcpowsupthrdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCOMP1_ADDR,  ((uint32_t)adcpowinfthrdbv << 24) | ((uint32_t)adcpowsupthrdbv << 16) | ((uint32_t)adcpowinfthrdbm << 8) | ((uint32_t)adcpowsupthrdbm << 0));
 }
 
 /**
@@ -14014,7 +14014,7 @@ __INLINE void riu_rwnxagccomp1_pack(uint8_t adcpowinfthrdbv, uint8_t adcpowsupth
  */
 __INLINE void riu_rwnxagccomp1_unpack(uint8_t* adcpowinfthrdbv, uint8_t* adcpowsupthrdbv, uint8_t* adcpowinfthrdbm, uint8_t* adcpowsupthrdbm)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCOMP1_ADDR);
 
     *adcpowinfthrdbv = (localVal & ((uint32_t)0xFF000000)) >> 24;
     *adcpowsupthrdbv = (localVal & ((uint32_t)0x00FF0000)) >> 16;
@@ -14031,7 +14031,7 @@ __INLINE void riu_rwnxagccomp1_unpack(uint8_t* adcpowinfthrdbv, uint8_t* adcpows
  */
 __INLINE uint8_t riu_adcpowinfthrdbv_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCOMP1_ADDR);
     return ((localVal & ((uint32_t)0xFF000000)) >> 24);
 }
 
@@ -14044,7 +14044,7 @@ __INLINE uint8_t riu_adcpowinfthrdbv_getf(void)
  */
 __INLINE void riu_adcpowinfthrdbv_setf(uint8_t adcpowinfthrdbv)
 {
-    REG_PL_WR(RIU_RWNXAGCCOMP1_ADDR, (REG_PL_RD(RIU_RWNXAGCCOMP1_ADDR) & ~((uint32_t)0xFF000000)) | ((uint32_t)adcpowinfthrdbv << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCOMP1_ADDR) & ~((uint32_t)0xFF000000)) | ((uint32_t)adcpowinfthrdbv << 24));
 }
 
 /**
@@ -14056,7 +14056,7 @@ __INLINE void riu_adcpowinfthrdbv_setf(uint8_t adcpowinfthrdbv)
  */
 __INLINE uint8_t riu_adcpowsupthrdbv_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x00FF0000)) >> 16);
 }
 
@@ -14069,7 +14069,7 @@ __INLINE uint8_t riu_adcpowsupthrdbv_getf(void)
  */
 __INLINE void riu_adcpowsupthrdbv_setf(uint8_t adcpowsupthrdbv)
 {
-    REG_PL_WR(RIU_RWNXAGCCOMP1_ADDR, (REG_PL_RD(RIU_RWNXAGCCOMP1_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)adcpowsupthrdbv << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCOMP1_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)adcpowsupthrdbv << 16));
 }
 
 /**
@@ -14081,7 +14081,7 @@ __INLINE void riu_adcpowsupthrdbv_setf(uint8_t adcpowsupthrdbv)
  */
 __INLINE uint8_t riu_adcpowinfthrdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x0000FF00)) >> 8);
 }
 
@@ -14094,7 +14094,7 @@ __INLINE uint8_t riu_adcpowinfthrdbm_getf(void)
  */
 __INLINE void riu_adcpowinfthrdbm_setf(uint8_t adcpowinfthrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCOMP1_ADDR, (REG_PL_RD(RIU_RWNXAGCCOMP1_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)adcpowinfthrdbm << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCOMP1_ADDR) & ~((uint32_t)0x0000FF00)) | ((uint32_t)adcpowinfthrdbm << 8));
 }
 
 /**
@@ -14106,7 +14106,7 @@ __INLINE void riu_adcpowinfthrdbm_setf(uint8_t adcpowinfthrdbm)
  */
 __INLINE uint8_t riu_adcpowsupthrdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCOMP1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCOMP1_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -14119,7 +14119,7 @@ __INLINE uint8_t riu_adcpowsupthrdbm_getf(void)
  */
 __INLINE void riu_adcpowsupthrdbm_setf(uint8_t adcpowsupthrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCOMP1_ADDR, (REG_PL_RD(RIU_RWNXAGCCOMP1_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)adcpowsupthrdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCOMP1_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCOMP1_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)adcpowsupthrdbm << 0));
 }
 
 /// @}
@@ -14156,7 +14156,7 @@ __INLINE void riu_adcpowsupthrdbm_setf(uint8_t adcpowsupthrdbm)
  */
 __INLINE uint32_t riu_rwnxagcradar_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCRADAR_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCRADAR_ADDR);
 }
 
 /**
@@ -14166,7 +14166,7 @@ __INLINE uint32_t riu_rwnxagcradar_get(void)
  */
 __INLINE void riu_rwnxagcradar_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCRADAR_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRADAR_ADDR, value);
 }
 
 // field definitions
@@ -14224,7 +14224,7 @@ __INLINE void riu_rwnxagcradar_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcradar_pack(uint8_t antselradar, uint8_t freqsinggap, uint8_t freqsing, uint8_t fomsinggap, uint8_t fomsing)
 {
-    REG_PL_WR(RIU_RWNXAGCRADAR_ADDR,  ((uint32_t)antselradar << 28) | ((uint32_t)freqsinggap << 24) | ((uint32_t)freqsing << 16) | ((uint32_t)fomsinggap << 8) | ((uint32_t)fomsing << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRADAR_ADDR,  ((uint32_t)antselradar << 28) | ((uint32_t)freqsinggap << 24) | ((uint32_t)freqsing << 16) | ((uint32_t)fomsinggap << 8) | ((uint32_t)fomsing << 0));
 }
 
 /**
@@ -14241,7 +14241,7 @@ __INLINE void riu_rwnxagcradar_pack(uint8_t antselradar, uint8_t freqsinggap, ui
  */
 __INLINE void riu_rwnxagcradar_unpack(uint8_t* antselradar, uint8_t* freqsinggap, uint8_t* freqsing, uint8_t* fomsinggap, uint8_t* fomsing)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRADAR_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRADAR_ADDR);
 
     *antselradar = (localVal & ((uint32_t)0x30000000)) >> 28;
     *freqsinggap = (localVal & ((uint32_t)0x0F000000)) >> 24;
@@ -14259,7 +14259,7 @@ __INLINE void riu_rwnxagcradar_unpack(uint8_t* antselradar, uint8_t* freqsinggap
  */
 __INLINE uint8_t riu_antselradar_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRADAR_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRADAR_ADDR);
     return ((localVal & ((uint32_t)0x30000000)) >> 28);
 }
 
@@ -14272,7 +14272,7 @@ __INLINE uint8_t riu_antselradar_getf(void)
  */
 __INLINE void riu_antselradar_setf(uint8_t antselradar)
 {
-    REG_PL_WR(RIU_RWNXAGCRADAR_ADDR, (REG_PL_RD(RIU_RWNXAGCRADAR_ADDR) & ~((uint32_t)0x30000000)) | ((uint32_t)antselradar << 28));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRADAR_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCRADAR_ADDR) & ~((uint32_t)0x30000000)) | ((uint32_t)antselradar << 28));
 }
 
 /**
@@ -14284,7 +14284,7 @@ __INLINE void riu_antselradar_setf(uint8_t antselradar)
  */
 __INLINE uint8_t riu_freqsinggap_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRADAR_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRADAR_ADDR);
     return ((localVal & ((uint32_t)0x0F000000)) >> 24);
 }
 
@@ -14297,7 +14297,7 @@ __INLINE uint8_t riu_freqsinggap_getf(void)
  */
 __INLINE void riu_freqsinggap_setf(uint8_t freqsinggap)
 {
-    REG_PL_WR(RIU_RWNXAGCRADAR_ADDR, (REG_PL_RD(RIU_RWNXAGCRADAR_ADDR) & ~((uint32_t)0x0F000000)) | ((uint32_t)freqsinggap << 24));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRADAR_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCRADAR_ADDR) & ~((uint32_t)0x0F000000)) | ((uint32_t)freqsinggap << 24));
 }
 
 /**
@@ -14309,7 +14309,7 @@ __INLINE void riu_freqsinggap_setf(uint8_t freqsinggap)
  */
 __INLINE uint8_t riu_freqsing_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRADAR_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRADAR_ADDR);
     return ((localVal & ((uint32_t)0x00FF0000)) >> 16);
 }
 
@@ -14322,7 +14322,7 @@ __INLINE uint8_t riu_freqsing_getf(void)
  */
 __INLINE void riu_freqsing_setf(uint8_t freqsing)
 {
-    REG_PL_WR(RIU_RWNXAGCRADAR_ADDR, (REG_PL_RD(RIU_RWNXAGCRADAR_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)freqsing << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRADAR_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCRADAR_ADDR) & ~((uint32_t)0x00FF0000)) | ((uint32_t)freqsing << 16));
 }
 
 /**
@@ -14334,7 +14334,7 @@ __INLINE void riu_freqsing_setf(uint8_t freqsing)
  */
 __INLINE uint8_t riu_fomsinggap_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRADAR_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRADAR_ADDR);
     return ((localVal & ((uint32_t)0x00000F00)) >> 8);
 }
 
@@ -14347,7 +14347,7 @@ __INLINE uint8_t riu_fomsinggap_getf(void)
  */
 __INLINE void riu_fomsinggap_setf(uint8_t fomsinggap)
 {
-    REG_PL_WR(RIU_RWNXAGCRADAR_ADDR, (REG_PL_RD(RIU_RWNXAGCRADAR_ADDR) & ~((uint32_t)0x00000F00)) | ((uint32_t)fomsinggap << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRADAR_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCRADAR_ADDR) & ~((uint32_t)0x00000F00)) | ((uint32_t)fomsinggap << 8));
 }
 
 /**
@@ -14359,7 +14359,7 @@ __INLINE void riu_fomsinggap_setf(uint8_t fomsinggap)
  */
 __INLINE uint8_t riu_fomsing_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRADAR_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRADAR_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -14372,7 +14372,7 @@ __INLINE uint8_t riu_fomsing_getf(void)
  */
 __INLINE void riu_fomsing_setf(uint8_t fomsing)
 {
-    REG_PL_WR(RIU_RWNXAGCRADAR_ADDR, (REG_PL_RD(RIU_RWNXAGCRADAR_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)fomsing << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRADAR_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCRADAR_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)fomsing << 0));
 }
 
 #endif // RW_RADAR_EN
@@ -14408,7 +14408,7 @@ __INLINE void riu_fomsing_setf(uint8_t fomsing)
  */
 __INLINE uint32_t riu_rwnxagcradartim_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCRADARTIM_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCRADARTIM_ADDR);
 }
 
 /**
@@ -14418,7 +14418,7 @@ __INLINE uint32_t riu_rwnxagcradartim_get(void)
  */
 __INLINE void riu_rwnxagcradartim_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCRADARTIM_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRADARTIM_ADDR, value);
 }
 
 // field definitions
@@ -14456,7 +14456,7 @@ __INLINE void riu_rwnxagcradartim_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcradartim_pack(uint8_t pulsetimerclear, uint8_t pulseirqfifothr, uint8_t pulseirqtimeout)
 {
-    REG_PL_WR(RIU_RWNXAGCRADARTIM_ADDR,  ((uint32_t)pulsetimerclear << 31) | ((uint32_t)pulseirqfifothr << 16) | ((uint32_t)pulseirqtimeout << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRADARTIM_ADDR,  ((uint32_t)pulsetimerclear << 31) | ((uint32_t)pulseirqfifothr << 16) | ((uint32_t)pulseirqtimeout << 0));
 }
 
 /**
@@ -14471,7 +14471,7 @@ __INLINE void riu_rwnxagcradartim_pack(uint8_t pulsetimerclear, uint8_t pulseirq
  */
 __INLINE void riu_rwnxagcradartim_unpack(uint8_t* pulsetimerclear, uint8_t* pulseirqfifothr, uint8_t* pulseirqtimeout)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRADARTIM_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRADARTIM_ADDR);
 
     *pulsetimerclear = (localVal & ((uint32_t)0x80000000)) >> 31;
     *pulseirqfifothr = (localVal & ((uint32_t)0x00070000)) >> 16;
@@ -14487,7 +14487,7 @@ __INLINE void riu_rwnxagcradartim_unpack(uint8_t* pulsetimerclear, uint8_t* puls
  */
 __INLINE uint8_t riu_pulsetimerclear_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRADARTIM_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRADARTIM_ADDR);
     return ((localVal & ((uint32_t)0x80000000)) >> 31);
 }
 
@@ -14500,7 +14500,7 @@ __INLINE uint8_t riu_pulsetimerclear_getf(void)
  */
 __INLINE void riu_pulsetimerclear_setf(uint8_t pulsetimerclear)
 {
-    REG_PL_WR(RIU_RWNXAGCRADARTIM_ADDR, (REG_PL_RD(RIU_RWNXAGCRADARTIM_ADDR) & ~((uint32_t)0x80000000)) | ((uint32_t)pulsetimerclear << 31));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRADARTIM_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCRADARTIM_ADDR) & ~((uint32_t)0x80000000)) | ((uint32_t)pulsetimerclear << 31));
 }
 
 /**
@@ -14512,7 +14512,7 @@ __INLINE void riu_pulsetimerclear_setf(uint8_t pulsetimerclear)
  */
 __INLINE uint8_t riu_pulseirqfifothr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRADARTIM_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRADARTIM_ADDR);
     return ((localVal & ((uint32_t)0x00070000)) >> 16);
 }
 
@@ -14525,7 +14525,7 @@ __INLINE uint8_t riu_pulseirqfifothr_getf(void)
  */
 __INLINE void riu_pulseirqfifothr_setf(uint8_t pulseirqfifothr)
 {
-    REG_PL_WR(RIU_RWNXAGCRADARTIM_ADDR, (REG_PL_RD(RIU_RWNXAGCRADARTIM_ADDR) & ~((uint32_t)0x00070000)) | ((uint32_t)pulseirqfifothr << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRADARTIM_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCRADARTIM_ADDR) & ~((uint32_t)0x00070000)) | ((uint32_t)pulseirqfifothr << 16));
 }
 
 /**
@@ -14537,7 +14537,7 @@ __INLINE void riu_pulseirqfifothr_setf(uint8_t pulseirqfifothr)
  */
 __INLINE uint8_t riu_pulseirqtimeout_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCRADARTIM_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCRADARTIM_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -14550,7 +14550,7 @@ __INLINE uint8_t riu_pulseirqtimeout_getf(void)
  */
 __INLINE void riu_pulseirqtimeout_setf(uint8_t pulseirqtimeout)
 {
-    REG_PL_WR(RIU_RWNXAGCRADARTIM_ADDR, (REG_PL_RD(RIU_RWNXAGCRADARTIM_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)pulseirqtimeout << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCRADARTIM_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCRADARTIM_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)pulseirqtimeout << 0));
 }
 
 #endif // RW_RADAR_EN
@@ -14586,7 +14586,7 @@ __INLINE void riu_pulseirqtimeout_setf(uint8_t pulseirqtimeout)
  */
 __INLINE uint32_t riu_rwnxagcdccompradar_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCDCCOMPRADAR_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCDCCOMPRADAR_ADDR);
 }
 
 /**
@@ -14596,7 +14596,7 @@ __INLINE uint32_t riu_rwnxagcdccompradar_get(void)
  */
 __INLINE void riu_rwnxagcdccompradar_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMPRADAR_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMPRADAR_ADDR, value);
 }
 
 // field definitions
@@ -14636,7 +14636,7 @@ __INLINE void riu_rwnxagcdccompradar_set(uint32_t value)
  */
 __INLINE void riu_rwnxagcdccompradar_pack(uint8_t dcradartype, uint8_t dcradarholdtime50ns, uint8_t dcradarzerotime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMPRADAR_ADDR,  ((uint32_t)dcradartype << 28) | ((uint32_t)dcradarholdtime50ns << 16) | ((uint32_t)dcradarzerotime50ns << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMPRADAR_ADDR,  ((uint32_t)dcradartype << 28) | ((uint32_t)dcradarholdtime50ns << 16) | ((uint32_t)dcradarzerotime50ns << 8));
 }
 
 /**
@@ -14651,7 +14651,7 @@ __INLINE void riu_rwnxagcdccompradar_pack(uint8_t dcradartype, uint8_t dcradarho
  */
 __INLINE void riu_rwnxagcdccompradar_unpack(uint8_t* dcradartype, uint8_t* dcradarholdtime50ns, uint8_t* dcradarzerotime50ns)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMPRADAR_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMPRADAR_ADDR);
 
     *dcradartype = (localVal & ((uint32_t)0x30000000)) >> 28;
     *dcradarholdtime50ns = (localVal & ((uint32_t)0x007F0000)) >> 16;
@@ -14667,7 +14667,7 @@ __INLINE void riu_rwnxagcdccompradar_unpack(uint8_t* dcradartype, uint8_t* dcrad
  */
 __INLINE uint8_t riu_dcradartype_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMPRADAR_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMPRADAR_ADDR);
     return ((localVal & ((uint32_t)0x30000000)) >> 28);
 }
 
@@ -14680,7 +14680,7 @@ __INLINE uint8_t riu_dcradartype_getf(void)
  */
 __INLINE void riu_dcradartype_setf(uint8_t dcradartype)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMPRADAR_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMPRADAR_ADDR) & ~((uint32_t)0x30000000)) | ((uint32_t)dcradartype << 28));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMPRADAR_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMPRADAR_ADDR) & ~((uint32_t)0x30000000)) | ((uint32_t)dcradartype << 28));
 }
 
 /**
@@ -14692,7 +14692,7 @@ __INLINE void riu_dcradartype_setf(uint8_t dcradartype)
  */
 __INLINE uint8_t riu_dcradarholdtime50ns_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMPRADAR_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMPRADAR_ADDR);
     return ((localVal & ((uint32_t)0x007F0000)) >> 16);
 }
 
@@ -14705,7 +14705,7 @@ __INLINE uint8_t riu_dcradarholdtime50ns_getf(void)
  */
 __INLINE void riu_dcradarholdtime50ns_setf(uint8_t dcradarholdtime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMPRADAR_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMPRADAR_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)dcradarholdtime50ns << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMPRADAR_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMPRADAR_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)dcradarholdtime50ns << 16));
 }
 
 /**
@@ -14717,7 +14717,7 @@ __INLINE void riu_dcradarholdtime50ns_setf(uint8_t dcradarholdtime50ns)
  */
 __INLINE uint8_t riu_dcradarzerotime50ns_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCDCCOMPRADAR_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCDCCOMPRADAR_ADDR);
     return ((localVal & ((uint32_t)0x00007F00)) >> 8);
 }
 
@@ -14730,7 +14730,7 @@ __INLINE uint8_t riu_dcradarzerotime50ns_getf(void)
  */
 __INLINE void riu_dcradarzerotime50ns_setf(uint8_t dcradarzerotime50ns)
 {
-    REG_PL_WR(RIU_RWNXAGCDCCOMPRADAR_ADDR, (REG_PL_RD(RIU_RWNXAGCDCCOMPRADAR_ADDR) & ~((uint32_t)0x00007F00)) | ((uint32_t)dcradarzerotime50ns << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCDCCOMPRADAR_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCDCCOMPRADAR_ADDR) & ~((uint32_t)0x00007F00)) | ((uint32_t)dcradarzerotime50ns << 8));
 }
 
 #endif // RW_RADAR_EN
@@ -14765,7 +14765,7 @@ __INLINE void riu_dcradarzerotime50ns_setf(uint8_t dcradarzerotime50ns)
  */
 __INLINE uint32_t riu_rwnxagccca2_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCCCA2_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCCCA2_ADDR);
 }
 
 /**
@@ -14775,7 +14775,7 @@ __INLINE uint32_t riu_rwnxagccca2_get(void)
  */
 __INLINE void riu_rwnxagccca2_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA2_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA2_ADDR, value);
 }
 
 // field definitions
@@ -14815,7 +14815,7 @@ __INLINE void riu_rwnxagccca2_set(uint32_t value)
  */
 __INLINE void riu_rwnxagccca2_pack(uint16_t inbdcca20spowmindbm, uint8_t cca20sfallthrdbm, uint8_t cca20srisethrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA2_ADDR,  ((uint32_t)inbdcca20spowmindbm << 20) | ((uint32_t)cca20sfallthrdbm << 12) | ((uint32_t)cca20srisethrdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA2_ADDR,  ((uint32_t)inbdcca20spowmindbm << 20) | ((uint32_t)cca20sfallthrdbm << 12) | ((uint32_t)cca20srisethrdbm << 0));
 }
 
 /**
@@ -14830,7 +14830,7 @@ __INLINE void riu_rwnxagccca2_pack(uint16_t inbdcca20spowmindbm, uint8_t cca20sf
  */
 __INLINE void riu_rwnxagccca2_unpack(uint16_t* inbdcca20spowmindbm, uint8_t* cca20sfallthrdbm, uint8_t* cca20srisethrdbm)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA2_ADDR);
 
     *inbdcca20spowmindbm = (localVal & ((uint32_t)0x1FF00000)) >> 20;
     *cca20sfallthrdbm = (localVal & ((uint32_t)0x000FF000)) >> 12;
@@ -14846,7 +14846,7 @@ __INLINE void riu_rwnxagccca2_unpack(uint16_t* inbdcca20spowmindbm, uint8_t* cca
  */
 __INLINE uint16_t riu_inbdcca20spowmindbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA2_ADDR);
     return ((localVal & ((uint32_t)0x1FF00000)) >> 20);
 }
 
@@ -14859,7 +14859,7 @@ __INLINE uint16_t riu_inbdcca20spowmindbm_getf(void)
  */
 __INLINE void riu_inbdcca20spowmindbm_setf(uint16_t inbdcca20spowmindbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA2_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA2_ADDR) & ~((uint32_t)0x1FF00000)) | ((uint32_t)inbdcca20spowmindbm << 20));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA2_ADDR) & ~((uint32_t)0x1FF00000)) | ((uint32_t)inbdcca20spowmindbm << 20));
 }
 
 /**
@@ -14871,7 +14871,7 @@ __INLINE void riu_inbdcca20spowmindbm_setf(uint16_t inbdcca20spowmindbm)
  */
 __INLINE uint8_t riu_cca20sfallthrdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA2_ADDR);
     return ((localVal & ((uint32_t)0x000FF000)) >> 12);
 }
 
@@ -14884,7 +14884,7 @@ __INLINE uint8_t riu_cca20sfallthrdbm_getf(void)
  */
 __INLINE void riu_cca20sfallthrdbm_setf(uint8_t cca20sfallthrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA2_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA2_ADDR) & ~((uint32_t)0x000FF000)) | ((uint32_t)cca20sfallthrdbm << 12));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA2_ADDR) & ~((uint32_t)0x000FF000)) | ((uint32_t)cca20sfallthrdbm << 12));
 }
 
 /**
@@ -14896,7 +14896,7 @@ __INLINE void riu_cca20sfallthrdbm_setf(uint8_t cca20sfallthrdbm)
  */
 __INLINE uint8_t riu_cca20srisethrdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA2_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -14909,7 +14909,7 @@ __INLINE uint8_t riu_cca20srisethrdbm_getf(void)
  */
 __INLINE void riu_cca20srisethrdbm_setf(uint8_t cca20srisethrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA2_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA2_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)cca20srisethrdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA2_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA2_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)cca20srisethrdbm << 0));
 }
 
 /// @}
@@ -14943,7 +14943,7 @@ __INLINE void riu_cca20srisethrdbm_setf(uint8_t cca20srisethrdbm)
  */
 __INLINE uint32_t riu_rwnxagccca3_get(void)
 {
-    return REG_PL_RD(RIU_RWNXAGCCCA3_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXAGCCCA3_ADDR);
 }
 
 /**
@@ -14953,7 +14953,7 @@ __INLINE uint32_t riu_rwnxagccca3_get(void)
  */
 __INLINE void riu_rwnxagccca3_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA3_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA3_ADDR, value);
 }
 
 // field definitions
@@ -14993,7 +14993,7 @@ __INLINE void riu_rwnxagccca3_set(uint32_t value)
  */
 __INLINE void riu_rwnxagccca3_pack(uint16_t inbdcca40spowmindbm, uint8_t cca40sfallthrdbm, uint8_t cca40srisethrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA3_ADDR,  ((uint32_t)inbdcca40spowmindbm << 20) | ((uint32_t)cca40sfallthrdbm << 12) | ((uint32_t)cca40srisethrdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA3_ADDR,  ((uint32_t)inbdcca40spowmindbm << 20) | ((uint32_t)cca40sfallthrdbm << 12) | ((uint32_t)cca40srisethrdbm << 0));
 }
 
 /**
@@ -15008,7 +15008,7 @@ __INLINE void riu_rwnxagccca3_pack(uint16_t inbdcca40spowmindbm, uint8_t cca40sf
  */
 __INLINE void riu_rwnxagccca3_unpack(uint16_t* inbdcca40spowmindbm, uint8_t* cca40sfallthrdbm, uint8_t* cca40srisethrdbm)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA3_ADDR);
 
     *inbdcca40spowmindbm = (localVal & ((uint32_t)0x1FF00000)) >> 20;
     *cca40sfallthrdbm = (localVal & ((uint32_t)0x000FF000)) >> 12;
@@ -15024,7 +15024,7 @@ __INLINE void riu_rwnxagccca3_unpack(uint16_t* inbdcca40spowmindbm, uint8_t* cca
  */
 __INLINE uint16_t riu_inbdcca40spowmindbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA3_ADDR);
     return ((localVal & ((uint32_t)0x1FF00000)) >> 20);
 }
 
@@ -15037,7 +15037,7 @@ __INLINE uint16_t riu_inbdcca40spowmindbm_getf(void)
  */
 __INLINE void riu_inbdcca40spowmindbm_setf(uint16_t inbdcca40spowmindbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA3_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA3_ADDR) & ~((uint32_t)0x1FF00000)) | ((uint32_t)inbdcca40spowmindbm << 20));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA3_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA3_ADDR) & ~((uint32_t)0x1FF00000)) | ((uint32_t)inbdcca40spowmindbm << 20));
 }
 
 /**
@@ -15049,7 +15049,7 @@ __INLINE void riu_inbdcca40spowmindbm_setf(uint16_t inbdcca40spowmindbm)
  */
 __INLINE uint8_t riu_cca40sfallthrdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA3_ADDR);
     return ((localVal & ((uint32_t)0x000FF000)) >> 12);
 }
 
@@ -15062,7 +15062,7 @@ __INLINE uint8_t riu_cca40sfallthrdbm_getf(void)
  */
 __INLINE void riu_cca40sfallthrdbm_setf(uint8_t cca40sfallthrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA3_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA3_ADDR) & ~((uint32_t)0x000FF000)) | ((uint32_t)cca40sfallthrdbm << 12));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA3_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA3_ADDR) & ~((uint32_t)0x000FF000)) | ((uint32_t)cca40sfallthrdbm << 12));
 }
 
 /**
@@ -15074,7 +15074,7 @@ __INLINE void riu_cca40sfallthrdbm_setf(uint8_t cca40sfallthrdbm)
  */
 __INLINE uint8_t riu_cca40srisethrdbm_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXAGCCCA3_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXAGCCCA3_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -15087,7 +15087,7 @@ __INLINE uint8_t riu_cca40srisethrdbm_getf(void)
  */
 __INLINE void riu_cca40srisethrdbm_setf(uint8_t cca40srisethrdbm)
 {
-    REG_PL_WR(RIU_RWNXAGCCCA3_ADDR, (REG_PL_RD(RIU_RWNXAGCCCA3_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)cca40srisethrdbm << 0));
+    PLATFORM_REG_WRITE(RIU_RWNXAGCCCA3_ADDR, (PLATFORM_REG_READ(RIU_RWNXAGCCCA3_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)cca40srisethrdbm << 0));
 }
 
 /// @}
@@ -15120,7 +15120,7 @@ __INLINE void riu_cca40srisethrdbm_setf(uint8_t cca40srisethrdbm)
  */
 __INLINE uint32_t riu_rwnxmacinten_get(void)
 {
-    return REG_PL_RD(RIU_RWNXMACINTEN_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXMACINTEN_ADDR);
 }
 
 /**
@@ -15130,7 +15130,7 @@ __INLINE uint32_t riu_rwnxmacinten_get(void)
  */
 __INLINE void riu_rwnxmacinten_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXMACINTEN_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXMACINTEN_ADDR, value);
 }
 
 // field definitions
@@ -15157,7 +15157,7 @@ __INLINE void riu_rwnxmacinten_set(uint32_t value)
  */
 __INLINE void riu_rwnxmacinten_pack(uint8_t irqmacradardeten, uint8_t irqmacccatimeouten)
 {
-    REG_PL_WR(RIU_RWNXMACINTEN_ADDR,  ((uint32_t)irqmacradardeten << 12) | ((uint32_t)irqmacccatimeouten << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXMACINTEN_ADDR,  ((uint32_t)irqmacradardeten << 12) | ((uint32_t)irqmacccatimeouten << 8));
 }
 
 /**
@@ -15171,7 +15171,7 @@ __INLINE void riu_rwnxmacinten_pack(uint8_t irqmacradardeten, uint8_t irqmacccat
  */
 __INLINE void riu_rwnxmacinten_unpack(uint8_t* irqmacradardeten, uint8_t* irqmacccatimeouten)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTEN_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTEN_ADDR);
 
     *irqmacradardeten = (localVal & ((uint32_t)0x00001000)) >> 12;
     *irqmacccatimeouten = (localVal & ((uint32_t)0x00000100)) >> 8;
@@ -15186,7 +15186,7 @@ __INLINE void riu_rwnxmacinten_unpack(uint8_t* irqmacradardeten, uint8_t* irqmac
  */
 __INLINE uint8_t riu_irqmacradardeten_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTEN_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTEN_ADDR);
     return ((localVal & ((uint32_t)0x00001000)) >> 12);
 }
 
@@ -15199,7 +15199,7 @@ __INLINE uint8_t riu_irqmacradardeten_getf(void)
  */
 __INLINE void riu_irqmacradardeten_setf(uint8_t irqmacradardeten)
 {
-    REG_PL_WR(RIU_RWNXMACINTEN_ADDR, (REG_PL_RD(RIU_RWNXMACINTEN_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)irqmacradardeten << 12));
+    PLATFORM_REG_WRITE(RIU_RWNXMACINTEN_ADDR, (PLATFORM_REG_READ(RIU_RWNXMACINTEN_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)irqmacradardeten << 12));
 }
 
 /**
@@ -15211,7 +15211,7 @@ __INLINE void riu_irqmacradardeten_setf(uint8_t irqmacradardeten)
  */
 __INLINE uint8_t riu_irqmacccatimeouten_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTEN_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTEN_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -15224,7 +15224,7 @@ __INLINE uint8_t riu_irqmacccatimeouten_getf(void)
  */
 __INLINE void riu_irqmacccatimeouten_setf(uint8_t irqmacccatimeouten)
 {
-    REG_PL_WR(RIU_RWNXMACINTEN_ADDR, (REG_PL_RD(RIU_RWNXMACINTEN_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)irqmacccatimeouten << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXMACINTEN_ADDR, (PLATFORM_REG_READ(RIU_RWNXMACINTEN_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)irqmacccatimeouten << 8));
 }
 
 /// @}
@@ -15257,7 +15257,7 @@ __INLINE void riu_irqmacccatimeouten_setf(uint8_t irqmacccatimeouten)
  */
 __INLINE uint32_t riu_rwnxmacintstatraw_get(void)
 {
-    return REG_PL_RD(RIU_RWNXMACINTSTATRAW_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXMACINTSTATRAW_ADDR);
 }
 
 // field definitions
@@ -15286,7 +15286,7 @@ __INLINE uint32_t riu_rwnxmacintstatraw_get(void)
  */
 __INLINE void riu_rwnxmacintstatraw_unpack(uint8_t* irqmacradardetraw, uint8_t* irqmacccatimeoutraw)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTSTATRAW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTSTATRAW_ADDR);
 
     *irqmacradardetraw = (localVal & ((uint32_t)0x00001000)) >> 12;
     *irqmacccatimeoutraw = (localVal & ((uint32_t)0x00000100)) >> 8;
@@ -15301,7 +15301,7 @@ __INLINE void riu_rwnxmacintstatraw_unpack(uint8_t* irqmacradardetraw, uint8_t* 
  */
 __INLINE uint8_t riu_irqmacradardetraw_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTSTATRAW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTSTATRAW_ADDR);
     return ((localVal & ((uint32_t)0x00001000)) >> 12);
 }
 
@@ -15314,7 +15314,7 @@ __INLINE uint8_t riu_irqmacradardetraw_getf(void)
  */
 __INLINE uint8_t riu_irqmacccatimeoutraw_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTSTATRAW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTSTATRAW_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -15348,7 +15348,7 @@ __INLINE uint8_t riu_irqmacccatimeoutraw_getf(void)
  */
 __INLINE uint32_t riu_rwnxmacintstatmasked_get(void)
 {
-    return REG_PL_RD(RIU_RWNXMACINTSTATMASKED_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXMACINTSTATMASKED_ADDR);
 }
 
 // field definitions
@@ -15377,7 +15377,7 @@ __INLINE uint32_t riu_rwnxmacintstatmasked_get(void)
  */
 __INLINE void riu_rwnxmacintstatmasked_unpack(uint8_t* irqmacradardetmasked, uint8_t* irqmacccatimeoutmasked)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTSTATMASKED_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTSTATMASKED_ADDR);
 
     *irqmacradardetmasked = (localVal & ((uint32_t)0x00001000)) >> 12;
     *irqmacccatimeoutmasked = (localVal & ((uint32_t)0x00000100)) >> 8;
@@ -15392,7 +15392,7 @@ __INLINE void riu_rwnxmacintstatmasked_unpack(uint8_t* irqmacradardetmasked, uin
  */
 __INLINE uint8_t riu_irqmacradardetmasked_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTSTATMASKED_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTSTATMASKED_ADDR);
     return ((localVal & ((uint32_t)0x00001000)) >> 12);
 }
 
@@ -15405,7 +15405,7 @@ __INLINE uint8_t riu_irqmacradardetmasked_getf(void)
  */
 __INLINE uint8_t riu_irqmacccatimeoutmasked_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTSTATMASKED_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTSTATMASKED_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -15439,7 +15439,7 @@ __INLINE uint8_t riu_irqmacccatimeoutmasked_getf(void)
  */
 __INLINE uint32_t riu_rwnxmacintack_get(void)
 {
-    return REG_PL_RD(RIU_RWNXMACINTACK_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXMACINTACK_ADDR);
 }
 
 /**
@@ -15449,7 +15449,7 @@ __INLINE uint32_t riu_rwnxmacintack_get(void)
  */
 __INLINE void riu_rwnxmacintack_clear(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXMACINTACK_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXMACINTACK_ADDR, value);
 }
 
 // field definitions
@@ -15476,7 +15476,7 @@ __INLINE void riu_rwnxmacintack_clear(uint32_t value)
  */
 __INLINE void riu_rwnxmacintack_pack(uint8_t irqmacradardetack, uint8_t irqmacccatimeoutack)
 {
-    REG_PL_WR(RIU_RWNXMACINTACK_ADDR,  ((uint32_t)irqmacradardetack << 12) | ((uint32_t)irqmacccatimeoutack << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXMACINTACK_ADDR,  ((uint32_t)irqmacradardetack << 12) | ((uint32_t)irqmacccatimeoutack << 8));
 }
 
 /**
@@ -15490,7 +15490,7 @@ __INLINE void riu_rwnxmacintack_pack(uint8_t irqmacradardetack, uint8_t irqmaccc
  */
 __INLINE void riu_rwnxmacintack_unpack(uint8_t* irqmacradardetack, uint8_t* irqmacccatimeoutack)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTACK_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTACK_ADDR);
 
     *irqmacradardetack = (localVal & ((uint32_t)0x00001000)) >> 12;
     *irqmacccatimeoutack = (localVal & ((uint32_t)0x00000100)) >> 8;
@@ -15505,7 +15505,7 @@ __INLINE void riu_rwnxmacintack_unpack(uint8_t* irqmacradardetack, uint8_t* irqm
  */
 __INLINE uint8_t riu_irqmacradardetack_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTACK_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTACK_ADDR);
     return ((localVal & ((uint32_t)0x00001000)) >> 12);
 }
 
@@ -15518,7 +15518,7 @@ __INLINE uint8_t riu_irqmacradardetack_getf(void)
  */
 __INLINE void riu_irqmacradardetack_clearf(uint8_t irqmacradardetack)
 {
-    REG_PL_WR(RIU_RWNXMACINTACK_ADDR, (uint32_t)irqmacradardetack << 12);
+    PLATFORM_REG_WRITE(RIU_RWNXMACINTACK_ADDR, (uint32_t)irqmacradardetack << 12);
 }
 
 /**
@@ -15530,7 +15530,7 @@ __INLINE void riu_irqmacradardetack_clearf(uint8_t irqmacradardetack)
  */
 __INLINE uint8_t riu_irqmacccatimeoutack_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTACK_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTACK_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -15543,7 +15543,7 @@ __INLINE uint8_t riu_irqmacccatimeoutack_getf(void)
  */
 __INLINE void riu_irqmacccatimeoutack_clearf(uint8_t irqmacccatimeoutack)
 {
-    REG_PL_WR(RIU_RWNXMACINTACK_ADDR, (uint32_t)irqmacccatimeoutack << 8);
+    PLATFORM_REG_WRITE(RIU_RWNXMACINTACK_ADDR, (uint32_t)irqmacccatimeoutack << 8);
 }
 
 /// @}
@@ -15576,7 +15576,7 @@ __INLINE void riu_irqmacccatimeoutack_clearf(uint8_t irqmacccatimeoutack)
  */
 __INLINE uint32_t riu_rwnxmacintgen_get(void)
 {
-    return REG_PL_RD(RIU_RWNXMACINTGEN_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXMACINTGEN_ADDR);
 }
 
 /**
@@ -15586,7 +15586,7 @@ __INLINE uint32_t riu_rwnxmacintgen_get(void)
  */
 __INLINE void riu_rwnxmacintgen_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXMACINTGEN_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXMACINTGEN_ADDR, value);
 }
 
 // field definitions
@@ -15613,7 +15613,7 @@ __INLINE void riu_rwnxmacintgen_set(uint32_t value)
  */
 __INLINE void riu_rwnxmacintgen_pack(uint8_t irqmacradardetgen, uint8_t irqmacccatimeoutgen)
 {
-    REG_PL_WR(RIU_RWNXMACINTGEN_ADDR,  ((uint32_t)irqmacradardetgen << 12) | ((uint32_t)irqmacccatimeoutgen << 8));
+    PLATFORM_REG_WRITE(RIU_RWNXMACINTGEN_ADDR,  ((uint32_t)irqmacradardetgen << 12) | ((uint32_t)irqmacccatimeoutgen << 8));
 }
 
 /**
@@ -15627,7 +15627,7 @@ __INLINE void riu_rwnxmacintgen_pack(uint8_t irqmacradardetgen, uint8_t irqmaccc
  */
 __INLINE void riu_rwnxmacintgen_unpack(uint8_t* irqmacradardetgen, uint8_t* irqmacccatimeoutgen)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTGEN_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTGEN_ADDR);
 
     *irqmacradardetgen = (localVal & ((uint32_t)0x00001000)) >> 12;
     *irqmacccatimeoutgen = (localVal & ((uint32_t)0x00000100)) >> 8;
@@ -15642,7 +15642,7 @@ __INLINE void riu_rwnxmacintgen_unpack(uint8_t* irqmacradardetgen, uint8_t* irqm
  */
 __INLINE uint8_t riu_irqmacradardetgen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTGEN_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTGEN_ADDR);
     return ((localVal & ((uint32_t)0x00001000)) >> 12);
 }
 
@@ -15655,7 +15655,7 @@ __INLINE uint8_t riu_irqmacradardetgen_getf(void)
  */
 __INLINE void riu_irqmacradardetgen_setf(uint8_t irqmacradardetgen)
 {
-    REG_PL_WR(RIU_RWNXMACINTGEN_ADDR, (uint32_t)irqmacradardetgen << 12);
+    PLATFORM_REG_WRITE(RIU_RWNXMACINTGEN_ADDR, (uint32_t)irqmacradardetgen << 12);
 }
 
 /**
@@ -15667,7 +15667,7 @@ __INLINE void riu_irqmacradardetgen_setf(uint8_t irqmacradardetgen)
  */
 __INLINE uint8_t riu_irqmacccatimeoutgen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXMACINTGEN_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXMACINTGEN_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -15680,7 +15680,7 @@ __INLINE uint8_t riu_irqmacccatimeoutgen_getf(void)
  */
 __INLINE void riu_irqmacccatimeoutgen_setf(uint8_t irqmacccatimeoutgen)
 {
-    REG_PL_WR(RIU_RWNXMACINTGEN_ADDR, (uint32_t)irqmacccatimeoutgen << 8);
+    PLATFORM_REG_WRITE(RIU_RWNXMACINTGEN_ADDR, (uint32_t)irqmacccatimeoutgen << 8);
 }
 
 /// @}
@@ -15716,7 +15716,7 @@ __INLINE void riu_irqmacccatimeoutgen_setf(uint8_t irqmacccatimeoutgen)
  */
 __INLINE uint32_t riu_rwnxfedssscckcntl_get(void)
 {
-    return REG_PL_RD(RIU_RWNXFEDSSSCCKCNTL_ADDR);
+    return PLATFORM_REG_READ(RIU_RWNXFEDSSSCCKCNTL_ADDR);
 }
 
 /**
@@ -15726,7 +15726,7 @@ __INLINE uint32_t riu_rwnxfedssscckcntl_get(void)
  */
 __INLINE void riu_rwnxfedssscckcntl_set(uint32_t value)
 {
-    REG_PL_WR(RIU_RWNXFEDSSSCCKCNTL_ADDR, value);
+    PLATFORM_REG_WRITE(RIU_RWNXFEDSSSCCKCNTL_ADDR, value);
 }
 
 // field definitions
@@ -15773,7 +15773,7 @@ __INLINE void riu_rwnxfedssscckcntl_set(uint32_t value)
  */
 __INLINE void riu_rwnxfedssscckcntl_pack(uint8_t rxshift4044, uint8_t txshift4044, uint8_t brxpathselreg, uint8_t rxpathselfromreg)
 {
-    REG_PL_WR(RIU_RWNXFEDSSSCCKCNTL_ADDR,  ((uint32_t)rxshift4044 << 16) | ((uint32_t)txshift4044 << 12) | ((uint32_t)brxpathselreg << 5) | ((uint32_t)rxpathselfromreg << 4));
+    PLATFORM_REG_WRITE(RIU_RWNXFEDSSSCCKCNTL_ADDR,  ((uint32_t)rxshift4044 << 16) | ((uint32_t)txshift4044 << 12) | ((uint32_t)brxpathselreg << 5) | ((uint32_t)rxpathselfromreg << 4));
 }
 
 /**
@@ -15789,7 +15789,7 @@ __INLINE void riu_rwnxfedssscckcntl_pack(uint8_t rxshift4044, uint8_t txshift404
  */
 __INLINE void riu_rwnxfedssscckcntl_unpack(uint8_t* rxshift4044, uint8_t* txshift4044, uint8_t* brxpathselreg, uint8_t* rxpathselfromreg)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEDSSSCCKCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEDSSSCCKCNTL_ADDR);
 
     *rxshift4044 = (localVal & ((uint32_t)0x00070000)) >> 16;
     *txshift4044 = (localVal & ((uint32_t)0x00003000)) >> 12;
@@ -15806,7 +15806,7 @@ __INLINE void riu_rwnxfedssscckcntl_unpack(uint8_t* rxshift4044, uint8_t* txshif
  */
 __INLINE uint8_t riu_rxshift4044_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEDSSSCCKCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEDSSSCCKCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00070000)) >> 16);
 }
 
@@ -15819,7 +15819,7 @@ __INLINE uint8_t riu_rxshift4044_getf(void)
  */
 __INLINE void riu_rxshift4044_setf(uint8_t rxshift4044)
 {
-    REG_PL_WR(RIU_RWNXFEDSSSCCKCNTL_ADDR, (REG_PL_RD(RIU_RWNXFEDSSSCCKCNTL_ADDR) & ~((uint32_t)0x00070000)) | ((uint32_t)rxshift4044 << 16));
+    PLATFORM_REG_WRITE(RIU_RWNXFEDSSSCCKCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEDSSSCCKCNTL_ADDR) & ~((uint32_t)0x00070000)) | ((uint32_t)rxshift4044 << 16));
 }
 
 /**
@@ -15831,7 +15831,7 @@ __INLINE void riu_rxshift4044_setf(uint8_t rxshift4044)
  */
 __INLINE uint8_t riu_txshift4044_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEDSSSCCKCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEDSSSCCKCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00003000)) >> 12);
 }
 
@@ -15844,7 +15844,7 @@ __INLINE uint8_t riu_txshift4044_getf(void)
  */
 __INLINE void riu_txshift4044_setf(uint8_t txshift4044)
 {
-    REG_PL_WR(RIU_RWNXFEDSSSCCKCNTL_ADDR, (REG_PL_RD(RIU_RWNXFEDSSSCCKCNTL_ADDR) & ~((uint32_t)0x00003000)) | ((uint32_t)txshift4044 << 12));
+    PLATFORM_REG_WRITE(RIU_RWNXFEDSSSCCKCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEDSSSCCKCNTL_ADDR) & ~((uint32_t)0x00003000)) | ((uint32_t)txshift4044 << 12));
 }
 
 /**
@@ -15856,7 +15856,7 @@ __INLINE void riu_txshift4044_setf(uint8_t txshift4044)
  */
 __INLINE uint8_t riu_brxpathselreg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEDSSSCCKCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEDSSSCCKCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00000060)) >> 5);
 }
 
@@ -15869,7 +15869,7 @@ __INLINE uint8_t riu_brxpathselreg_getf(void)
  */
 __INLINE void riu_brxpathselreg_setf(uint8_t brxpathselreg)
 {
-    REG_PL_WR(RIU_RWNXFEDSSSCCKCNTL_ADDR, (REG_PL_RD(RIU_RWNXFEDSSSCCKCNTL_ADDR) & ~((uint32_t)0x00000060)) | ((uint32_t)brxpathselreg << 5));
+    PLATFORM_REG_WRITE(RIU_RWNXFEDSSSCCKCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEDSSSCCKCNTL_ADDR) & ~((uint32_t)0x00000060)) | ((uint32_t)brxpathselreg << 5));
 }
 
 /**
@@ -15881,7 +15881,7 @@ __INLINE void riu_brxpathselreg_setf(uint8_t brxpathselreg)
  */
 __INLINE uint8_t riu_rxpathselfromreg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(RIU_RWNXFEDSSSCCKCNTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(RIU_RWNXFEDSSSCCKCNTL_ADDR);
     return ((localVal & ((uint32_t)0x00000010)) >> 4);
 }
 
@@ -15894,7 +15894,7 @@ __INLINE uint8_t riu_rxpathselfromreg_getf(void)
  */
 __INLINE void riu_rxpathselfromreg_setf(uint8_t rxpathselfromreg)
 {
-    REG_PL_WR(RIU_RWNXFEDSSSCCKCNTL_ADDR, (REG_PL_RD(RIU_RWNXFEDSSSCCKCNTL_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)rxpathselfromreg << 4));
+    PLATFORM_REG_WRITE(RIU_RWNXFEDSSSCCKCNTL_ADDR, (PLATFORM_REG_READ(RIU_RWNXFEDSSSCCKCNTL_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)rxpathselfromreg << 4));
 }
 
 #endif // RW_NX_DERIV_80211B

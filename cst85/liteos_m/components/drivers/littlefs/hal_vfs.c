@@ -86,7 +86,7 @@ int32_t hal_vfs_init(void)
     VfsOps->LfsOps.block_size = LFS_DEFAULT_BLOCK_SIZE;
     VfsOps->LfsOps.block_count = LFS_DEFAULT_BLOCK_COUNT;
 
-    // SetDefaultMountPath(0,"/data");
+    SetDefaultMountPath(0,"/data");
     if (LOS_FsMount(NULL, "/data", "littlefs", 0, VfsOps) != 0) {
         printf("+++ hal_vfs_init: Mount littlefs faild!\n");
         free(VfsOps);

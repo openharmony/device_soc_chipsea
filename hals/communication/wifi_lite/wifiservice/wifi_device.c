@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 #include "wifi_config.h"
-#include "fhost.h"
-#include "fhost_config.h"
+#include "wifi_host.h"
+#include "wifi_host_config.h"
 #include "wlan_if.h"
-#include "net_def.h"
+#include "porting_net_def.h"
 #include "rwnx_defs.h"
-#include "cfgrwnx.h"
+#include "wifi_cfg_nx.h"
 #include "securec.h"
 
 #define DEFAULT_STA_VIF 0

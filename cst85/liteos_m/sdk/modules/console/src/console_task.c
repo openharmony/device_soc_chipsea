@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2018-2020 CSSemi Ltd.
- *
+ * Copyright (c) 2021 Chipsea Technologies (Shenzhen) Corp., Ltd. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,10 +14,10 @@
  */
 #include "console.h"
 #include "command.h"
-#include "stdio_uart.h"
+#include "uart.h"
 
 #ifdef CFG_RTOS
-#include "rtos.h"
+#include "al_rtos.h"
 
 /*
  * GLOBAL VARIABLES

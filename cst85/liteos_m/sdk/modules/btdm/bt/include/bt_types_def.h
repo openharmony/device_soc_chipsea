@@ -17,7 +17,7 @@
 #include <string.h>
 #include "co_types_def.h"
 #include "co_errors.h"
-#include "co_int.h"
+#include "wb_co_int.h"
 
 
 #ifndef bool

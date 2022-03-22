@@ -21,7 +21,7 @@
  *
  ****************************************************************************************
  */
-#include "rtos.h"
+#include "al_rtos.h"
 #include "dbg.h"
 
 #if PLF_CONSOLE
@@ -53,7 +53,7 @@
 #include "ble_task.h"
 #endif
 #ifdef CFG_AON
-#include "bt_aon_sram.h"
+#include "cs_bt_aon_sram.h"
 #endif
 #endif /* PLF_BT_STACK */
 
@@ -62,9 +62,9 @@
 #include "hostif.h"
 #endif
 #ifdef CONFIG_RWNX_LWIP
-#include "net_al.h"
-#include "fhost.h"
-#include "fhost_wpa.h"
+#include "porting_net_al.h"
+#include "wifi_host.h"
+#include "wifi_host_wpa.h"
 #ifdef CFG_HOSTIF
 #include "rwnx_defs.h"
 struct rwnx_hw hw_env;

@@ -27,7 +27,7 @@
 
 #include "compiler.h"
 #include "arch.h"
-#include "reg_access.h"
+#include "reg_access_wrapper.h"
 
 /** @brief Number of registers in the REG_WLAN_RF peripheral.
  */
@@ -67,7 +67,7 @@
  */
 __INLINE uint32_t wlan_rf_wf_pu_tia_reg_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_PU_TIA_REG_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_PU_TIA_REG_ADDR);
 }
 
 /**
@@ -77,7 +77,7 @@ __INLINE uint32_t wlan_rf_wf_pu_tia_reg_get(void)
  */
 __INLINE void wlan_rf_wf_pu_tia_reg_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_TIA_REG_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_TIA_REG_ADDR, value);
 }
 
 // field definitions
@@ -118,7 +118,7 @@ __INLINE void wlan_rf_wf_pu_tia_reg_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_pu_tia_reg_pack(uint8_t wfputiadr, uint8_t wfputiareg, uint8_t wftiarstndr, uint8_t wftiarstnreg)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_TIA_REG_ADDR,  ((uint32_t)wfputiadr << 7) | ((uint32_t)wfputiareg << 6) | ((uint32_t)wftiarstndr << 5) | ((uint32_t)wftiarstnreg << 4));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_TIA_REG_ADDR,  ((uint32_t)wfputiadr << 7) | ((uint32_t)wfputiareg << 6) | ((uint32_t)wftiarstndr << 5) | ((uint32_t)wftiarstnreg << 4));
 }
 
 /**
@@ -134,7 +134,7 @@ __INLINE void wlan_rf_wf_pu_tia_reg_pack(uint8_t wfputiadr, uint8_t wfputiareg, 
  */
 __INLINE void wlan_rf_wf_pu_tia_reg_unpack(uint8_t* wfputiadr, uint8_t* wfputiareg, uint8_t* wftiarstndr, uint8_t* wftiarstnreg)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_TIA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_TIA_REG_ADDR);
 
     *wfputiadr = (localVal & ((uint32_t)0x00000080)) >> 7;
     *wfputiareg = (localVal & ((uint32_t)0x00000040)) >> 6;
@@ -151,7 +151,7 @@ __INLINE void wlan_rf_wf_pu_tia_reg_unpack(uint8_t* wfputiadr, uint8_t* wfputiar
  */
 __INLINE uint8_t wlan_rf_wf_pu_tia_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_TIA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_TIA_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000080)) >> 7);
 }
 
@@ -164,7 +164,7 @@ __INLINE uint8_t wlan_rf_wf_pu_tia_dr_getf(void)
  */
 __INLINE void wlan_rf_wf_pu_tia_dr_setf(uint8_t wfputiadr)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_TIA_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_TIA_REG_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)wfputiadr << 7));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_TIA_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_TIA_REG_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)wfputiadr << 7));
 }
 
 /**
@@ -176,7 +176,7 @@ __INLINE void wlan_rf_wf_pu_tia_dr_setf(uint8_t wfputiadr)
  */
 __INLINE uint8_t wlan_rf_wf_pu_tia_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_TIA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_TIA_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000040)) >> 6);
 }
 
@@ -189,7 +189,7 @@ __INLINE uint8_t wlan_rf_wf_pu_tia_reg_getf(void)
  */
 __INLINE void wlan_rf_wf_pu_tia_reg_setf(uint8_t wfputiareg)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_TIA_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_TIA_REG_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)wfputiareg << 6));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_TIA_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_TIA_REG_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)wfputiareg << 6));
 }
 
 /**
@@ -201,7 +201,7 @@ __INLINE void wlan_rf_wf_pu_tia_reg_setf(uint8_t wfputiareg)
  */
 __INLINE uint8_t wlan_rf_wf_tia_rstn_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_TIA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_TIA_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000020)) >> 5);
 }
 
@@ -214,7 +214,7 @@ __INLINE uint8_t wlan_rf_wf_tia_rstn_dr_getf(void)
  */
 __INLINE void wlan_rf_wf_tia_rstn_dr_setf(uint8_t wftiarstndr)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_TIA_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_TIA_REG_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)wftiarstndr << 5));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_TIA_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_TIA_REG_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)wftiarstndr << 5));
 }
 
 /**
@@ -226,7 +226,7 @@ __INLINE void wlan_rf_wf_tia_rstn_dr_setf(uint8_t wftiarstndr)
  */
 __INLINE uint8_t wlan_rf_wf_tia_rstn_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_TIA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_TIA_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000010)) >> 4);
 }
 
@@ -239,7 +239,7 @@ __INLINE uint8_t wlan_rf_wf_tia_rstn_reg_getf(void)
  */
 __INLINE void wlan_rf_wf_tia_rstn_reg_setf(uint8_t wftiarstnreg)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_TIA_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_TIA_REG_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)wftiarstnreg << 4));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_TIA_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_TIA_REG_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)wftiarstnreg << 4));
 }
 
 /// @}
@@ -282,7 +282,7 @@ __INLINE void wlan_rf_wf_tia_rstn_reg_setf(uint8_t wftiarstnreg)
  */
 __INLINE uint32_t wlan_rf_wf_pu_adc_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
 }
 
 /**
@@ -292,7 +292,7 @@ __INLINE uint32_t wlan_rf_wf_pu_adc_get(void)
  */
 __INLINE void wlan_rf_wf_pu_adc_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, value);
 }
 
 // field definitions
@@ -389,7 +389,7 @@ __INLINE void wlan_rf_wf_pu_adc_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_pu_adc_pack(uint8_t wfpuadcdr, uint8_t wfpuadcreg, uint8_t wfpuadcvregcomdr, uint8_t wfpuadcvregcomreg, uint8_t wfpuadcvrefcomdr, uint8_t wfpuadcvrefcomreg, uint8_t wfpupadr, uint8_t wfpupareg, uint8_t wfpagainendr, uint8_t wfpagainenreg, uint8_t wfpapkdetrstndr, uint8_t wfpapkdetrstnreg)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR,  ((uint32_t)wfpuadcdr << 22) | ((uint32_t)wfpuadcreg << 21) | ((uint32_t)wfpuadcvregcomdr << 20) | ((uint32_t)wfpuadcvregcomreg << 19) | ((uint32_t)wfpuadcvrefcomdr << 18) | ((uint32_t)wfpuadcvrefcomreg << 17) | ((uint32_t)wfpupadr << 10) | ((uint32_t)wfpupareg << 9) | ((uint32_t)wfpagainendr << 8) | ((uint32_t)wfpagainenreg << 7) | ((uint32_t)wfpapkdetrstndr << 6) | ((uint32_t)wfpapkdetrstnreg << 5));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR,  ((uint32_t)wfpuadcdr << 22) | ((uint32_t)wfpuadcreg << 21) | ((uint32_t)wfpuadcvregcomdr << 20) | ((uint32_t)wfpuadcvregcomreg << 19) | ((uint32_t)wfpuadcvrefcomdr << 18) | ((uint32_t)wfpuadcvrefcomreg << 17) | ((uint32_t)wfpupadr << 10) | ((uint32_t)wfpupareg << 9) | ((uint32_t)wfpagainendr << 8) | ((uint32_t)wfpagainenreg << 7) | ((uint32_t)wfpapkdetrstndr << 6) | ((uint32_t)wfpapkdetrstnreg << 5));
 }
 
 /**
@@ -413,7 +413,7 @@ __INLINE void wlan_rf_wf_pu_adc_pack(uint8_t wfpuadcdr, uint8_t wfpuadcreg, uint
  */
 __INLINE void wlan_rf_wf_pu_adc_unpack(uint8_t* wfpuadcdr, uint8_t* wfpuadcreg, uint8_t* wfpuadcvregcomdr, uint8_t* wfpuadcvregcomreg, uint8_t* wfpuadcvrefcomdr, uint8_t* wfpuadcvrefcomreg, uint8_t* wfpupadr, uint8_t* wfpupareg, uint8_t* wfpagainendr, uint8_t* wfpagainenreg, uint8_t* wfpapkdetrstndr, uint8_t* wfpapkdetrstnreg)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
 
     *wfpuadcdr = (localVal & ((uint32_t)0x00400000)) >> 22;
     *wfpuadcreg = (localVal & ((uint32_t)0x00200000)) >> 21;
@@ -438,7 +438,7 @@ __INLINE void wlan_rf_wf_pu_adc_unpack(uint8_t* wfpuadcdr, uint8_t* wfpuadcreg, 
  */
 __INLINE uint8_t wlan_rf_wf_pu_adc_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
     return ((localVal & ((uint32_t)0x00400000)) >> 22);
 }
 
@@ -451,7 +451,7 @@ __INLINE uint8_t wlan_rf_wf_pu_adc_dr_getf(void)
  */
 __INLINE void wlan_rf_wf_pu_adc_dr_setf(uint8_t wfpuadcdr)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00400000)) | ((uint32_t)wfpuadcdr << 22));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00400000)) | ((uint32_t)wfpuadcdr << 22));
 }
 
 /**
@@ -463,7 +463,7 @@ __INLINE void wlan_rf_wf_pu_adc_dr_setf(uint8_t wfpuadcdr)
  */
 __INLINE uint8_t wlan_rf_wf_pu_adc_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
     return ((localVal & ((uint32_t)0x00200000)) >> 21);
 }
 
@@ -476,7 +476,7 @@ __INLINE uint8_t wlan_rf_wf_pu_adc_reg_getf(void)
  */
 __INLINE void wlan_rf_wf_pu_adc_reg_setf(uint8_t wfpuadcreg)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00200000)) | ((uint32_t)wfpuadcreg << 21));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00200000)) | ((uint32_t)wfpuadcreg << 21));
 }
 
 /**
@@ -488,7 +488,7 @@ __INLINE void wlan_rf_wf_pu_adc_reg_setf(uint8_t wfpuadcreg)
  */
 __INLINE uint8_t wlan_rf_wf_pu_adc_vreg_com_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
     return ((localVal & ((uint32_t)0x00100000)) >> 20);
 }
 
@@ -501,7 +501,7 @@ __INLINE uint8_t wlan_rf_wf_pu_adc_vreg_com_dr_getf(void)
  */
 __INLINE void wlan_rf_wf_pu_adc_vreg_com_dr_setf(uint8_t wfpuadcvregcomdr)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00100000)) | ((uint32_t)wfpuadcvregcomdr << 20));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00100000)) | ((uint32_t)wfpuadcvregcomdr << 20));
 }
 
 /**
@@ -513,7 +513,7 @@ __INLINE void wlan_rf_wf_pu_adc_vreg_com_dr_setf(uint8_t wfpuadcvregcomdr)
  */
 __INLINE uint8_t wlan_rf_wf_pu_adc_vreg_com_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
     return ((localVal & ((uint32_t)0x00080000)) >> 19);
 }
 
@@ -526,7 +526,7 @@ __INLINE uint8_t wlan_rf_wf_pu_adc_vreg_com_reg_getf(void)
  */
 __INLINE void wlan_rf_wf_pu_adc_vreg_com_reg_setf(uint8_t wfpuadcvregcomreg)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00080000)) | ((uint32_t)wfpuadcvregcomreg << 19));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00080000)) | ((uint32_t)wfpuadcvregcomreg << 19));
 }
 
 /**
@@ -538,7 +538,7 @@ __INLINE void wlan_rf_wf_pu_adc_vreg_com_reg_setf(uint8_t wfpuadcvregcomreg)
  */
 __INLINE uint8_t wlan_rf_wf_pu_adc_vref_com_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
     return ((localVal & ((uint32_t)0x00040000)) >> 18);
 }
 
@@ -551,7 +551,7 @@ __INLINE uint8_t wlan_rf_wf_pu_adc_vref_com_dr_getf(void)
  */
 __INLINE void wlan_rf_wf_pu_adc_vref_com_dr_setf(uint8_t wfpuadcvrefcomdr)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00040000)) | ((uint32_t)wfpuadcvrefcomdr << 18));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00040000)) | ((uint32_t)wfpuadcvrefcomdr << 18));
 }
 
 /**
@@ -563,7 +563,7 @@ __INLINE void wlan_rf_wf_pu_adc_vref_com_dr_setf(uint8_t wfpuadcvrefcomdr)
  */
 __INLINE uint8_t wlan_rf_wf_pu_adc_vref_com_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
     return ((localVal & ((uint32_t)0x00020000)) >> 17);
 }
 
@@ -576,7 +576,7 @@ __INLINE uint8_t wlan_rf_wf_pu_adc_vref_com_reg_getf(void)
  */
 __INLINE void wlan_rf_wf_pu_adc_vref_com_reg_setf(uint8_t wfpuadcvrefcomreg)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00020000)) | ((uint32_t)wfpuadcvrefcomreg << 17));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00020000)) | ((uint32_t)wfpuadcvrefcomreg << 17));
 }
 
 /**
@@ -588,7 +588,7 @@ __INLINE void wlan_rf_wf_pu_adc_vref_com_reg_setf(uint8_t wfpuadcvrefcomreg)
  */
 __INLINE uint8_t wlan_rf_wf_pu_pa_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
     return ((localVal & ((uint32_t)0x00000400)) >> 10);
 }
 
@@ -601,7 +601,7 @@ __INLINE uint8_t wlan_rf_wf_pu_pa_dr_getf(void)
  */
 __INLINE void wlan_rf_wf_pu_pa_dr_setf(uint8_t wfpupadr)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)wfpupadr << 10));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)wfpupadr << 10));
 }
 
 /**
@@ -613,7 +613,7 @@ __INLINE void wlan_rf_wf_pu_pa_dr_setf(uint8_t wfpupadr)
  */
 __INLINE uint8_t wlan_rf_wf_pu_pa_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
     return ((localVal & ((uint32_t)0x00000200)) >> 9);
 }
 
@@ -626,7 +626,7 @@ __INLINE uint8_t wlan_rf_wf_pu_pa_reg_getf(void)
  */
 __INLINE void wlan_rf_wf_pu_pa_reg_setf(uint8_t wfpupareg)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)wfpupareg << 9));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)wfpupareg << 9));
 }
 
 /**
@@ -638,7 +638,7 @@ __INLINE void wlan_rf_wf_pu_pa_reg_setf(uint8_t wfpupareg)
  */
 __INLINE uint8_t wlan_rf_wf_pa_gain_en_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -651,7 +651,7 @@ __INLINE uint8_t wlan_rf_wf_pa_gain_en_dr_getf(void)
  */
 __INLINE void wlan_rf_wf_pa_gain_en_dr_setf(uint8_t wfpagainendr)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)wfpagainendr << 8));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)wfpagainendr << 8));
 }
 
 /**
@@ -663,7 +663,7 @@ __INLINE void wlan_rf_wf_pa_gain_en_dr_setf(uint8_t wfpagainendr)
  */
 __INLINE uint8_t wlan_rf_wf_pa_gain_en_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
     return ((localVal & ((uint32_t)0x00000080)) >> 7);
 }
 
@@ -676,7 +676,7 @@ __INLINE uint8_t wlan_rf_wf_pa_gain_en_reg_getf(void)
  */
 __INLINE void wlan_rf_wf_pa_gain_en_reg_setf(uint8_t wfpagainenreg)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)wfpagainenreg << 7));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)wfpagainenreg << 7));
 }
 
 /**
@@ -688,7 +688,7 @@ __INLINE void wlan_rf_wf_pa_gain_en_reg_setf(uint8_t wfpagainenreg)
  */
 __INLINE uint8_t wlan_rf_wf_pa_pkdet_rstn_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
     return ((localVal & ((uint32_t)0x00000040)) >> 6);
 }
 
@@ -701,7 +701,7 @@ __INLINE uint8_t wlan_rf_wf_pa_pkdet_rstn_dr_getf(void)
  */
 __INLINE void wlan_rf_wf_pa_pkdet_rstn_dr_setf(uint8_t wfpapkdetrstndr)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)wfpapkdetrstndr << 6));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)wfpapkdetrstndr << 6));
 }
 
 /**
@@ -713,7 +713,7 @@ __INLINE void wlan_rf_wf_pa_pkdet_rstn_dr_setf(uint8_t wfpapkdetrstndr)
  */
 __INLINE uint8_t wlan_rf_wf_pa_pkdet_rstn_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR);
     return ((localVal & ((uint32_t)0x00000020)) >> 5);
 }
 
@@ -726,7 +726,7 @@ __INLINE uint8_t wlan_rf_wf_pa_pkdet_rstn_reg_getf(void)
  */
 __INLINE void wlan_rf_wf_pa_pkdet_rstn_reg_setf(uint8_t wfpapkdetrstnreg)
 {
-    REG_PL_WR(WLAN_RF_WF_PU_ADC_ADDR, (REG_PL_RD(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)wfpapkdetrstnreg << 5));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_PU_ADC_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_PU_ADC_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)wfpapkdetrstnreg << 5));
 }
 
 /// @}
@@ -758,7 +758,7 @@ __INLINE void wlan_rf_wf_pa_pkdet_rstn_reg_setf(uint8_t wfpapkdetrstnreg)
  */
 __INLINE uint32_t wlan_rf_wlan_rf_pu_bit_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WLAN_RF_PU_BIT_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WLAN_RF_PU_BIT_ADDR);
 }
 
 /**
@@ -768,7 +768,7 @@ __INLINE uint32_t wlan_rf_wlan_rf_pu_bit_get(void)
  */
 __INLINE void wlan_rf_wlan_rf_pu_bit_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WLAN_RF_PU_BIT_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WLAN_RF_PU_BIT_ADDR, value);
 }
 
 // field definitions
@@ -791,7 +791,7 @@ __INLINE void wlan_rf_wlan_rf_pu_bit_set(uint32_t value)
  */
 __INLINE uint32_t wlan_rf_wlan_rf_pu_bit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WLAN_RF_PU_BIT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WLAN_RF_PU_BIT_ADDR);
     return (localVal >> 2);
 }
 
@@ -804,7 +804,7 @@ __INLINE uint32_t wlan_rf_wlan_rf_pu_bit_getf(void)
  */
 __INLINE void wlan_rf_wlan_rf_pu_bit_setf(uint32_t wlanrfpubit)
 {
-    REG_PL_WR(WLAN_RF_WLAN_RF_PU_BIT_ADDR, (uint32_t)wlanrfpubit << 2);
+    PLATFORM_REG_WRITE(WLAN_RF_WLAN_RF_PU_BIT_ADDR, (uint32_t)wlanrfpubit << 2);
 }
 
 /// @}
@@ -843,7 +843,7 @@ __INLINE void wlan_rf_wlan_rf_pu_bit_setf(uint32_t wlanrfpubit)
  */
 __INLINE uint32_t wlan_rf_wf_lna_reg_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR);
 }
 
 /**
@@ -853,7 +853,7 @@ __INLINE uint32_t wlan_rf_wf_lna_reg_get(void)
  */
 __INLINE void wlan_rf_wf_lna_reg_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_LNA_REG_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LNA_REG_ADDR, value);
 }
 
 // field definitions
@@ -922,7 +922,7 @@ __INLINE void wlan_rf_wf_lna_reg_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_lna_reg_pack(uint8_t wflna5gen0, uint8_t wflna5gen1, uint8_t wflna24gen0, uint8_t wflna24gen1, uint8_t lnavcmresshort, uint8_t wfrmx5gen, uint8_t wfrmx24gen, uint8_t wfrmximgcalen)
 {
-    REG_PL_WR(WLAN_RF_WF_LNA_REG_ADDR,  ((uint32_t)wflna5gen0 << 23) | ((uint32_t)wflna5gen1 << 22) | ((uint32_t)wflna24gen0 << 21) | ((uint32_t)wflna24gen1 << 20) | ((uint32_t)lnavcmresshort << 11) | ((uint32_t)wfrmx5gen << 3) | ((uint32_t)wfrmx24gen << 2) | ((uint32_t)wfrmximgcalen << 1));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LNA_REG_ADDR,  ((uint32_t)wflna5gen0 << 23) | ((uint32_t)wflna5gen1 << 22) | ((uint32_t)wflna24gen0 << 21) | ((uint32_t)wflna24gen1 << 20) | ((uint32_t)lnavcmresshort << 11) | ((uint32_t)wfrmx5gen << 3) | ((uint32_t)wfrmx24gen << 2) | ((uint32_t)wfrmximgcalen << 1));
 }
 
 /**
@@ -942,7 +942,7 @@ __INLINE void wlan_rf_wf_lna_reg_pack(uint8_t wflna5gen0, uint8_t wflna5gen1, ui
  */
 __INLINE void wlan_rf_wf_lna_reg_unpack(uint8_t* wflna5gen0, uint8_t* wflna5gen1, uint8_t* wflna24gen0, uint8_t* wflna24gen1, uint8_t* lnavcmresshort, uint8_t* wfrmx5gen, uint8_t* wfrmx24gen, uint8_t* wfrmximgcalen)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR);
 
     *wflna5gen0 = (localVal & ((uint32_t)0x00800000)) >> 23;
     *wflna5gen1 = (localVal & ((uint32_t)0x00400000)) >> 22;
@@ -963,7 +963,7 @@ __INLINE void wlan_rf_wf_lna_reg_unpack(uint8_t* wflna5gen0, uint8_t* wflna5gen1
  */
 __INLINE uint8_t wlan_rf_wf_lna_5g_en_0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR);
     return ((localVal & ((uint32_t)0x00800000)) >> 23);
 }
 
@@ -976,7 +976,7 @@ __INLINE uint8_t wlan_rf_wf_lna_5g_en_0_getf(void)
  */
 __INLINE void wlan_rf_wf_lna_5g_en_0_setf(uint8_t wflna5gen0)
 {
-    REG_PL_WR(WLAN_RF_WF_LNA_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00800000)) | ((uint32_t)wflna5gen0 << 23));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LNA_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00800000)) | ((uint32_t)wflna5gen0 << 23));
 }
 
 /**
@@ -988,7 +988,7 @@ __INLINE void wlan_rf_wf_lna_5g_en_0_setf(uint8_t wflna5gen0)
  */
 __INLINE uint8_t wlan_rf_wf_lna_5g_en_1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR);
     return ((localVal & ((uint32_t)0x00400000)) >> 22);
 }
 
@@ -1001,7 +1001,7 @@ __INLINE uint8_t wlan_rf_wf_lna_5g_en_1_getf(void)
  */
 __INLINE void wlan_rf_wf_lna_5g_en_1_setf(uint8_t wflna5gen1)
 {
-    REG_PL_WR(WLAN_RF_WF_LNA_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00400000)) | ((uint32_t)wflna5gen1 << 22));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LNA_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00400000)) | ((uint32_t)wflna5gen1 << 22));
 }
 
 /**
@@ -1013,7 +1013,7 @@ __INLINE void wlan_rf_wf_lna_5g_en_1_setf(uint8_t wflna5gen1)
  */
 __INLINE uint8_t wlan_rf_wf_lna_24g_en_0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR);
     return ((localVal & ((uint32_t)0x00200000)) >> 21);
 }
 
@@ -1026,7 +1026,7 @@ __INLINE uint8_t wlan_rf_wf_lna_24g_en_0_getf(void)
  */
 __INLINE void wlan_rf_wf_lna_24g_en_0_setf(uint8_t wflna24gen0)
 {
-    REG_PL_WR(WLAN_RF_WF_LNA_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00200000)) | ((uint32_t)wflna24gen0 << 21));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LNA_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00200000)) | ((uint32_t)wflna24gen0 << 21));
 }
 
 /**
@@ -1038,7 +1038,7 @@ __INLINE void wlan_rf_wf_lna_24g_en_0_setf(uint8_t wflna24gen0)
  */
 __INLINE uint8_t wlan_rf_wf_lna_24g_en_1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR);
     return ((localVal & ((uint32_t)0x00100000)) >> 20);
 }
 
@@ -1051,7 +1051,7 @@ __INLINE uint8_t wlan_rf_wf_lna_24g_en_1_getf(void)
  */
 __INLINE void wlan_rf_wf_lna_24g_en_1_setf(uint8_t wflna24gen1)
 {
-    REG_PL_WR(WLAN_RF_WF_LNA_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00100000)) | ((uint32_t)wflna24gen1 << 20));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LNA_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00100000)) | ((uint32_t)wflna24gen1 << 20));
 }
 
 /**
@@ -1063,7 +1063,7 @@ __INLINE void wlan_rf_wf_lna_24g_en_1_setf(uint8_t wflna24gen1)
  */
 __INLINE uint8_t wlan_rf_lna_vcm_res_short_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000800)) >> 11);
 }
 
@@ -1076,7 +1076,7 @@ __INLINE uint8_t wlan_rf_lna_vcm_res_short_getf(void)
  */
 __INLINE void wlan_rf_lna_vcm_res_short_setf(uint8_t lnavcmresshort)
 {
-    REG_PL_WR(WLAN_RF_WF_LNA_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)lnavcmresshort << 11));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LNA_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)lnavcmresshort << 11));
 }
 
 /**
@@ -1088,7 +1088,7 @@ __INLINE void wlan_rf_lna_vcm_res_short_setf(uint8_t lnavcmresshort)
  */
 __INLINE uint8_t wlan_rf_wf_rmx_5g_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000008)) >> 3);
 }
 
@@ -1101,7 +1101,7 @@ __INLINE uint8_t wlan_rf_wf_rmx_5g_en_getf(void)
  */
 __INLINE void wlan_rf_wf_rmx_5g_en_setf(uint8_t wfrmx5gen)
 {
-    REG_PL_WR(WLAN_RF_WF_LNA_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)wfrmx5gen << 3));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LNA_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)wfrmx5gen << 3));
 }
 
 /**
@@ -1113,7 +1113,7 @@ __INLINE void wlan_rf_wf_rmx_5g_en_setf(uint8_t wfrmx5gen)
  */
 __INLINE uint8_t wlan_rf_wf_rmx_24g_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000004)) >> 2);
 }
 
@@ -1126,7 +1126,7 @@ __INLINE uint8_t wlan_rf_wf_rmx_24g_en_getf(void)
  */
 __INLINE void wlan_rf_wf_rmx_24g_en_setf(uint8_t wfrmx24gen)
 {
-    REG_PL_WR(WLAN_RF_WF_LNA_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)wfrmx24gen << 2));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LNA_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)wfrmx24gen << 2));
 }
 
 /**
@@ -1138,7 +1138,7 @@ __INLINE void wlan_rf_wf_rmx_24g_en_setf(uint8_t wfrmx24gen)
  */
 __INLINE uint8_t wlan_rf_wf_rmx_img_cal_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000002)) >> 1);
 }
 
@@ -1151,7 +1151,7 @@ __INLINE uint8_t wlan_rf_wf_rmx_img_cal_en_getf(void)
  */
 __INLINE void wlan_rf_wf_rmx_img_cal_en_setf(uint8_t wfrmximgcalen)
 {
-    REG_PL_WR(WLAN_RF_WF_LNA_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)wfrmximgcalen << 1));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LNA_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LNA_REG_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)wfrmximgcalen << 1));
 }
 
 /// @}
@@ -1184,7 +1184,7 @@ __INLINE void wlan_rf_wf_rmx_img_cal_en_setf(uint8_t wfrmximgcalen)
  */
 __INLINE uint32_t wlan_rf_wf_tia_config_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_TIA_CONFIG_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_TIA_CONFIG_ADDR);
 }
 
 /**
@@ -1194,7 +1194,7 @@ __INLINE uint32_t wlan_rf_wf_tia_config_get(void)
  */
 __INLINE void wlan_rf_wf_tia_config_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_TIA_CONFIG_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_TIA_CONFIG_ADDR, value);
 }
 
 // field definitions
@@ -1223,7 +1223,7 @@ __INLINE void wlan_rf_wf_tia_config_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_tia_config_pack(uint8_t wftiaauxen, uint8_t wftiainputselaux)
 {
-    REG_PL_WR(WLAN_RF_WF_TIA_CONFIG_ADDR,  ((uint32_t)wftiaauxen << 11) | ((uint32_t)wftiainputselaux << 6));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_TIA_CONFIG_ADDR,  ((uint32_t)wftiaauxen << 11) | ((uint32_t)wftiainputselaux << 6));
 }
 
 /**
@@ -1237,7 +1237,7 @@ __INLINE void wlan_rf_wf_tia_config_pack(uint8_t wftiaauxen, uint8_t wftiainputs
  */
 __INLINE void wlan_rf_wf_tia_config_unpack(uint8_t* wftiaauxen, uint8_t* wftiainputselaux)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_TIA_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_TIA_CONFIG_ADDR);
 
     *wftiaauxen = (localVal & ((uint32_t)0x00000800)) >> 11;
     *wftiainputselaux = (localVal & ((uint32_t)0x000001C0)) >> 6;
@@ -1252,7 +1252,7 @@ __INLINE void wlan_rf_wf_tia_config_unpack(uint8_t* wftiaauxen, uint8_t* wftiain
  */
 __INLINE uint8_t wlan_rf_wf_tia_aux_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_TIA_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_TIA_CONFIG_ADDR);
     return ((localVal & ((uint32_t)0x00000800)) >> 11);
 }
 
@@ -1265,7 +1265,7 @@ __INLINE uint8_t wlan_rf_wf_tia_aux_en_getf(void)
  */
 __INLINE void wlan_rf_wf_tia_aux_en_setf(uint8_t wftiaauxen)
 {
-    REG_PL_WR(WLAN_RF_WF_TIA_CONFIG_ADDR, (REG_PL_RD(WLAN_RF_WF_TIA_CONFIG_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)wftiaauxen << 11));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_TIA_CONFIG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_TIA_CONFIG_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)wftiaauxen << 11));
 }
 
 /**
@@ -1277,7 +1277,7 @@ __INLINE void wlan_rf_wf_tia_aux_en_setf(uint8_t wftiaauxen)
  */
 __INLINE uint8_t wlan_rf_wf_tia_input_sel_aux_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_TIA_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_TIA_CONFIG_ADDR);
     return ((localVal & ((uint32_t)0x000001C0)) >> 6);
 }
 
@@ -1290,7 +1290,7 @@ __INLINE uint8_t wlan_rf_wf_tia_input_sel_aux_getf(void)
  */
 __INLINE void wlan_rf_wf_tia_input_sel_aux_setf(uint8_t wftiainputselaux)
 {
-    REG_PL_WR(WLAN_RF_WF_TIA_CONFIG_ADDR, (REG_PL_RD(WLAN_RF_WF_TIA_CONFIG_ADDR) & ~((uint32_t)0x000001C0)) | ((uint32_t)wftiainputselaux << 6));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_TIA_CONFIG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_TIA_CONFIG_ADDR) & ~((uint32_t)0x000001C0)) | ((uint32_t)wftiainputselaux << 6));
 }
 
 /// @}
@@ -1322,7 +1322,7 @@ __INLINE void wlan_rf_wf_tia_input_sel_aux_setf(uint8_t wftiainputselaux)
  */
 __INLINE uint32_t wlan_rf_wf_tia_aux_buf_gbit_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_TIA_AUX_BUF_GBIT_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_TIA_AUX_BUF_GBIT_ADDR);
 }
 
 /**
@@ -1332,7 +1332,7 @@ __INLINE uint32_t wlan_rf_wf_tia_aux_buf_gbit_get(void)
  */
 __INLINE void wlan_rf_wf_tia_aux_buf_gbit_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_TIA_AUX_BUF_GBIT_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_TIA_AUX_BUF_GBIT_ADDR, value);
 }
 
 // field definitions
@@ -1355,7 +1355,7 @@ __INLINE void wlan_rf_wf_tia_aux_buf_gbit_set(uint32_t value)
  */
 __INLINE uint8_t wlan_rf_wf_tia_aux_buf_gbit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_TIA_AUX_BUF_GBIT_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_TIA_AUX_BUF_GBIT_ADDR);
     return (localVal >> 7);
 }
 
@@ -1368,7 +1368,7 @@ __INLINE uint8_t wlan_rf_wf_tia_aux_buf_gbit_getf(void)
  */
 __INLINE void wlan_rf_wf_tia_aux_buf_gbit_setf(uint8_t wftiaauxbufgbit)
 {
-    REG_PL_WR(WLAN_RF_WF_TIA_AUX_BUF_GBIT_ADDR, (uint32_t)wftiaauxbufgbit << 7);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_TIA_AUX_BUF_GBIT_ADDR, (uint32_t)wftiaauxbufgbit << 7);
 }
 
 /// @}
@@ -1401,7 +1401,7 @@ __INLINE void wlan_rf_wf_tia_aux_buf_gbit_setf(uint8_t wftiaauxbufgbit)
  */
 __INLINE uint32_t wlan_rf_wf_rxflt_reg_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_RXFLT_REG_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_RXFLT_REG_ADDR);
 }
 
 /**
@@ -1411,7 +1411,7 @@ __INLINE uint32_t wlan_rf_wf_rxflt_reg_get(void)
  */
 __INLINE void wlan_rf_wf_rxflt_reg_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_RXFLT_REG_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_RXFLT_REG_ADDR, value);
 }
 
 // field definitions
@@ -1440,7 +1440,7 @@ __INLINE void wlan_rf_wf_rxflt_reg_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_rxflt_reg_pack(uint8_t wfrxfltbwmode, uint8_t wfrxfltvcmvbit)
 {
-    REG_PL_WR(WLAN_RF_WF_RXFLT_REG_ADDR,  ((uint32_t)wfrxfltbwmode << 11) | ((uint32_t)wfrxfltvcmvbit << 9));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_RXFLT_REG_ADDR,  ((uint32_t)wfrxfltbwmode << 11) | ((uint32_t)wfrxfltvcmvbit << 9));
 }
 
 /**
@@ -1454,7 +1454,7 @@ __INLINE void wlan_rf_wf_rxflt_reg_pack(uint8_t wfrxfltbwmode, uint8_t wfrxfltvc
  */
 __INLINE void wlan_rf_wf_rxflt_reg_unpack(uint8_t* wfrxfltbwmode, uint8_t* wfrxfltvcmvbit)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_RXFLT_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_RXFLT_REG_ADDR);
 
     *wfrxfltbwmode = (localVal & ((uint32_t)0x00000800)) >> 11;
     *wfrxfltvcmvbit = (localVal & ((uint32_t)0x00000600)) >> 9;
@@ -1469,7 +1469,7 @@ __INLINE void wlan_rf_wf_rxflt_reg_unpack(uint8_t* wfrxfltbwmode, uint8_t* wfrxf
  */
 __INLINE uint8_t wlan_rf_wf_rxflt_bw_mode_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_RXFLT_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_RXFLT_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000800)) >> 11);
 }
 
@@ -1482,7 +1482,7 @@ __INLINE uint8_t wlan_rf_wf_rxflt_bw_mode_getf(void)
  */
 __INLINE void wlan_rf_wf_rxflt_bw_mode_setf(uint8_t wfrxfltbwmode)
 {
-    REG_PL_WR(WLAN_RF_WF_RXFLT_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_RXFLT_REG_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)wfrxfltbwmode << 11));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_RXFLT_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_RXFLT_REG_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)wfrxfltbwmode << 11));
 }
 
 /**
@@ -1494,7 +1494,7 @@ __INLINE void wlan_rf_wf_rxflt_bw_mode_setf(uint8_t wfrxfltbwmode)
  */
 __INLINE uint8_t wlan_rf_wf_rxflt_vcm_vbit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_RXFLT_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_RXFLT_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000600)) >> 9);
 }
 
@@ -1507,7 +1507,7 @@ __INLINE uint8_t wlan_rf_wf_rxflt_vcm_vbit_getf(void)
  */
 __INLINE void wlan_rf_wf_rxflt_vcm_vbit_setf(uint8_t wfrxfltvcmvbit)
 {
-    REG_PL_WR(WLAN_RF_WF_RXFLT_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_RXFLT_REG_ADDR) & ~((uint32_t)0x00000600)) | ((uint32_t)wfrxfltvcmvbit << 9));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_RXFLT_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_RXFLT_REG_ADDR) & ~((uint32_t)0x00000600)) | ((uint32_t)wfrxfltvcmvbit << 9));
 }
 
 /// @}
@@ -1542,7 +1542,7 @@ __INLINE void wlan_rf_wf_rxflt_vcm_vbit_setf(uint8_t wfrxfltvcmvbit)
  */
 __INLINE uint32_t wlan_rf_wf_adc_config_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_ADC_CONFIG_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG_ADDR);
 }
 
 /**
@@ -1552,7 +1552,7 @@ __INLINE uint32_t wlan_rf_wf_adc_config_get(void)
  */
 __INLINE void wlan_rf_wf_adc_config_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_ADC_CONFIG_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_ADC_CONFIG_ADDR, value);
 }
 
 // field definitions
@@ -1599,7 +1599,7 @@ __INLINE void wlan_rf_wf_adc_config_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_adc_config_pack(uint8_t wfadcauxen, uint8_t wfadccmpibit, uint8_t wfadcclkselbit, uint8_t wfadcdlybit)
 {
-    REG_PL_WR(WLAN_RF_WF_ADC_CONFIG_ADDR,  ((uint32_t)wfadcauxen << 22) | ((uint32_t)wfadccmpibit << 17) | ((uint32_t)wfadcclkselbit << 15) | ((uint32_t)wfadcdlybit << 10));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_ADC_CONFIG_ADDR,  ((uint32_t)wfadcauxen << 22) | ((uint32_t)wfadccmpibit << 17) | ((uint32_t)wfadcclkselbit << 15) | ((uint32_t)wfadcdlybit << 10));
 }
 
 /**
@@ -1615,7 +1615,7 @@ __INLINE void wlan_rf_wf_adc_config_pack(uint8_t wfadcauxen, uint8_t wfadccmpibi
  */
 __INLINE void wlan_rf_wf_adc_config_unpack(uint8_t* wfadcauxen, uint8_t* wfadccmpibit, uint8_t* wfadcclkselbit, uint8_t* wfadcdlybit)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_ADC_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG_ADDR);
 
     *wfadcauxen = (localVal & ((uint32_t)0x00400000)) >> 22;
     *wfadccmpibit = (localVal & ((uint32_t)0x001E0000)) >> 17;
@@ -1632,7 +1632,7 @@ __INLINE void wlan_rf_wf_adc_config_unpack(uint8_t* wfadcauxen, uint8_t* wfadccm
  */
 __INLINE uint8_t wlan_rf_wf_adc_aux_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_ADC_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG_ADDR);
     return ((localVal & ((uint32_t)0x00400000)) >> 22);
 }
 
@@ -1645,7 +1645,7 @@ __INLINE uint8_t wlan_rf_wf_adc_aux_en_getf(void)
  */
 __INLINE void wlan_rf_wf_adc_aux_en_setf(uint8_t wfadcauxen)
 {
-    REG_PL_WR(WLAN_RF_WF_ADC_CONFIG_ADDR, (REG_PL_RD(WLAN_RF_WF_ADC_CONFIG_ADDR) & ~((uint32_t)0x00400000)) | ((uint32_t)wfadcauxen << 22));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_ADC_CONFIG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG_ADDR) & ~((uint32_t)0x00400000)) | ((uint32_t)wfadcauxen << 22));
 }
 
 /**
@@ -1657,7 +1657,7 @@ __INLINE void wlan_rf_wf_adc_aux_en_setf(uint8_t wfadcauxen)
  */
 __INLINE uint8_t wlan_rf_wf_adc_cmp_ibit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_ADC_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG_ADDR);
     return ((localVal & ((uint32_t)0x001E0000)) >> 17);
 }
 
@@ -1670,7 +1670,7 @@ __INLINE uint8_t wlan_rf_wf_adc_cmp_ibit_getf(void)
  */
 __INLINE void wlan_rf_wf_adc_cmp_ibit_setf(uint8_t wfadccmpibit)
 {
-    REG_PL_WR(WLAN_RF_WF_ADC_CONFIG_ADDR, (REG_PL_RD(WLAN_RF_WF_ADC_CONFIG_ADDR) & ~((uint32_t)0x001E0000)) | ((uint32_t)wfadccmpibit << 17));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_ADC_CONFIG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG_ADDR) & ~((uint32_t)0x001E0000)) | ((uint32_t)wfadccmpibit << 17));
 }
 
 /**
@@ -1682,7 +1682,7 @@ __INLINE void wlan_rf_wf_adc_cmp_ibit_setf(uint8_t wfadccmpibit)
  */
 __INLINE uint8_t wlan_rf_wf_adc_clk_sel_bit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_ADC_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG_ADDR);
     return ((localVal & ((uint32_t)0x00018000)) >> 15);
 }
 
@@ -1695,7 +1695,7 @@ __INLINE uint8_t wlan_rf_wf_adc_clk_sel_bit_getf(void)
  */
 __INLINE void wlan_rf_wf_adc_clk_sel_bit_setf(uint8_t wfadcclkselbit)
 {
-    REG_PL_WR(WLAN_RF_WF_ADC_CONFIG_ADDR, (REG_PL_RD(WLAN_RF_WF_ADC_CONFIG_ADDR) & ~((uint32_t)0x00018000)) | ((uint32_t)wfadcclkselbit << 15));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_ADC_CONFIG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG_ADDR) & ~((uint32_t)0x00018000)) | ((uint32_t)wfadcclkselbit << 15));
 }
 
 /**
@@ -1707,7 +1707,7 @@ __INLINE void wlan_rf_wf_adc_clk_sel_bit_setf(uint8_t wfadcclkselbit)
  */
 __INLINE uint8_t wlan_rf_wf_adc_dly_bit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_ADC_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG_ADDR);
     return ((localVal & ((uint32_t)0x00003C00)) >> 10);
 }
 
@@ -1720,7 +1720,7 @@ __INLINE uint8_t wlan_rf_wf_adc_dly_bit_getf(void)
  */
 __INLINE void wlan_rf_wf_adc_dly_bit_setf(uint8_t wfadcdlybit)
 {
-    REG_PL_WR(WLAN_RF_WF_ADC_CONFIG_ADDR, (REG_PL_RD(WLAN_RF_WF_ADC_CONFIG_ADDR) & ~((uint32_t)0x00003C00)) | ((uint32_t)wfadcdlybit << 10));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_ADC_CONFIG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG_ADDR) & ~((uint32_t)0x00003C00)) | ((uint32_t)wfadcdlybit << 10));
 }
 
 /// @}
@@ -1753,7 +1753,7 @@ __INLINE void wlan_rf_wf_adc_dly_bit_setf(uint8_t wfadcdlybit)
  */
 __INLINE uint32_t wlan_rf_wf_adc_config2_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_ADC_CONFIG2_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG2_ADDR);
 }
 
 /**
@@ -1763,7 +1763,7 @@ __INLINE uint32_t wlan_rf_wf_adc_config2_get(void)
  */
 __INLINE void wlan_rf_wf_adc_config2_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_ADC_CONFIG2_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_ADC_CONFIG2_ADDR, value);
 }
 
 // field definitions
@@ -1790,7 +1790,7 @@ __INLINE void wlan_rf_wf_adc_config2_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_adc_config2_pack(uint8_t wfadcvrefstben, uint8_t wfadciqsynchen)
 {
-    REG_PL_WR(WLAN_RF_WF_ADC_CONFIG2_ADDR,  ((uint32_t)wfadcvrefstben << 6) | ((uint32_t)wfadciqsynchen << 5));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_ADC_CONFIG2_ADDR,  ((uint32_t)wfadcvrefstben << 6) | ((uint32_t)wfadciqsynchen << 5));
 }
 
 /**
@@ -1804,7 +1804,7 @@ __INLINE void wlan_rf_wf_adc_config2_pack(uint8_t wfadcvrefstben, uint8_t wfadci
  */
 __INLINE void wlan_rf_wf_adc_config2_unpack(uint8_t* wfadcvrefstben, uint8_t* wfadciqsynchen)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_ADC_CONFIG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG2_ADDR);
 
     *wfadcvrefstben = (localVal & ((uint32_t)0x00000040)) >> 6;
     *wfadciqsynchen = (localVal & ((uint32_t)0x00000020)) >> 5;
@@ -1819,7 +1819,7 @@ __INLINE void wlan_rf_wf_adc_config2_unpack(uint8_t* wfadcvrefstben, uint8_t* wf
  */
 __INLINE uint8_t wlan_rf_wf_adc_vref_stb_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_ADC_CONFIG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG2_ADDR);
     return ((localVal & ((uint32_t)0x00000040)) >> 6);
 }
 
@@ -1832,7 +1832,7 @@ __INLINE uint8_t wlan_rf_wf_adc_vref_stb_en_getf(void)
  */
 __INLINE void wlan_rf_wf_adc_vref_stb_en_setf(uint8_t wfadcvrefstben)
 {
-    REG_PL_WR(WLAN_RF_WF_ADC_CONFIG2_ADDR, (REG_PL_RD(WLAN_RF_WF_ADC_CONFIG2_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)wfadcvrefstben << 6));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_ADC_CONFIG2_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG2_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)wfadcvrefstben << 6));
 }
 
 /**
@@ -1844,7 +1844,7 @@ __INLINE void wlan_rf_wf_adc_vref_stb_en_setf(uint8_t wfadcvrefstben)
  */
 __INLINE uint8_t wlan_rf_wf_adc_iq_synch_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_ADC_CONFIG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG2_ADDR);
     return ((localVal & ((uint32_t)0x00000020)) >> 5);
 }
 
@@ -1857,7 +1857,7 @@ __INLINE uint8_t wlan_rf_wf_adc_iq_synch_en_getf(void)
  */
 __INLINE void wlan_rf_wf_adc_iq_synch_en_setf(uint8_t wfadciqsynchen)
 {
-    REG_PL_WR(WLAN_RF_WF_ADC_CONFIG2_ADDR, (REG_PL_RD(WLAN_RF_WF_ADC_CONFIG2_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)wfadciqsynchen << 5));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_ADC_CONFIG2_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_ADC_CONFIG2_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)wfadciqsynchen << 5));
 }
 
 /// @}
@@ -1893,7 +1893,7 @@ __INLINE void wlan_rf_wf_adc_iq_synch_en_setf(uint8_t wfadciqsynchen)
  */
 __INLINE uint32_t wlan_rf_wf_loft_config_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_LOFT_CONFIG_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_LOFT_CONFIG_ADDR);
 }
 
 /**
@@ -1903,7 +1903,7 @@ __INLINE uint32_t wlan_rf_wf_loft_config_get(void)
  */
 __INLINE void wlan_rf_wf_loft_config_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_LOFT_CONFIG_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LOFT_CONFIG_ADDR, value);
 }
 
 // field definitions
@@ -1953,7 +1953,7 @@ __INLINE void wlan_rf_wf_loft_config_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_loft_config_pack(uint8_t wfloften, uint8_t wfloftgbit, uint8_t wfloftlpmode, uint8_t wfloftvien, uint8_t wfloftvven)
 {
-    REG_PL_WR(WLAN_RF_WF_LOFT_CONFIG_ADDR,  ((uint32_t)wfloften << 10) | ((uint32_t)wfloftgbit << 8) | ((uint32_t)wfloftlpmode << 7) | ((uint32_t)wfloftvien << 6) | ((uint32_t)wfloftvven << 5));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LOFT_CONFIG_ADDR,  ((uint32_t)wfloften << 10) | ((uint32_t)wfloftgbit << 8) | ((uint32_t)wfloftlpmode << 7) | ((uint32_t)wfloftvien << 6) | ((uint32_t)wfloftvven << 5));
 }
 
 /**
@@ -1970,7 +1970,7 @@ __INLINE void wlan_rf_wf_loft_config_pack(uint8_t wfloften, uint8_t wfloftgbit, 
  */
 __INLINE void wlan_rf_wf_loft_config_unpack(uint8_t* wfloften, uint8_t* wfloftgbit, uint8_t* wfloftlpmode, uint8_t* wfloftvien, uint8_t* wfloftvven)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LOFT_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LOFT_CONFIG_ADDR);
 
     *wfloften = (localVal & ((uint32_t)0x00000400)) >> 10;
     *wfloftgbit = (localVal & ((uint32_t)0x00000300)) >> 8;
@@ -1988,7 +1988,7 @@ __INLINE void wlan_rf_wf_loft_config_unpack(uint8_t* wfloften, uint8_t* wfloftgb
  */
 __INLINE uint8_t wlan_rf_wf_loft_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LOFT_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LOFT_CONFIG_ADDR);
     return ((localVal & ((uint32_t)0x00000400)) >> 10);
 }
 
@@ -2001,7 +2001,7 @@ __INLINE uint8_t wlan_rf_wf_loft_en_getf(void)
  */
 __INLINE void wlan_rf_wf_loft_en_setf(uint8_t wfloften)
 {
-    REG_PL_WR(WLAN_RF_WF_LOFT_CONFIG_ADDR, (REG_PL_RD(WLAN_RF_WF_LOFT_CONFIG_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)wfloften << 10));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LOFT_CONFIG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LOFT_CONFIG_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)wfloften << 10));
 }
 
 /**
@@ -2013,7 +2013,7 @@ __INLINE void wlan_rf_wf_loft_en_setf(uint8_t wfloften)
  */
 __INLINE uint8_t wlan_rf_wf_loft_gbit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LOFT_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LOFT_CONFIG_ADDR);
     return ((localVal & ((uint32_t)0x00000300)) >> 8);
 }
 
@@ -2026,7 +2026,7 @@ __INLINE uint8_t wlan_rf_wf_loft_gbit_getf(void)
  */
 __INLINE void wlan_rf_wf_loft_gbit_setf(uint8_t wfloftgbit)
 {
-    REG_PL_WR(WLAN_RF_WF_LOFT_CONFIG_ADDR, (REG_PL_RD(WLAN_RF_WF_LOFT_CONFIG_ADDR) & ~((uint32_t)0x00000300)) | ((uint32_t)wfloftgbit << 8));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LOFT_CONFIG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LOFT_CONFIG_ADDR) & ~((uint32_t)0x00000300)) | ((uint32_t)wfloftgbit << 8));
 }
 
 /**
@@ -2038,7 +2038,7 @@ __INLINE void wlan_rf_wf_loft_gbit_setf(uint8_t wfloftgbit)
  */
 __INLINE uint8_t wlan_rf_wf_loft_lp_mode_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LOFT_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LOFT_CONFIG_ADDR);
     return ((localVal & ((uint32_t)0x00000080)) >> 7);
 }
 
@@ -2051,7 +2051,7 @@ __INLINE uint8_t wlan_rf_wf_loft_lp_mode_getf(void)
  */
 __INLINE void wlan_rf_wf_loft_lp_mode_setf(uint8_t wfloftlpmode)
 {
-    REG_PL_WR(WLAN_RF_WF_LOFT_CONFIG_ADDR, (REG_PL_RD(WLAN_RF_WF_LOFT_CONFIG_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)wfloftlpmode << 7));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LOFT_CONFIG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LOFT_CONFIG_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)wfloftlpmode << 7));
 }
 
 /**
@@ -2063,7 +2063,7 @@ __INLINE void wlan_rf_wf_loft_lp_mode_setf(uint8_t wfloftlpmode)
  */
 __INLINE uint8_t wlan_rf_wf_loft_vi_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LOFT_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LOFT_CONFIG_ADDR);
     return ((localVal & ((uint32_t)0x00000040)) >> 6);
 }
 
@@ -2076,7 +2076,7 @@ __INLINE uint8_t wlan_rf_wf_loft_vi_en_getf(void)
  */
 __INLINE void wlan_rf_wf_loft_vi_en_setf(uint8_t wfloftvien)
 {
-    REG_PL_WR(WLAN_RF_WF_LOFT_CONFIG_ADDR, (REG_PL_RD(WLAN_RF_WF_LOFT_CONFIG_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)wfloftvien << 6));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LOFT_CONFIG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LOFT_CONFIG_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)wfloftvien << 6));
 }
 
 /**
@@ -2088,7 +2088,7 @@ __INLINE void wlan_rf_wf_loft_vi_en_setf(uint8_t wfloftvien)
  */
 __INLINE uint8_t wlan_rf_wf_loft_vv_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_LOFT_CONFIG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_LOFT_CONFIG_ADDR);
     return ((localVal & ((uint32_t)0x00000020)) >> 5);
 }
 
@@ -2101,7 +2101,7 @@ __INLINE uint8_t wlan_rf_wf_loft_vv_en_getf(void)
  */
 __INLINE void wlan_rf_wf_loft_vv_en_setf(uint8_t wfloftvven)
 {
-    REG_PL_WR(WLAN_RF_WF_LOFT_CONFIG_ADDR, (REG_PL_RD(WLAN_RF_WF_LOFT_CONFIG_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)wfloftvven << 5));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_LOFT_CONFIG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_LOFT_CONFIG_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)wfloftvven << 5));
 }
 
 /// @}
@@ -2134,7 +2134,7 @@ __INLINE void wlan_rf_wf_loft_vv_en_setf(uint8_t wfloftvven)
  */
 __INLINE uint32_t wlan_rf_wf_dtmx_reg_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_DTMX_REG_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_DTMX_REG_ADDR);
 }
 
 /**
@@ -2144,7 +2144,7 @@ __INLINE uint32_t wlan_rf_wf_dtmx_reg_get(void)
  */
 __INLINE void wlan_rf_wf_dtmx_reg_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_DTMX_REG_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_DTMX_REG_ADDR, value);
 }
 
 // field definitions
@@ -2171,7 +2171,7 @@ __INLINE void wlan_rf_wf_dtmx_reg_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_dtmx_reg_pack(uint8_t wfdtmxlo5gmode, uint8_t wfdtmxbalun5gmode)
 {
-    REG_PL_WR(WLAN_RF_WF_DTMX_REG_ADDR,  ((uint32_t)wfdtmxlo5gmode << 30) | ((uint32_t)wfdtmxbalun5gmode << 29));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_DTMX_REG_ADDR,  ((uint32_t)wfdtmxlo5gmode << 30) | ((uint32_t)wfdtmxbalun5gmode << 29));
 }
 
 /**
@@ -2185,7 +2185,7 @@ __INLINE void wlan_rf_wf_dtmx_reg_pack(uint8_t wfdtmxlo5gmode, uint8_t wfdtmxbal
  */
 __INLINE void wlan_rf_wf_dtmx_reg_unpack(uint8_t* wfdtmxlo5gmode, uint8_t* wfdtmxbalun5gmode)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_DTMX_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_DTMX_REG_ADDR);
 
     *wfdtmxlo5gmode = (localVal & ((uint32_t)0x40000000)) >> 30;
     *wfdtmxbalun5gmode = (localVal & ((uint32_t)0x20000000)) >> 29;
@@ -2200,7 +2200,7 @@ __INLINE void wlan_rf_wf_dtmx_reg_unpack(uint8_t* wfdtmxlo5gmode, uint8_t* wfdtm
  */
 __INLINE uint8_t wlan_rf_wf_dtmx_lo_5g_mode_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_DTMX_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_DTMX_REG_ADDR);
     return ((localVal & ((uint32_t)0x40000000)) >> 30);
 }
 
@@ -2213,7 +2213,7 @@ __INLINE uint8_t wlan_rf_wf_dtmx_lo_5g_mode_getf(void)
  */
 __INLINE void wlan_rf_wf_dtmx_lo_5g_mode_setf(uint8_t wfdtmxlo5gmode)
 {
-    REG_PL_WR(WLAN_RF_WF_DTMX_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_DTMX_REG_ADDR) & ~((uint32_t)0x40000000)) | ((uint32_t)wfdtmxlo5gmode << 30));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_DTMX_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_DTMX_REG_ADDR) & ~((uint32_t)0x40000000)) | ((uint32_t)wfdtmxlo5gmode << 30));
 }
 
 /**
@@ -2225,7 +2225,7 @@ __INLINE void wlan_rf_wf_dtmx_lo_5g_mode_setf(uint8_t wfdtmxlo5gmode)
  */
 __INLINE uint8_t wlan_rf_wf_dtmx_balun_5g_mode_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_DTMX_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_DTMX_REG_ADDR);
     return ((localVal & ((uint32_t)0x20000000)) >> 29);
 }
 
@@ -2238,7 +2238,7 @@ __INLINE uint8_t wlan_rf_wf_dtmx_balun_5g_mode_getf(void)
  */
 __INLINE void wlan_rf_wf_dtmx_balun_5g_mode_setf(uint8_t wfdtmxbalun5gmode)
 {
-    REG_PL_WR(WLAN_RF_WF_DTMX_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_DTMX_REG_ADDR) & ~((uint32_t)0x20000000)) | ((uint32_t)wfdtmxbalun5gmode << 29));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_DTMX_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_DTMX_REG_ADDR) & ~((uint32_t)0x20000000)) | ((uint32_t)wfdtmxbalun5gmode << 29));
 }
 
 /// @}
@@ -2271,7 +2271,7 @@ __INLINE void wlan_rf_wf_dtmx_balun_5g_mode_setf(uint8_t wfdtmxbalun5gmode)
  */
 __INLINE uint32_t wlan_rf_wf_rfpll_reg1_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_RFPLL_REG1_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_RFPLL_REG1_ADDR);
 }
 
 /**
@@ -2281,7 +2281,7 @@ __INLINE uint32_t wlan_rf_wf_rfpll_reg1_get(void)
  */
 __INLINE void wlan_rf_wf_rfpll_reg1_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_RFPLL_REG1_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_RFPLL_REG1_ADDR, value);
 }
 
 // field definitions
@@ -2308,7 +2308,7 @@ __INLINE void wlan_rf_wf_rfpll_reg1_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_rfpll_reg1_pack(uint8_t wfrfplldpllmode, uint8_t reserved)
 {
-    REG_PL_WR(WLAN_RF_WF_RFPLL_REG1_ADDR,  ((uint32_t)wfrfplldpllmode << 26) | ((uint32_t)reserved << 0));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_RFPLL_REG1_ADDR,  ((uint32_t)wfrfplldpllmode << 26) | ((uint32_t)reserved << 0));
 }
 
 /**
@@ -2322,7 +2322,7 @@ __INLINE void wlan_rf_wf_rfpll_reg1_pack(uint8_t wfrfplldpllmode, uint8_t reserv
  */
 __INLINE void wlan_rf_wf_rfpll_reg1_unpack(uint8_t* wfrfplldpllmode, uint8_t* reserved)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_RFPLL_REG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_RFPLL_REG1_ADDR);
 
     *wfrfplldpllmode = (localVal & ((uint32_t)0x04000000)) >> 26;
     *reserved = (localVal & ((uint32_t)0x00000001)) >> 0;
@@ -2337,7 +2337,7 @@ __INLINE void wlan_rf_wf_rfpll_reg1_unpack(uint8_t* wfrfplldpllmode, uint8_t* re
  */
 __INLINE uint8_t wlan_rf_wf_rfpll_dpll_mode_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_RFPLL_REG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_RFPLL_REG1_ADDR);
     return ((localVal & ((uint32_t)0x04000000)) >> 26);
 }
 
@@ -2350,7 +2350,7 @@ __INLINE uint8_t wlan_rf_wf_rfpll_dpll_mode_getf(void)
  */
 __INLINE void wlan_rf_wf_rfpll_dpll_mode_setf(uint8_t wfrfplldpllmode)
 {
-    REG_PL_WR(WLAN_RF_WF_RFPLL_REG1_ADDR, (REG_PL_RD(WLAN_RF_WF_RFPLL_REG1_ADDR) & ~((uint32_t)0x04000000)) | ((uint32_t)wfrfplldpllmode << 26));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_RFPLL_REG1_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_RFPLL_REG1_ADDR) & ~((uint32_t)0x04000000)) | ((uint32_t)wfrfplldpllmode << 26));
 }
 
 /**
@@ -2362,7 +2362,7 @@ __INLINE void wlan_rf_wf_rfpll_dpll_mode_setf(uint8_t wfrfplldpllmode)
  */
 __INLINE uint8_t wlan_rf_reserved_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_RFPLL_REG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_RFPLL_REG1_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
@@ -2375,7 +2375,7 @@ __INLINE uint8_t wlan_rf_reserved_getf(void)
  */
 __INLINE void wlan_rf_reserved_setf(uint8_t reserved)
 {
-    REG_PL_WR(WLAN_RF_WF_RFPLL_REG1_ADDR, (REG_PL_RD(WLAN_RF_WF_RFPLL_REG1_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)reserved << 0));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_RFPLL_REG1_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_RFPLL_REG1_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)reserved << 0));
 }
 
 /// @}
@@ -2408,7 +2408,7 @@ __INLINE void wlan_rf_reserved_setf(uint8_t reserved)
  */
 __INLINE uint32_t wlan_rf_wf_rfpll_reg2_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_RFPLL_REG2_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_RFPLL_REG2_ADDR);
 }
 
 /**
@@ -2418,7 +2418,7 @@ __INLINE uint32_t wlan_rf_wf_rfpll_reg2_get(void)
  */
 __INLINE void wlan_rf_wf_rfpll_reg2_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_RFPLL_REG2_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_RFPLL_REG2_ADDR, value);
 }
 
 // field definitions
@@ -2447,7 +2447,7 @@ __INLINE void wlan_rf_wf_rfpll_reg2_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_rfpll_reg2_pack(uint16_t wfrfplladcclkdiv, uint8_t reserved3)
 {
-    REG_PL_WR(WLAN_RF_WF_RFPLL_REG2_ADDR,  ((uint32_t)wfrfplladcclkdiv << 2) | ((uint32_t)reserved3 << 0));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_RFPLL_REG2_ADDR,  ((uint32_t)wfrfplladcclkdiv << 2) | ((uint32_t)reserved3 << 0));
 }
 
 /**
@@ -2461,7 +2461,7 @@ __INLINE void wlan_rf_wf_rfpll_reg2_pack(uint16_t wfrfplladcclkdiv, uint8_t rese
  */
 __INLINE void wlan_rf_wf_rfpll_reg2_unpack(uint16_t* wfrfplladcclkdiv, uint8_t* reserved3)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_RFPLL_REG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_RFPLL_REG2_ADDR);
 
     *wfrfplladcclkdiv = (localVal & ((uint32_t)0x000007FC)) >> 2;
     *reserved3 = (localVal & ((uint32_t)0x00000001)) >> 0;
@@ -2476,7 +2476,7 @@ __INLINE void wlan_rf_wf_rfpll_reg2_unpack(uint16_t* wfrfplladcclkdiv, uint8_t* 
  */
 __INLINE uint16_t wlan_rf_wf_rfpll_adc_clk_div_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_RFPLL_REG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_RFPLL_REG2_ADDR);
     return ((localVal & ((uint32_t)0x000007FC)) >> 2);
 }
 
@@ -2489,7 +2489,7 @@ __INLINE uint16_t wlan_rf_wf_rfpll_adc_clk_div_getf(void)
  */
 __INLINE void wlan_rf_wf_rfpll_adc_clk_div_setf(uint16_t wfrfplladcclkdiv)
 {
-    REG_PL_WR(WLAN_RF_WF_RFPLL_REG2_ADDR, (REG_PL_RD(WLAN_RF_WF_RFPLL_REG2_ADDR) & ~((uint32_t)0x000007FC)) | ((uint32_t)wfrfplladcclkdiv << 2));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_RFPLL_REG2_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_RFPLL_REG2_ADDR) & ~((uint32_t)0x000007FC)) | ((uint32_t)wfrfplladcclkdiv << 2));
 }
 
 /**
@@ -2501,7 +2501,7 @@ __INLINE void wlan_rf_wf_rfpll_adc_clk_div_setf(uint16_t wfrfplladcclkdiv)
  */
 __INLINE uint8_t wlan_rf_reserved_3_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_RFPLL_REG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_RFPLL_REG2_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
@@ -2514,7 +2514,7 @@ __INLINE uint8_t wlan_rf_reserved_3_getf(void)
  */
 __INLINE void wlan_rf_reserved_3_setf(uint8_t reserved3)
 {
-    REG_PL_WR(WLAN_RF_WF_RFPLL_REG2_ADDR, (REG_PL_RD(WLAN_RF_WF_RFPLL_REG2_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)reserved3 << 0));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_RFPLL_REG2_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_RFPLL_REG2_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)reserved3 << 0));
 }
 
 /// @}
@@ -2548,7 +2548,7 @@ __INLINE void wlan_rf_reserved_3_setf(uint8_t reserved3)
  */
 __INLINE uint32_t wlan_rf_wf_gro_reg_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_GRO_REG_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_GRO_REG_ADDR);
 }
 
 /**
@@ -2558,7 +2558,7 @@ __INLINE uint32_t wlan_rf_wf_gro_reg_get(void)
  */
 __INLINE void wlan_rf_wf_gro_reg_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_GRO_REG_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_GRO_REG_ADDR, value);
 }
 
 // field definitions
@@ -2598,7 +2598,7 @@ __INLINE void wlan_rf_wf_gro_reg_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_gro_reg_pack(uint8_t wfgroregvbit, uint8_t wfgropdtldovbit, uint8_t wfrdaclpfbwrbit)
 {
-    REG_PL_WR(WLAN_RF_WF_GRO_REG_ADDR,  ((uint32_t)wfgroregvbit << 26) | ((uint32_t)wfgropdtldovbit << 23) | ((uint32_t)wfrdaclpfbwrbit << 0));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_GRO_REG_ADDR,  ((uint32_t)wfgroregvbit << 26) | ((uint32_t)wfgropdtldovbit << 23) | ((uint32_t)wfrdaclpfbwrbit << 0));
 }
 
 /**
@@ -2613,7 +2613,7 @@ __INLINE void wlan_rf_wf_gro_reg_pack(uint8_t wfgroregvbit, uint8_t wfgropdtldov
  */
 __INLINE void wlan_rf_wf_gro_reg_unpack(uint8_t* wfgroregvbit, uint8_t* wfgropdtldovbit, uint8_t* wfrdaclpfbwrbit)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_GRO_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_GRO_REG_ADDR);
 
     *wfgroregvbit = (localVal & ((uint32_t)0x3C000000)) >> 26;
     *wfgropdtldovbit = (localVal & ((uint32_t)0x01800000)) >> 23;
@@ -2629,7 +2629,7 @@ __INLINE void wlan_rf_wf_gro_reg_unpack(uint8_t* wfgroregvbit, uint8_t* wfgropdt
  */
 __INLINE uint8_t wlan_rf_wf_gro_reg_vbit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_GRO_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_GRO_REG_ADDR);
     return ((localVal & ((uint32_t)0x3C000000)) >> 26);
 }
 
@@ -2642,7 +2642,7 @@ __INLINE uint8_t wlan_rf_wf_gro_reg_vbit_getf(void)
  */
 __INLINE void wlan_rf_wf_gro_reg_vbit_setf(uint8_t wfgroregvbit)
 {
-    REG_PL_WR(WLAN_RF_WF_GRO_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_GRO_REG_ADDR) & ~((uint32_t)0x3C000000)) | ((uint32_t)wfgroregvbit << 26));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_GRO_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_GRO_REG_ADDR) & ~((uint32_t)0x3C000000)) | ((uint32_t)wfgroregvbit << 26));
 }
 
 /**
@@ -2654,7 +2654,7 @@ __INLINE void wlan_rf_wf_gro_reg_vbit_setf(uint8_t wfgroregvbit)
  */
 __INLINE uint8_t wlan_rf_wf_gro_pdt_ldo_vbit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_GRO_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_GRO_REG_ADDR);
     return ((localVal & ((uint32_t)0x01800000)) >> 23);
 }
 
@@ -2667,7 +2667,7 @@ __INLINE uint8_t wlan_rf_wf_gro_pdt_ldo_vbit_getf(void)
  */
 __INLINE void wlan_rf_wf_gro_pdt_ldo_vbit_setf(uint8_t wfgropdtldovbit)
 {
-    REG_PL_WR(WLAN_RF_WF_GRO_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_GRO_REG_ADDR) & ~((uint32_t)0x01800000)) | ((uint32_t)wfgropdtldovbit << 23));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_GRO_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_GRO_REG_ADDR) & ~((uint32_t)0x01800000)) | ((uint32_t)wfgropdtldovbit << 23));
 }
 
 /**
@@ -2679,7 +2679,7 @@ __INLINE void wlan_rf_wf_gro_pdt_ldo_vbit_setf(uint8_t wfgropdtldovbit)
  */
 __INLINE uint8_t wlan_rf_wf_rdac_lpf_bw_rbit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_GRO_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_GRO_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000007)) >> 0);
 }
 
@@ -2692,7 +2692,7 @@ __INLINE uint8_t wlan_rf_wf_rdac_lpf_bw_rbit_getf(void)
  */
 __INLINE void wlan_rf_wf_rdac_lpf_bw_rbit_setf(uint8_t wfrdaclpfbwrbit)
 {
-    REG_PL_WR(WLAN_RF_WF_GRO_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_GRO_REG_ADDR) & ~((uint32_t)0x00000007)) | ((uint32_t)wfrdaclpfbwrbit << 0));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_GRO_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_GRO_REG_ADDR) & ~((uint32_t)0x00000007)) | ((uint32_t)wfrdaclpfbwrbit << 0));
 }
 
 /// @}
@@ -2725,7 +2725,7 @@ __INLINE void wlan_rf_wf_rdac_lpf_bw_rbit_setf(uint8_t wfrdaclpfbwrbit)
  */
 __INLINE uint32_t wlan_rf_wf_misc_reg_get(void)
 {
-    return REG_PL_RD(WLAN_RF_WF_MISC_REG_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_WF_MISC_REG_ADDR);
 }
 
 /**
@@ -2735,7 +2735,7 @@ __INLINE uint32_t wlan_rf_wf_misc_reg_get(void)
  */
 __INLINE void wlan_rf_wf_misc_reg_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_WF_MISC_REG_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_WF_MISC_REG_ADDR, value);
 }
 
 // field definitions
@@ -2764,7 +2764,7 @@ __INLINE void wlan_rf_wf_misc_reg_set(uint32_t value)
  */
 __INLINE void wlan_rf_wf_misc_reg_pack(uint8_t reserved48, uint8_t wfreservebit)
 {
-    REG_PL_WR(WLAN_RF_WF_MISC_REG_ADDR,  ((uint32_t)reserved48 << 31) | ((uint32_t)wfreservebit << 2));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_MISC_REG_ADDR,  ((uint32_t)reserved48 << 31) | ((uint32_t)wfreservebit << 2));
 }
 
 /**
@@ -2778,7 +2778,7 @@ __INLINE void wlan_rf_wf_misc_reg_pack(uint8_t reserved48, uint8_t wfreservebit)
  */
 __INLINE void wlan_rf_wf_misc_reg_unpack(uint8_t* reserved48, uint8_t* wfreservebit)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_MISC_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_MISC_REG_ADDR);
 
     *reserved48 = (localVal & ((uint32_t)0x80000000)) >> 31;
     *wfreservebit = (localVal & ((uint32_t)0x000003FC)) >> 2;
@@ -2793,7 +2793,7 @@ __INLINE void wlan_rf_wf_misc_reg_unpack(uint8_t* reserved48, uint8_t* wfreserve
  */
 __INLINE uint8_t wlan_rf_reserved__48_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_MISC_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_MISC_REG_ADDR);
     return ((localVal & ((uint32_t)0x80000000)) >> 31);
 }
 
@@ -2806,7 +2806,7 @@ __INLINE uint8_t wlan_rf_reserved__48_getf(void)
  */
 __INLINE void wlan_rf_reserved__48_setf(uint8_t reserved48)
 {
-    REG_PL_WR(WLAN_RF_WF_MISC_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_MISC_REG_ADDR) & ~((uint32_t)0x80000000)) | ((uint32_t)reserved48 << 31));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_MISC_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_MISC_REG_ADDR) & ~((uint32_t)0x80000000)) | ((uint32_t)reserved48 << 31));
 }
 
 /**
@@ -2818,7 +2818,7 @@ __INLINE void wlan_rf_reserved__48_setf(uint8_t reserved48)
  */
 __INLINE uint8_t wlan_rf_wf_reserve_bit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_WF_MISC_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_WF_MISC_REG_ADDR);
     return ((localVal & ((uint32_t)0x000003FC)) >> 2);
 }
 
@@ -2831,7 +2831,7 @@ __INLINE uint8_t wlan_rf_wf_reserve_bit_getf(void)
  */
 __INLINE void wlan_rf_wf_reserve_bit_setf(uint8_t wfreservebit)
 {
-    REG_PL_WR(WLAN_RF_WF_MISC_REG_ADDR, (REG_PL_RD(WLAN_RF_WF_MISC_REG_ADDR) & ~((uint32_t)0x000003FC)) | ((uint32_t)wfreservebit << 2));
+    PLATFORM_REG_WRITE(WLAN_RF_WF_MISC_REG_ADDR, (PLATFORM_REG_READ(WLAN_RF_WF_MISC_REG_ADDR) & ~((uint32_t)0x000003FC)) | ((uint32_t)wfreservebit << 2));
 }
 
 /// @}
@@ -2871,7 +2871,7 @@ __INLINE void wlan_rf_wf_reserve_bit_setf(uint8_t wfreservebit)
  */
 __INLINE uint32_t wlan_rf_man_ctrl_get(void)
 {
-    return REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR);
 }
 
 /**
@@ -2881,7 +2881,7 @@ __INLINE uint32_t wlan_rf_man_ctrl_get(void)
  */
 __INLINE void wlan_rf_man_ctrl_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_MAN_CTRL_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_MAN_CTRL_ADDR, value);
 }
 
 // field definitions
@@ -2959,7 +2959,7 @@ __INLINE void wlan_rf_man_ctrl_set(uint32_t value)
  */
 __INLINE void wlan_rf_man_ctrl_pack(uint8_t pllontrx, uint8_t pllonreg, uint8_t txondr, uint8_t txonreg, uint8_t rxondr, uint8_t rxonreg, uint8_t rxgaindrpulse, uint8_t rxgaindr, uint8_t rxgainreg)
 {
-    REG_PL_WR(WLAN_RF_MAN_CTRL_ADDR,  ((uint32_t)pllontrx << 23) | ((uint32_t)pllonreg << 21) | ((uint32_t)txondr << 20) | ((uint32_t)txonreg << 19) | ((uint32_t)rxondr << 18) | ((uint32_t)rxonreg << 17) | ((uint32_t)rxgaindrpulse << 16) | ((uint32_t)rxgaindr << 15) | ((uint32_t)rxgainreg << 7));
+    PLATFORM_REG_WRITE(WLAN_RF_MAN_CTRL_ADDR,  ((uint32_t)pllontrx << 23) | ((uint32_t)pllonreg << 21) | ((uint32_t)txondr << 20) | ((uint32_t)txonreg << 19) | ((uint32_t)rxondr << 18) | ((uint32_t)rxonreg << 17) | ((uint32_t)rxgaindrpulse << 16) | ((uint32_t)rxgaindr << 15) | ((uint32_t)rxgainreg << 7));
 }
 
 /**
@@ -2980,7 +2980,7 @@ __INLINE void wlan_rf_man_ctrl_pack(uint8_t pllontrx, uint8_t pllonreg, uint8_t 
  */
 __INLINE void wlan_rf_man_ctrl_unpack(uint8_t* pllontrx, uint8_t* pllonreg, uint8_t* txondr, uint8_t* txonreg, uint8_t* rxondr, uint8_t* rxonreg, uint8_t* rxgaindrpulse, uint8_t* rxgaindr, uint8_t* rxgainreg)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR);
 
     *pllontrx = (localVal & ((uint32_t)0x00800000)) >> 23;
     *pllonreg = (localVal & ((uint32_t)0x00200000)) >> 21;
@@ -3002,7 +3002,7 @@ __INLINE void wlan_rf_man_ctrl_unpack(uint8_t* pllontrx, uint8_t* pllonreg, uint
  */
 __INLINE uint8_t wlan_rf_pllon_trx_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00800000)) >> 23);
 }
 
@@ -3015,7 +3015,7 @@ __INLINE uint8_t wlan_rf_pllon_trx_getf(void)
  */
 __INLINE void wlan_rf_pllon_trx_setf(uint8_t pllontrx)
 {
-    REG_PL_WR(WLAN_RF_MAN_CTRL_ADDR, (REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00800000)) | ((uint32_t)pllontrx << 23));
+    PLATFORM_REG_WRITE(WLAN_RF_MAN_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00800000)) | ((uint32_t)pllontrx << 23));
 }
 
 /**
@@ -3027,7 +3027,7 @@ __INLINE void wlan_rf_pllon_trx_setf(uint8_t pllontrx)
  */
 __INLINE uint8_t wlan_rf_pllon_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00200000)) >> 21);
 }
 
@@ -3040,7 +3040,7 @@ __INLINE uint8_t wlan_rf_pllon_reg_getf(void)
  */
 __INLINE void wlan_rf_pllon_reg_setf(uint8_t pllonreg)
 {
-    REG_PL_WR(WLAN_RF_MAN_CTRL_ADDR, (REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00200000)) | ((uint32_t)pllonreg << 21));
+    PLATFORM_REG_WRITE(WLAN_RF_MAN_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00200000)) | ((uint32_t)pllonreg << 21));
 }
 
 /**
@@ -3052,7 +3052,7 @@ __INLINE void wlan_rf_pllon_reg_setf(uint8_t pllonreg)
  */
 __INLINE uint8_t wlan_rf_txon_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00100000)) >> 20);
 }
 
@@ -3065,7 +3065,7 @@ __INLINE uint8_t wlan_rf_txon_dr_getf(void)
  */
 __INLINE void wlan_rf_txon_dr_setf(uint8_t txondr)
 {
-    REG_PL_WR(WLAN_RF_MAN_CTRL_ADDR, (REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00100000)) | ((uint32_t)txondr << 20));
+    PLATFORM_REG_WRITE(WLAN_RF_MAN_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00100000)) | ((uint32_t)txondr << 20));
 }
 
 /**
@@ -3077,7 +3077,7 @@ __INLINE void wlan_rf_txon_dr_setf(uint8_t txondr)
  */
 __INLINE uint8_t wlan_rf_txon_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00080000)) >> 19);
 }
 
@@ -3090,7 +3090,7 @@ __INLINE uint8_t wlan_rf_txon_reg_getf(void)
  */
 __INLINE void wlan_rf_txon_reg_setf(uint8_t txonreg)
 {
-    REG_PL_WR(WLAN_RF_MAN_CTRL_ADDR, (REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00080000)) | ((uint32_t)txonreg << 19));
+    PLATFORM_REG_WRITE(WLAN_RF_MAN_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00080000)) | ((uint32_t)txonreg << 19));
 }
 
 /**
@@ -3102,7 +3102,7 @@ __INLINE void wlan_rf_txon_reg_setf(uint8_t txonreg)
  */
 __INLINE uint8_t wlan_rf_rxon_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00040000)) >> 18);
 }
 
@@ -3115,7 +3115,7 @@ __INLINE uint8_t wlan_rf_rxon_dr_getf(void)
  */
 __INLINE void wlan_rf_rxon_dr_setf(uint8_t rxondr)
 {
-    REG_PL_WR(WLAN_RF_MAN_CTRL_ADDR, (REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00040000)) | ((uint32_t)rxondr << 18));
+    PLATFORM_REG_WRITE(WLAN_RF_MAN_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00040000)) | ((uint32_t)rxondr << 18));
 }
 
 /**
@@ -3127,7 +3127,7 @@ __INLINE void wlan_rf_rxon_dr_setf(uint8_t rxondr)
  */
 __INLINE uint8_t wlan_rf_rxon_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00020000)) >> 17);
 }
 
@@ -3140,7 +3140,7 @@ __INLINE uint8_t wlan_rf_rxon_reg_getf(void)
  */
 __INLINE void wlan_rf_rxon_reg_setf(uint8_t rxonreg)
 {
-    REG_PL_WR(WLAN_RF_MAN_CTRL_ADDR, (REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00020000)) | ((uint32_t)rxonreg << 17));
+    PLATFORM_REG_WRITE(WLAN_RF_MAN_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00020000)) | ((uint32_t)rxonreg << 17));
 }
 
 /**
@@ -3152,7 +3152,7 @@ __INLINE void wlan_rf_rxon_reg_setf(uint8_t rxonreg)
  */
 __INLINE uint8_t wlan_rf_rx_gain_dr_pulse_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00010000)) >> 16);
 }
 
@@ -3165,7 +3165,7 @@ __INLINE uint8_t wlan_rf_rx_gain_dr_pulse_getf(void)
  */
 __INLINE void wlan_rf_rx_gain_dr_pulse_setf(uint8_t rxgaindrpulse)
 {
-    REG_PL_WR(WLAN_RF_MAN_CTRL_ADDR, (REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00010000)) | ((uint32_t)rxgaindrpulse << 16));
+    PLATFORM_REG_WRITE(WLAN_RF_MAN_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00010000)) | ((uint32_t)rxgaindrpulse << 16));
 }
 
 /**
@@ -3177,7 +3177,7 @@ __INLINE void wlan_rf_rx_gain_dr_pulse_setf(uint8_t rxgaindrpulse)
  */
 __INLINE uint8_t wlan_rf_rx_gain_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00008000)) >> 15);
 }
 
@@ -3190,7 +3190,7 @@ __INLINE uint8_t wlan_rf_rx_gain_dr_getf(void)
  */
 __INLINE void wlan_rf_rx_gain_dr_setf(uint8_t rxgaindr)
 {
-    REG_PL_WR(WLAN_RF_MAN_CTRL_ADDR, (REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00008000)) | ((uint32_t)rxgaindr << 15));
+    PLATFORM_REG_WRITE(WLAN_RF_MAN_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00008000)) | ((uint32_t)rxgaindr << 15));
 }
 
 /**
@@ -3202,7 +3202,7 @@ __INLINE void wlan_rf_rx_gain_dr_setf(uint8_t rxgaindr)
  */
 __INLINE uint8_t wlan_rf_rx_gain_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00001F80)) >> 7);
 }
 
@@ -3215,7 +3215,7 @@ __INLINE uint8_t wlan_rf_rx_gain_reg_getf(void)
  */
 __INLINE void wlan_rf_rx_gain_reg_setf(uint8_t rxgainreg)
 {
-    REG_PL_WR(WLAN_RF_MAN_CTRL_ADDR, (REG_PL_RD(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00001F80)) | ((uint32_t)rxgainreg << 7));
+    PLATFORM_REG_WRITE(WLAN_RF_MAN_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_MAN_CTRL_ADDR) & ~((uint32_t)0x00001F80)) | ((uint32_t)rxgainreg << 7));
 }
 
 /// @}
@@ -3253,7 +3253,7 @@ __INLINE void wlan_rf_rx_gain_reg_setf(uint8_t rxgainreg)
  */
 __INLINE uint32_t wlan_rf_rxgain_mem_ctrl_get(void)
 {
-    return REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
 }
 
 /**
@@ -3263,7 +3263,7 @@ __INLINE uint32_t wlan_rf_rxgain_mem_ctrl_get(void)
  */
 __INLINE void wlan_rf_rxgain_mem_ctrl_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, value);
 }
 
 // field definitions
@@ -3327,7 +3327,7 @@ __INLINE void wlan_rf_rxgain_mem_ctrl_set(uint32_t value)
  */
 __INLINE void wlan_rf_rxgain_mem_ctrl_pack(uint8_t rxgainmemrwdone, uint8_t clkrxgainsel, uint8_t clkrxgainen, uint8_t rxgainmemcfg, uint8_t rxgainmemrenpulse, uint8_t rxgainmemwenpulse, uint8_t rxgainmemaddrcfg)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_CTRL_ADDR,  ((uint32_t)rxgainmemrwdone << 13) | ((uint32_t)clkrxgainsel << 12) | ((uint32_t)clkrxgainen << 11) | ((uint32_t)rxgainmemcfg << 10) | ((uint32_t)rxgainmemrenpulse << 9) | ((uint32_t)rxgainmemwenpulse << 8) | ((uint32_t)rxgainmemaddrcfg << 0));
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_CTRL_ADDR,  ((uint32_t)rxgainmemrwdone << 13) | ((uint32_t)clkrxgainsel << 12) | ((uint32_t)clkrxgainen << 11) | ((uint32_t)rxgainmemcfg << 10) | ((uint32_t)rxgainmemrenpulse << 9) | ((uint32_t)rxgainmemwenpulse << 8) | ((uint32_t)rxgainmemaddrcfg << 0));
 }
 
 /**
@@ -3346,7 +3346,7 @@ __INLINE void wlan_rf_rxgain_mem_ctrl_pack(uint8_t rxgainmemrwdone, uint8_t clkr
  */
 __INLINE void wlan_rf_rxgain_mem_ctrl_unpack(uint8_t* rxgainmemrwdone, uint8_t* clkrxgainsel, uint8_t* clkrxgainen, uint8_t* rxgainmemcfg, uint8_t* rxgainmemrenpulse, uint8_t* rxgainmemwenpulse, uint8_t* rxgainmemaddrcfg)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
 
     *rxgainmemrwdone = (localVal & ((uint32_t)0x00002000)) >> 13;
     *clkrxgainsel = (localVal & ((uint32_t)0x00001000)) >> 12;
@@ -3366,7 +3366,7 @@ __INLINE void wlan_rf_rxgain_mem_ctrl_unpack(uint8_t* rxgainmemrwdone, uint8_t* 
  */
 __INLINE uint8_t wlan_rf_rxgain_mem_rw_done_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00002000)) >> 13);
 }
 
@@ -3379,7 +3379,7 @@ __INLINE uint8_t wlan_rf_rxgain_mem_rw_done_getf(void)
  */
 __INLINE void wlan_rf_rxgain_mem_rw_done_setf(uint8_t rxgainmemrwdone)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00002000)) | ((uint32_t)rxgainmemrwdone << 13));
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00002000)) | ((uint32_t)rxgainmemrwdone << 13));
 }
 
 /**
@@ -3391,7 +3391,7 @@ __INLINE void wlan_rf_rxgain_mem_rw_done_setf(uint8_t rxgainmemrwdone)
  */
 __INLINE uint8_t wlan_rf_clk_rxgain_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00001000)) >> 12);
 }
 
@@ -3404,7 +3404,7 @@ __INLINE uint8_t wlan_rf_clk_rxgain_sel_getf(void)
  */
 __INLINE void wlan_rf_clk_rxgain_sel_setf(uint8_t clkrxgainsel)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)clkrxgainsel << 12));
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)clkrxgainsel << 12));
 }
 
 /**
@@ -3416,7 +3416,7 @@ __INLINE void wlan_rf_clk_rxgain_sel_setf(uint8_t clkrxgainsel)
  */
 __INLINE uint8_t wlan_rf_clk_rxgain_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000800)) >> 11);
 }
 
@@ -3429,7 +3429,7 @@ __INLINE uint8_t wlan_rf_clk_rxgain_en_getf(void)
  */
 __INLINE void wlan_rf_clk_rxgain_en_setf(uint8_t clkrxgainen)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)clkrxgainen << 11));
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)clkrxgainen << 11));
 }
 
 /**
@@ -3441,7 +3441,7 @@ __INLINE void wlan_rf_clk_rxgain_en_setf(uint8_t clkrxgainen)
  */
 __INLINE uint8_t wlan_rf_rxgain_mem_cfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000400)) >> 10);
 }
 
@@ -3454,7 +3454,7 @@ __INLINE uint8_t wlan_rf_rxgain_mem_cfg_getf(void)
  */
 __INLINE void wlan_rf_rxgain_mem_cfg_setf(uint8_t rxgainmemcfg)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)rxgainmemcfg << 10));
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)rxgainmemcfg << 10));
 }
 
 /**
@@ -3466,7 +3466,7 @@ __INLINE void wlan_rf_rxgain_mem_cfg_setf(uint8_t rxgainmemcfg)
  */
 __INLINE uint8_t wlan_rf_rxgain_mem_ren_pulse_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000200)) >> 9);
 }
 
@@ -3479,7 +3479,7 @@ __INLINE uint8_t wlan_rf_rxgain_mem_ren_pulse_getf(void)
  */
 __INLINE void wlan_rf_rxgain_mem_ren_pulse_setf(uint8_t rxgainmemrenpulse)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)rxgainmemrenpulse << 9));
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)rxgainmemrenpulse << 9));
 }
 
 /**
@@ -3491,7 +3491,7 @@ __INLINE void wlan_rf_rxgain_mem_ren_pulse_setf(uint8_t rxgainmemrenpulse)
  */
 __INLINE uint8_t wlan_rf_rxgain_mem_wen_pulse_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -3504,7 +3504,7 @@ __INLINE uint8_t wlan_rf_rxgain_mem_wen_pulse_getf(void)
  */
 __INLINE void wlan_rf_rxgain_mem_wen_pulse_setf(uint8_t rxgainmemwenpulse)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)rxgainmemwenpulse << 8));
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)rxgainmemwenpulse << 8));
 }
 
 /**
@@ -3516,7 +3516,7 @@ __INLINE void wlan_rf_rxgain_mem_wen_pulse_setf(uint8_t rxgainmemwenpulse)
  */
 __INLINE uint8_t wlan_rf_rxgain_mem_addr_cfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -3529,7 +3529,7 @@ __INLINE uint8_t wlan_rf_rxgain_mem_addr_cfg_getf(void)
  */
 __INLINE void wlan_rf_rxgain_mem_addr_cfg_setf(uint8_t rxgainmemaddrcfg)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)rxgainmemaddrcfg << 0));
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)rxgainmemaddrcfg << 0));
 }
 
 /// @}
@@ -3561,7 +3561,7 @@ __INLINE void wlan_rf_rxgain_mem_addr_cfg_setf(uint8_t rxgainmemaddrcfg)
  */
 __INLINE uint32_t wlan_rf_rxgain_mem_wd_get(void)
 {
-    return REG_PL_RD(WLAN_RF_RXGAIN_MEM_WD_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_WD_ADDR);
 }
 
 /**
@@ -3571,7 +3571,7 @@ __INLINE uint32_t wlan_rf_rxgain_mem_wd_get(void)
  */
 __INLINE void wlan_rf_rxgain_mem_wd_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_WD_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_WD_ADDR, value);
 }
 
 // field definitions
@@ -3594,7 +3594,7 @@ __INLINE void wlan_rf_rxgain_mem_wd_set(uint32_t value)
  */
 __INLINE uint32_t wlan_rf_rxgain_mem_wdata_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_RXGAIN_MEM_WD_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_WD_ADDR);
     return (localVal >> 0);
 }
 
@@ -3607,7 +3607,7 @@ __INLINE uint32_t wlan_rf_rxgain_mem_wdata_getf(void)
  */
 __INLINE void wlan_rf_rxgain_mem_wdata_setf(uint32_t rxgainmemwdata)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_WD_ADDR, (uint32_t)rxgainmemwdata << 0);
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_WD_ADDR, (uint32_t)rxgainmemwdata << 0);
 }
 
 /// @}
@@ -3639,7 +3639,7 @@ __INLINE void wlan_rf_rxgain_mem_wdata_setf(uint32_t rxgainmemwdata)
  */
 __INLINE uint32_t wlan_rf_rxgain_mem_rd_get(void)
 {
-    return REG_PL_RD(WLAN_RF_RXGAIN_MEM_RD_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_RD_ADDR);
 }
 
 /**
@@ -3649,7 +3649,7 @@ __INLINE uint32_t wlan_rf_rxgain_mem_rd_get(void)
  */
 __INLINE void wlan_rf_rxgain_mem_rd_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_RD_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_RD_ADDR, value);
 }
 
 // field definitions
@@ -3672,7 +3672,7 @@ __INLINE void wlan_rf_rxgain_mem_rd_set(uint32_t value)
  */
 __INLINE uint32_t wlan_rf_rxgain_mem_rdata_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_RXGAIN_MEM_RD_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_RXGAIN_MEM_RD_ADDR);
     return (localVal >> 0);
 }
 
@@ -3685,7 +3685,7 @@ __INLINE uint32_t wlan_rf_rxgain_mem_rdata_getf(void)
  */
 __INLINE void wlan_rf_rxgain_mem_rdata_setf(uint32_t rxgainmemrdata)
 {
-    REG_PL_WR(WLAN_RF_RXGAIN_MEM_RD_ADDR, (uint32_t)rxgainmemrdata << 0);
+    PLATFORM_REG_WRITE(WLAN_RF_RXGAIN_MEM_RD_ADDR, (uint32_t)rxgainmemrdata << 0);
 }
 
 /// @}
@@ -3723,7 +3723,7 @@ __INLINE void wlan_rf_rxgain_mem_rdata_setf(uint32_t rxgainmemrdata)
  */
 __INLINE uint32_t wlan_rf_txgain_mem_ctrl_get(void)
 {
-    return REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
 }
 
 /**
@@ -3733,7 +3733,7 @@ __INLINE uint32_t wlan_rf_txgain_mem_ctrl_get(void)
  */
 __INLINE void wlan_rf_txgain_mem_ctrl_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, value);
 }
 
 // field definitions
@@ -3797,7 +3797,7 @@ __INLINE void wlan_rf_txgain_mem_ctrl_set(uint32_t value)
  */
 __INLINE void wlan_rf_txgain_mem_ctrl_pack(uint8_t txgainmemrwdone, uint8_t clktxgainsel, uint8_t clktxgainen, uint8_t txgainmemcfg, uint8_t txgainmemrenpulse, uint8_t txgainmemwenpulse, uint8_t txgainmemaddrcfg)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_CTRL_ADDR,  ((uint32_t)txgainmemrwdone << 10) | ((uint32_t)clktxgainsel << 9) | ((uint32_t)clktxgainen << 8) | ((uint32_t)txgainmemcfg << 7) | ((uint32_t)txgainmemrenpulse << 6) | ((uint32_t)txgainmemwenpulse << 5) | ((uint32_t)txgainmemaddrcfg << 0));
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_CTRL_ADDR,  ((uint32_t)txgainmemrwdone << 10) | ((uint32_t)clktxgainsel << 9) | ((uint32_t)clktxgainen << 8) | ((uint32_t)txgainmemcfg << 7) | ((uint32_t)txgainmemrenpulse << 6) | ((uint32_t)txgainmemwenpulse << 5) | ((uint32_t)txgainmemaddrcfg << 0));
 }
 
 /**
@@ -3816,7 +3816,7 @@ __INLINE void wlan_rf_txgain_mem_ctrl_pack(uint8_t txgainmemrwdone, uint8_t clkt
  */
 __INLINE void wlan_rf_txgain_mem_ctrl_unpack(uint8_t* txgainmemrwdone, uint8_t* clktxgainsel, uint8_t* clktxgainen, uint8_t* txgainmemcfg, uint8_t* txgainmemrenpulse, uint8_t* txgainmemwenpulse, uint8_t* txgainmemaddrcfg)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
 
     *txgainmemrwdone = (localVal & ((uint32_t)0x00000400)) >> 10;
     *clktxgainsel = (localVal & ((uint32_t)0x00000200)) >> 9;
@@ -3836,7 +3836,7 @@ __INLINE void wlan_rf_txgain_mem_ctrl_unpack(uint8_t* txgainmemrwdone, uint8_t* 
  */
 __INLINE uint8_t wlan_rf_txgain_mem_rw_done_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000400)) >> 10);
 }
 
@@ -3849,7 +3849,7 @@ __INLINE uint8_t wlan_rf_txgain_mem_rw_done_getf(void)
  */
 __INLINE void wlan_rf_txgain_mem_rw_done_setf(uint8_t txgainmemrwdone)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)txgainmemrwdone << 10));
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)txgainmemrwdone << 10));
 }
 
 /**
@@ -3861,7 +3861,7 @@ __INLINE void wlan_rf_txgain_mem_rw_done_setf(uint8_t txgainmemrwdone)
  */
 __INLINE uint8_t wlan_rf_clk_txgain_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000200)) >> 9);
 }
 
@@ -3874,7 +3874,7 @@ __INLINE uint8_t wlan_rf_clk_txgain_sel_getf(void)
  */
 __INLINE void wlan_rf_clk_txgain_sel_setf(uint8_t clktxgainsel)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)clktxgainsel << 9));
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)clktxgainsel << 9));
 }
 
 /**
@@ -3886,7 +3886,7 @@ __INLINE void wlan_rf_clk_txgain_sel_setf(uint8_t clktxgainsel)
  */
 __INLINE uint8_t wlan_rf_clk_txgain_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -3899,7 +3899,7 @@ __INLINE uint8_t wlan_rf_clk_txgain_en_getf(void)
  */
 __INLINE void wlan_rf_clk_txgain_en_setf(uint8_t clktxgainen)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)clktxgainen << 8));
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)clktxgainen << 8));
 }
 
 /**
@@ -3911,7 +3911,7 @@ __INLINE void wlan_rf_clk_txgain_en_setf(uint8_t clktxgainen)
  */
 __INLINE uint8_t wlan_rf_txgain_mem_cfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000080)) >> 7);
 }
 
@@ -3924,7 +3924,7 @@ __INLINE uint8_t wlan_rf_txgain_mem_cfg_getf(void)
  */
 __INLINE void wlan_rf_txgain_mem_cfg_setf(uint8_t txgainmemcfg)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)txgainmemcfg << 7));
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)txgainmemcfg << 7));
 }
 
 /**
@@ -3936,7 +3936,7 @@ __INLINE void wlan_rf_txgain_mem_cfg_setf(uint8_t txgainmemcfg)
  */
 __INLINE uint8_t wlan_rf_txgain_mem_ren_pulse_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000040)) >> 6);
 }
 
@@ -3949,7 +3949,7 @@ __INLINE uint8_t wlan_rf_txgain_mem_ren_pulse_getf(void)
  */
 __INLINE void wlan_rf_txgain_mem_ren_pulse_setf(uint8_t txgainmemrenpulse)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)txgainmemrenpulse << 6));
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)txgainmemrenpulse << 6));
 }
 
 /**
@@ -3961,7 +3961,7 @@ __INLINE void wlan_rf_txgain_mem_ren_pulse_setf(uint8_t txgainmemrenpulse)
  */
 __INLINE uint8_t wlan_rf_txgain_mem_wen_pulse_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000020)) >> 5);
 }
 
@@ -3974,7 +3974,7 @@ __INLINE uint8_t wlan_rf_txgain_mem_wen_pulse_getf(void)
  */
 __INLINE void wlan_rf_txgain_mem_wen_pulse_setf(uint8_t txgainmemwenpulse)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)txgainmemwenpulse << 5));
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)txgainmemwenpulse << 5));
 }
 
 /**
@@ -3986,7 +3986,7 @@ __INLINE void wlan_rf_txgain_mem_wen_pulse_setf(uint8_t txgainmemwenpulse)
  */
 __INLINE uint8_t wlan_rf_txgain_mem_addr_cfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x0000001F)) >> 0);
 }
 
@@ -3999,7 +3999,7 @@ __INLINE uint8_t wlan_rf_txgain_mem_addr_cfg_getf(void)
  */
 __INLINE void wlan_rf_txgain_mem_addr_cfg_setf(uint8_t txgainmemaddrcfg)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x0000001F)) | ((uint32_t)txgainmemaddrcfg << 0));
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x0000001F)) | ((uint32_t)txgainmemaddrcfg << 0));
 }
 
 /// @}
@@ -4031,7 +4031,7 @@ __INLINE void wlan_rf_txgain_mem_addr_cfg_setf(uint8_t txgainmemaddrcfg)
  */
 __INLINE uint32_t wlan_rf_txgain_mem_wd_get(void)
 {
-    return REG_PL_RD(WLAN_RF_TXGAIN_MEM_WD_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_WD_ADDR);
 }
 
 /**
@@ -4041,7 +4041,7 @@ __INLINE uint32_t wlan_rf_txgain_mem_wd_get(void)
  */
 __INLINE void wlan_rf_txgain_mem_wd_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_WD_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_WD_ADDR, value);
 }
 
 // field definitions
@@ -4064,7 +4064,7 @@ __INLINE void wlan_rf_txgain_mem_wd_set(uint32_t value)
  */
 __INLINE uint32_t wlan_rf_txgain_mem_wdata_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_TXGAIN_MEM_WD_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_WD_ADDR);
     return (localVal >> 0);
 }
 
@@ -4077,7 +4077,7 @@ __INLINE uint32_t wlan_rf_txgain_mem_wdata_getf(void)
  */
 __INLINE void wlan_rf_txgain_mem_wdata_setf(uint32_t txgainmemwdata)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_WD_ADDR, (uint32_t)txgainmemwdata << 0);
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_WD_ADDR, (uint32_t)txgainmemwdata << 0);
 }
 
 /// @}
@@ -4109,7 +4109,7 @@ __INLINE void wlan_rf_txgain_mem_wdata_setf(uint32_t txgainmemwdata)
  */
 __INLINE uint32_t wlan_rf_txgain_mem_rd_get(void)
 {
-    return REG_PL_RD(WLAN_RF_TXGAIN_MEM_RD_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_RD_ADDR);
 }
 
 /**
@@ -4119,7 +4119,7 @@ __INLINE uint32_t wlan_rf_txgain_mem_rd_get(void)
  */
 __INLINE void wlan_rf_txgain_mem_rd_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_RD_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_RD_ADDR, value);
 }
 
 // field definitions
@@ -4142,7 +4142,7 @@ __INLINE void wlan_rf_txgain_mem_rd_set(uint32_t value)
  */
 __INLINE uint32_t wlan_rf_txgain_mem_rdata_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_TXGAIN_MEM_RD_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_TXGAIN_MEM_RD_ADDR);
     return (localVal >> 0);
 }
 
@@ -4155,7 +4155,7 @@ __INLINE uint32_t wlan_rf_txgain_mem_rdata_getf(void)
  */
 __INLINE void wlan_rf_txgain_mem_rdata_setf(uint32_t txgainmemrdata)
 {
-    REG_PL_WR(WLAN_RF_TXGAIN_MEM_RD_ADDR, (uint32_t)txgainmemrdata << 0);
+    PLATFORM_REG_WRITE(WLAN_RF_TXGAIN_MEM_RD_ADDR, (uint32_t)txgainmemrdata << 0);
 }
 
 /// @}
@@ -4191,7 +4191,7 @@ __INLINE void wlan_rf_txgain_mem_rdata_setf(uint32_t txgainmemrdata)
  */
 __INLINE uint32_t wlan_rf_ext_pa_ctrl_get(void)
 {
-    return REG_PL_RD(WLAN_RF_EXT_PA_CTRL_ADDR);
+    return PLATFORM_REG_READ(WLAN_RF_EXT_PA_CTRL_ADDR);
 }
 
 /**
@@ -4201,7 +4201,7 @@ __INLINE uint32_t wlan_rf_ext_pa_ctrl_get(void)
  */
 __INLINE void wlan_rf_ext_pa_ctrl_set(uint32_t value)
 {
-    REG_PL_WR(WLAN_RF_EXT_PA_CTRL_ADDR, value);
+    PLATFORM_REG_WRITE(WLAN_RF_EXT_PA_CTRL_ADDR, value);
 }
 
 // field definitions
@@ -4259,7 +4259,7 @@ __INLINE void wlan_rf_ext_pa_ctrl_set(uint32_t value)
  */
 __INLINE void wlan_rf_ext_pa_ctrl_pack(uint16_t extrxondelay, uint16_t exttxondelay, uint8_t extparx, uint8_t extpatx, uint8_t extpaidle)
 {
-    REG_PL_WR(WLAN_RF_EXT_PA_CTRL_ADDR,  ((uint32_t)extrxondelay << 20) | ((uint32_t)exttxondelay << 11) | ((uint32_t)extparx << 8) | ((uint32_t)extpatx << 4) | ((uint32_t)extpaidle << 0));
+    PLATFORM_REG_WRITE(WLAN_RF_EXT_PA_CTRL_ADDR,  ((uint32_t)extrxondelay << 20) | ((uint32_t)exttxondelay << 11) | ((uint32_t)extparx << 8) | ((uint32_t)extpatx << 4) | ((uint32_t)extpaidle << 0));
 }
 
 /**
@@ -4276,7 +4276,7 @@ __INLINE void wlan_rf_ext_pa_ctrl_pack(uint16_t extrxondelay, uint16_t exttxonde
  */
 __INLINE void wlan_rf_ext_pa_ctrl_unpack(uint16_t* extrxondelay, uint16_t* exttxondelay, uint8_t* extparx, uint8_t* extpatx, uint8_t* extpaidle)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_EXT_PA_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_EXT_PA_CTRL_ADDR);
 
     *extrxondelay = (localVal & ((uint32_t)0x1FF00000)) >> 20;
     *exttxondelay = (localVal & ((uint32_t)0x000FF800)) >> 11;
@@ -4294,7 +4294,7 @@ __INLINE void wlan_rf_ext_pa_ctrl_unpack(uint16_t* extrxondelay, uint16_t* exttx
  */
 __INLINE uint16_t wlan_rf_ext_rxon_delay_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_EXT_PA_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_EXT_PA_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x1FF00000)) >> 20);
 }
 
@@ -4307,7 +4307,7 @@ __INLINE uint16_t wlan_rf_ext_rxon_delay_getf(void)
  */
 __INLINE void wlan_rf_ext_rxon_delay_setf(uint16_t extrxondelay)
 {
-    REG_PL_WR(WLAN_RF_EXT_PA_CTRL_ADDR, (REG_PL_RD(WLAN_RF_EXT_PA_CTRL_ADDR) & ~((uint32_t)0x1FF00000)) | ((uint32_t)extrxondelay << 20));
+    PLATFORM_REG_WRITE(WLAN_RF_EXT_PA_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_EXT_PA_CTRL_ADDR) & ~((uint32_t)0x1FF00000)) | ((uint32_t)extrxondelay << 20));
 }
 
 /**
@@ -4319,7 +4319,7 @@ __INLINE void wlan_rf_ext_rxon_delay_setf(uint16_t extrxondelay)
  */
 __INLINE uint16_t wlan_rf_ext_txon_delay_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_EXT_PA_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_EXT_PA_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x000FF800)) >> 11);
 }
 
@@ -4332,7 +4332,7 @@ __INLINE uint16_t wlan_rf_ext_txon_delay_getf(void)
  */
 __INLINE void wlan_rf_ext_txon_delay_setf(uint16_t exttxondelay)
 {
-    REG_PL_WR(WLAN_RF_EXT_PA_CTRL_ADDR, (REG_PL_RD(WLAN_RF_EXT_PA_CTRL_ADDR) & ~((uint32_t)0x000FF800)) | ((uint32_t)exttxondelay << 11));
+    PLATFORM_REG_WRITE(WLAN_RF_EXT_PA_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_EXT_PA_CTRL_ADDR) & ~((uint32_t)0x000FF800)) | ((uint32_t)exttxondelay << 11));
 }
 
 /**
@@ -4344,7 +4344,7 @@ __INLINE void wlan_rf_ext_txon_delay_setf(uint16_t exttxondelay)
  */
 __INLINE uint8_t wlan_rf_ext_pa_rx_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_EXT_PA_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_EXT_PA_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000700)) >> 8);
 }
 
@@ -4357,7 +4357,7 @@ __INLINE uint8_t wlan_rf_ext_pa_rx_getf(void)
  */
 __INLINE void wlan_rf_ext_pa_rx_setf(uint8_t extparx)
 {
-    REG_PL_WR(WLAN_RF_EXT_PA_CTRL_ADDR, (REG_PL_RD(WLAN_RF_EXT_PA_CTRL_ADDR) & ~((uint32_t)0x00000700)) | ((uint32_t)extparx << 8));
+    PLATFORM_REG_WRITE(WLAN_RF_EXT_PA_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_EXT_PA_CTRL_ADDR) & ~((uint32_t)0x00000700)) | ((uint32_t)extparx << 8));
 }
 
 /**
@@ -4369,7 +4369,7 @@ __INLINE void wlan_rf_ext_pa_rx_setf(uint8_t extparx)
  */
 __INLINE uint8_t wlan_rf_ext_pa_tx_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_EXT_PA_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_EXT_PA_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x000000F0)) >> 4);
 }
 
@@ -4382,7 +4382,7 @@ __INLINE uint8_t wlan_rf_ext_pa_tx_getf(void)
  */
 __INLINE void wlan_rf_ext_pa_tx_setf(uint8_t extpatx)
 {
-    REG_PL_WR(WLAN_RF_EXT_PA_CTRL_ADDR, (REG_PL_RD(WLAN_RF_EXT_PA_CTRL_ADDR) & ~((uint32_t)0x000000F0)) | ((uint32_t)extpatx << 4));
+    PLATFORM_REG_WRITE(WLAN_RF_EXT_PA_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_EXT_PA_CTRL_ADDR) & ~((uint32_t)0x000000F0)) | ((uint32_t)extpatx << 4));
 }
 
 /**
@@ -4394,7 +4394,7 @@ __INLINE void wlan_rf_ext_pa_tx_setf(uint8_t extpatx)
  */
 __INLINE uint8_t wlan_rf_ext_pa_idle_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WLAN_RF_EXT_PA_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WLAN_RF_EXT_PA_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x0000000F)) >> 0);
 }
 
@@ -4407,7 +4407,7 @@ __INLINE uint8_t wlan_rf_ext_pa_idle_getf(void)
  */
 __INLINE void wlan_rf_ext_pa_idle_setf(uint8_t extpaidle)
 {
-    REG_PL_WR(WLAN_RF_EXT_PA_CTRL_ADDR, (REG_PL_RD(WLAN_RF_EXT_PA_CTRL_ADDR) & ~((uint32_t)0x0000000F)) | ((uint32_t)extpaidle << 0));
+    PLATFORM_REG_WRITE(WLAN_RF_EXT_PA_CTRL_ADDR, (PLATFORM_REG_READ(WLAN_RF_EXT_PA_CTRL_ADDR) & ~((uint32_t)0x0000000F)) | ((uint32_t)extpaidle << 0));
 }
 
 /// @}

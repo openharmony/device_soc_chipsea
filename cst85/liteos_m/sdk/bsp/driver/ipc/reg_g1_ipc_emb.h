@@ -18,7 +18,7 @@
 #include <stdint.h>
 #include "compiler.h"
 #include "arch.h"
-#include "reg_access.h"
+#include "reg_access_wrapper.h"
 
 #define REG_G1_IPC_EMB_COUNT 8
 
@@ -39,12 +39,12 @@
 
 __INLINE uint32_t ipc_g1_emb2app_trigger_get(void)
 {
-    return REG_PL_RD(IPC_G1_EMB2APP_TRIGGER_ADDR);
+    return PLATFORM_REG_READ(IPC_G1_EMB2APP_TRIGGER_ADDR);
 }
 
 __INLINE void ipc_g1_emb2app_trigger_set(uint32_t value)
 {
-    REG_PL_WR(IPC_G1_EMB2APP_TRIGGER_ADDR, value);
+    PLATFORM_REG_WRITE(IPC_G1_EMB2APP_TRIGGER_ADDR, value);
 }
 
 // field definitions
@@ -56,13 +56,13 @@ __INLINE void ipc_g1_emb2app_trigger_set(uint32_t value)
 
 __INLINE uint32_t ipc_g1_emb2app_trigger_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_EMB2APP_TRIGGER_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_EMB2APP_TRIGGER_ADDR);
     return (localVal >> 0);
 }
 
 __INLINE void ipc_g1_emb2app_trigger_setf(uint32_t g1emb2apptrigger)
 {
-    REG_PL_WR(IPC_G1_EMB2APP_TRIGGER_ADDR, (uint32_t)g1emb2apptrigger << 0);
+    PLATFORM_REG_WRITE(IPC_G1_EMB2APP_TRIGGER_ADDR, (uint32_t)g1emb2apptrigger << 0);
 }
 
 /**
@@ -80,7 +80,7 @@ __INLINE void ipc_g1_emb2app_trigger_setf(uint32_t g1emb2apptrigger)
 
 __INLINE uint32_t ipc_g1_app2emb_rawstatus_get(void)
 {
-    return REG_PL_RD(IPC_G1_APP2EMB_RAWSTATUS_ADDR);
+    return PLATFORM_REG_READ(IPC_G1_APP2EMB_RAWSTATUS_ADDR);
 }
 
 // field definitions
@@ -92,7 +92,7 @@ __INLINE uint32_t ipc_g1_app2emb_rawstatus_get(void)
 
 __INLINE uint32_t ipc_g1_app2emb_rawstatus_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_RAWSTATUS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_RAWSTATUS_ADDR);
     return (localVal >> 0);
 }
 
@@ -111,12 +111,12 @@ __INLINE uint32_t ipc_g1_app2emb_rawstatus_getf(void)
 
 __INLINE uint32_t ipc_g1_app2emb_ack_get(void)
 {
-    return REG_PL_RD(IPC_G1_APP2EMB_ACK_ADDR);
+    return PLATFORM_REG_READ(IPC_G1_APP2EMB_ACK_ADDR);
 }
 
 __INLINE void ipc_g1_app2emb_ack_clear(uint32_t value)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_ACK_ADDR, value);
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_ACK_ADDR, value);
 }
 
 // field definitions
@@ -128,13 +128,13 @@ __INLINE void ipc_g1_app2emb_ack_clear(uint32_t value)
 
 __INLINE uint32_t ipc_g1_app2emb_ack_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_ACK_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_ACK_ADDR);
     return (localVal >> 0);
 }
 
 __INLINE void ipc_g1_app2emb_ack_clearf(uint32_t g1app2emback)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_ACK_ADDR, (uint32_t)g1app2emback << 0);
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_ACK_ADDR, (uint32_t)g1app2emback << 0);
 }
 
 /**
@@ -152,12 +152,12 @@ __INLINE void ipc_g1_app2emb_ack_clearf(uint32_t g1app2emback)
 
 __INLINE uint32_t ipc_g1_app2emb_unmask_get(void)
 {
-    return REG_PL_RD(IPC_G1_APP2EMB_UNMASK_SET_ADDR);
+    return PLATFORM_REG_READ(IPC_G1_APP2EMB_UNMASK_SET_ADDR);
 }
 
 __INLINE void ipc_g1_app2emb_unmask_set(uint32_t value)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_UNMASK_SET_ADDR, value);
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_UNMASK_SET_ADDR, value);
 }
 
 // field definitions
@@ -169,13 +169,13 @@ __INLINE void ipc_g1_app2emb_unmask_set(uint32_t value)
 
 __INLINE uint32_t ipc_g1_app2emb_unmask_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_UNMASK_SET_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_UNMASK_SET_ADDR);
     return (localVal >> 0);
 }
 
 __INLINE void ipc_g1_app2emb_unmask_setf(uint32_t g1app2embunmask)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_UNMASK_SET_ADDR, (uint32_t)g1app2embunmask << 0);
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_UNMASK_SET_ADDR, (uint32_t)g1app2embunmask << 0);
 }
 
 /**
@@ -193,13 +193,13 @@ __INLINE void ipc_g1_app2emb_unmask_setf(uint32_t g1app2embunmask)
 
 __INLINE void ipc_g1_app2emb_unmask_clear(uint32_t value)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_UNMASK_CLEAR_ADDR, value);
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_UNMASK_CLEAR_ADDR, value);
 }
 
 // fields defined in symmetrical set/clear register
 __INLINE void ipc_g1_app2emb_unmask_clearf(uint32_t g1app2embunmask)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_UNMASK_CLEAR_ADDR, (uint32_t)g1app2embunmask << 0);
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_UNMASK_CLEAR_ADDR, (uint32_t)g1app2embunmask << 0);
 }
 
 /**
@@ -232,12 +232,12 @@ __INLINE void ipc_g1_app2emb_unmask_clearf(uint32_t g1app2embunmask)
 
 __INLINE uint32_t ipc_g1_app2emb_line_sel_low_get(void)
 {
-    return REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    return PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
 }
 
 __INLINE void ipc_g1_app2emb_line_sel_low_set(uint32_t value)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, value);
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, value);
 }
 
 // field definitions
@@ -309,12 +309,12 @@ __INLINE void ipc_g1_app2emb_line_sel_low_set(uint32_t value)
 
 __INLINE void ipc_g1_app2emb_line_sel_low_pack(uint8_t g1app2emb15sel, uint8_t g1app2emb14sel, uint8_t g1app2emb13sel, uint8_t g1app2emb12sel, uint8_t g1app2emb11sel, uint8_t g1app2emb10sel, uint8_t g1app2emb9sel, uint8_t g1app2emb8sel, uint8_t g1app2emb7sel, uint8_t g1app2emb6sel, uint8_t g1app2emb5sel, uint8_t g1app2emb4sel, uint8_t g1app2emb3sel, uint8_t g1app2emb2sel, uint8_t g1app2emb1sel, uint8_t g1app2emb0sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR,  ((uint32_t)g1app2emb15sel << 30) | ((uint32_t)g1app2emb14sel << 28) | ((uint32_t)g1app2emb13sel << 26) | ((uint32_t)g1app2emb12sel << 24) | ((uint32_t)g1app2emb11sel << 22) | ((uint32_t)g1app2emb10sel << 20) | ((uint32_t)g1app2emb9sel << 18) | ((uint32_t)g1app2emb8sel << 16) | ((uint32_t)g1app2emb7sel << 14) | ((uint32_t)g1app2emb6sel << 12) | ((uint32_t)g1app2emb5sel << 10) | ((uint32_t)g1app2emb4sel << 8) | ((uint32_t)g1app2emb3sel << 6) | ((uint32_t)g1app2emb2sel << 4) | ((uint32_t)g1app2emb1sel << 2) | ((uint32_t)g1app2emb0sel << 0));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR,  ((uint32_t)g1app2emb15sel << 30) | ((uint32_t)g1app2emb14sel << 28) | ((uint32_t)g1app2emb13sel << 26) | ((uint32_t)g1app2emb12sel << 24) | ((uint32_t)g1app2emb11sel << 22) | ((uint32_t)g1app2emb10sel << 20) | ((uint32_t)g1app2emb9sel << 18) | ((uint32_t)g1app2emb8sel << 16) | ((uint32_t)g1app2emb7sel << 14) | ((uint32_t)g1app2emb6sel << 12) | ((uint32_t)g1app2emb5sel << 10) | ((uint32_t)g1app2emb4sel << 8) | ((uint32_t)g1app2emb3sel << 6) | ((uint32_t)g1app2emb2sel << 4) | ((uint32_t)g1app2emb1sel << 2) | ((uint32_t)g1app2emb0sel << 0));
 }
 
 __INLINE void ipc_g1_app2emb_line_sel_low_unpack(uint8_t* g1app2emb15sel, uint8_t* g1app2emb14sel, uint8_t* g1app2emb13sel, uint8_t* g1app2emb12sel, uint8_t* g1app2emb11sel, uint8_t* g1app2emb10sel, uint8_t* g1app2emb9sel, uint8_t* g1app2emb8sel, uint8_t* g1app2emb7sel, uint8_t* g1app2emb6sel, uint8_t* g1app2emb5sel, uint8_t* g1app2emb4sel, uint8_t* g1app2emb3sel, uint8_t* g1app2emb2sel, uint8_t* g1app2emb1sel, uint8_t* g1app2emb0sel)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
 
     *g1app2emb15sel = (localVal & ((uint32_t)0xC0000000)) >> 30;
     *g1app2emb14sel = (localVal & ((uint32_t)0x30000000)) >> 28;
@@ -336,178 +336,178 @@ __INLINE void ipc_g1_app2emb_line_sel_low_unpack(uint8_t* g1app2emb15sel, uint8_
 
 __INLINE uint8_t ipc_g1_app2emb15_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0xC0000000)) >> 30);
 }
 
 __INLINE void ipc_g1_app2emb15_sel_setf(uint8_t g1app2emb15sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0xC0000000)) | ((uint32_t)g1app2emb15sel << 30));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0xC0000000)) | ((uint32_t)g1app2emb15sel << 30));
 }
 
 __INLINE uint8_t ipc_g1_app2emb14_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x30000000)) >> 28);
 }
 
 __INLINE void ipc_g1_app2emb14_sel_setf(uint8_t g1app2emb14sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x30000000)) | ((uint32_t)g1app2emb14sel << 28));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x30000000)) | ((uint32_t)g1app2emb14sel << 28));
 }
 
 __INLINE uint8_t ipc_g1_app2emb13_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x0C000000)) >> 26);
 }
 
 __INLINE void ipc_g1_app2emb13_sel_setf(uint8_t g1app2emb13sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x0C000000)) | ((uint32_t)g1app2emb13sel << 26));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x0C000000)) | ((uint32_t)g1app2emb13sel << 26));
 }
 
 __INLINE uint8_t ipc_g1_app2emb12_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x03000000)) >> 24);
 }
 
 __INLINE void ipc_g1_app2emb12_sel_setf(uint8_t g1app2emb12sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x03000000)) | ((uint32_t)g1app2emb12sel << 24));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x03000000)) | ((uint32_t)g1app2emb12sel << 24));
 }
 
 __INLINE uint8_t ipc_g1_app2emb11_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00C00000)) >> 22);
 }
 
 __INLINE void ipc_g1_app2emb11_sel_setf(uint8_t g1app2emb11sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00C00000)) | ((uint32_t)g1app2emb11sel << 22));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00C00000)) | ((uint32_t)g1app2emb11sel << 22));
 }
 
 __INLINE uint8_t ipc_g1_app2emb10_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00300000)) >> 20);
 }
 
 __INLINE void ipc_g1_app2emb10_sel_setf(uint8_t g1app2emb10sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00300000)) | ((uint32_t)g1app2emb10sel << 20));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00300000)) | ((uint32_t)g1app2emb10sel << 20));
 }
 
 __INLINE uint8_t ipc_g1_app2emb9_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x000C0000)) >> 18);
 }
 
 __INLINE void ipc_g1_app2emb9_sel_setf(uint8_t g1app2emb9sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x000C0000)) | ((uint32_t)g1app2emb9sel << 18));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x000C0000)) | ((uint32_t)g1app2emb9sel << 18));
 }
 
 __INLINE uint8_t ipc_g1_app2emb8_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00030000)) >> 16);
 }
 
 __INLINE void ipc_g1_app2emb8_sel_setf(uint8_t g1app2emb8sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00030000)) | ((uint32_t)g1app2emb8sel << 16));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00030000)) | ((uint32_t)g1app2emb8sel << 16));
 }
 
 __INLINE uint8_t ipc_g1_app2emb7_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x0000C000)) >> 14);
 }
 
 __INLINE void ipc_g1_app2emb7_sel_setf(uint8_t g1app2emb7sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x0000C000)) | ((uint32_t)g1app2emb7sel << 14));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x0000C000)) | ((uint32_t)g1app2emb7sel << 14));
 }
 
 __INLINE uint8_t ipc_g1_app2emb6_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00003000)) >> 12);
 }
 
 __INLINE void ipc_g1_app2emb6_sel_setf(uint8_t g1app2emb6sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00003000)) | ((uint32_t)g1app2emb6sel << 12));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00003000)) | ((uint32_t)g1app2emb6sel << 12));
 }
 
 __INLINE uint8_t ipc_g1_app2emb5_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00000C00)) >> 10);
 }
 
 __INLINE void ipc_g1_app2emb5_sel_setf(uint8_t g1app2emb5sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00000C00)) | ((uint32_t)g1app2emb5sel << 10));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00000C00)) | ((uint32_t)g1app2emb5sel << 10));
 }
 
 __INLINE uint8_t ipc_g1_app2emb4_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00000300)) >> 8);
 }
 
 __INLINE void ipc_g1_app2emb4_sel_setf(uint8_t g1app2emb4sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00000300)) | ((uint32_t)g1app2emb4sel << 8));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00000300)) | ((uint32_t)g1app2emb4sel << 8));
 }
 
 __INLINE uint8_t ipc_g1_app2emb3_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x000000C0)) >> 6);
 }
 
 __INLINE void ipc_g1_app2emb3_sel_setf(uint8_t g1app2emb3sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x000000C0)) | ((uint32_t)g1app2emb3sel << 6));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x000000C0)) | ((uint32_t)g1app2emb3sel << 6));
 }
 
 __INLINE uint8_t ipc_g1_app2emb2_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00000030)) >> 4);
 }
 
 __INLINE void ipc_g1_app2emb2_sel_setf(uint8_t g1app2emb2sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00000030)) | ((uint32_t)g1app2emb2sel << 4));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00000030)) | ((uint32_t)g1app2emb2sel << 4));
 }
 
 __INLINE uint8_t ipc_g1_app2emb1_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x0000000C)) >> 2);
 }
 
 __INLINE void ipc_g1_app2emb1_sel_setf(uint8_t g1app2emb1sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x0000000C)) | ((uint32_t)g1app2emb1sel << 2));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x0000000C)) | ((uint32_t)g1app2emb1sel << 2));
 }
 
 __INLINE uint8_t ipc_g1_app2emb0_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR);
     return ((localVal & ((uint32_t)0x00000003)) >> 0);
 }
 
 __INLINE void ipc_g1_app2emb0_sel_setf(uint8_t g1app2emb0sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)g1app2emb0sel << 0));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_LOW_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)g1app2emb0sel << 0));
 }
 
 /**
@@ -540,12 +540,12 @@ __INLINE void ipc_g1_app2emb0_sel_setf(uint8_t g1app2emb0sel)
 
 __INLINE uint32_t ipc_g1_app2emb_line_sel_high_get(void)
 {
-    return REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    return PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
 }
 
 __INLINE void ipc_g1_app2emb_line_sel_high_set(uint32_t value)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, value);
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, value);
 }
 
 // field definitions
@@ -617,12 +617,12 @@ __INLINE void ipc_g1_app2emb_line_sel_high_set(uint32_t value)
 
 __INLINE void ipc_g1_app2emb_line_sel_high_pack(uint8_t g1app2emb31sel, uint8_t g1app2emb30sel, uint8_t g1app2emb29sel, uint8_t g1app2emb28sel, uint8_t g1app2emb27sel, uint8_t g1app2emb26sel, uint8_t g1app2emb25sel, uint8_t g1app2emb24sel, uint8_t g1app2emb23sel, uint8_t g1app2emb22sel, uint8_t g1app2emb21sel, uint8_t g1app2emb20sel, uint8_t g1app2emb19sel, uint8_t g1app2emb18sel, uint8_t g1app2emb17sel, uint8_t g1app2emb16sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR,  ((uint32_t)g1app2emb31sel << 30) | ((uint32_t)g1app2emb30sel << 28) | ((uint32_t)g1app2emb29sel << 26) | ((uint32_t)g1app2emb28sel << 24) | ((uint32_t)g1app2emb27sel << 22) | ((uint32_t)g1app2emb26sel << 20) | ((uint32_t)g1app2emb25sel << 18) | ((uint32_t)g1app2emb24sel << 16) | ((uint32_t)g1app2emb23sel << 14) | ((uint32_t)g1app2emb22sel << 12) | ((uint32_t)g1app2emb21sel << 10) | ((uint32_t)g1app2emb20sel << 8) | ((uint32_t)g1app2emb19sel << 6) | ((uint32_t)g1app2emb18sel << 4) | ((uint32_t)g1app2emb17sel << 2) | ((uint32_t)g1app2emb16sel << 0));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR,  ((uint32_t)g1app2emb31sel << 30) | ((uint32_t)g1app2emb30sel << 28) | ((uint32_t)g1app2emb29sel << 26) | ((uint32_t)g1app2emb28sel << 24) | ((uint32_t)g1app2emb27sel << 22) | ((uint32_t)g1app2emb26sel << 20) | ((uint32_t)g1app2emb25sel << 18) | ((uint32_t)g1app2emb24sel << 16) | ((uint32_t)g1app2emb23sel << 14) | ((uint32_t)g1app2emb22sel << 12) | ((uint32_t)g1app2emb21sel << 10) | ((uint32_t)g1app2emb20sel << 8) | ((uint32_t)g1app2emb19sel << 6) | ((uint32_t)g1app2emb18sel << 4) | ((uint32_t)g1app2emb17sel << 2) | ((uint32_t)g1app2emb16sel << 0));
 }
 
 __INLINE void ipc_g1_app2emb_line_sel_high_unpack(uint8_t* g1app2emb31sel, uint8_t* g1app2emb30sel, uint8_t* g1app2emb29sel, uint8_t* g1app2emb28sel, uint8_t* g1app2emb27sel, uint8_t* g1app2emb26sel, uint8_t* g1app2emb25sel, uint8_t* g1app2emb24sel, uint8_t* g1app2emb23sel, uint8_t* g1app2emb22sel, uint8_t* g1app2emb21sel, uint8_t* g1app2emb20sel, uint8_t* g1app2emb19sel, uint8_t* g1app2emb18sel, uint8_t* g1app2emb17sel, uint8_t* g1app2emb16sel)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
 
     *g1app2emb31sel = (localVal & ((uint32_t)0xC0000000)) >> 30;
     *g1app2emb30sel = (localVal & ((uint32_t)0x30000000)) >> 28;
@@ -644,178 +644,178 @@ __INLINE void ipc_g1_app2emb_line_sel_high_unpack(uint8_t* g1app2emb31sel, uint8
 
 __INLINE uint8_t ipc_g1_app2emb31_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0xC0000000)) >> 30);
 }
 
 __INLINE void ipc_g1_app2emb31_sel_setf(uint8_t g1app2emb31sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0xC0000000)) | ((uint32_t)g1app2emb31sel << 30));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0xC0000000)) | ((uint32_t)g1app2emb31sel << 30));
 }
 
 __INLINE uint8_t ipc_g1_app2emb30_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x30000000)) >> 28);
 }
 
 __INLINE void ipc_g1_app2emb30_sel_setf(uint8_t g1app2emb30sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x30000000)) | ((uint32_t)g1app2emb30sel << 28));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x30000000)) | ((uint32_t)g1app2emb30sel << 28));
 }
 
 __INLINE uint8_t ipc_g1_app2emb29_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x0C000000)) >> 26);
 }
 
 __INLINE void ipc_g1_app2emb29_sel_setf(uint8_t g1app2emb29sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x0C000000)) | ((uint32_t)g1app2emb29sel << 26));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x0C000000)) | ((uint32_t)g1app2emb29sel << 26));
 }
 
 __INLINE uint8_t ipc_g1_app2emb28_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x03000000)) >> 24);
 }
 
 __INLINE void ipc_g1_app2emb28_sel_setf(uint8_t g1app2emb28sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x03000000)) | ((uint32_t)g1app2emb28sel << 24));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x03000000)) | ((uint32_t)g1app2emb28sel << 24));
 }
 
 __INLINE uint8_t ipc_g1_app2emb27_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00C00000)) >> 22);
 }
 
 __INLINE void ipc_g1_app2emb27_sel_setf(uint8_t g1app2emb27sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00C00000)) | ((uint32_t)g1app2emb27sel << 22));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00C00000)) | ((uint32_t)g1app2emb27sel << 22));
 }
 
 __INLINE uint8_t ipc_g1_app2emb26_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00300000)) >> 20);
 }
 
 __INLINE void ipc_g1_app2emb26_sel_setf(uint8_t g1app2emb26sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00300000)) | ((uint32_t)g1app2emb26sel << 20));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00300000)) | ((uint32_t)g1app2emb26sel << 20));
 }
 
 __INLINE uint8_t ipc_g1_app2emb25_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x000C0000)) >> 18);
 }
 
 __INLINE void ipc_g1_app2emb25_sel_setf(uint8_t g1app2emb25sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x000C0000)) | ((uint32_t)g1app2emb25sel << 18));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x000C0000)) | ((uint32_t)g1app2emb25sel << 18));
 }
 
 __INLINE uint8_t ipc_g1_app2emb24_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00030000)) >> 16);
 }
 
 __INLINE void ipc_g1_app2emb24_sel_setf(uint8_t g1app2emb24sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00030000)) | ((uint32_t)g1app2emb24sel << 16));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00030000)) | ((uint32_t)g1app2emb24sel << 16));
 }
 
 __INLINE uint8_t ipc_g1_app2emb23_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x0000C000)) >> 14);
 }
 
 __INLINE void ipc_g1_app2emb23_sel_setf(uint8_t g1app2emb23sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x0000C000)) | ((uint32_t)g1app2emb23sel << 14));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x0000C000)) | ((uint32_t)g1app2emb23sel << 14));
 }
 
 __INLINE uint8_t ipc_g1_app2emb22_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00003000)) >> 12);
 }
 
 __INLINE void ipc_g1_app2emb22_sel_setf(uint8_t g1app2emb22sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00003000)) | ((uint32_t)g1app2emb22sel << 12));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00003000)) | ((uint32_t)g1app2emb22sel << 12));
 }
 
 __INLINE uint8_t ipc_g1_app2emb21_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00000C00)) >> 10);
 }
 
 __INLINE void ipc_g1_app2emb21_sel_setf(uint8_t g1app2emb21sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00000C00)) | ((uint32_t)g1app2emb21sel << 10));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00000C00)) | ((uint32_t)g1app2emb21sel << 10));
 }
 
 __INLINE uint8_t ipc_g1_app2emb20_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00000300)) >> 8);
 }
 
 __INLINE void ipc_g1_app2emb20_sel_setf(uint8_t g1app2emb20sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00000300)) | ((uint32_t)g1app2emb20sel << 8));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00000300)) | ((uint32_t)g1app2emb20sel << 8));
 }
 
 __INLINE uint8_t ipc_g1_app2emb19_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x000000C0)) >> 6);
 }
 
 __INLINE void ipc_g1_app2emb19_sel_setf(uint8_t g1app2emb19sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x000000C0)) | ((uint32_t)g1app2emb19sel << 6));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x000000C0)) | ((uint32_t)g1app2emb19sel << 6));
 }
 
 __INLINE uint8_t ipc_g1_app2emb18_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00000030)) >> 4);
 }
 
 __INLINE void ipc_g1_app2emb18_sel_setf(uint8_t g1app2emb18sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00000030)) | ((uint32_t)g1app2emb18sel << 4));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00000030)) | ((uint32_t)g1app2emb18sel << 4));
 }
 
 __INLINE uint8_t ipc_g1_app2emb17_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x0000000C)) >> 2);
 }
 
 __INLINE void ipc_g1_app2emb17_sel_setf(uint8_t g1app2emb17sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x0000000C)) | ((uint32_t)g1app2emb17sel << 2));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x0000000C)) | ((uint32_t)g1app2emb17sel << 2));
 }
 
 __INLINE uint8_t ipc_g1_app2emb16_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR);
     return ((localVal & ((uint32_t)0x00000003)) >> 0);
 }
 
 __INLINE void ipc_g1_app2emb16_sel_setf(uint8_t g1app2emb16sel)
 {
-    REG_PL_WR(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (REG_PL_RD(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)g1app2emb16sel << 0));
+    PLATFORM_REG_WRITE(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR, (PLATFORM_REG_READ(IPC_G1_APP2EMB_LINE_SEL_HIGH_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)g1app2emb16sel << 0));
 }
 
 /**
@@ -833,7 +833,7 @@ __INLINE void ipc_g1_app2emb16_sel_setf(uint8_t g1app2emb16sel)
 
 __INLINE uint32_t ipc_g1_app2emb_status_get(void)
 {
-    return REG_PL_RD(IPC_G1_APP2EMB_STATUS_ADDR);
+    return PLATFORM_REG_READ(IPC_G1_APP2EMB_STATUS_ADDR);
 }
 
 // field definitions
@@ -845,7 +845,7 @@ __INLINE uint32_t ipc_g1_app2emb_status_get(void)
 
 __INLINE uint32_t ipc_g1_app2emb_status_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(IPC_G1_APP2EMB_STATUS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(IPC_G1_APP2EMB_STATUS_ADDR);
     return (localVal >> 0);
 }
 

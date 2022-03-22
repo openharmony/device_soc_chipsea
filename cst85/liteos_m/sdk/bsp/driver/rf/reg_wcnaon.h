@@ -27,7 +27,7 @@
 
 #include "compiler.h"
 #include "arch.h"
-#include "reg_access.h"
+#include "reg_access_wrapper.h"
 
 /** @brief Number of registers in the REG_WCNAON peripheral.
  */
@@ -66,7 +66,7 @@
  */
 static inline uint32_t wcnaon_bt_mem_cfg1_get(void)
 {
-    return REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR);
+    return PLATFORM_REG_READ(WCNAON_BT_MEM_CFG1_ADDR);
 }
 
 /**
@@ -76,7 +76,7 @@ static inline uint32_t wcnaon_bt_mem_cfg1_get(void)
  */
 static inline void wcnaon_bt_mem_cfg1_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_BT_MEM_CFG1_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_BT_MEM_CFG1_ADDR, value);
 }
 
 // field definitions
@@ -114,7 +114,7 @@ static inline void wcnaon_bt_mem_cfg1_set(uint32_t value)
  */
 static inline void wcnaon_bt_mem_cfg1_pack(uint8_t btcfg, uint8_t btfwlpmode, uint16_t btmemcfg)
 {
-    REG_PL_WR(WCNAON_BT_MEM_CFG1_ADDR,  ((uint32_t)btcfg << 17) | ((uint32_t)btfwlpmode << 16) | ((uint32_t)btmemcfg << 0));
+    PLATFORM_REG_WRITE(WCNAON_BT_MEM_CFG1_ADDR,  ((uint32_t)btcfg << 17) | ((uint32_t)btfwlpmode << 16) | ((uint32_t)btmemcfg << 0));
 }
 
 /**
@@ -129,7 +129,7 @@ static inline void wcnaon_bt_mem_cfg1_pack(uint8_t btcfg, uint8_t btfwlpmode, ui
  */
 static inline void wcnaon_bt_mem_cfg1_unpack(uint8_t* btcfg, uint8_t* btfwlpmode, uint16_t* btmemcfg)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_BT_MEM_CFG1_ADDR);
 
     *btcfg = (localVal & ((uint32_t)0x001E0000)) >> 17;
     *btfwlpmode = (localVal & ((uint32_t)0x00010000)) >> 16;
@@ -145,7 +145,7 @@ static inline void wcnaon_bt_mem_cfg1_unpack(uint8_t* btcfg, uint8_t* btfwlpmode
  */
 static inline uint8_t wcnaon_bt_cfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_BT_MEM_CFG1_ADDR);
     return ((localVal & ((uint32_t)0x001E0000)) >> 17);
 }
 
@@ -158,7 +158,7 @@ static inline uint8_t wcnaon_bt_cfg_getf(void)
  */
 static inline void wcnaon_bt_cfg_setf(uint8_t btcfg)
 {
-    REG_PL_WR(WCNAON_BT_MEM_CFG1_ADDR, (REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR) & ~((uint32_t)0x001E0000)) | ((uint32_t)btcfg << 17));
+    PLATFORM_REG_WRITE(WCNAON_BT_MEM_CFG1_ADDR, (PLATFORM_REG_READ(WCNAON_BT_MEM_CFG1_ADDR) & ~((uint32_t)0x001E0000)) | ((uint32_t)btcfg << 17));
 }
 
 /**
@@ -170,7 +170,7 @@ static inline void wcnaon_bt_cfg_setf(uint8_t btcfg)
  */
 static inline uint8_t wcnaon_btfw_lp_mode_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_BT_MEM_CFG1_ADDR);
     return ((localVal & ((uint32_t)0x00010000)) >> 16);
 }
 
@@ -183,7 +183,7 @@ static inline uint8_t wcnaon_btfw_lp_mode_getf(void)
  */
 static inline void wcnaon_btfw_lp_mode_setf(uint8_t btfwlpmode)
 {
-    REG_PL_WR(WCNAON_BT_MEM_CFG1_ADDR, (REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR) & ~((uint32_t)0x00010000)) | ((uint32_t)btfwlpmode << 16));
+    PLATFORM_REG_WRITE(WCNAON_BT_MEM_CFG1_ADDR, (PLATFORM_REG_READ(WCNAON_BT_MEM_CFG1_ADDR) & ~((uint32_t)0x00010000)) | ((uint32_t)btfwlpmode << 16));
 }
 
 /**
@@ -195,7 +195,7 @@ static inline void wcnaon_btfw_lp_mode_setf(uint8_t btfwlpmode)
  */
 static inline uint16_t wcnaon_bt_mem_cfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_BT_MEM_CFG1_ADDR);
     return ((localVal & ((uint32_t)0x0000FFFF)) >> 0);
 }
 
@@ -208,7 +208,7 @@ static inline uint16_t wcnaon_bt_mem_cfg_getf(void)
  */
 static inline void wcnaon_bt_mem_cfg_setf(uint16_t btmemcfg)
 {
-    REG_PL_WR(WCNAON_BT_MEM_CFG1_ADDR, (REG_PL_RD(WCNAON_BT_MEM_CFG1_ADDR) & ~((uint32_t)0x0000FFFF)) | ((uint32_t)btmemcfg << 0));
+    PLATFORM_REG_WRITE(WCNAON_BT_MEM_CFG1_ADDR, (PLATFORM_REG_READ(WCNAON_BT_MEM_CFG1_ADDR) & ~((uint32_t)0x0000FFFF)) | ((uint32_t)btmemcfg << 0));
 }
 
 /// @}
@@ -240,7 +240,7 @@ static inline void wcnaon_bt_mem_cfg_setf(uint16_t btmemcfg)
  */
 static inline uint32_t wcnaon_wifi_mem_cfg_get(void)
 {
-    return REG_PL_RD(WCNAON_WIFI_MEM_CFG_ADDR);
+    return PLATFORM_REG_READ(WCNAON_WIFI_MEM_CFG_ADDR);
 }
 
 /**
@@ -250,7 +250,7 @@ static inline uint32_t wcnaon_wifi_mem_cfg_get(void)
  */
 static inline void wcnaon_wifi_mem_cfg_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_WIFI_MEM_CFG_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_WIFI_MEM_CFG_ADDR, value);
 }
 
 // field definitions
@@ -273,7 +273,7 @@ static inline void wcnaon_wifi_mem_cfg_set(uint32_t value)
  */
 static inline uint16_t wcnaon_wifi_mem_cfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_WIFI_MEM_CFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_WIFI_MEM_CFG_ADDR);
     return (localVal >> 0);
 }
 
@@ -286,7 +286,7 @@ static inline uint16_t wcnaon_wifi_mem_cfg_getf(void)
  */
 static inline void wcnaon_wifi_mem_cfg_setf(uint16_t wifimemcfg)
 {
-    REG_PL_WR(WCNAON_WIFI_MEM_CFG_ADDR, (uint32_t)wifimemcfg << 0);
+    PLATFORM_REG_WRITE(WCNAON_WIFI_MEM_CFG_ADDR, (uint32_t)wifimemcfg << 0);
 }
 
 /// @}
@@ -320,7 +320,7 @@ static inline void wcnaon_wifi_mem_cfg_setf(uint16_t wifimemcfg)
  */
 static inline uint32_t wcnaon_bt_clk_cfg0_get(void)
 {
-    return REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR);
+    return PLATFORM_REG_READ(WCNAON_BT_CLK_CFG0_ADDR);
 }
 
 /**
@@ -330,7 +330,7 @@ static inline uint32_t wcnaon_bt_clk_cfg0_get(void)
  */
 static inline void wcnaon_bt_clk_cfg0_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_BT_CLK_CFG0_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_BT_CLK_CFG0_ADDR, value);
 }
 
 // field definitions
@@ -368,7 +368,7 @@ static inline void wcnaon_bt_clk_cfg0_set(uint32_t value)
  */
 static inline void wcnaon_bt_clk_cfg0_pack(uint8_t btdivnumld, uint16_t btdivm, uint16_t btdivn)
 {
-    REG_PL_WR(WCNAON_BT_CLK_CFG0_ADDR,  ((uint32_t)btdivnumld << 31) | ((uint32_t)btdivm << 16) | ((uint32_t)btdivn << 0));
+    PLATFORM_REG_WRITE(WCNAON_BT_CLK_CFG0_ADDR,  ((uint32_t)btdivnumld << 31) | ((uint32_t)btdivm << 16) | ((uint32_t)btdivn << 0));
 }
 
 /**
@@ -383,7 +383,7 @@ static inline void wcnaon_bt_clk_cfg0_pack(uint8_t btdivnumld, uint16_t btdivm, 
  */
 static inline void wcnaon_bt_clk_cfg0_unpack(uint8_t* btdivnumld, uint16_t* btdivm, uint16_t* btdivn)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_BT_CLK_CFG0_ADDR);
 
     *btdivnumld = (localVal & ((uint32_t)0x80000000)) >> 31;
     *btdivm = (localVal & ((uint32_t)0x01FF0000)) >> 16;
@@ -399,7 +399,7 @@ static inline void wcnaon_bt_clk_cfg0_unpack(uint8_t* btdivnumld, uint16_t* btdi
  */
 static inline uint8_t wcnaon_bt_div_num_ld_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_BT_CLK_CFG0_ADDR);
     return ((localVal & ((uint32_t)0x80000000)) >> 31);
 }
 
@@ -412,7 +412,7 @@ static inline uint8_t wcnaon_bt_div_num_ld_getf(void)
  */
 static inline void wcnaon_bt_div_num_ld_setf(uint8_t btdivnumld)
 {
-    REG_PL_WR(WCNAON_BT_CLK_CFG0_ADDR, (REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR) & ~((uint32_t)0x80000000)) | ((uint32_t)btdivnumld << 31));
+    PLATFORM_REG_WRITE(WCNAON_BT_CLK_CFG0_ADDR, (PLATFORM_REG_READ(WCNAON_BT_CLK_CFG0_ADDR) & ~((uint32_t)0x80000000)) | ((uint32_t)btdivnumld << 31));
 }
 
 /**
@@ -424,7 +424,7 @@ static inline void wcnaon_bt_div_num_ld_setf(uint8_t btdivnumld)
  */
 static inline uint16_t wcnaon_bt_div_m_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_BT_CLK_CFG0_ADDR);
     return ((localVal & ((uint32_t)0x01FF0000)) >> 16);
 }
 
@@ -437,7 +437,7 @@ static inline uint16_t wcnaon_bt_div_m_getf(void)
  */
 static inline void wcnaon_bt_div_m_setf(uint16_t btdivm)
 {
-    REG_PL_WR(WCNAON_BT_CLK_CFG0_ADDR, (REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR) & ~((uint32_t)0x01FF0000)) | ((uint32_t)btdivm << 16));
+    PLATFORM_REG_WRITE(WCNAON_BT_CLK_CFG0_ADDR, (PLATFORM_REG_READ(WCNAON_BT_CLK_CFG0_ADDR) & ~((uint32_t)0x01FF0000)) | ((uint32_t)btdivm << 16));
 }
 
 /**
@@ -449,7 +449,7 @@ static inline void wcnaon_bt_div_m_setf(uint16_t btdivm)
  */
 static inline uint16_t wcnaon_bt_div_n_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_BT_CLK_CFG0_ADDR);
     return ((localVal & ((uint32_t)0x0000FFFF)) >> 0);
 }
 
@@ -462,7 +462,7 @@ static inline uint16_t wcnaon_bt_div_n_getf(void)
  */
 static inline void wcnaon_bt_div_n_setf(uint16_t btdivn)
 {
-    REG_PL_WR(WCNAON_BT_CLK_CFG0_ADDR, (REG_PL_RD(WCNAON_BT_CLK_CFG0_ADDR) & ~((uint32_t)0x0000FFFF)) | ((uint32_t)btdivn << 0));
+    PLATFORM_REG_WRITE(WCNAON_BT_CLK_CFG0_ADDR, (PLATFORM_REG_READ(WCNAON_BT_CLK_CFG0_ADDR) & ~((uint32_t)0x0000FFFF)) | ((uint32_t)btdivn << 0));
 }
 
 /// @}
@@ -496,7 +496,7 @@ static inline void wcnaon_bt_div_n_setf(uint16_t btdivn)
  */
 static inline uint32_t wcnaon_bt_clk_cfg1_get(void)
 {
-    return REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR);
+    return PLATFORM_REG_READ(WCNAON_BT_CLK_CFG1_ADDR);
 }
 
 /**
@@ -506,7 +506,7 @@ static inline uint32_t wcnaon_bt_clk_cfg1_get(void)
  */
 static inline void wcnaon_bt_clk_cfg1_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_BT_CLK_CFG1_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_BT_CLK_CFG1_ADDR, value);
 }
 
 // field definitions
@@ -546,7 +546,7 @@ static inline void wcnaon_bt_clk_cfg1_set(uint32_t value)
  */
 static inline void wcnaon_bt_clk_cfg1_pack(uint8_t btcfgrfsel, uint8_t btclkgcfg, uint8_t btclksel)
 {
-    REG_PL_WR(WCNAON_BT_CLK_CFG1_ADDR,  ((uint32_t)btcfgrfsel << 24) | ((uint32_t)btclkgcfg << 16) | ((uint32_t)btclksel << 0));
+    PLATFORM_REG_WRITE(WCNAON_BT_CLK_CFG1_ADDR,  ((uint32_t)btcfgrfsel << 24) | ((uint32_t)btclkgcfg << 16) | ((uint32_t)btclksel << 0));
 }
 
 /**
@@ -561,7 +561,7 @@ static inline void wcnaon_bt_clk_cfg1_pack(uint8_t btcfgrfsel, uint8_t btclkgcfg
  */
 static inline void wcnaon_bt_clk_cfg1_unpack(uint8_t* btcfgrfsel, uint8_t* btclkgcfg, uint8_t* btclksel)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_BT_CLK_CFG1_ADDR);
 
     *btcfgrfsel = (localVal & ((uint32_t)0x3F000000)) >> 24;
     *btclkgcfg = (localVal & ((uint32_t)0x007F0000)) >> 16;
@@ -577,7 +577,7 @@ static inline void wcnaon_bt_clk_cfg1_unpack(uint8_t* btcfgrfsel, uint8_t* btclk
  */
 static inline uint8_t wcnaon_bt_cfg_rfsel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_BT_CLK_CFG1_ADDR);
     return ((localVal & ((uint32_t)0x3F000000)) >> 24);
 }
 
@@ -590,7 +590,7 @@ static inline uint8_t wcnaon_bt_cfg_rfsel_getf(void)
  */
 static inline void wcnaon_bt_cfg_rfsel_setf(uint8_t btcfgrfsel)
 {
-    REG_PL_WR(WCNAON_BT_CLK_CFG1_ADDR, (REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)btcfgrfsel << 24));
+    PLATFORM_REG_WRITE(WCNAON_BT_CLK_CFG1_ADDR, (PLATFORM_REG_READ(WCNAON_BT_CLK_CFG1_ADDR) & ~((uint32_t)0x3F000000)) | ((uint32_t)btcfgrfsel << 24));
 }
 
 /**
@@ -602,7 +602,7 @@ static inline void wcnaon_bt_cfg_rfsel_setf(uint8_t btcfgrfsel)
  */
 static inline uint8_t wcnaon_bt_clkg_cfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_BT_CLK_CFG1_ADDR);
     return ((localVal & ((uint32_t)0x007F0000)) >> 16);
 }
 
@@ -615,7 +615,7 @@ static inline uint8_t wcnaon_bt_clkg_cfg_getf(void)
  */
 static inline void wcnaon_bt_clkg_cfg_setf(uint8_t btclkgcfg)
 {
-    REG_PL_WR(WCNAON_BT_CLK_CFG1_ADDR, (REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)btclkgcfg << 16));
+    PLATFORM_REG_WRITE(WCNAON_BT_CLK_CFG1_ADDR, (PLATFORM_REG_READ(WCNAON_BT_CLK_CFG1_ADDR) & ~((uint32_t)0x007F0000)) | ((uint32_t)btclkgcfg << 16));
 }
 
 /**
@@ -627,7 +627,7 @@ static inline void wcnaon_bt_clkg_cfg_setf(uint8_t btclkgcfg)
  */
 static inline uint8_t wcnaon_bt_clksel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_BT_CLK_CFG1_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -640,7 +640,7 @@ static inline uint8_t wcnaon_bt_clksel_getf(void)
  */
 static inline void wcnaon_bt_clksel_setf(uint8_t btclksel)
 {
-    REG_PL_WR(WCNAON_BT_CLK_CFG1_ADDR, (REG_PL_RD(WCNAON_BT_CLK_CFG1_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)btclksel << 0));
+    PLATFORM_REG_WRITE(WCNAON_BT_CLK_CFG1_ADDR, (PLATFORM_REG_READ(WCNAON_BT_CLK_CFG1_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)btclksel << 0));
 }
 
 /// @}
@@ -681,7 +681,7 @@ static inline void wcnaon_bt_clksel_setf(uint8_t btclksel)
  */
 static inline uint32_t wcnaon_wifi_soft_wakeup_req_get(void)
 {
-    return REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
+    return PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
 }
 
 /**
@@ -691,7 +691,7 @@ static inline uint32_t wcnaon_wifi_soft_wakeup_req_get(void)
  */
 static inline void wcnaon_wifi_soft_wakeup_req_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, value);
 }
 
 // field definitions
@@ -776,7 +776,7 @@ static inline void wcnaon_wifi_soft_wakeup_req_set(uint32_t value)
  */
 static inline void wcnaon_wifi_soft_wakeup_req_pack(uint8_t btwakeuplpsel, uint8_t wlanwakeuplpsel, uint8_t btcfgpoweren, uint8_t btcfgcpuen, uint8_t monsel, uint8_t wlanradiocgsleepen, uint8_t wlancpuwakeupen, uint8_t wlanradiosleepen, uint8_t wlanpowersleepen, uint8_t wlansoftwakeupreq)
 {
-    REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR,  ((uint32_t)btwakeuplpsel << 11) | ((uint32_t)wlanwakeuplpsel << 10) | ((uint32_t)btcfgpoweren << 9) | ((uint32_t)btcfgcpuen << 8) | ((uint32_t)monsel << 5) | ((uint32_t)wlanradiocgsleepen << 4) | ((uint32_t)wlancpuwakeupen << 3) | ((uint32_t)wlanradiosleepen << 2) | ((uint32_t)wlanpowersleepen << 1) | ((uint32_t)wlansoftwakeupreq << 0));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR,  ((uint32_t)btwakeuplpsel << 11) | ((uint32_t)wlanwakeuplpsel << 10) | ((uint32_t)btcfgpoweren << 9) | ((uint32_t)btcfgcpuen << 8) | ((uint32_t)monsel << 5) | ((uint32_t)wlanradiocgsleepen << 4) | ((uint32_t)wlancpuwakeupen << 3) | ((uint32_t)wlanradiosleepen << 2) | ((uint32_t)wlanpowersleepen << 1) | ((uint32_t)wlansoftwakeupreq << 0));
 }
 
 /**
@@ -798,7 +798,7 @@ static inline void wcnaon_wifi_soft_wakeup_req_pack(uint8_t btwakeuplpsel, uint8
  */
 static inline void wcnaon_wifi_soft_wakeup_req_unpack(uint8_t* btwakeuplpsel, uint8_t* wlanwakeuplpsel, uint8_t* btcfgpoweren, uint8_t* btcfgcpuen, uint8_t* monsel, uint8_t* wlanradiocgsleepen, uint8_t* wlancpuwakeupen, uint8_t* wlanradiosleepen, uint8_t* wlanpowersleepen, uint8_t* wlansoftwakeupreq)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
 
     *btwakeuplpsel = (localVal & ((uint32_t)0x00000800)) >> 11;
     *wlanwakeuplpsel = (localVal & ((uint32_t)0x00000400)) >> 10;
@@ -821,7 +821,7 @@ static inline void wcnaon_wifi_soft_wakeup_req_unpack(uint8_t* btwakeuplpsel, ui
  */
 static inline uint8_t wcnaon_bt_wakeup_lp_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000800)) >> 11);
 }
 
@@ -834,7 +834,7 @@ static inline uint8_t wcnaon_bt_wakeup_lp_sel_getf(void)
  */
 static inline void wcnaon_bt_wakeup_lp_sel_setf(uint8_t btwakeuplpsel)
 {
-    REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)btwakeuplpsel << 11));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)btwakeuplpsel << 11));
 }
 
 /**
@@ -846,7 +846,7 @@ static inline void wcnaon_bt_wakeup_lp_sel_setf(uint8_t btwakeuplpsel)
  */
 static inline uint8_t wcnaon_wlan_wakeup_lp_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000400)) >> 10);
 }
 
@@ -859,7 +859,7 @@ static inline uint8_t wcnaon_wlan_wakeup_lp_sel_getf(void)
  */
 static inline void wcnaon_wlan_wakeup_lp_sel_setf(uint8_t wlanwakeuplpsel)
 {
-    REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)wlanwakeuplpsel << 10));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)wlanwakeuplpsel << 10));
 }
 
 /**
@@ -871,7 +871,7 @@ static inline void wcnaon_wlan_wakeup_lp_sel_setf(uint8_t wlanwakeuplpsel)
  */
 static inline uint8_t wcnaon_bt_cfg_power_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000200)) >> 9);
 }
 
@@ -884,7 +884,7 @@ static inline uint8_t wcnaon_bt_cfg_power_en_getf(void)
  */
 static inline void wcnaon_bt_cfg_power_en_setf(uint8_t btcfgpoweren)
 {
-    REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)btcfgpoweren << 9));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)btcfgpoweren << 9));
 }
 
 /**
@@ -896,7 +896,7 @@ static inline void wcnaon_bt_cfg_power_en_setf(uint8_t btcfgpoweren)
  */
 static inline uint8_t wcnaon_bt_cfg_cpu_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -909,7 +909,7 @@ static inline uint8_t wcnaon_bt_cfg_cpu_en_getf(void)
  */
 static inline void wcnaon_bt_cfg_cpu_en_setf(uint8_t btcfgcpuen)
 {
-    REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)btcfgcpuen << 8));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)btcfgcpuen << 8));
 }
 
 /**
@@ -921,7 +921,7 @@ static inline void wcnaon_bt_cfg_cpu_en_setf(uint8_t btcfgcpuen)
  */
 static inline uint8_t wcnaon_mon_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000060)) >> 5);
 }
 
@@ -934,7 +934,7 @@ static inline uint8_t wcnaon_mon_sel_getf(void)
  */
 static inline void wcnaon_mon_sel_setf(uint8_t monsel)
 {
-    REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000060)) | ((uint32_t)monsel << 5));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000060)) | ((uint32_t)monsel << 5));
 }
 
 /**
@@ -946,7 +946,7 @@ static inline void wcnaon_mon_sel_setf(uint8_t monsel)
  */
 static inline uint8_t wcnaon_wlan_radio_cg_sleep_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000010)) >> 4);
 }
 
@@ -959,7 +959,7 @@ static inline uint8_t wcnaon_wlan_radio_cg_sleep_en_getf(void)
  */
 static inline void wcnaon_wlan_radio_cg_sleep_en_setf(uint8_t wlanradiocgsleepen)
 {
-    REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)wlanradiocgsleepen << 4));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)wlanradiocgsleepen << 4));
 }
 
 /**
@@ -971,7 +971,7 @@ static inline void wcnaon_wlan_radio_cg_sleep_en_setf(uint8_t wlanradiocgsleepen
  */
 static inline uint8_t wcnaon_wlan_cpu_wakeup_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000008)) >> 3);
 }
 
@@ -984,7 +984,7 @@ static inline uint8_t wcnaon_wlan_cpu_wakeup_en_getf(void)
  */
 static inline void wcnaon_wlan_cpu_wakeup_en_setf(uint8_t wlancpuwakeupen)
 {
-    REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)wlancpuwakeupen << 3));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)wlancpuwakeupen << 3));
 }
 
 /**
@@ -996,7 +996,7 @@ static inline void wcnaon_wlan_cpu_wakeup_en_setf(uint8_t wlancpuwakeupen)
  */
 static inline uint8_t wcnaon_wlan_radio_sleep_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000004)) >> 2);
 }
 
@@ -1009,7 +1009,7 @@ static inline uint8_t wcnaon_wlan_radio_sleep_en_getf(void)
  */
 static inline void wcnaon_wlan_radio_sleep_en_setf(uint8_t wlanradiosleepen)
 {
-    REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)wlanradiosleepen << 2));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)wlanradiosleepen << 2));
 }
 
 /**
@@ -1021,7 +1021,7 @@ static inline void wcnaon_wlan_radio_sleep_en_setf(uint8_t wlanradiosleepen)
  */
 static inline uint8_t wcnaon_wlan_power_sleep_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000002)) >> 1);
 }
 
@@ -1034,7 +1034,7 @@ static inline uint8_t wcnaon_wlan_power_sleep_en_getf(void)
  */
 static inline void wcnaon_wlan_power_sleep_en_setf(uint8_t wlanpowersleepen)
 {
-    REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)wlanpowersleepen << 1));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)wlanpowersleepen << 1));
 }
 
 /**
@@ -1046,7 +1046,7 @@ static inline void wcnaon_wlan_power_sleep_en_setf(uint8_t wlanpowersleepen)
  */
 static inline uint8_t wcnaon_wlan_soft_wakeup_req_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
@@ -1059,7 +1059,7 @@ static inline uint8_t wcnaon_wlan_soft_wakeup_req_getf(void)
  */
 static inline void wcnaon_wlan_soft_wakeup_req_setf(uint8_t wlansoftwakeupreq)
 {
-    REG_PL_WR(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (REG_PL_RD(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)wlansoftwakeupreq << 0));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_SOFT_WAKEUP_REQ_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)wlansoftwakeupreq << 0));
 }
 
 /// @}
@@ -1093,7 +1093,7 @@ static inline void wcnaon_wlan_soft_wakeup_req_setf(uint8_t wlansoftwakeupreq)
  */
 static inline void wcnaon_wifi_wakeup_delay_timer_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR, value);
 }
 
 // field definitions
@@ -1133,7 +1133,7 @@ static inline void wcnaon_wifi_wakeup_delay_timer_set(uint32_t value)
  */
 static inline void wcnaon_wifi_wakeup_delay_timer_pack(uint16_t wlantwrm, uint16_t wlantwpwr, uint16_t wlantwext)
 {
-    REG_PL_WR(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR,  ((uint32_t)wlantwrm << 22) | ((uint32_t)wlantwpwr << 11) | ((uint32_t)wlantwext << 0));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR,  ((uint32_t)wlantwrm << 22) | ((uint32_t)wlantwpwr << 11) | ((uint32_t)wlantwext << 0));
 }
 
 /**
@@ -1145,7 +1145,7 @@ static inline void wcnaon_wifi_wakeup_delay_timer_pack(uint16_t wlantwrm, uint16
  */
 static inline void wcnaon_wlan_twrm_setf(uint16_t wlantwrm)
 {
-    REG_PL_WR(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR, (REG_PL_RD(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR) & ~((uint32_t)0xFFC00000)) | ((uint32_t)wlantwrm << 22));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR) & ~((uint32_t)0xFFC00000)) | ((uint32_t)wlantwrm << 22));
 }
 
 /**
@@ -1157,7 +1157,7 @@ static inline void wcnaon_wlan_twrm_setf(uint16_t wlantwrm)
  */
 static inline void wcnaon_wlan_twpwr_setf(uint16_t wlantwpwr)
 {
-    REG_PL_WR(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR, (REG_PL_RD(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR) & ~((uint32_t)0x003FF800)) | ((uint32_t)wlantwpwr << 11));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR) & ~((uint32_t)0x003FF800)) | ((uint32_t)wlantwpwr << 11));
 }
 
 /**
@@ -1169,7 +1169,7 @@ static inline void wcnaon_wlan_twpwr_setf(uint16_t wlantwpwr)
  */
 static inline void wcnaon_wlan_twext_setf(uint16_t wlantwext)
 {
-    REG_PL_WR(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR, (REG_PL_RD(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)wlantwext << 0));
+    PLATFORM_REG_WRITE(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR, (PLATFORM_REG_READ(WCNAON_WIFI_WAKEUP_DELAY_TIMER_ADDR) & ~((uint32_t)0x000007FF)) | ((uint32_t)wlantwext << 0));
 }
 
 /// @}
@@ -1204,7 +1204,7 @@ static inline void wcnaon_wlan_twext_setf(uint16_t wlantwext)
  */
 static inline void wcnaon_wfbt_rfen_ctrl_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_WFBT_RFEN_CTRL_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_WFBT_RFEN_CTRL_ADDR, value);
 }
 
 // field definitions
@@ -1245,7 +1245,7 @@ static inline void wcnaon_wfbt_rfen_ctrl_set(uint32_t value)
  */
 static inline void wcnaon_wfbt_rfen_ctrl_pack(uint8_t btrfendr, uint8_t btrfenreg, uint8_t wfrfendr, uint8_t wfrfenreg)
 {
-    REG_PL_WR(WCNAON_WFBT_RFEN_CTRL_ADDR,  ((uint32_t)btrfendr << 3) | ((uint32_t)btrfenreg << 2) | ((uint32_t)wfrfendr << 1) | ((uint32_t)wfrfenreg << 0));
+    PLATFORM_REG_WRITE(WCNAON_WFBT_RFEN_CTRL_ADDR,  ((uint32_t)btrfendr << 3) | ((uint32_t)btrfenreg << 2) | ((uint32_t)wfrfendr << 1) | ((uint32_t)wfrfenreg << 0));
 }
 
 /**
@@ -1257,7 +1257,7 @@ static inline void wcnaon_wfbt_rfen_ctrl_pack(uint8_t btrfendr, uint8_t btrfenre
  */
 static inline void wcnaon_bt_rfen_dr_setf(uint8_t btrfendr)
 {
-    REG_PL_WR(WCNAON_WFBT_RFEN_CTRL_ADDR, (REG_PL_RD(WCNAON_WFBT_RFEN_CTRL_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)btrfendr << 3));
+    PLATFORM_REG_WRITE(WCNAON_WFBT_RFEN_CTRL_ADDR, (PLATFORM_REG_READ(WCNAON_WFBT_RFEN_CTRL_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)btrfendr << 3));
 }
 
 /**
@@ -1269,7 +1269,7 @@ static inline void wcnaon_bt_rfen_dr_setf(uint8_t btrfendr)
  */
 static inline void wcnaon_bt_rfen_reg_setf(uint8_t btrfenreg)
 {
-    REG_PL_WR(WCNAON_WFBT_RFEN_CTRL_ADDR, (REG_PL_RD(WCNAON_WFBT_RFEN_CTRL_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)btrfenreg << 2));
+    PLATFORM_REG_WRITE(WCNAON_WFBT_RFEN_CTRL_ADDR, (PLATFORM_REG_READ(WCNAON_WFBT_RFEN_CTRL_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)btrfenreg << 2));
 }
 
 /**
@@ -1281,7 +1281,7 @@ static inline void wcnaon_bt_rfen_reg_setf(uint8_t btrfenreg)
  */
 static inline void wcnaon_wf_rfen_dr_setf(uint8_t wfrfendr)
 {
-    REG_PL_WR(WCNAON_WFBT_RFEN_CTRL_ADDR, (REG_PL_RD(WCNAON_WFBT_RFEN_CTRL_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)wfrfendr << 1));
+    PLATFORM_REG_WRITE(WCNAON_WFBT_RFEN_CTRL_ADDR, (PLATFORM_REG_READ(WCNAON_WFBT_RFEN_CTRL_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)wfrfendr << 1));
 }
 
 /**
@@ -1293,7 +1293,7 @@ static inline void wcnaon_wf_rfen_dr_setf(uint8_t wfrfendr)
  */
 static inline void wcnaon_wf_rf_en_reg_setf(uint8_t wfrfenreg)
 {
-    REG_PL_WR(WCNAON_WFBT_RFEN_CTRL_ADDR, (REG_PL_RD(WCNAON_WFBT_RFEN_CTRL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)wfrfenreg << 0));
+    PLATFORM_REG_WRITE(WCNAON_WFBT_RFEN_CTRL_ADDR, (PLATFORM_REG_READ(WCNAON_WFBT_RFEN_CTRL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)wfrfenreg << 0));
 }
 
 /// @}
@@ -1326,7 +1326,7 @@ static inline void wcnaon_wf_rf_en_reg_setf(uint8_t wfrfenreg)
  */
 static inline uint32_t wcnaon_deepsleep_wakeup_ind_get(void)
 {
-    return REG_PL_RD(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR);
+    return PLATFORM_REG_READ(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR);
 }
 
 /**
@@ -1336,7 +1336,7 @@ static inline uint32_t wcnaon_deepsleep_wakeup_ind_get(void)
  */
 static inline void wcnaon_deepsleep_wakeup_ind_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR, value);
 }
 
 // field definitions
@@ -1367,7 +1367,7 @@ static inline void wcnaon_deepsleep_wakeup_ind_set(uint32_t value)
  */
 static inline void wcnaon_deepsleep_wakeup_ind_pack(uint32_t hweco, uint8_t deepsleepwakeupind)
 {
-    REG_PL_WR(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR,  ((uint32_t)hweco << 4) | ((uint32_t)deepsleepwakeupind << 0));
+    PLATFORM_REG_WRITE(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR,  ((uint32_t)hweco << 4) | ((uint32_t)deepsleepwakeupind << 0));
 }
 
 /**
@@ -1381,7 +1381,7 @@ static inline void wcnaon_deepsleep_wakeup_ind_pack(uint32_t hweco, uint8_t deep
  */
 static inline void wcnaon_deepsleep_wakeup_ind_unpack(uint32_t* hweco, uint8_t* deepsleepwakeupind)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR);
 
     *hweco = (localVal & ((uint32_t)0xFFFFFFF0)) >> 4;
     *deepsleepwakeupind = (localVal & ((uint32_t)0x0000000F)) >> 0;
@@ -1396,7 +1396,7 @@ static inline void wcnaon_deepsleep_wakeup_ind_unpack(uint32_t* hweco, uint8_t* 
  */
 static inline uint32_t wcnaon_hw_eco_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR);
     return ((localVal & ((uint32_t)0xFFFFFFF0)) >> 4);
 }
 
@@ -1409,7 +1409,7 @@ static inline uint32_t wcnaon_hw_eco_getf(void)
  */
 static inline void wcnaon_hw_eco_setf(uint32_t hweco)
 {
-    REG_PL_WR(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR, (REG_PL_RD(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR) & ~((uint32_t)0xFFFFFFF0)) | ((uint32_t)hweco << 4));
+    PLATFORM_REG_WRITE(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR, (PLATFORM_REG_READ(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR) & ~((uint32_t)0xFFFFFFF0)) | ((uint32_t)hweco << 4));
 }
 
 /**
@@ -1421,7 +1421,7 @@ static inline void wcnaon_hw_eco_setf(uint32_t hweco)
  */
 static inline uint8_t wcnaon_deepsleep_wakeup_ind_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR);
     return ((localVal & ((uint32_t)0x0000000F)) >> 0);
 }
 
@@ -1434,7 +1434,7 @@ static inline uint8_t wcnaon_deepsleep_wakeup_ind_getf(void)
  */
 static inline void wcnaon_deepsleep_wakeup_ind_setf(uint8_t deepsleepwakeupind)
 {
-    REG_PL_WR(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR, (REG_PL_RD(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR) & ~((uint32_t)0x0000000F)) | ((uint32_t)deepsleepwakeupind << 0));
+    PLATFORM_REG_WRITE(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR, (PLATFORM_REG_READ(WCNAON_DEEPSLEEP_WAKEUP_IND_ADDR) & ~((uint32_t)0x0000000F)) | ((uint32_t)deepsleepwakeupind << 0));
 }
 
 /// @}
@@ -1470,7 +1470,7 @@ static inline void wcnaon_deepsleep_wakeup_ind_setf(uint8_t deepsleepwakeupind)
  */
 static inline uint32_t wcnaon_maxim_spi_get(void)
 {
-    return REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
+    return PLATFORM_REG_READ(WCNAON_MAXIM_SPI_ADDR);
 }
 
 /**
@@ -1480,7 +1480,7 @@ static inline uint32_t wcnaon_maxim_spi_get(void)
  */
 static inline void wcnaon_maxim_spi_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_MAXIM_SPI_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_MAXIM_SPI_ADDR, value);
 }
 
 // field definitions
@@ -1534,7 +1534,7 @@ static inline void wcnaon_maxim_spi_set(uint32_t value)
  */
 static inline void wcnaon_maxim_spi_pack(uint8_t startdone, uint8_t cs, uint8_t prescaler, uint8_t address, uint16_t data)
 {
-    REG_PL_WR(WCNAON_MAXIM_SPI_ADDR,  ((uint32_t)startdone << 31) | ((uint32_t)cs << 24) | ((uint32_t)prescaler << 20) | ((uint32_t)address << 16) | ((uint32_t)data << 0));
+    PLATFORM_REG_WRITE(WCNAON_MAXIM_SPI_ADDR,  ((uint32_t)startdone << 31) | ((uint32_t)cs << 24) | ((uint32_t)prescaler << 20) | ((uint32_t)address << 16) | ((uint32_t)data << 0));
 }
 
 /**
@@ -1551,7 +1551,7 @@ static inline void wcnaon_maxim_spi_pack(uint8_t startdone, uint8_t cs, uint8_t 
  */
 static inline void wcnaon_maxim_spi_unpack(uint8_t* startdone, uint8_t* cs, uint8_t* prescaler, uint8_t* address, uint16_t* data)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_MAXIM_SPI_ADDR);
 
     *startdone = (localVal & ((uint32_t)0x80000000)) >> 31;
     *cs = (localVal & ((uint32_t)0x01000000)) >> 24;
@@ -1569,7 +1569,7 @@ static inline void wcnaon_maxim_spi_unpack(uint8_t* startdone, uint8_t* cs, uint
  */
 static inline uint8_t wcnaon_start_done_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_MAXIM_SPI_ADDR);
     return ((localVal & ((uint32_t)0x80000000)) >> 31);
 }
 
@@ -1582,7 +1582,7 @@ static inline uint8_t wcnaon_start_done_getf(void)
  */
 static inline void wcnaon_start_done_setf(uint8_t startdone)
 {
-    REG_PL_WR(WCNAON_MAXIM_SPI_ADDR, (REG_PL_RD(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x80000000)) | ((uint32_t)startdone << 31));
+    PLATFORM_REG_WRITE(WCNAON_MAXIM_SPI_ADDR, (PLATFORM_REG_READ(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x80000000)) | ((uint32_t)startdone << 31));
 }
 
 /**
@@ -1594,7 +1594,7 @@ static inline void wcnaon_start_done_setf(uint8_t startdone)
  */
 static inline uint8_t wcnaon_cs_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_MAXIM_SPI_ADDR);
     return ((localVal & ((uint32_t)0x01000000)) >> 24);
 }
 
@@ -1607,7 +1607,7 @@ static inline uint8_t wcnaon_cs_getf(void)
  */
 static inline void wcnaon_cs_setf(uint8_t cs)
 {
-    REG_PL_WR(WCNAON_MAXIM_SPI_ADDR, (REG_PL_RD(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x01000000)) | ((uint32_t)cs << 24));
+    PLATFORM_REG_WRITE(WCNAON_MAXIM_SPI_ADDR, (PLATFORM_REG_READ(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x01000000)) | ((uint32_t)cs << 24));
 }
 
 /**
@@ -1619,7 +1619,7 @@ static inline void wcnaon_cs_setf(uint8_t cs)
  */
 static inline uint8_t wcnaon_prescaler_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_MAXIM_SPI_ADDR);
     return ((localVal & ((uint32_t)0x00F00000)) >> 20);
 }
 
@@ -1632,7 +1632,7 @@ static inline uint8_t wcnaon_prescaler_getf(void)
  */
 static inline void wcnaon_prescaler_setf(uint8_t prescaler)
 {
-    REG_PL_WR(WCNAON_MAXIM_SPI_ADDR, (REG_PL_RD(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x00F00000)) | ((uint32_t)prescaler << 20));
+    PLATFORM_REG_WRITE(WCNAON_MAXIM_SPI_ADDR, (PLATFORM_REG_READ(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x00F00000)) | ((uint32_t)prescaler << 20));
 }
 
 /**
@@ -1644,7 +1644,7 @@ static inline void wcnaon_prescaler_setf(uint8_t prescaler)
  */
 static inline uint8_t wcnaon_address_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_MAXIM_SPI_ADDR);
     return ((localVal & ((uint32_t)0x000F0000)) >> 16);
 }
 
@@ -1657,7 +1657,7 @@ static inline uint8_t wcnaon_address_getf(void)
  */
 static inline void wcnaon_address_setf(uint8_t address)
 {
-    REG_PL_WR(WCNAON_MAXIM_SPI_ADDR, (REG_PL_RD(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x000F0000)) | ((uint32_t)address << 16));
+    PLATFORM_REG_WRITE(WCNAON_MAXIM_SPI_ADDR, (PLATFORM_REG_READ(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x000F0000)) | ((uint32_t)address << 16));
 }
 
 /**
@@ -1669,7 +1669,7 @@ static inline void wcnaon_address_setf(uint8_t address)
  */
 static inline uint16_t wcnaon_data_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_MAXIM_SPI_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_MAXIM_SPI_ADDR);
     return ((localVal & ((uint32_t)0x00003FFF)) >> 0);
 }
 
@@ -1682,7 +1682,7 @@ static inline uint16_t wcnaon_data_getf(void)
  */
 static inline void wcnaon_data_setf(uint16_t data)
 {
-    REG_PL_WR(WCNAON_MAXIM_SPI_ADDR, (REG_PL_RD(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x00003FFF)) | ((uint32_t)data << 0));
+    PLATFORM_REG_WRITE(WCNAON_MAXIM_SPI_ADDR, (PLATFORM_REG_READ(WCNAON_MAXIM_SPI_ADDR) & ~((uint32_t)0x00003FFF)) | ((uint32_t)data << 0));
 }
 
 /// @}
@@ -1715,7 +1715,7 @@ static inline void wcnaon_data_setf(uint16_t data)
  */
 static inline uint32_t wcnaon_cm_pu_ctrl_get(void)
 {
-    return REG_PL_RD(WCNAON_CM_PU_CTRL_ADDR);
+    return PLATFORM_REG_READ(WCNAON_CM_PU_CTRL_ADDR);
 }
 
 /**
@@ -1725,7 +1725,7 @@ static inline uint32_t wcnaon_cm_pu_ctrl_get(void)
  */
 static inline void wcnaon_cm_pu_ctrl_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_CM_PU_CTRL_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_CM_PU_CTRL_ADDR, value);
 }
 
 // field definitions
@@ -1752,7 +1752,7 @@ static inline void wcnaon_cm_pu_ctrl_set(uint32_t value)
  */
 static inline void wcnaon_cm_pu_ctrl_pack(uint8_t cmpubbplldr, uint8_t cmpubbpllreg)
 {
-    REG_PL_WR(WCNAON_CM_PU_CTRL_ADDR,  ((uint32_t)cmpubbplldr << 11) | ((uint32_t)cmpubbpllreg << 10));
+    PLATFORM_REG_WRITE(WCNAON_CM_PU_CTRL_ADDR,  ((uint32_t)cmpubbplldr << 11) | ((uint32_t)cmpubbpllreg << 10));
 }
 
 /**
@@ -1766,7 +1766,7 @@ static inline void wcnaon_cm_pu_ctrl_pack(uint8_t cmpubbplldr, uint8_t cmpubbpll
  */
 static inline void wcnaon_cm_pu_ctrl_unpack(uint8_t* cmpubbplldr, uint8_t* cmpubbpllreg)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_PU_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_PU_CTRL_ADDR);
 
     *cmpubbplldr = (localVal & ((uint32_t)0x00000800)) >> 11;
     *cmpubbpllreg = (localVal & ((uint32_t)0x00000400)) >> 10;
@@ -1781,7 +1781,7 @@ static inline void wcnaon_cm_pu_ctrl_unpack(uint8_t* cmpubbplldr, uint8_t* cmpub
  */
 static inline uint8_t wcnaon_cm_pu_bbpll_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_PU_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_PU_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000800)) >> 11);
 }
 
@@ -1794,7 +1794,7 @@ static inline uint8_t wcnaon_cm_pu_bbpll_dr_getf(void)
  */
 static inline void wcnaon_cm_pu_bbpll_dr_setf(uint8_t cmpubbplldr)
 {
-    REG_PL_WR(WCNAON_CM_PU_CTRL_ADDR, (REG_PL_RD(WCNAON_CM_PU_CTRL_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)cmpubbplldr << 11));
+    PLATFORM_REG_WRITE(WCNAON_CM_PU_CTRL_ADDR, (PLATFORM_REG_READ(WCNAON_CM_PU_CTRL_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)cmpubbplldr << 11));
 }
 
 /**
@@ -1806,7 +1806,7 @@ static inline void wcnaon_cm_pu_bbpll_dr_setf(uint8_t cmpubbplldr)
  */
 static inline uint8_t wcnaon_cm_pu_bbpll_reg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_PU_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_PU_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000400)) >> 10);
 }
 
@@ -1819,7 +1819,7 @@ static inline uint8_t wcnaon_cm_pu_bbpll_reg_getf(void)
  */
 static inline void wcnaon_cm_pu_bbpll_reg_setf(uint8_t cmpubbpllreg)
 {
-    REG_PL_WR(WCNAON_CM_PU_CTRL_ADDR, (REG_PL_RD(WCNAON_CM_PU_CTRL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)cmpubbpllreg << 10));
+    PLATFORM_REG_WRITE(WCNAON_CM_PU_CTRL_ADDR, (PLATFORM_REG_READ(WCNAON_CM_PU_CTRL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)cmpubbpllreg << 10));
 }
 
 /// @}
@@ -1852,7 +1852,7 @@ static inline void wcnaon_cm_pu_bbpll_reg_setf(uint8_t cmpubbpllreg)
  */
 static inline uint32_t wcnaon_cm_mdll_reg_get(void)
 {
-    return REG_PL_RD(WCNAON_CM_MDLL_REG_ADDR);
+    return PLATFORM_REG_READ(WCNAON_CM_MDLL_REG_ADDR);
 }
 
 /**
@@ -1862,7 +1862,7 @@ static inline uint32_t wcnaon_cm_mdll_reg_get(void)
  */
 static inline void wcnaon_cm_mdll_reg_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_CM_MDLL_REG_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_CM_MDLL_REG_ADDR, value);
 }
 
 // field definitions
@@ -1891,7 +1891,7 @@ static inline void wcnaon_cm_mdll_reg_set(uint32_t value)
  */
 static inline void wcnaon_cm_mdll_reg_pack(uint8_t cmmdllbandsel, uint8_t cmmdllbandbit)
 {
-    REG_PL_WR(WCNAON_CM_MDLL_REG_ADDR,  ((uint32_t)cmmdllbandsel << 16) | ((uint32_t)cmmdllbandbit << 13));
+    PLATFORM_REG_WRITE(WCNAON_CM_MDLL_REG_ADDR,  ((uint32_t)cmmdllbandsel << 16) | ((uint32_t)cmmdllbandbit << 13));
 }
 
 /**
@@ -1905,7 +1905,7 @@ static inline void wcnaon_cm_mdll_reg_pack(uint8_t cmmdllbandsel, uint8_t cmmdll
  */
 static inline void wcnaon_cm_mdll_reg_unpack(uint8_t* cmmdllbandsel, uint8_t* cmmdllbandbit)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_MDLL_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_MDLL_REG_ADDR);
 
     *cmmdllbandsel = (localVal & ((uint32_t)0x00010000)) >> 16;
     *cmmdllbandbit = (localVal & ((uint32_t)0x0000E000)) >> 13;
@@ -1920,7 +1920,7 @@ static inline void wcnaon_cm_mdll_reg_unpack(uint8_t* cmmdllbandsel, uint8_t* cm
  */
 static inline uint8_t wcnaon_cm_mdll_band_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_MDLL_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_MDLL_REG_ADDR);
     return ((localVal & ((uint32_t)0x00010000)) >> 16);
 }
 
@@ -1933,7 +1933,7 @@ static inline uint8_t wcnaon_cm_mdll_band_sel_getf(void)
  */
 static inline void wcnaon_cm_mdll_band_sel_setf(uint8_t cmmdllbandsel)
 {
-    REG_PL_WR(WCNAON_CM_MDLL_REG_ADDR, (REG_PL_RD(WCNAON_CM_MDLL_REG_ADDR) & ~((uint32_t)0x00010000)) | ((uint32_t)cmmdllbandsel << 16));
+    PLATFORM_REG_WRITE(WCNAON_CM_MDLL_REG_ADDR, (PLATFORM_REG_READ(WCNAON_CM_MDLL_REG_ADDR) & ~((uint32_t)0x00010000)) | ((uint32_t)cmmdllbandsel << 16));
 }
 
 /**
@@ -1945,7 +1945,7 @@ static inline void wcnaon_cm_mdll_band_sel_setf(uint8_t cmmdllbandsel)
  */
 static inline uint8_t wcnaon_cm_mdll_band_bit_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_MDLL_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_MDLL_REG_ADDR);
     return ((localVal & ((uint32_t)0x0000E000)) >> 13);
 }
 
@@ -1958,7 +1958,7 @@ static inline uint8_t wcnaon_cm_mdll_band_bit_getf(void)
  */
 static inline void wcnaon_cm_mdll_band_bit_setf(uint8_t cmmdllbandbit)
 {
-    REG_PL_WR(WCNAON_CM_MDLL_REG_ADDR, (REG_PL_RD(WCNAON_CM_MDLL_REG_ADDR) & ~((uint32_t)0x0000E000)) | ((uint32_t)cmmdllbandbit << 13));
+    PLATFORM_REG_WRITE(WCNAON_CM_MDLL_REG_ADDR, (PLATFORM_REG_READ(WCNAON_CM_MDLL_REG_ADDR) & ~((uint32_t)0x0000E000)) | ((uint32_t)cmmdllbandbit << 13));
 }
 
 /// @}
@@ -1993,7 +1993,7 @@ static inline void wcnaon_cm_mdll_band_bit_setf(uint8_t cmmdllbandbit)
  */
 static inline uint32_t wcnaon_cm_xtal_reg_get(void)
 {
-    return REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR);
+    return PLATFORM_REG_READ(WCNAON_CM_XTAL_REG_ADDR);
 }
 
 /**
@@ -2003,7 +2003,7 @@ static inline uint32_t wcnaon_cm_xtal_reg_get(void)
  */
 static inline void wcnaon_cm_xtal_reg_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_CM_XTAL_REG_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_CM_XTAL_REG_ADDR, value);
 }
 
 // field definitions
@@ -2044,7 +2044,7 @@ static inline void wcnaon_cm_xtal_reg_set(uint32_t value)
  */
 static inline void wcnaon_cm_xtal_reg_pack(uint8_t cmxtalbufavddsel, uint8_t cmxtalouten3, uint8_t cmxtalouten1, uint8_t cmxtalouten0)
 {
-    REG_PL_WR(WCNAON_CM_XTAL_REG_ADDR,  ((uint32_t)cmxtalbufavddsel << 12) | ((uint32_t)cmxtalouten3 << 3) | ((uint32_t)cmxtalouten1 << 1) | ((uint32_t)cmxtalouten0 << 0));
+    PLATFORM_REG_WRITE(WCNAON_CM_XTAL_REG_ADDR,  ((uint32_t)cmxtalbufavddsel << 12) | ((uint32_t)cmxtalouten3 << 3) | ((uint32_t)cmxtalouten1 << 1) | ((uint32_t)cmxtalouten0 << 0));
 }
 
 /**
@@ -2060,7 +2060,7 @@ static inline void wcnaon_cm_xtal_reg_pack(uint8_t cmxtalbufavddsel, uint8_t cmx
  */
 static inline void wcnaon_cm_xtal_reg_unpack(uint8_t* cmxtalbufavddsel, uint8_t* cmxtalouten3, uint8_t* cmxtalouten1, uint8_t* cmxtalouten0)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_XTAL_REG_ADDR);
 
     *cmxtalbufavddsel = (localVal & ((uint32_t)0x00001000)) >> 12;
     *cmxtalouten3 = (localVal & ((uint32_t)0x00000008)) >> 3;
@@ -2077,7 +2077,7 @@ static inline void wcnaon_cm_xtal_reg_unpack(uint8_t* cmxtalbufavddsel, uint8_t*
  */
 static inline uint8_t wcnaon_cm_xtal_buf_avdd_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_XTAL_REG_ADDR);
     return ((localVal & ((uint32_t)0x00001000)) >> 12);
 }
 
@@ -2090,7 +2090,7 @@ static inline uint8_t wcnaon_cm_xtal_buf_avdd_sel_getf(void)
  */
 static inline void wcnaon_cm_xtal_buf_avdd_sel_setf(uint8_t cmxtalbufavddsel)
 {
-    REG_PL_WR(WCNAON_CM_XTAL_REG_ADDR, (REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)cmxtalbufavddsel << 12));
+    PLATFORM_REG_WRITE(WCNAON_CM_XTAL_REG_ADDR, (PLATFORM_REG_READ(WCNAON_CM_XTAL_REG_ADDR) & ~((uint32_t)0x00001000)) | ((uint32_t)cmxtalbufavddsel << 12));
 }
 
 /**
@@ -2102,7 +2102,7 @@ static inline void wcnaon_cm_xtal_buf_avdd_sel_setf(uint8_t cmxtalbufavddsel)
  */
 static inline uint8_t wcnaon_cm_xtal_out_en_3_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_XTAL_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000008)) >> 3);
 }
 
@@ -2115,7 +2115,7 @@ static inline uint8_t wcnaon_cm_xtal_out_en_3_getf(void)
  */
 static inline void wcnaon_cm_xtal_out_en_3_setf(uint8_t cmxtalouten3)
 {
-    REG_PL_WR(WCNAON_CM_XTAL_REG_ADDR, (REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)cmxtalouten3 << 3));
+    PLATFORM_REG_WRITE(WCNAON_CM_XTAL_REG_ADDR, (PLATFORM_REG_READ(WCNAON_CM_XTAL_REG_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)cmxtalouten3 << 3));
 }
 
 /**
@@ -2127,7 +2127,7 @@ static inline void wcnaon_cm_xtal_out_en_3_setf(uint8_t cmxtalouten3)
  */
 static inline uint8_t wcnaon_cm_xtal_out_en_1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_XTAL_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000002)) >> 1);
 }
 
@@ -2140,7 +2140,7 @@ static inline uint8_t wcnaon_cm_xtal_out_en_1_getf(void)
  */
 static inline void wcnaon_cm_xtal_out_en_1_setf(uint8_t cmxtalouten1)
 {
-    REG_PL_WR(WCNAON_CM_XTAL_REG_ADDR, (REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)cmxtalouten1 << 1));
+    PLATFORM_REG_WRITE(WCNAON_CM_XTAL_REG_ADDR, (PLATFORM_REG_READ(WCNAON_CM_XTAL_REG_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)cmxtalouten1 << 1));
 }
 
 /**
@@ -2152,7 +2152,7 @@ static inline void wcnaon_cm_xtal_out_en_1_setf(uint8_t cmxtalouten1)
  */
 static inline uint8_t wcnaon_cm_xtal_out_en_0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_XTAL_REG_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
@@ -2165,7 +2165,7 @@ static inline uint8_t wcnaon_cm_xtal_out_en_0_getf(void)
  */
 static inline void wcnaon_cm_xtal_out_en_0_setf(uint8_t cmxtalouten0)
 {
-    REG_PL_WR(WCNAON_CM_XTAL_REG_ADDR, (REG_PL_RD(WCNAON_CM_XTAL_REG_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)cmxtalouten0 << 0));
+    PLATFORM_REG_WRITE(WCNAON_CM_XTAL_REG_ADDR, (PLATFORM_REG_READ(WCNAON_CM_XTAL_REG_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)cmxtalouten0 << 0));
 }
 
 /// @}
@@ -2200,7 +2200,7 @@ static inline void wcnaon_cm_xtal_out_en_0_setf(uint8_t cmxtalouten0)
  */
 static inline uint32_t wcnaon_cm_bbpll_reg2_get(void)
 {
-    return REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR);
+    return PLATFORM_REG_READ(WCNAON_CM_BBPLL_REG2_ADDR);
 }
 
 /**
@@ -2210,7 +2210,7 @@ static inline uint32_t wcnaon_cm_bbpll_reg2_get(void)
  */
 static inline void wcnaon_cm_bbpll_reg2_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_CM_BBPLL_REG2_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_CM_BBPLL_REG2_ADDR, value);
 }
 
 // field definitions
@@ -2257,7 +2257,7 @@ static inline void wcnaon_cm_bbpll_reg2_set(uint32_t value)
  */
 static inline void wcnaon_cm_bbpll_reg2_pack(uint8_t clkvcoen, uint8_t clk80men, uint8_t divlp5en, uint8_t clkdivlp5en)
 {
-    REG_PL_WR(WCNAON_CM_BBPLL_REG2_ADDR,  ((uint32_t)clkvcoen << 19) | ((uint32_t)clk80men << 17) | ((uint32_t)divlp5en << 2) | ((uint32_t)clkdivlp5en << 0));
+    PLATFORM_REG_WRITE(WCNAON_CM_BBPLL_REG2_ADDR,  ((uint32_t)clkvcoen << 19) | ((uint32_t)clk80men << 17) | ((uint32_t)divlp5en << 2) | ((uint32_t)clkdivlp5en << 0));
 }
 
 /**
@@ -2273,7 +2273,7 @@ static inline void wcnaon_cm_bbpll_reg2_pack(uint8_t clkvcoen, uint8_t clk80men,
  */
 static inline void wcnaon_cm_bbpll_reg2_unpack(uint8_t* clkvcoen, uint8_t* clk80men, uint8_t* divlp5en, uint8_t* clkdivlp5en)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_BBPLL_REG2_ADDR);
 
     *clkvcoen = (localVal & ((uint32_t)0x00180000)) >> 19;
     *clk80men = (localVal & ((uint32_t)0x00060000)) >> 17;
@@ -2290,7 +2290,7 @@ static inline void wcnaon_cm_bbpll_reg2_unpack(uint8_t* clkvcoen, uint8_t* clk80
  */
 static inline uint8_t wcnaon_clk_vco_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_BBPLL_REG2_ADDR);
     return ((localVal & ((uint32_t)0x00180000)) >> 19);
 }
 
@@ -2303,7 +2303,7 @@ static inline uint8_t wcnaon_clk_vco_en_getf(void)
  */
 static inline void wcnaon_clk_vco_en_setf(uint8_t clkvcoen)
 {
-    REG_PL_WR(WCNAON_CM_BBPLL_REG2_ADDR, (REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR) & ~((uint32_t)0x00180000)) | ((uint32_t)clkvcoen << 19));
+    PLATFORM_REG_WRITE(WCNAON_CM_BBPLL_REG2_ADDR, (PLATFORM_REG_READ(WCNAON_CM_BBPLL_REG2_ADDR) & ~((uint32_t)0x00180000)) | ((uint32_t)clkvcoen << 19));
 }
 
 /**
@@ -2315,7 +2315,7 @@ static inline void wcnaon_clk_vco_en_setf(uint8_t clkvcoen)
  */
 static inline uint8_t wcnaon_clk__80m_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_BBPLL_REG2_ADDR);
     return ((localVal & ((uint32_t)0x00060000)) >> 17);
 }
 
@@ -2328,7 +2328,7 @@ static inline uint8_t wcnaon_clk__80m_en_getf(void)
  */
 static inline void wcnaon_clk__80m_en_setf(uint8_t clk80men)
 {
-    REG_PL_WR(WCNAON_CM_BBPLL_REG2_ADDR, (REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR) & ~((uint32_t)0x00060000)) | ((uint32_t)clk80men << 17));
+    PLATFORM_REG_WRITE(WCNAON_CM_BBPLL_REG2_ADDR, (PLATFORM_REG_READ(WCNAON_CM_BBPLL_REG2_ADDR) & ~((uint32_t)0x00060000)) | ((uint32_t)clk80men << 17));
 }
 
 /**
@@ -2340,7 +2340,7 @@ static inline void wcnaon_clk__80m_en_setf(uint8_t clk80men)
  */
 static inline uint8_t wcnaon_divlp_5_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_BBPLL_REG2_ADDR);
     return ((localVal & ((uint32_t)0x00000004)) >> 2);
 }
 
@@ -2353,7 +2353,7 @@ static inline uint8_t wcnaon_divlp_5_en_getf(void)
  */
 static inline void wcnaon_divlp_5_en_setf(uint8_t divlp5en)
 {
-    REG_PL_WR(WCNAON_CM_BBPLL_REG2_ADDR, (REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)divlp5en << 2));
+    PLATFORM_REG_WRITE(WCNAON_CM_BBPLL_REG2_ADDR, (PLATFORM_REG_READ(WCNAON_CM_BBPLL_REG2_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)divlp5en << 2));
 }
 
 /**
@@ -2365,7 +2365,7 @@ static inline void wcnaon_divlp_5_en_setf(uint8_t divlp5en)
  */
 static inline uint8_t wcnaon_clk_divlp_5_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_BBPLL_REG2_ADDR);
     return ((localVal & ((uint32_t)0x00000003)) >> 0);
 }
 
@@ -2378,7 +2378,7 @@ static inline uint8_t wcnaon_clk_divlp_5_en_getf(void)
  */
 static inline void wcnaon_clk_divlp_5_en_setf(uint8_t clkdivlp5en)
 {
-    REG_PL_WR(WCNAON_CM_BBPLL_REG2_ADDR, (REG_PL_RD(WCNAON_CM_BBPLL_REG2_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)clkdivlp5en << 0));
+    PLATFORM_REG_WRITE(WCNAON_CM_BBPLL_REG2_ADDR, (PLATFORM_REG_READ(WCNAON_CM_BBPLL_REG2_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)clkdivlp5en << 0));
 }
 
 /// @}
@@ -2410,7 +2410,7 @@ static inline void wcnaon_clk_divlp_5_en_setf(uint8_t clkdivlp5en)
  */
 static inline uint32_t wcnaon_cm_bbpll_ctrl_get(void)
 {
-    return REG_PL_RD(WCNAON_CM_BBPLL_CTRL_ADDR);
+    return PLATFORM_REG_READ(WCNAON_CM_BBPLL_CTRL_ADDR);
 }
 
 /**
@@ -2420,7 +2420,7 @@ static inline uint32_t wcnaon_cm_bbpll_ctrl_get(void)
  */
 static inline void wcnaon_cm_bbpll_ctrl_set(uint32_t value)
 {
-    REG_PL_WR(WCNAON_CM_BBPLL_CTRL_ADDR, value);
+    PLATFORM_REG_WRITE(WCNAON_CM_BBPLL_CTRL_ADDR, value);
 }
 
 // field definitions
@@ -2441,7 +2441,7 @@ static inline void wcnaon_cm_bbpll_ctrl_set(uint32_t value)
  */
 static inline uint8_t wcnaon_cm_rf_alwayson_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(WCNAON_CM_BBPLL_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(WCNAON_CM_BBPLL_CTRL_ADDR);
     return (localVal >> 24);
 }
 
@@ -2454,7 +2454,7 @@ static inline uint8_t wcnaon_cm_rf_alwayson_getf(void)
  */
 static inline void wcnaon_cm_rf_alwayson_setf(uint8_t cmrfalwayson)
 {
-    REG_PL_WR(WCNAON_CM_BBPLL_CTRL_ADDR, (uint32_t)cmrfalwayson << 24);
+    PLATFORM_REG_WRITE(WCNAON_CM_BBPLL_CTRL_ADDR, (uint32_t)cmrfalwayson << 24);
 }
 
 /// @}

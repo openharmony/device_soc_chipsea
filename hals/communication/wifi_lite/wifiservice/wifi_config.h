@@ -15,11 +15,11 @@
 #ifndef WIFI_CONFIG_H_
 #define WIFI_CONFIG_H_
 
-#include "rtos_al.h"
+#include "rtos_ohos_al.h"
 #include "los_list.h"
 #include "wifi_device.h"
 #include "wifi_hotspot_config.h"
-#include "fhost_api.h"
+#include "wifi_host_api.h"
 
 #define PARAM_CHECK(para) do {          \
     if (para == NULL) {                 \

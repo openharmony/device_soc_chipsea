@@ -16,7 +16,7 @@
 
 #include "chip.h"
 #include "dbg.h"
-#include "stdio_uart.h"
+#include "uart.h"
 
 #define mbed_error_printf dbg
 

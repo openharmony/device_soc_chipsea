@@ -15,7 +15,7 @@
 #ifndef __BT_CS8800_DRV_CONFIG_H__
 #define  __BT_CS8800_DRV_CONFIG_H__
 #include "compiler.h"
-#include "reg_access.h"
+#include "reg_access_wrapper.h"
 
 #include "fw_patch_u02.h"
 #include "fw_patch_table_u02.h"

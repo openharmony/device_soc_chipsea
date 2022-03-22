@@ -14,7 +14,7 @@
  */
 #include "wifi_device.h"
 #include "wifi_config.h"
-#include "rtos_al.h"
+#include "rtos_ohos_al.h"
 #include "dbg.h"
 
 typedef struct {

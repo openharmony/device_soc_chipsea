@@ -15,7 +15,7 @@
 /*chipsea_ohos proguard begin*/
 #include "cs_proguard.h"
 /*chipsea_ohos proguard end*/
-#include "rtos.h"
+#include "al_rtos.h"
 #include "cs_target_config.h"
 #include "bt_cs8800_drvif.h"
 #ifndef CFG_BLE_ONLY
@@ -34,13 +34,13 @@
 #include <string.h>
 #include "stdlib.h"
 #if AON_SUPPORT == 1
-#include "bt_aon_sram.h"
+#include "cs_bt_aon_sram.h"
 #endif
 #include "sysctrl_api.h"
 #if (PLF_BT_STACK || PLF_BLE_STACK) && (PLF_WIFI_STACK && !defined(CFG_HOSTIF))
 #include "wb_coex.h"
 #endif
-#include "reg_access.h"
+#include "reg_access_wrapper.h"
 #include "reg_iomux.h"
 #include "reg_ipc_comreg.h"
 #include "reg_ipc_app.h"

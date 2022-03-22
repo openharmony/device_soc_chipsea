@@ -15,7 +15,7 @@
 #ifndef _REG_IPC_COMREG_H_
 #define _REG_IPC_COMREG_H_
 
-#include "reg_access.h"
+#include "reg_access_wrapper.h"
 #include "chip.h"
 
 /**
@@ -25,12 +25,12 @@
 
 __STATIC_INLINE uint32_t ipc_comreg_get(int idx)
 {
-    return REG_PL_RD(IPC_COMREG_BASE_ADDR + (idx << 2));
+    return PLATFORM_REG_READ(IPC_COMREG_BASE_ADDR + (idx << 2));
 }
 
 __STATIC_INLINE void ipc_comreg_set(int idx, uint32_t value)
 {
-    REG_PL_WR(IPC_COMREG_BASE_ADDR + (idx << 2), value);
+    PLATFORM_REG_WRITE(IPC_COMREG_BASE_ADDR + (idx << 2), value);
 }
 
 /**

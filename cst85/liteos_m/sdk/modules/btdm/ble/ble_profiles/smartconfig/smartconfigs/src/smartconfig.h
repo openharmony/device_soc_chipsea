@@ -1,65 +1,32 @@
-/**
- ****************************************************************************************
+/*
+ * Copyright (c) 2021 Chipsea Technologies (Shenzhen) Corp., Ltd. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * @file smartconfig.h
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * @brief Header file - Smart Config Profile Server.
- *
- * Copyright (C) CS
- *
- *
- ****************************************************************************************
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 #ifndef _SMARTCONFIG_H_
 #define _SMARTCONFIG_H_
 
-/**
- ****************************************************************************************
- * @addtogroup SmartConfig Profile Server
- * @ingroup SmartConfig
- * @brief SmartConfig Profile Server
- *
- * Datapath Profile Server provides functionalities to upper layer module
- * application. The device using this profile takes the role of Datapath Server.
- *
- * The interface of this role to the Application is:
- *  - Enable the profile role (from APP)
- *  - Disable the profile role (from APP)
- *  - Send data to peer device via notifications  (from APP)
- *  - Receive data from peer device via write no response (from APP)
- *
- *
- * @{
- ****************************************************************************************
- */
-
-
-/*
- * INCLUDE FILES
- ****************************************************************************************
- */
-
-#include "rwip_config.h"
+#include "ble_ip_config.h"
 
 #if (BLE_SMARTCONFIG)
-#include "prf_types.h"
-#include "prf.h"
+#include "hal_prf_types.h"
+#include "hal_profile.h"
 #include "smartconfig_task.h"
-#include "attm.h"
-#include "prf_utils.h"
+#include "hal_attm.h"
+#include "hal_profile_utils.h"
 
 
-/*
- * DEFINES
- ****************************************************************************************
- */
 #define SMARTCONFIG_MAX_LEN            (200)
 
-/*
- * DEFINES
- ****************************************************************************************
- */
 /// Possible states of the SMARTCONFIG task
 enum
 {
@@ -153,8 +120,6 @@ void smartconfig_task_init(struct ke_task_desc *task_desc);
 
 
 #endif /* #if (BLE_SMARTCONFIG) */
-
-/// @} SMARTCONFIG
 
 #endif /* _SMARTCONFIG_H_ */
 

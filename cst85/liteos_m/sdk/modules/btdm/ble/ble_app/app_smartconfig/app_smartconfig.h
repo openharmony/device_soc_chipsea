@@ -1,45 +1,26 @@
-/**
- ****************************************************************************************
+/*
+ * Copyright (c) 2021 Chipsea Technologies (Shenzhen) Corp., Ltd. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * @file app_smartconfig.h
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * @brief Smartconfig Application entry point
- *
- * Copyright (C) CS
- *
- *
- ****************************************************************************************
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 #ifndef APP_SMARTCONFIG_H_
 #define APP_SMARTCONFIG_H_
 
-/**
- ****************************************************************************************
- * @addtogroup APP
- *
- * @brief Smart Config Application entry point.
- *
- * @{
- ****************************************************************************************
- */
-
-/*
- * INCLUDE FILES
- ****************************************************************************************
- */
-
-#include "rwip_config.h"     // SW configuration
+#include "ble_ip_config.h"     // SW configuration
 
 #if (BLE_APP_SMARTCONFIG)
 
 #include <stdint.h>          // Standard Integer Definition
-#include "ke_task.h"
-
-/*
- * TYPE DEFINITIONS
- ****************************************************************************************
- */
+#include "ble_ke_task.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -54,10 +35,6 @@ enum
 
 #define INVALID_CONNECTION_INDEX                            0xFF
 
-/*
- * STRUCTURES DEFINITION
- ****************************************************************************************
- */
 /// Smartconfig Application Module Environment Structure
 struct app_smartconfig_env_tag
 {
@@ -78,20 +55,12 @@ struct ble_smartconfig {
     char time[DATA_BUF_SIZE];
 };
 
-/*
- * GLOBAL VARIABLES DECLARATIONS
- ****************************************************************************************
- */
 /// Table of message handlers
 extern const struct app_subtask_handlers app_smartconfig_handlers;
 
 typedef void(*app_smartconfig_recv_ap_info_cb)(uint8_t *data, uint32_t length);
 typedef void(*app_smartconfig_recv_state_info_cb)(uint8_t *data, uint32_t length);
 
-/*
- * FUNCTIONS DECLARATION
- ****************************************************************************************
- */
 void app_smartconfig_init(void);
 
 void app_smartconfig_enable_prf(uint8_t conidx);
@@ -111,7 +80,5 @@ void app_smartconfig_register_state_info_cb(app_smartconfig_recv_state_info_cb c
 #endif
 
 #endif //(BLE_APP_SMARTCONFIG)
-
-/// @} APP
 
 #endif // APP_SMARTCONFIG_H_

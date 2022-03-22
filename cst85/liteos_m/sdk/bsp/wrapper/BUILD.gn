@@ -17,7 +17,6 @@ print("SOC:CHIPSEA:CST85/liteos_m/sdk - $module_name")
 kernel_module(module_name) {
   sources = [
     "syscalls.c",
-    "lite_sys.c"
   ]
 
   include_dirs = [

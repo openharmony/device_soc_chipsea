@@ -16,11 +16,11 @@
 #define __APP_BLE_ONLY_H__
 #ifdef CFG_BLE_ONLY
 #include "cs_target_config.h"
-#include "rtos.h"
-#include "app.h"
-#include "att.h"
+#include "al_rtos.h"
+#include "app_present.h"
+#include "hal_att.h"
 #if (BLE_APP_SEC)
-#include "app_sec.h"                 // Application security Definition
+#include "app_present_sec.h"                 // Application security Definition
 #endif // (BLE_APP_SEC)
 
 #if (BLE_APP_BATT)

@@ -57,7 +57,7 @@
 
 #include "task_al.h"
 #include "rwnx_config.h"
-#include "fhost_rx_def.h"
+#include "wifi_host_rx_def.h"
 #define TCPIP_THREAD_STACKSIZE        TASK_STACK_SIZE_WIFI_TCPIP
 
 #define IP_REASS_MAX_PBUFS            (FHOST_RX_BUF_CNT - 2)

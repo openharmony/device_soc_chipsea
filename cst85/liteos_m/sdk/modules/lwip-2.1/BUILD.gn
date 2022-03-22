@@ -36,7 +36,7 @@ kernel_module(module_name) {
   sources = LWIP_PORTING_FILES + LWIPNOAPPSFILES -
             [ "$LWIPDIR/api/sockets.c" ]
   sources += [
-    "./porting/src/net_al.c",
+    "./porting/src/porting_net_al.c",
     "./dhcps/dhcps.c",
   ]
 }

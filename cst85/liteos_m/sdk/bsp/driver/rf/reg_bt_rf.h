@@ -27,7 +27,7 @@
 
 #include "compiler.h"
 #include "arch.h"
-#include "reg_access.h"
+#include "reg_access_wrapper.h"
 
 /** @brief Number of registers in the REG_BT_RF peripheral.
  */
@@ -64,7 +64,7 @@
  */
 __INLINE uint32_t bt_rf_bt_dpll_reg2_get(void)
 {
-    return REG_PL_RD(BT_RF_BT_DPLL_REG2_ADDR);
+    return PLATFORM_REG_READ(BT_RF_BT_DPLL_REG2_ADDR);
 }
 
 /**
@@ -74,7 +74,7 @@ __INLINE uint32_t bt_rf_bt_dpll_reg2_get(void)
  */
 __INLINE void bt_rf_bt_dpll_reg2_set(uint32_t value)
 {
-    REG_PL_WR(BT_RF_BT_DPLL_REG2_ADDR, value);
+    PLATFORM_REG_WRITE(BT_RF_BT_DPLL_REG2_ADDR, value);
 }
 
 // field definitions
@@ -95,7 +95,7 @@ __INLINE void bt_rf_bt_dpll_reg2_set(uint32_t value)
  */
 __INLINE uint8_t bt_rf_bt_dpll_fref_sel_rx_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_BT_DPLL_REG2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_BT_DPLL_REG2_ADDR);
     return (localVal >> 20);
 }
 
@@ -108,7 +108,7 @@ __INLINE uint8_t bt_rf_bt_dpll_fref_sel_rx_getf(void)
  */
 __INLINE void bt_rf_bt_dpll_fref_sel_rx_setf(uint8_t btdpllfrefselrx)
 {
-    REG_PL_WR(BT_RF_BT_DPLL_REG2_ADDR, (uint32_t)btdpllfrefselrx << 20);
+    PLATFORM_REG_WRITE(BT_RF_BT_DPLL_REG2_ADDR, (uint32_t)btdpllfrefselrx << 20);
 }
 
 /// @}
@@ -140,7 +140,7 @@ __INLINE void bt_rf_bt_dpll_fref_sel_rx_setf(uint8_t btdpllfrefselrx)
  */
 __INLINE uint32_t bt_rf_man_ctrl_get(void)
 {
-    return REG_PL_RD(BT_RF_MAN_CTRL_ADDR);
+    return PLATFORM_REG_READ(BT_RF_MAN_CTRL_ADDR);
 }
 
 /**
@@ -150,7 +150,7 @@ __INLINE uint32_t bt_rf_man_ctrl_get(void)
  */
 __INLINE void bt_rf_man_ctrl_set(uint32_t value)
 {
-    REG_PL_WR(BT_RF_MAN_CTRL_ADDR, value);
+    PLATFORM_REG_WRITE(BT_RF_MAN_CTRL_ADDR, value);
 }
 
 // field definitions
@@ -171,7 +171,7 @@ __INLINE void bt_rf_man_ctrl_set(uint32_t value)
  */
 __INLINE uint8_t bt_rf_rfon_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_MAN_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_MAN_CTRL_ADDR);
     return (localVal >> 16);
 }
 
@@ -184,7 +184,7 @@ __INLINE uint8_t bt_rf_rfon_getf(void)
  */
 __INLINE void bt_rf_rfon_setf(uint8_t rfon)
 {
-    REG_PL_WR(BT_RF_MAN_CTRL_ADDR, (uint32_t)rfon << 16);
+    PLATFORM_REG_WRITE(BT_RF_MAN_CTRL_ADDR, (uint32_t)rfon << 16);
 }
 
 /// @}
@@ -222,7 +222,7 @@ __INLINE void bt_rf_rfon_setf(uint8_t rfon)
  */
 __INLINE uint32_t bt_rf_rxgain_mem_ctrl_get(void)
 {
-    return REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR);
+    return PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR);
 }
 
 /**
@@ -232,7 +232,7 @@ __INLINE uint32_t bt_rf_rxgain_mem_ctrl_get(void)
  */
 __INLINE void bt_rf_rxgain_mem_ctrl_set(uint32_t value)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_CTRL_ADDR, value);
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_CTRL_ADDR, value);
 }
 
 // field definitions
@@ -296,7 +296,7 @@ __INLINE void bt_rf_rxgain_mem_ctrl_set(uint32_t value)
  */
 __INLINE void bt_rf_rxgain_mem_ctrl_pack(uint8_t rxgainmemrwdone, uint8_t clkrxgainsel, uint8_t clkrxgainen, uint8_t rxgainmemcfg, uint8_t rxgainmemrenpulse, uint8_t rxgainmemwenpulse, uint8_t rxgainmemaddrcfg)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_CTRL_ADDR,  ((uint32_t)rxgainmemrwdone << 11) | ((uint32_t)clkrxgainsel << 10) | ((uint32_t)clkrxgainen << 9) | ((uint32_t)rxgainmemcfg << 8) | ((uint32_t)rxgainmemrenpulse << 7) | ((uint32_t)rxgainmemwenpulse << 6) | ((uint32_t)rxgainmemaddrcfg << 0));
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_CTRL_ADDR,  ((uint32_t)rxgainmemrwdone << 11) | ((uint32_t)clkrxgainsel << 10) | ((uint32_t)clkrxgainen << 9) | ((uint32_t)rxgainmemcfg << 8) | ((uint32_t)rxgainmemrenpulse << 7) | ((uint32_t)rxgainmemwenpulse << 6) | ((uint32_t)rxgainmemaddrcfg << 0));
 }
 
 /**
@@ -315,7 +315,7 @@ __INLINE void bt_rf_rxgain_mem_ctrl_pack(uint8_t rxgainmemrwdone, uint8_t clkrxg
  */
 __INLINE void bt_rf_rxgain_mem_ctrl_unpack(uint8_t* rxgainmemrwdone, uint8_t* clkrxgainsel, uint8_t* clkrxgainen, uint8_t* rxgainmemcfg, uint8_t* rxgainmemrenpulse, uint8_t* rxgainmemwenpulse, uint8_t* rxgainmemaddrcfg)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR);
 
     *rxgainmemrwdone = (localVal & ((uint32_t)0x00000800)) >> 11;
     *clkrxgainsel = (localVal & ((uint32_t)0x00000400)) >> 10;
@@ -335,7 +335,7 @@ __INLINE void bt_rf_rxgain_mem_ctrl_unpack(uint8_t* rxgainmemrwdone, uint8_t* cl
  */
 __INLINE uint8_t bt_rf_rxgain_mem_rw_done_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000800)) >> 11);
 }
 
@@ -348,7 +348,7 @@ __INLINE uint8_t bt_rf_rxgain_mem_rw_done_getf(void)
  */
 __INLINE void bt_rf_rxgain_mem_rw_done_setf(uint8_t rxgainmemrwdone)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)rxgainmemrwdone << 11));
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000800)) | ((uint32_t)rxgainmemrwdone << 11));
 }
 
 /**
@@ -360,7 +360,7 @@ __INLINE void bt_rf_rxgain_mem_rw_done_setf(uint8_t rxgainmemrwdone)
  */
 __INLINE uint8_t bt_rf_clk_rxgain_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000400)) >> 10);
 }
 
@@ -373,7 +373,7 @@ __INLINE uint8_t bt_rf_clk_rxgain_sel_getf(void)
  */
 __INLINE void bt_rf_clk_rxgain_sel_setf(uint8_t clkrxgainsel)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)clkrxgainsel << 10));
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)clkrxgainsel << 10));
 }
 
 /**
@@ -385,7 +385,7 @@ __INLINE void bt_rf_clk_rxgain_sel_setf(uint8_t clkrxgainsel)
  */
 __INLINE uint8_t bt_rf_clk_rxgain_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000200)) >> 9);
 }
 
@@ -398,7 +398,7 @@ __INLINE uint8_t bt_rf_clk_rxgain_en_getf(void)
  */
 __INLINE void bt_rf_clk_rxgain_en_setf(uint8_t clkrxgainen)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)clkrxgainen << 9));
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)clkrxgainen << 9));
 }
 
 /**
@@ -410,7 +410,7 @@ __INLINE void bt_rf_clk_rxgain_en_setf(uint8_t clkrxgainen)
  */
 __INLINE uint8_t bt_rf_rxgain_mem_cfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -423,7 +423,7 @@ __INLINE uint8_t bt_rf_rxgain_mem_cfg_getf(void)
  */
 __INLINE void bt_rf_rxgain_mem_cfg_setf(uint8_t rxgainmemcfg)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)rxgainmemcfg << 8));
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)rxgainmemcfg << 8));
 }
 
 /**
@@ -435,7 +435,7 @@ __INLINE void bt_rf_rxgain_mem_cfg_setf(uint8_t rxgainmemcfg)
  */
 __INLINE uint8_t bt_rf_rxgain_mem_ren_pulse_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000080)) >> 7);
 }
 
@@ -448,7 +448,7 @@ __INLINE uint8_t bt_rf_rxgain_mem_ren_pulse_getf(void)
  */
 __INLINE void bt_rf_rxgain_mem_ren_pulse_setf(uint8_t rxgainmemrenpulse)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)rxgainmemrenpulse << 7));
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)rxgainmemrenpulse << 7));
 }
 
 /**
@@ -460,7 +460,7 @@ __INLINE void bt_rf_rxgain_mem_ren_pulse_setf(uint8_t rxgainmemrenpulse)
  */
 __INLINE uint8_t bt_rf_rxgain_mem_wen_pulse_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000040)) >> 6);
 }
 
@@ -473,7 +473,7 @@ __INLINE uint8_t bt_rf_rxgain_mem_wen_pulse_getf(void)
  */
 __INLINE void bt_rf_rxgain_mem_wen_pulse_setf(uint8_t rxgainmemwenpulse)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)rxgainmemwenpulse << 6));
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)rxgainmemwenpulse << 6));
 }
 
 /**
@@ -485,7 +485,7 @@ __INLINE void bt_rf_rxgain_mem_wen_pulse_setf(uint8_t rxgainmemwenpulse)
  */
 __INLINE uint8_t bt_rf_rxgain_mem_addr_cfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x0000003F)) >> 0);
 }
 
@@ -498,7 +498,7 @@ __INLINE uint8_t bt_rf_rxgain_mem_addr_cfg_getf(void)
  */
 __INLINE void bt_rf_rxgain_mem_addr_cfg_setf(uint8_t rxgainmemaddrcfg)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)rxgainmemaddrcfg << 0));
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x0000003F)) | ((uint32_t)rxgainmemaddrcfg << 0));
 }
 
 /// @}
@@ -530,7 +530,7 @@ __INLINE void bt_rf_rxgain_mem_addr_cfg_setf(uint8_t rxgainmemaddrcfg)
  */
 __INLINE uint32_t bt_rf_rxgain_mem_wd_get(void)
 {
-    return REG_PL_RD(BT_RF_RXGAIN_MEM_WD_ADDR);
+    return PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_WD_ADDR);
 }
 
 /**
@@ -540,7 +540,7 @@ __INLINE uint32_t bt_rf_rxgain_mem_wd_get(void)
  */
 __INLINE void bt_rf_rxgain_mem_wd_set(uint32_t value)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_WD_ADDR, value);
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_WD_ADDR, value);
 }
 
 // field definitions
@@ -563,7 +563,7 @@ __INLINE void bt_rf_rxgain_mem_wd_set(uint32_t value)
  */
 __INLINE uint32_t bt_rf_rxgain_mem_wdata_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_RXGAIN_MEM_WD_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_WD_ADDR);
     return (localVal >> 0);
 }
 
@@ -576,7 +576,7 @@ __INLINE uint32_t bt_rf_rxgain_mem_wdata_getf(void)
  */
 __INLINE void bt_rf_rxgain_mem_wdata_setf(uint32_t rxgainmemwdata)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_WD_ADDR, (uint32_t)rxgainmemwdata << 0);
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_WD_ADDR, (uint32_t)rxgainmemwdata << 0);
 }
 
 /// @}
@@ -608,7 +608,7 @@ __INLINE void bt_rf_rxgain_mem_wdata_setf(uint32_t rxgainmemwdata)
  */
 __INLINE uint32_t bt_rf_rxgain_mem_rd_get(void)
 {
-    return REG_PL_RD(BT_RF_RXGAIN_MEM_RD_ADDR);
+    return PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_RD_ADDR);
 }
 
 /**
@@ -618,7 +618,7 @@ __INLINE uint32_t bt_rf_rxgain_mem_rd_get(void)
  */
 __INLINE void bt_rf_rxgain_mem_rd_set(uint32_t value)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_RD_ADDR, value);
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_RD_ADDR, value);
 }
 
 // field definitions
@@ -641,7 +641,7 @@ __INLINE void bt_rf_rxgain_mem_rd_set(uint32_t value)
  */
 __INLINE uint32_t bt_rf_rxgain_mem_rdata_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_RXGAIN_MEM_RD_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_RXGAIN_MEM_RD_ADDR);
     return (localVal >> 0);
 }
 
@@ -654,7 +654,7 @@ __INLINE uint32_t bt_rf_rxgain_mem_rdata_getf(void)
  */
 __INLINE void bt_rf_rxgain_mem_rdata_setf(uint32_t rxgainmemrdata)
 {
-    REG_PL_WR(BT_RF_RXGAIN_MEM_RD_ADDR, (uint32_t)rxgainmemrdata << 0);
+    PLATFORM_REG_WRITE(BT_RF_RXGAIN_MEM_RD_ADDR, (uint32_t)rxgainmemrdata << 0);
 }
 
 /// @}
@@ -692,7 +692,7 @@ __INLINE void bt_rf_rxgain_mem_rdata_setf(uint32_t rxgainmemrdata)
  */
 __INLINE uint32_t bt_rf_txgain_mem_ctrl_get(void)
 {
-    return REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR);
+    return PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR);
 }
 
 /**
@@ -702,7 +702,7 @@ __INLINE uint32_t bt_rf_txgain_mem_ctrl_get(void)
  */
 __INLINE void bt_rf_txgain_mem_ctrl_set(uint32_t value)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_CTRL_ADDR, value);
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_CTRL_ADDR, value);
 }
 
 // field definitions
@@ -766,7 +766,7 @@ __INLINE void bt_rf_txgain_mem_ctrl_set(uint32_t value)
  */
 __INLINE void bt_rf_txgain_mem_ctrl_pack(uint8_t txgainmemrwdone, uint8_t clktxgainsel, uint8_t clktxgainen, uint8_t txgainmemcfg, uint8_t txgainmemrenpulse, uint8_t txgainmemwenpulse, uint8_t txgainmemaddrcfg)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_CTRL_ADDR,  ((uint32_t)txgainmemrwdone << 10) | ((uint32_t)clktxgainsel << 9) | ((uint32_t)clktxgainen << 8) | ((uint32_t)txgainmemcfg << 7) | ((uint32_t)txgainmemrenpulse << 6) | ((uint32_t)txgainmemwenpulse << 5) | ((uint32_t)txgainmemaddrcfg << 0));
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_CTRL_ADDR,  ((uint32_t)txgainmemrwdone << 10) | ((uint32_t)clktxgainsel << 9) | ((uint32_t)clktxgainen << 8) | ((uint32_t)txgainmemcfg << 7) | ((uint32_t)txgainmemrenpulse << 6) | ((uint32_t)txgainmemwenpulse << 5) | ((uint32_t)txgainmemaddrcfg << 0));
 }
 
 /**
@@ -785,7 +785,7 @@ __INLINE void bt_rf_txgain_mem_ctrl_pack(uint8_t txgainmemrwdone, uint8_t clktxg
  */
 __INLINE void bt_rf_txgain_mem_ctrl_unpack(uint8_t* txgainmemrwdone, uint8_t* clktxgainsel, uint8_t* clktxgainen, uint8_t* txgainmemcfg, uint8_t* txgainmemrenpulse, uint8_t* txgainmemwenpulse, uint8_t* txgainmemaddrcfg)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR);
 
     *txgainmemrwdone = (localVal & ((uint32_t)0x00000400)) >> 10;
     *clktxgainsel = (localVal & ((uint32_t)0x00000200)) >> 9;
@@ -805,7 +805,7 @@ __INLINE void bt_rf_txgain_mem_ctrl_unpack(uint8_t* txgainmemrwdone, uint8_t* cl
  */
 __INLINE uint8_t bt_rf_txgain_mem_rw_done_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000400)) >> 10);
 }
 
@@ -818,7 +818,7 @@ __INLINE uint8_t bt_rf_txgain_mem_rw_done_getf(void)
  */
 __INLINE void bt_rf_txgain_mem_rw_done_setf(uint8_t txgainmemrwdone)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)txgainmemrwdone << 10));
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000400)) | ((uint32_t)txgainmemrwdone << 10));
 }
 
 /**
@@ -830,7 +830,7 @@ __INLINE void bt_rf_txgain_mem_rw_done_setf(uint8_t txgainmemrwdone)
  */
 __INLINE uint8_t bt_rf_clk_txgain_sel_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000200)) >> 9);
 }
 
@@ -843,7 +843,7 @@ __INLINE uint8_t bt_rf_clk_txgain_sel_getf(void)
  */
 __INLINE void bt_rf_clk_txgain_sel_setf(uint8_t clktxgainsel)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)clktxgainsel << 9));
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000200)) | ((uint32_t)clktxgainsel << 9));
 }
 
 /**
@@ -855,7 +855,7 @@ __INLINE void bt_rf_clk_txgain_sel_setf(uint8_t clktxgainsel)
  */
 __INLINE uint8_t bt_rf_clk_txgain_en_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
@@ -868,7 +868,7 @@ __INLINE uint8_t bt_rf_clk_txgain_en_getf(void)
  */
 __INLINE void bt_rf_clk_txgain_en_setf(uint8_t clktxgainen)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)clktxgainen << 8));
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)clktxgainen << 8));
 }
 
 /**
@@ -880,7 +880,7 @@ __INLINE void bt_rf_clk_txgain_en_setf(uint8_t clktxgainen)
  */
 __INLINE uint8_t bt_rf_txgain_mem_cfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000080)) >> 7);
 }
 
@@ -893,7 +893,7 @@ __INLINE uint8_t bt_rf_txgain_mem_cfg_getf(void)
  */
 __INLINE void bt_rf_txgain_mem_cfg_setf(uint8_t txgainmemcfg)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)txgainmemcfg << 7));
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)txgainmemcfg << 7));
 }
 
 /**
@@ -905,7 +905,7 @@ __INLINE void bt_rf_txgain_mem_cfg_setf(uint8_t txgainmemcfg)
  */
 __INLINE uint8_t bt_rf_txgain_mem_ren_pulse_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000040)) >> 6);
 }
 
@@ -918,7 +918,7 @@ __INLINE uint8_t bt_rf_txgain_mem_ren_pulse_getf(void)
  */
 __INLINE void bt_rf_txgain_mem_ren_pulse_setf(uint8_t txgainmemrenpulse)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)txgainmemrenpulse << 6));
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)txgainmemrenpulse << 6));
 }
 
 /**
@@ -930,7 +930,7 @@ __INLINE void bt_rf_txgain_mem_ren_pulse_setf(uint8_t txgainmemrenpulse)
  */
 __INLINE uint8_t bt_rf_txgain_mem_wen_pulse_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x00000020)) >> 5);
 }
 
@@ -943,7 +943,7 @@ __INLINE uint8_t bt_rf_txgain_mem_wen_pulse_getf(void)
  */
 __INLINE void bt_rf_txgain_mem_wen_pulse_setf(uint8_t txgainmemwenpulse)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)txgainmemwenpulse << 5));
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)txgainmemwenpulse << 5));
 }
 
 /**
@@ -955,7 +955,7 @@ __INLINE void bt_rf_txgain_mem_wen_pulse_setf(uint8_t txgainmemwenpulse)
  */
 __INLINE uint8_t bt_rf_txgain_mem_addr_cfg_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR);
     return ((localVal & ((uint32_t)0x0000001F)) >> 0);
 }
 
@@ -968,7 +968,7 @@ __INLINE uint8_t bt_rf_txgain_mem_addr_cfg_getf(void)
  */
 __INLINE void bt_rf_txgain_mem_addr_cfg_setf(uint8_t txgainmemaddrcfg)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_CTRL_ADDR, (REG_PL_RD(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x0000001F)) | ((uint32_t)txgainmemaddrcfg << 0));
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_CTRL_ADDR, (PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_CTRL_ADDR) & ~((uint32_t)0x0000001F)) | ((uint32_t)txgainmemaddrcfg << 0));
 }
 
 /// @}
@@ -1000,7 +1000,7 @@ __INLINE void bt_rf_txgain_mem_addr_cfg_setf(uint8_t txgainmemaddrcfg)
  */
 __INLINE uint32_t bt_rf_txgain_mem_wd_get(void)
 {
-    return REG_PL_RD(BT_RF_TXGAIN_MEM_WD_ADDR);
+    return PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_WD_ADDR);
 }
 
 /**
@@ -1010,7 +1010,7 @@ __INLINE uint32_t bt_rf_txgain_mem_wd_get(void)
  */
 __INLINE void bt_rf_txgain_mem_wd_set(uint32_t value)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_WD_ADDR, value);
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_WD_ADDR, value);
 }
 
 // field definitions
@@ -1033,7 +1033,7 @@ __INLINE void bt_rf_txgain_mem_wd_set(uint32_t value)
  */
 __INLINE uint32_t bt_rf_txgain_mem_wdata_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_TXGAIN_MEM_WD_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_WD_ADDR);
     return (localVal >> 0);
 }
 
@@ -1046,7 +1046,7 @@ __INLINE uint32_t bt_rf_txgain_mem_wdata_getf(void)
  */
 __INLINE void bt_rf_txgain_mem_wdata_setf(uint32_t txgainmemwdata)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_WD_ADDR, (uint32_t)txgainmemwdata << 0);
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_WD_ADDR, (uint32_t)txgainmemwdata << 0);
 }
 
 /// @}
@@ -1078,7 +1078,7 @@ __INLINE void bt_rf_txgain_mem_wdata_setf(uint32_t txgainmemwdata)
  */
 __INLINE uint32_t bt_rf_txgain_mem_rd_get(void)
 {
-    return REG_PL_RD(BT_RF_TXGAIN_MEM_RD_ADDR);
+    return PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_RD_ADDR);
 }
 
 /**
@@ -1088,7 +1088,7 @@ __INLINE uint32_t bt_rf_txgain_mem_rd_get(void)
  */
 __INLINE void bt_rf_txgain_mem_rd_set(uint32_t value)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_RD_ADDR, value);
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_RD_ADDR, value);
 }
 
 // field definitions
@@ -1111,7 +1111,7 @@ __INLINE void bt_rf_txgain_mem_rd_set(uint32_t value)
  */
 __INLINE uint32_t bt_rf_txgain_mem_rdata_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(BT_RF_TXGAIN_MEM_RD_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(BT_RF_TXGAIN_MEM_RD_ADDR);
     return (localVal >> 0);
 }
 
@@ -1124,7 +1124,7 @@ __INLINE uint32_t bt_rf_txgain_mem_rdata_getf(void)
  */
 __INLINE void bt_rf_txgain_mem_rdata_setf(uint32_t txgainmemrdata)
 {
-    REG_PL_WR(BT_RF_TXGAIN_MEM_RD_ADDR, (uint32_t)txgainmemrdata << 0);
+    PLATFORM_REG_WRITE(BT_RF_TXGAIN_MEM_RD_ADDR, (uint32_t)txgainmemrdata << 0);
 }
 
 /// @}

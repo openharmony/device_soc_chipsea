@@ -26,9 +26,9 @@
  * INCLUDE FILES
  ****************************************************************************************
  */
-#include "rtos_def.h"
-#include "rtos.h"
-#include "rtos_al.h"
+#include "rtos_ohos_def.h"
+#include "al_rtos.h"
+#include "rtos_ohos_al.h"
 #include <string.h>
 #include <stdio.h>
 #include "cmsis_os2.h"
