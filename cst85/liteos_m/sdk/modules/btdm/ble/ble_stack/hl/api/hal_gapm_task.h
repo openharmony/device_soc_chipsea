@@ -18,7 +18,6 @@
 #include "ble_ip_task.h" // Task definitions
 #include "hal_gap.h"
 #include "wb_co_math.h"
-#include "ble_ke_msg.h"
 
 /// Offset for List Management Operation Codes
 #define GAPM_OP_OFFSET_LIST_MGMT  (0x90)

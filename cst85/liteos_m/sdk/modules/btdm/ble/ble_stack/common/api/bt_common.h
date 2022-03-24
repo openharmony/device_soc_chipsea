@@ -21,6 +21,5 @@
 
 #include "bt_common_defines.h" // Bluetooth defines
 #include "bt_common_hci.h"        // Bluetooth HCI definitions
-#include "bt_common_error.h"      // Bluetooth error codes definitions
 
 #endif // CO_BT_H_

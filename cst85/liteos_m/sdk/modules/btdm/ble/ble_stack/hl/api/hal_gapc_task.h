@@ -18,7 +18,7 @@
 #include "ble_ip_task.h" // Task definitions
 #include "hal_gap.h"
 #include <stdbool.h>
-#include "ble_ke_msg.h"
+#include "ble_ke_msg_type.h"
 
 /// GAP Controller Task messages
 /*@TRACE*/

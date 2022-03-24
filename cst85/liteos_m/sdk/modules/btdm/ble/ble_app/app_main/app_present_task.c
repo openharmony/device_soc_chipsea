@@ -44,7 +44,6 @@
 
 #if (BLE_APP_BATT)
 #include "app_batt.h"             // Battery Module Definition
-#include "ble_bass_task.h"
 #endif //(BLE_APP_BATT)
 
 #if (BLE_APP_HID)

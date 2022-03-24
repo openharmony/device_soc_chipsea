@@ -16,7 +16,6 @@ module_name = "sdk_module_btdm"
 
 kernel_module(module_name) {
   sources = [
-    "ble/ble_app/app_main/app_present.c",
     "ble/ble_app/app_main/app_present_task.c",
     "ble/ble_profiles/smartconfig/smartconfigs/src/smartconfig.c",
     "ble/ble_profiles/smartconfig/smartconfigs/src/smartconfig_task.c", 

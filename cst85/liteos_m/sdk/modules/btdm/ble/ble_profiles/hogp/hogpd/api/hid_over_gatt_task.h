@@ -18,7 +18,6 @@
 
 #include <stdint.h>
 #include "ble_ip_task.h" // Task definitions
-#include "hid_over_gatt_common.h"
 
 /// Maximal number of HIDS that can be added in the DB
 #define HOGPD_NB_HIDS_INST_MAX              (2)

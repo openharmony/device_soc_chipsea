@@ -27,7 +27,6 @@
  */
 
 #include "ble_ip_config.h"          // stack configuration
-#include "ble_ke_msg.h"               // messaging definition
 
 
 /*

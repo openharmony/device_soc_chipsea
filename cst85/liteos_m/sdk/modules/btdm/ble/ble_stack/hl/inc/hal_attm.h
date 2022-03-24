@@ -19,7 +19,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-#include "bt_common_error.h"
 #include "hal_att.h"
 #include "ble_ke_task.h"
 

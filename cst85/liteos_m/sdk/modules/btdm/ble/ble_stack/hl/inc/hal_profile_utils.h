@@ -17,7 +17,6 @@
 
 #include "ble_ip_config.h"
 #if (BLE_SERVER_PRF || BLE_CLIENT_PRF)
-#include "ble_ke_msg.h"
 #include "hal_prf_types.h"
 #include "hal_gattc_task.h"
 #include "hal_gapc.h"

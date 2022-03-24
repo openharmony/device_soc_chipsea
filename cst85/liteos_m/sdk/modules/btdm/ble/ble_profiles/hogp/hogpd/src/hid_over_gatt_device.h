@@ -18,7 +18,6 @@
 #include "ble_ip_config.h"
 
 #if (BLE_HID_DEVICE)
-#include "hid_over_gatt_common.h"
 #include "hid_over_gatt_task.h"
 
 #include "hal_profile.h"

@@ -19,7 +19,7 @@
 #include "ble_ip_task.h" // Task definitions
 #include "compiler.h"
 #include <stdbool.h>
-#include "ble_ke_msg.h"
+#include "ble_ke_msg_type.h"
 
 /// GATT Task messages
 /*@TRACE*/
