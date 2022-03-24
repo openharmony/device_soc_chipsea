@@ -17,7 +17,7 @@
 /*chipsea_ohos proguard end*/
 #include "cs_target_config.h"
 #if APP_SUPPORT_A2DP_SBC == 1 || APP_SUPPORT_A2DP_AAC ==1 ||APP_SUPPORT_A2DP_SOURCE == 1
-#include "rtos.h"
+#include "al_rtos.h"
 #include "app_bt.h"
 #include "app_a2dp.h"
 #if APP_SUPPORT_A2DP_SOURCE == 1

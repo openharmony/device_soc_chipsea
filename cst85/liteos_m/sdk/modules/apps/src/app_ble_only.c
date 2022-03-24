@@ -16,7 +16,7 @@
 #ifdef CFG_BLE_ONLY
 #include "cs_target_config.h"
 #include <string.h>
-#include "rtos.h"
+#include "al_rtos.h"
 #include "flash_api.h"
 #include "ble_task_msg.h"
 #if (PLF_CONSOLE)

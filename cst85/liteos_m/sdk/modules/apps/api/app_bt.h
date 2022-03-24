@@ -14,7 +14,7 @@
  */
 #ifndef __APP_BT_H__
 #define __APP_BT_H__
-#include "rtos.h"
+#include "al_rtos.h"
 #include "cs_adp_api.h"
 #include "app_media.h"
 #include "app_bt_queue.h"

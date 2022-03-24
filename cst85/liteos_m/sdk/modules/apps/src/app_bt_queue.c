@@ -17,7 +17,7 @@
 /*chipsea_ohos proguard begin*/
 #include "cs_proguard.h"
 /*chipsea_ohos proguard end*/
-#include "rtos.h"
+#include "al_rtos.h"
 #include "app_bt.h"
 #include "app_bt_queue.h"
 #include "cs_adp_api.h"

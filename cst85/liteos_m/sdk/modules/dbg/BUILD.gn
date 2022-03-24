@@ -16,9 +16,9 @@ module_name = "bsp_sdk_dbg"
 print("SOC:CHIPSEA:CST85/liteos_m/sdk - $module_name")
 kernel_module(module_name) {
   sources = [
-    "dbg.c",
-    "dbg_assert.c",
-    "dbg_print.c",
+    "cs_dbg.c",
+    "cs_dbg_assert.c",
+    "cs_dbg_print.c",
   ]
 
 }

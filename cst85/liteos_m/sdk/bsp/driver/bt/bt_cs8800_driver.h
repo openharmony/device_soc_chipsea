@@ -15,7 +15,7 @@
 #ifndef __BT_CS8800_DRIVER_H__
 #define  __BT_CS8800_DRIVER_H__
 #include "compiler.h"
-#include "reg_access.h"
+#include "reg_access_wrapper.h"
 
 #define BT_POWERON            1
 #define BT_POWEROFF           0
@@ -214,7 +214,7 @@ typedef struct
 
 __INLINE uint32_t ip_clkncntraw_get(void)
 {
-    return REG_IP_RD(IP_CLKNCNTRAW_ADDR);
+    return IP_REG_READ(IP_CLKNCNTRAW_ADDR);
 }
 /**
  * @brief FINECNTRAW register definition
@@ -231,7 +231,7 @@ __INLINE uint32_t ip_clkncntraw_get(void)
 
 __INLINE uint32_t ip_finecntraw_get(void)
 {
-    return REG_IP_RD(IP_FINECNTRAW_ADDR);
+    return IP_REG_READ(IP_FINECNTRAW_ADDR);
 }
 
 #endif

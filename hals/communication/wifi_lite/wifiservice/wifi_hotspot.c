@@ -17,7 +17,7 @@
 #include "wifi_device_config.h"
 #include "wifi_hotspot_config.h"
 #include "inet.h"
-#include "fhost.h"
+#include "wifi_host.h"
 #include "dhcp.h"
 #include "dhcps.h"
 #include "wlan_if.h"

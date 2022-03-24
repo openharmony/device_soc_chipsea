@@ -49,8 +49,8 @@
 #include "lwip/prot/dhcp.h"
 //end
 #include "flash_api.h"
-#include "mac.h"
-#include "fhost_cntrl.h"
+#include "wifi_mac.h"
+#include "wifi_host_cntrl.h"
 #include "dbg.h"
 
 /*

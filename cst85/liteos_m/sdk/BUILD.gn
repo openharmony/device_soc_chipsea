@@ -42,15 +42,10 @@ config("public") {
   ldflags = [
     "-Wl,-T" + rebase_path("bsp/out/cst85f01/cst85f01.ld"),
     "-L" + rebase_path("bsp/out/cst85f01/"),
-    "-L" + rebase_path("modules/wifi/lib/armgcc_4_8"),
-    "-L" + rebase_path("modules/btdm/lib/armgcc_4_8"),
   ]
 
   libs = [
-    "drv",
-    "wifi",
-    "wpa",
-    "bleonly",
-    "bt"
+    "sdk",
+    "iot",
   ]
 }

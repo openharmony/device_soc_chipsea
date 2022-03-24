@@ -18,9 +18,9 @@
 #include "cs_proguard.h"
 /*chipsea_ohos proguard end*/
 
-#include "rtos.h"
+#include "al_rtos.h"
 #include "dbg.h"
-#include "co_int.h"
+#include "wb_co_int.h"
 
 enum {
     CSBLE_ERROR_LEVEL  = 0,

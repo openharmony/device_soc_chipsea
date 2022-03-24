@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 #include <stddef.h>     // standard definition
-#include "stdio_uart.h"
+#include "uart.h"
 #include "reg_iomux.h"
 #include "sysctrl_api.h"
 #include "reg_ipc_comreg.h"
@@ -100,24 +100,24 @@ void stdio_uart_baud_set(uint32_t baud)
 {
     if (stdio_uart_baudrate != baud) {
         uint32_t div0, div1, div2;
-        #if (!MAX_BAUD_RATE)
+#if (!MAX_BAUD_RATE)
         uint32_t clk, div;
-        #endif
+#endif
         stdio_uart_baudrate = baud;
-        #if (MAX_BAUD_RATE)
+#if (MAX_BAUD_RATE)
         div0 = 0x01UL;
         div1 = div2 = 0x00UL;
-        #else
-        #if (PLF_HW_FPGA == 1)
+#else //MAX_BAUD_RATE
+#if (PLF_HW_FPGA == 1)
         clk = DEF_CLK_FREQUENCY_52M;
-        #else
+#else
         clk = sysctrl_clock_get(PERCLK_INDEX);
-        #endif
+#endif
         div  = clk / stdio_uart_baudrate;
         div0 = 0xFFUL & (div >> 4);
         div1 = 0xFFUL & (div >> 12);
         div2 = (0x01UL & div) + (0x07UL & (div >> 1)) + (0x70UL & (div << 3));
-        #endif
+#endif
         stdio_uart_divae_setf(1);  //div reg access enable
         stdio_uart_div0_set(div0);
         stdio_uart_div1_set(div1);

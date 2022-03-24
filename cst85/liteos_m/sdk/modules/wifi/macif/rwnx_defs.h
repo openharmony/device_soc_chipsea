@@ -15,8 +15,8 @@
 #ifndef _RWNX_DEFS_H_
 #define _RWNX_DEFS_H_
 
-#include "ipc_host.h"
-#include "rwnx_cmds.h"
+#include "wifi_ipc_host.h"
+#include "wifi_nx_cmds.h"
 #include "rwnx_utils.h"
 
 //#define ipc_host_env_tag ipc_fhost_host_env_tag;

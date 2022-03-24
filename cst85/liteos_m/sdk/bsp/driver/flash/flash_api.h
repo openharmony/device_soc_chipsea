@@ -18,9 +18,9 @@
 #include "plf.h"
 
 #ifdef CFG_BLE_STACK
-#include "gap.h"
-#include "gapc_task.h"
-#include "co_bt_defines.h"
+#include "hal_gap.h"
+#include "hal_gapc_task.h"
+#include "bt_common_defines.h"
 #endif //CFG_BLE_STACK
 
 #if PLF_BT_STACK == 1

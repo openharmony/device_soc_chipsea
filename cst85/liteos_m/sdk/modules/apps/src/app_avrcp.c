@@ -17,7 +17,7 @@
 /*chipsea_ohos proguard end*/
 #include "cs_target_config.h"
 #if APP_SUPPORT_AVRCP == 1
-#include "rtos.h"
+#include "al_rtos.h"
 #include "app_bt.h"
 #include "cs_adp_api.h"
 

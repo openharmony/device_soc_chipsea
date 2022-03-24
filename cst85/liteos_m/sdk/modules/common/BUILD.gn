@@ -16,12 +16,8 @@ module_name = "sdk_module_common_api"
 
 kernel_module(module_name) {
   sources = [
-    "src/co_dlist.c",
-    "src/co_list.c",
-    "src/co_main.c",
-    "src/co_math.c",
-    "src/co_pool.c",
-    "src/co_ring.c",
+    "src/wb_co_main.c",
+    "src/wb_co_math.c",
     "src/ring_buffer.c",
   ]
 }

@@ -34,12 +34,11 @@
 #include <stddef.h>    // standard definitions
 #include <stdint.h>    // standard integer definition
 #include <stdbool.h>   // boolean definition
-#include "boot.h"      // boot definition
 #include "time_api.h"
 
 #include "dbg.h"
 
-#include "stdio_uart.h"
+#include "uart.h"
 #include "system.h"
 
 #if (PLF_CONSOLE)
@@ -56,7 +55,7 @@
 
 /*chipsea_ohos include begin */
 #ifdef CFG_LITEOS
-#include "rtos.h"
+#include "al_rtos.h"
 #include "los_arch_interrupt.h"
 #include "los_tick.h"
 #endif

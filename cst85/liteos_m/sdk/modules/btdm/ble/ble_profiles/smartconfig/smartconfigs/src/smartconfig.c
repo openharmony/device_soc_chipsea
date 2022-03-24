@@ -1,39 +1,32 @@
-/**
- ****************************************************************************************
- *
- * @file smartconfig.c
- *
- * @brief Smart Config profile implementation.
- *
- * Copyright (C) CS
- *
- *
- ****************************************************************************************
- */
-
-
 /*
- * INCLUDE FILES
- ****************************************************************************************
+ * Copyright (c) 2021 Chipsea Technologies (Shenzhen) Corp., Ltd. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-#include "rwip_config.h"
+
+#include "ble_ip_config.h"
 
 #if (BLE_SMARTCONFIG)
-#include "gap.h"
-#include "gattc_task.h"
-#include "attm.h"
-#include "gapc_task.h"
+#include "hal_gap.h"
+#include "hal_gattc_task.h"
+#include "hal_attm.h"
+#include "hal_gapc_task.h"
 #include "smartconfig.h"
 #include "smartconfig_task.h"
-#include "prf_utils.h"
-#include "ke_mem.h"
-#include "ble_utils.h"
+#include "hal_profile_utils.h"
+#include "ble_ke_mem.h"
+#include "ble_common_utils.h"
 
 
-/*
- * SMART CONFIG CMD PROFILE ATTRIBUTES
- ****************************************************************************************
- */
 #define smartconfig_service_uuid_128_content                {0xfb,0x34,0x9b,0x5f,0x80,0x00,0x00,0x80,0x00,0x10,0x00,0x00,0xe7,0xfe,0x00,0x00}
 #define smartconfig_cmd_ap_info_val_uuid_128_content        {0xfb,0x34,0x9b,0x5f,0x80,0x00,0x00,0x80,0x00,0x10,0x00,0x00,0xc7,0xfe,0x00,0x00}
 #define smartconfig_cmd_wifi_state_val_uuid_128_content     {0xfb,0x34,0x9b,0x5f,0x80,0x00,0x00,0x80,0x00,0x10,0x00,0x00,0xc8,0xfe,0x00,0x00}
@@ -217,6 +210,3 @@ const struct prf_task_cbs* smartconfig_prf_itf_get(void)
 
 
 #endif /* BLE_SMARTCONFIG */
-
-/// @} SMARTCONFIG
-

@@ -1,6 +1,22 @@
 
-#include "device_info/device_info.hcs"
+#include "device_info.hcs"
 
 root {
-    module = "chipsea,CFT8051";
+    platform {
+        gpio_config {
+            match_attr = "gpio_config";
+
+            gpios = [
+                /*
+                    GPIOINDEX 0,1,2,
+                    GPIONO should in order ,first is start
+                    GPIOTYPE GPIO(0)\INT(1)
+                    DIR: IN(0)\OUT(1)
+                    MODE: LOW(0)\HIGH(1)
+                        irq trigger edge, rising(1)\falling(2)\high(4)\low(8)\thread
+                */
+                0, 6, 0, 1, 0,
+            ];
+        }
+    }
 }

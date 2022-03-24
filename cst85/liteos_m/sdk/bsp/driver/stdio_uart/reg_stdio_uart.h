@@ -19,7 +19,7 @@
 #include "compiler.h"
 #include "arch.h"
 #include "dbg_assert.h"
-#include "reg_access.h"
+#include "reg_access_wrapper.h"
 
 #define REG_STDIO_UART_BASE_ADDR    CS_UART0_BASE
 /// UART index
@@ -50,12 +50,12 @@
 
 __STATIC_INLINE uint32_t stdio_uart_txrxd_get(void)
 {
-    return REG_PL_RD(STDIO_UART_TXRXD_ADDR);
+    return PLATFORM_REG_READ(STDIO_UART_TXRXD_ADDR);
 }
 
 __STATIC_INLINE void stdio_uart_txrxd_set(uint32_t value)
 {
-    REG_PL_WR(STDIO_UART_TXRXD_ADDR, value);
+    PLATFORM_REG_WRITE(STDIO_UART_TXRXD_ADDR, value);
 }
 
 // field definitions
@@ -71,13 +71,13 @@ __STATIC_INLINE void stdio_uart_txrxd_set(uint32_t value)
 
 __STATIC_INLINE uint8_t stdio_uart_rxdata_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_TXRXD_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_TXRXD_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
 __STATIC_INLINE void stdio_uart_txdata_setf(uint8_t txdata)
 {
-    REG_PL_WR(STDIO_UART_TXRXD_ADDR, (uint32_t)txdata << 0);
+    PLATFORM_REG_WRITE(STDIO_UART_TXRXD_ADDR, (uint32_t)txdata << 0);
 }
 
 /**
@@ -96,12 +96,12 @@ __STATIC_INLINE void stdio_uart_txdata_setf(uint8_t txdata)
 
 __STATIC_INLINE uint32_t stdio_uart_div0_get(void)
 {
-    return REG_PL_RD(STDIO_UART_DIV0_ADDR);
+    return PLATFORM_REG_READ(STDIO_UART_DIV0_ADDR);
 }
 
 __STATIC_INLINE void stdio_uart_div0_set(uint32_t value)
 {
-    REG_PL_WR(STDIO_UART_DIV0_ADDR, value);
+    PLATFORM_REG_WRITE(STDIO_UART_DIV0_ADDR, value);
 }
 
 // field definitions
@@ -113,13 +113,13 @@ __STATIC_INLINE void stdio_uart_div0_set(uint32_t value)
 
 __STATIC_INLINE uint8_t stdio_uart_div0_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DIV0_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DIV0_ADDR);
     return (localVal >> 0);
 }
 
 __STATIC_INLINE void stdio_uart_div0_setf(uint8_t div0)
 {
-    REG_PL_WR(STDIO_UART_DIV0_ADDR, (uint32_t)div0 << 0);
+    PLATFORM_REG_WRITE(STDIO_UART_DIV0_ADDR, (uint32_t)div0 << 0);
 }
 
 /**
@@ -141,12 +141,12 @@ __STATIC_INLINE void stdio_uart_div0_setf(uint8_t div0)
 
 __STATIC_INLINE uint32_t stdio_uart_irqctl_get(void)
 {
-    return REG_PL_RD(STDIO_UART_IRQCTL_ADDR);
+    return PLATFORM_REG_READ(STDIO_UART_IRQCTL_ADDR);
 }
 
 __STATIC_INLINE void stdio_uart_irqctl_set(uint32_t value)
 {
-    REG_PL_WR(STDIO_UART_IRQCTL_ADDR, value);
+    PLATFORM_REG_WRITE(STDIO_UART_IRQCTL_ADDR, value);
 }
 
 // field definitions
@@ -169,12 +169,12 @@ __STATIC_INLINE void stdio_uart_irqctl_set(uint32_t value)
 
 __STATIC_INLINE void stdio_uart_irqctl_pack(uint8_t ptirqen, uint8_t msirqen, uint8_t lsirqen, uint8_t txirqen, uint8_t rxirqen)
 {
-    REG_PL_WR(STDIO_UART_IRQCTL_ADDR,  ((uint32_t)ptirqen << 7) | ((uint32_t)msirqen << 3) | ((uint32_t)lsirqen << 2) | ((uint32_t)txirqen << 1) | ((uint32_t)rxirqen << 0));
+    PLATFORM_REG_WRITE(STDIO_UART_IRQCTL_ADDR,  ((uint32_t)ptirqen << 7) | ((uint32_t)msirqen << 3) | ((uint32_t)lsirqen << 2) | ((uint32_t)txirqen << 1) | ((uint32_t)rxirqen << 0));
 }
 
 __STATIC_INLINE void stdio_uart_irqctl_unpack(uint8_t* ptirqen, uint8_t* msirqen, uint8_t* lsirqen, uint8_t* txirqen, uint8_t* rxirqen)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQCTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQCTL_ADDR);
 
     *ptirqen = (localVal & ((uint32_t)0x00000080)) >> 7;
     *msirqen = (localVal & ((uint32_t)0x00000008)) >> 3;
@@ -185,57 +185,57 @@ __STATIC_INLINE void stdio_uart_irqctl_unpack(uint8_t* ptirqen, uint8_t* msirqen
 
 __STATIC_INLINE uint8_t stdio_uart_ptirqen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQCTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQCTL_ADDR);
     return ((localVal & ((uint32_t)0x00000080)) >> 7);
 }
 
 __STATIC_INLINE void stdio_uart_ptirqen_setf(uint8_t ptirqen)
 {
-    REG_PL_WR(STDIO_UART_IRQCTL_ADDR, (REG_PL_RD(STDIO_UART_IRQCTL_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)ptirqen << 7));
+    PLATFORM_REG_WRITE(STDIO_UART_IRQCTL_ADDR, (PLATFORM_REG_READ(STDIO_UART_IRQCTL_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)ptirqen << 7));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_msirqen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQCTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQCTL_ADDR);
     return ((localVal & ((uint32_t)0x00000008)) >> 3);
 }
 
 __STATIC_INLINE void stdio_uart_msirqen_setf(uint8_t msirqen)
 {
-    REG_PL_WR(STDIO_UART_IRQCTL_ADDR, (REG_PL_RD(STDIO_UART_IRQCTL_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)msirqen << 3));
+    PLATFORM_REG_WRITE(STDIO_UART_IRQCTL_ADDR, (PLATFORM_REG_READ(STDIO_UART_IRQCTL_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)msirqen << 3));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_lsirqen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQCTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQCTL_ADDR);
     return ((localVal & ((uint32_t)0x00000004)) >> 2);
 }
 
 __STATIC_INLINE void stdio_uart_lsirqen_setf(uint8_t lsirqen)
 {
-    REG_PL_WR(STDIO_UART_IRQCTL_ADDR, (REG_PL_RD(STDIO_UART_IRQCTL_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)lsirqen << 2));
+    PLATFORM_REG_WRITE(STDIO_UART_IRQCTL_ADDR, (PLATFORM_REG_READ(STDIO_UART_IRQCTL_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)lsirqen << 2));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_txirqen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQCTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQCTL_ADDR);
     return ((localVal & ((uint32_t)0x00000002)) >> 1);
 }
 
 __STATIC_INLINE void stdio_uart_txirqen_setf(uint8_t txirqen)
 {
-    REG_PL_WR(STDIO_UART_IRQCTL_ADDR, (REG_PL_RD(STDIO_UART_IRQCTL_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)txirqen << 1));
+    PLATFORM_REG_WRITE(STDIO_UART_IRQCTL_ADDR, (PLATFORM_REG_READ(STDIO_UART_IRQCTL_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)txirqen << 1));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_rxirqen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQCTL_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQCTL_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
 __STATIC_INLINE void stdio_uart_rxirqen_setf(uint8_t rxirqen)
 {
-    REG_PL_WR(STDIO_UART_IRQCTL_ADDR, (REG_PL_RD(STDIO_UART_IRQCTL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)rxirqen << 0));
+    PLATFORM_REG_WRITE(STDIO_UART_IRQCTL_ADDR, (PLATFORM_REG_READ(STDIO_UART_IRQCTL_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)rxirqen << 0));
 }
 
 /**
@@ -254,12 +254,12 @@ __STATIC_INLINE void stdio_uart_rxirqen_setf(uint8_t rxirqen)
 
 __STATIC_INLINE uint32_t stdio_uart_div1_get(void)
 {
-    return REG_PL_RD(STDIO_UART_DIV1_ADDR);
+    return PLATFORM_REG_READ(STDIO_UART_DIV1_ADDR);
 }
 
 __STATIC_INLINE void stdio_uart_div1_set(uint32_t value)
 {
-    REG_PL_WR(STDIO_UART_DIV1_ADDR, value);
+    PLATFORM_REG_WRITE(STDIO_UART_DIV1_ADDR, value);
 }
 
 // field definitions
@@ -271,13 +271,13 @@ __STATIC_INLINE void stdio_uart_div1_set(uint32_t value)
 
 __STATIC_INLINE uint8_t stdio_uart_div1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DIV1_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DIV1_ADDR);
     return (localVal >> 0);
 }
 
 __STATIC_INLINE void stdio_uart_div1_setf(uint8_t div1)
 {
-    REG_PL_WR(STDIO_UART_DIV1_ADDR, (uint32_t)div1 << 0);
+    PLATFORM_REG_WRITE(STDIO_UART_DIV1_ADDR, (uint32_t)div1 << 0);
 }
 
 /**
@@ -295,7 +295,7 @@ __STATIC_INLINE void stdio_uart_div1_setf(uint8_t div1)
 
 __STATIC_INLINE uint32_t stdio_uart_irqtyp_get(void)
 {
-    return REG_PL_RD(STDIO_UART_IRQTYP_ADDR);
+    return PLATFORM_REG_READ(STDIO_UART_IRQTYP_ADDR);
 }
 
 // field definitions
@@ -307,7 +307,7 @@ __STATIC_INLINE uint32_t stdio_uart_irqtyp_get(void)
 
 __STATIC_INLINE uint8_t stdio_uart_irqtyp_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQTYP_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQTYP_ADDR);
     return ((localVal & ((uint32_t)0x0000000F)) >> 0);
 }
 
@@ -328,7 +328,7 @@ __STATIC_INLINE uint8_t stdio_uart_irqtyp_getf(void)
 
 __STATIC_INLINE void stdio_uart_dbufcfg_set(uint32_t value)
 {
-    REG_PL_WR(STDIO_UART_DBUFCFG_ADDR, value);
+    PLATFORM_REG_WRITE(STDIO_UART_DBUFCFG_ADDR, value);
 }
 
 // field definitions
@@ -345,22 +345,22 @@ __STATIC_INLINE void stdio_uart_dbufcfg_set(uint32_t value)
 
 __STATIC_INLINE void stdio_uart_dbufcfg_pack(uint8_t txdrst, uint8_t rxdrst, uint8_t dbufen)
 {
-    REG_PL_WR(STDIO_UART_DBUFCFG_ADDR, ((uint32_t)txdrst << 2) | ((uint32_t)rxdrst << 1) | ((uint32_t)dbufen << 0));
+    PLATFORM_REG_WRITE(STDIO_UART_DBUFCFG_ADDR, ((uint32_t)txdrst << 2) | ((uint32_t)rxdrst << 1) | ((uint32_t)dbufen << 0));
 }
 
 __STATIC_INLINE void stdio_uart_txdrst_setf(uint8_t txdrst)
 {
-    REG_PL_WR(STDIO_UART_DBUFCFG_ADDR, (REG_PL_RD(STDIO_UART_DBUFCFG_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)txdrst << 2));
+    PLATFORM_REG_WRITE(STDIO_UART_DBUFCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_DBUFCFG_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)txdrst << 2));
 }
 
 __STATIC_INLINE void stdio_uart_rxdrst_setf(uint8_t rxdrst)
 {
-    REG_PL_WR(STDIO_UART_DBUFCFG_ADDR, (REG_PL_RD(STDIO_UART_DBUFCFG_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)rxdrst << 1));
+    PLATFORM_REG_WRITE(STDIO_UART_DBUFCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_DBUFCFG_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)rxdrst << 1));
 }
 
 __STATIC_INLINE void stdio_uart_dbufen_setf(uint8_t dbufen)
 {
-    REG_PL_WR(STDIO_UART_DBUFCFG_ADDR, (REG_PL_RD(STDIO_UART_DBUFCFG_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)dbufen << 0));
+    PLATFORM_REG_WRITE(STDIO_UART_DBUFCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_DBUFCFG_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)dbufen << 0));
 }
 
 /**
@@ -384,12 +384,12 @@ __STATIC_INLINE void stdio_uart_dbufen_setf(uint8_t dbufen)
 
 __STATIC_INLINE uint32_t stdio_uart_dfmtcfg_get(void)
 {
-    return REG_PL_RD(STDIO_UART_DFMTCFG_ADDR);
+    return PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR);
 }
 
 __STATIC_INLINE void stdio_uart_dfmtcfg_set(uint32_t value)
 {
-    REG_PL_WR(STDIO_UART_DFMTCFG_ADDR, value);
+    PLATFORM_REG_WRITE(STDIO_UART_DFMTCFG_ADDR, value);
 }
 
 // field definitions
@@ -426,12 +426,12 @@ __STATIC_INLINE void stdio_uart_dfmtcfg_pack(uint8_t divms, uint8_t divae, uint8
     ASSERT_ERR((((uint32_t)pen << 3) & ~((uint32_t)0x00000008)) == 0);
     ASSERT_ERR((((uint32_t)stop << 2) & ~((uint32_t)0x00000004)) == 0);
     ASSERT_ERR((((uint32_t)dls << 0) & ~((uint32_t)0x00000003)) == 0);
-    REG_PL_WR(STDIO_UART_DFMTCFG_ADDR,  ((uint32_t)divms << 8) | ((uint32_t)divae << 7) | ((uint32_t)brk << 6) | ((uint32_t)eps << 4) | ((uint32_t)pen << 3) | ((uint32_t)stop << 2) | ((uint32_t)dls << 0));
+    PLATFORM_REG_WRITE(STDIO_UART_DFMTCFG_ADDR,  ((uint32_t)divms << 8) | ((uint32_t)divae << 7) | ((uint32_t)brk << 6) | ((uint32_t)eps << 4) | ((uint32_t)pen << 3) | ((uint32_t)stop << 2) | ((uint32_t)dls << 0));
 }
 
 __STATIC_INLINE void stdio_uart_dfmtcfg_unpack(uint8_t* divms, uint8_t* divae, uint8_t* brk, uint8_t* eps, uint8_t* pen, uint8_t* stop, uint8_t* dls)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DFMTCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR);
 
     *divms = (localVal & ((uint32_t)0x00000100)) >> 8;
     *divae = (localVal & ((uint32_t)0x00000080)) >> 7;
@@ -444,86 +444,86 @@ __STATIC_INLINE void stdio_uart_dfmtcfg_unpack(uint8_t* divms, uint8_t* divae, u
 
 __STATIC_INLINE uint8_t stdio_uart_divms_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DFMTCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
 __STATIC_INLINE void stdio_uart_divms_setf(uint8_t divmode)
 {
     ASSERT_ERR((((uint32_t)divmode << 8) & ~((uint32_t)0x00000100)) == 0);
-    REG_PL_WR(STDIO_UART_DFMTCFG_ADDR, (REG_PL_RD(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)divmode << 8));
+    PLATFORM_REG_WRITE(STDIO_UART_DFMTCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)divmode << 8));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_divae_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DFMTCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000080)) >> 7);
 }
 
 __STATIC_INLINE void stdio_uart_divae_setf(uint8_t DIVAE)
 {
     ASSERT_ERR((((uint32_t)DIVAE << 7) & ~((uint32_t)0x00000080)) == 0);
-    REG_PL_WR(STDIO_UART_DFMTCFG_ADDR, (REG_PL_RD(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)DIVAE << 7));
+    PLATFORM_REG_WRITE(STDIO_UART_DFMTCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)DIVAE << 7));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_brk_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DFMTCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000040)) >> 6);
 }
 
 __STATIC_INLINE void stdio_uart_brk_setf(uint8_t brk)
 {
     ASSERT_ERR((((uint32_t)brk << 6) & ~((uint32_t)0x00000040)) == 0);
-    REG_PL_WR(STDIO_UART_DFMTCFG_ADDR, (REG_PL_RD(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)brk << 6));
+    PLATFORM_REG_WRITE(STDIO_UART_DFMTCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)brk << 6));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_eps_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DFMTCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000010)) >> 4);
 }
 
 __STATIC_INLINE void stdio_uart_eps_setf(uint8_t eps)
 {
     ASSERT_ERR((((uint32_t)eps << 4) & ~((uint32_t)0x00000010)) == 0);
-    REG_PL_WR(STDIO_UART_DFMTCFG_ADDR, (REG_PL_RD(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)eps << 4));
+    PLATFORM_REG_WRITE(STDIO_UART_DFMTCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)eps << 4));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_pen_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DFMTCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000008)) >> 3);
 }
 
 __STATIC_INLINE void stdio_uart_pen_setf(uint8_t pen)
 {
     ASSERT_ERR((((uint32_t)pen << 3) & ~((uint32_t)0x00000008)) == 0);
-    REG_PL_WR(STDIO_UART_DFMTCFG_ADDR, (REG_PL_RD(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)pen << 3));
+    PLATFORM_REG_WRITE(STDIO_UART_DFMTCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)pen << 3));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_stop_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DFMTCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000004)) >> 2);
 }
 
 __STATIC_INLINE void stdio_uart_stop_setf(uint8_t stop)
 {
     ASSERT_ERR((((uint32_t)stop << 2) & ~((uint32_t)0x00000004)) == 0);
-    REG_PL_WR(STDIO_UART_DFMTCFG_ADDR, (REG_PL_RD(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)stop << 2));
+    PLATFORM_REG_WRITE(STDIO_UART_DFMTCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)stop << 2));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_dls_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DFMTCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000003)) >> 0);
 }
 
 __STATIC_INLINE void stdio_uart_dls_setf(uint8_t dls)
 {
     ASSERT_ERR((((uint32_t)dls << 0) & ~((uint32_t)0x00000003)) == 0);
-    REG_PL_WR(STDIO_UART_DFMTCFG_ADDR, (REG_PL_RD(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)dls << 0));
+    PLATFORM_REG_WRITE(STDIO_UART_DFMTCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_DFMTCFG_ADDR) & ~((uint32_t)0x00000003)) | ((uint32_t)dls << 0));
 }
 
 /**
@@ -549,12 +549,12 @@ __STATIC_INLINE void stdio_uart_dls_setf(uint8_t dls)
 
 __STATIC_INLINE uint32_t stdio_uart_mdmcfg_get(void)
 {
-    return REG_PL_RD(STDIO_UART_MDMCFG_ADDR);
+    return PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR);
 }
 
 __STATIC_INLINE void stdio_uart_mdmcfg_set(uint32_t value)
 {
-    REG_PL_WR(STDIO_UART_MDMCFG_ADDR, value);
+    PLATFORM_REG_WRITE(STDIO_UART_MDMCFG_ADDR, value);
 }
 
 // field definitions
@@ -589,12 +589,12 @@ __STATIC_INLINE void stdio_uart_mdmcfg_set(uint32_t value)
 
 __STATIC_INLINE void stdio_uart_mdmcfg_pack(uint8_t clkp, uint8_t autodet, uint8_t sire, uint8_t afce, uint8_t loopback, uint8_t out2, uint8_t out1, uint8_t rts, uint8_t dtr)
 {
-    REG_PL_WR(STDIO_UART_MDMCFG_ADDR,  ((uint32_t)clkp << 8) | ((uint32_t)autodet << 7) | ((uint32_t)sire << 6) | ((uint32_t)afce << 5) | ((uint32_t)loopback << 4) | ((uint32_t)out2 << 3) | ((uint32_t)out1 << 2) | ((uint32_t)rts << 1) | ((uint32_t)dtr << 0));
+    PLATFORM_REG_WRITE(STDIO_UART_MDMCFG_ADDR,  ((uint32_t)clkp << 8) | ((uint32_t)autodet << 7) | ((uint32_t)sire << 6) | ((uint32_t)afce << 5) | ((uint32_t)loopback << 4) | ((uint32_t)out2 << 3) | ((uint32_t)out1 << 2) | ((uint32_t)rts << 1) | ((uint32_t)dtr << 0));
 }
 
 __STATIC_INLINE void stdio_uart_mdmcfg_unpack(uint8_t* clkp, uint8_t* autodet, uint8_t* sire, uint8_t* afce, uint8_t* loopback, uint8_t* out2, uint8_t* out1, uint8_t* rts, uint8_t* dtr)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_MDMCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR);
 
     *clkp = (localVal & ((uint32_t)0x00000100)) >> 8;
     *autodet = (localVal & ((uint32_t)0x00000080)) >> 7;
@@ -609,101 +609,101 @@ __STATIC_INLINE void stdio_uart_mdmcfg_unpack(uint8_t* clkp, uint8_t* autodet, u
 
 __STATIC_INLINE uint8_t stdio_uart_clk_p_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_MDMCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
 __STATIC_INLINE void stdio_uart_clk_p_setf(uint8_t clkp)
 {
-    REG_PL_WR(STDIO_UART_MDMCFG_ADDR, (REG_PL_RD(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)clkp << 8));
+    PLATFORM_REG_WRITE(STDIO_UART_MDMCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000100)) | ((uint32_t)clkp << 8));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_auto_det_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_MDMCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000080)) >> 7);
 }
 
 __STATIC_INLINE void stdio_uart_auto_det_setf(uint8_t autodet)
 {
-    REG_PL_WR(STDIO_UART_MDMCFG_ADDR, (REG_PL_RD(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)autodet << 7));
+    PLATFORM_REG_WRITE(STDIO_UART_MDMCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000080)) | ((uint32_t)autodet << 7));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_sire_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_MDMCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000040)) >> 6);
 }
 
 __STATIC_INLINE void stdio_uart_sire_setf(uint8_t sire)
 {
-    REG_PL_WR(STDIO_UART_MDMCFG_ADDR, (REG_PL_RD(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)sire << 6));
+    PLATFORM_REG_WRITE(STDIO_UART_MDMCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000040)) | ((uint32_t)sire << 6));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_afce_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_MDMCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000020)) >> 5);
 }
 
 __STATIC_INLINE void stdio_uart_afce_setf(uint8_t afce)
 {
-    REG_PL_WR(STDIO_UART_MDMCFG_ADDR, (REG_PL_RD(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)afce << 5));
+    PLATFORM_REG_WRITE(STDIO_UART_MDMCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000020)) | ((uint32_t)afce << 5));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_loopback_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_MDMCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000010)) >> 4);
 }
 
 __STATIC_INLINE void stdio_uart_loopback_setf(uint8_t loopback)
 {
-    REG_PL_WR(STDIO_UART_MDMCFG_ADDR, (REG_PL_RD(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)loopback << 4));
+    PLATFORM_REG_WRITE(STDIO_UART_MDMCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000010)) | ((uint32_t)loopback << 4));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_out2_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_MDMCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000008)) >> 3);
 }
 
 __STATIC_INLINE void stdio_uart_out2_setf(uint8_t out2)
 {
-    REG_PL_WR(STDIO_UART_MDMCFG_ADDR, (REG_PL_RD(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)out2 << 3));
+    PLATFORM_REG_WRITE(STDIO_UART_MDMCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000008)) | ((uint32_t)out2 << 3));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_out1_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_MDMCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000004)) >> 2);
 }
 
 __STATIC_INLINE void stdio_uart_out1_setf(uint8_t out1)
 {
-    REG_PL_WR(STDIO_UART_MDMCFG_ADDR, (REG_PL_RD(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)out1 << 2));
+    PLATFORM_REG_WRITE(STDIO_UART_MDMCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000004)) | ((uint32_t)out1 << 2));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_rts_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_MDMCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000002)) >> 1);
 }
 
 __STATIC_INLINE void stdio_uart_rts_setf(uint8_t rts)
 {
-    REG_PL_WR(STDIO_UART_MDMCFG_ADDR, (REG_PL_RD(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)rts << 1));
+    PLATFORM_REG_WRITE(STDIO_UART_MDMCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000002)) | ((uint32_t)rts << 1));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_dtr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_MDMCFG_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
 __STATIC_INLINE void stdio_uart_dtr_setf(uint8_t dtr)
 {
-    REG_PL_WR(STDIO_UART_MDMCFG_ADDR, (REG_PL_RD(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)dtr << 0));
+    PLATFORM_REG_WRITE(STDIO_UART_MDMCFG_ADDR, (PLATFORM_REG_READ(STDIO_UART_MDMCFG_ADDR) & ~((uint32_t)0x00000001)) | ((uint32_t)dtr << 0));
 }
 
 /**
@@ -726,7 +726,7 @@ __STATIC_INLINE void stdio_uart_dtr_setf(uint8_t dtr)
 
 __STATIC_INLINE uint32_t stdio_uart_irqsts_get(void)
 {
-    return REG_PL_RD(STDIO_UART_IRQSTS_ADDR);
+    return PLATFORM_REG_READ(STDIO_UART_IRQSTS_ADDR);
 }
 
 // field definitions
@@ -752,7 +752,7 @@ __STATIC_INLINE uint32_t stdio_uart_irqsts_get(void)
 
 __STATIC_INLINE void stdio_uart_irqsts_unpack(uint8_t* rtdr, uint8_t* rfe, uint8_t* temt, uint8_t* thre, uint8_t* oe, uint8_t* dr)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQSTS_ADDR);
 
     *rtdr = (localVal & ((uint32_t)0x00000100)) >> 8;
     *rfe = (localVal & ((uint32_t)0x00000080)) >> 7;
@@ -764,37 +764,37 @@ __STATIC_INLINE void stdio_uart_irqsts_unpack(uint8_t* rtdr, uint8_t* rfe, uint8
 
 __STATIC_INLINE uint8_t stdio_uart_rtdr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQSTS_ADDR);
     return ((localVal & ((uint32_t)0x00000100)) >> 8);
 }
 
 __STATIC_INLINE uint8_t stdio_uart_rfe_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQSTS_ADDR);
     return ((localVal & ((uint32_t)0x00000080)) >> 7);
 }
 
 __STATIC_INLINE uint8_t stdio_uart_temt_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQSTS_ADDR);
     return ((localVal & ((uint32_t)0x00000040)) >> 6);
 }
 
 __STATIC_INLINE uint8_t stdio_uart_thre_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQSTS_ADDR);
     return ((localVal & ((uint32_t)0x00000020)) >> 5);
 }
 
 __STATIC_INLINE uint8_t stdio_uart_oe_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQSTS_ADDR);
     return ((localVal & ((uint32_t)0x00000002)) >> 1);
 }
 
 __STATIC_INLINE uint8_t stdio_uart_dr_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_IRQSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_IRQSTS_ADDR);
     return ((localVal & ((uint32_t)0x00000001)) >> 0);
 }
 
@@ -808,7 +808,7 @@ __STATIC_INLINE uint8_t stdio_uart_dr_getf(void)
 
 __STATIC_INLINE uint32_t stdio_uart_mdmsts_get(void)
 {
-    return REG_PL_RD(STDIO_UART_MDMSTS_ADDR);
+    return PLATFORM_REG_READ(STDIO_UART_MDMSTS_ADDR);
 }
 
 /**
@@ -831,7 +831,7 @@ __STATIC_INLINE uint32_t stdio_uart_mdmsts_get(void)
 
 __STATIC_INLINE uint32_t stdio_uart_dbufsts_get(void)
 {
-    return REG_PL_RD(STDIO_UART_DBUFSTS_ADDR);
+    return PLATFORM_REG_READ(STDIO_UART_DBUFSTS_ADDR);
 }
 
 // field definitions
@@ -859,7 +859,7 @@ __STATIC_INLINE uint32_t stdio_uart_dbufsts_get(void)
 
 __STATIC_INLINE void stdio_uart_dbufsts_unpack(uint8_t* rxdbuffull, uint8_t* rxdbufempty, uint8_t* txdbuffull, uint8_t* txdbufempty, uint16_t* rxcount, uint16_t* txcount)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DBUFSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DBUFSTS_ADDR);
 
     *rxdbuffull = (localVal & ((uint32_t)0x00200000)) >> 21;
     *rxdbufempty = (localVal & ((uint32_t)0x00100000)) >> 20;
@@ -871,37 +871,37 @@ __STATIC_INLINE void stdio_uart_dbufsts_unpack(uint8_t* rxdbuffull, uint8_t* rxd
 
 __STATIC_INLINE uint8_t stdio_uart_rx_dbuf_full_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DBUFSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DBUFSTS_ADDR);
     return ((localVal & ((uint32_t)0x00200000)) >> 21);
 }
 
 __STATIC_INLINE uint8_t stdio_uart_rx_dbuf_empty_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DBUFSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DBUFSTS_ADDR);
     return ((localVal & ((uint32_t)0x00100000)) >> 20);
 }
 
 __STATIC_INLINE uint8_t stdio_uart_tx_dbuf_full_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DBUFSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DBUFSTS_ADDR);
     return ((localVal & ((uint32_t)0x00080000)) >> 19);
 }
 
 __STATIC_INLINE uint8_t stdio_uart_tx_dbuf_empty_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DBUFSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DBUFSTS_ADDR);
     return ((localVal & ((uint32_t)0x00040000)) >> 18);
 }
 
 __STATIC_INLINE uint16_t stdio_uart_rx_count_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DBUFSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DBUFSTS_ADDR);
     return ((localVal & ((uint32_t)0x0001FE00)) >> 9);
 }
 
 __STATIC_INLINE uint16_t stdio_uart_tx_count_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DBUFSTS_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DBUFSTS_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
@@ -921,12 +921,12 @@ __STATIC_INLINE uint16_t stdio_uart_tx_count_getf(void)
 
 __STATIC_INLINE uint32_t stdio_uart_dbufth_get(void)
 {
-    return REG_PL_RD(STDIO_UART_DBUFTH_ADDR);
+    return PLATFORM_REG_READ(STDIO_UART_DBUFTH_ADDR);
 }
 
 __STATIC_INLINE void stdio_uart_dbufth_set(uint32_t value)
 {
-    REG_PL_WR(STDIO_UART_DBUFTH_ADDR, value);
+    PLATFORM_REG_WRITE(STDIO_UART_DBUFTH_ADDR, value);
 }
 
 // field definitions
@@ -942,12 +942,12 @@ __STATIC_INLINE void stdio_uart_dbufth_set(uint32_t value)
 
 __STATIC_INLINE void stdio_uart_dbufth_pack(uint8_t txtrigth, uint8_t rxtrigth)
 {
-    REG_PL_WR(STDIO_UART_DBUFTH_ADDR,  ((uint32_t)txtrigth << 9) | ((uint32_t)rxtrigth << 0));
+    PLATFORM_REG_WRITE(STDIO_UART_DBUFTH_ADDR,  ((uint32_t)txtrigth << 9) | ((uint32_t)rxtrigth << 0));
 }
 
 __STATIC_INLINE void stdio_uart_dbufth_unpack(uint8_t* txtrigth, uint8_t* rxtrigth)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DBUFTH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DBUFTH_ADDR);
 
     *txtrigth = (localVal & ((uint32_t)0x0001FE00)) >> 9;
     *rxtrigth = (localVal & ((uint32_t)0x000000FF)) >> 0;
@@ -955,24 +955,24 @@ __STATIC_INLINE void stdio_uart_dbufth_unpack(uint8_t* txtrigth, uint8_t* rxtrig
 
 __STATIC_INLINE uint8_t stdio_uart_txtrigth_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DBUFTH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DBUFTH_ADDR);
     return ((localVal & ((uint32_t)0x0001FE00)) >> 9);
 }
 
 __STATIC_INLINE void stdio_uart_txtrigth_setf(uint8_t txtrigth)
 {
-    REG_PL_WR(STDIO_UART_DBUFTH_ADDR, (REG_PL_RD(STDIO_UART_DBUFTH_ADDR) & ~((uint32_t)0x0001FE00)) | ((uint32_t)txtrigth << 9));
+    PLATFORM_REG_WRITE(STDIO_UART_DBUFTH_ADDR, (PLATFORM_REG_READ(STDIO_UART_DBUFTH_ADDR) & ~((uint32_t)0x0001FE00)) | ((uint32_t)txtrigth << 9));
 }
 
 __STATIC_INLINE uint8_t stdio_uart_rxtrigth_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DBUFTH_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DBUFTH_ADDR);
     return ((localVal & ((uint32_t)0x000000FF)) >> 0);
 }
 
 __STATIC_INLINE void stdio_uart_rxtrigth_setf(uint8_t rxtrigth)
 {
-    REG_PL_WR(STDIO_UART_DBUFTH_ADDR, (REG_PL_RD(STDIO_UART_DBUFTH_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)rxtrigth << 0));
+    PLATFORM_REG_WRITE(STDIO_UART_DBUFTH_ADDR, (PLATFORM_REG_READ(STDIO_UART_DBUFTH_ADDR) & ~((uint32_t)0x000000FF)) | ((uint32_t)rxtrigth << 0));
 }
 
 /**
@@ -991,12 +991,12 @@ __STATIC_INLINE void stdio_uart_rxtrigth_setf(uint8_t rxtrigth)
 
 __STATIC_INLINE uint32_t stdio_uart_div2_get(void)
 {
-    return REG_PL_RD(STDIO_UART_DIV2_ADDR);
+    return PLATFORM_REG_READ(STDIO_UART_DIV2_ADDR);
 }
 
 __STATIC_INLINE void stdio_uart_div2_set(uint32_t value)
 {
-    REG_PL_WR(STDIO_UART_DIV2_ADDR, value);
+    PLATFORM_REG_WRITE(STDIO_UART_DIV2_ADDR, value);
 }
 
 // field definitions
@@ -1008,13 +1008,13 @@ __STATIC_INLINE void stdio_uart_div2_set(uint32_t value)
 
 __STATIC_INLINE uint8_t stdio_uart_div2_getf(void)
 {
-    uint32_t localVal = REG_PL_RD(STDIO_UART_DIV2_ADDR);
+    uint32_t localVal = PLATFORM_REG_READ(STDIO_UART_DIV2_ADDR);
     return (localVal >> 0);
 }
 
 __STATIC_INLINE void stdio_uart_div2_setf(uint8_t div2)
 {
-    REG_PL_WR(STDIO_UART_DIV2_ADDR, (uint32_t)div2 << 0);
+    PLATFORM_REG_WRITE(STDIO_UART_DIV2_ADDR, (uint32_t)div2 << 0);
 }
 
 #endif // _REG_STDIO_UART_H_

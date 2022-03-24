@@ -18,7 +18,7 @@
 #include "cs_target_config.h"
 #if APP_SUPPORT_HSP == 1 
 #include "cs_adp_api.h"
-#include "rtos.h"
+#include "al_rtos.h"
 #include "app_bt.h"
 
 BOOL app_hsp_key_handle(uint32_t key)

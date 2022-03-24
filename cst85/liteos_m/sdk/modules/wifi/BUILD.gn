@@ -16,9 +16,9 @@ module_name = "sdk_module_wifi"
 
 kernel_module(module_name) {
   sources = [
-    "fhost/fhost_config.c",
+    "fhost/wifi_host_config.c",
     "macif/rom_patch.c",
-    "console/fhost_console.c",
+    "console/wifi_host_console.c",
     "console/fhost_command_common.c"
   ]
   configs += ["../lwip-2.1:lwip_public_configs"]

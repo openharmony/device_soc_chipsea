@@ -17,7 +17,7 @@
 /*chipsea_ohos proguard end*/
 #include "app_tws.h"
 #if APP_SUPPORT_TWS == 1
-#include "rtos.h"
+#include "al_rtos.h"
 #include "app_a2dp.h"
 #include "app_bt.h"
 #include "app_hfp.h"

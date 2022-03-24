@@ -18,7 +18,7 @@
 #ifndef _RWNX_UTILS_H_
 #define _RWNX_UTILS_H_
 
-#include "ipc_shared.h"
+#include "wifi_ipc_shared.h"
 #include "dbg.h"
 
 #if PLF_WIFI_AUDIO

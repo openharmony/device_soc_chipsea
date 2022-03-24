@@ -1,15 +1,17 @@
-/**
- ****************************************************************************************
+/*
+ * Copyright (c) 2021 Chipsea Technologies (Shenzhen) Corp., Ltd. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * @file aon_sram.h
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * @brief Header file for always-on aon_sram module
- *
- * Copyright (C) RivieraWaves 2017-2018
- *
- ****************************************************************************************
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 #ifndef __AON_SRAM_H__
 #define  __AON_SRAM_H__
 /*chipsea_ohos proguard begin*/
@@ -17,7 +19,7 @@
 /*chipsea_ohos proguard end*/
 
 #ifdef CFG_AON
-#include "rtos.h"
+#include "al_rtos.h"
 #include "target_config.h"
 #include <stdint.h>
 #include <string.h>
@@ -67,13 +69,13 @@ typedef struct{
 #endif
 
 #if PLF_BLE_STACK == 1
-#include "app.h"
-#include "prf.h"
-#include "ke_mem.h"
+#include "app_present.h"
+#include "hal_profile.h"
+#include "ble_ke_mem.h"
 #if BLE_APP_HID
-#include "prf_utils.h"
+#include "hal_profile_utils.h"
 #include "bass.h"
-#include "hogpd.h"
+#include "hid_over_gatt_device.h"
 #endif
 #if BLE_APP_SMARTCONFIG
 #include "smartconfig.h"
