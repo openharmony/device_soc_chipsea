@@ -22,30 +22,27 @@
         <licensefile></licensefile>
         <policylist>
             <policy name="projectPolicy" desc="">
-                <policyitem type="copyright" name="2013-2019 Huawei Technologies Co., Ltd. All rights reserved." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use Huawei copyright"/>
+                <policyitem type="copyright" name="Huawei Technologies Co., Ltd. All rights reserved." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc="chipsea use Huawei copyright"/>
                 <policyitem type="license" name="BSD-3-Clause" path=".*" desc="兼容license"/>
-                <policyitem type="copyright" name="2009-2017 ARM Limited. All rights reserved." path=".*" desc="chipsea use ARM copyright"/>
-                <policyitem type="copyright" name="2006-2018 ARM Limited" path=".*" desc="chipsea use ARM copyright"/>
-                <policyitem type="copyright" name="2017-2018 Arm Limited. All rights reserved." path=".*" desc="chipsea use ARM copyright"/>
-                <policyitem type="copyright" name="2011 ARM Limited. All rights reserved." path=".*" desc="chipsea use ARM copyright"/>
-                <policyitem type="copyright" name="2021 Chipsea Technologies (Shenzhen) Corp., Ltd. All rights reserved" path=".*" desc="chipsea use ARM copyright"/>
-                <policyitem type="copyright" name="2014-2018 ARM Limited. All rights reserved." path=".*" desc="chipsea use ARM copyright"/>
-                <policyitem type="copyright" name="2018-2019 ARM Limited" path=".*" desc="chipsea use ARM copyright"/>
-                <policyitem type="copyright" name="2010-2019 Arm Limited or its affiliates. All rights reserved." path=".*" desc="chipsea use ARM copyright"/>
-                <policyitem type="copyright" name="2015 ARM Limited" path=".*" desc="chipsea use ARM copyright"/>
-                <policyitem type="copyright" name="2009-2018 Arm Limited. All rights reserved." path=".*" desc="chipsea use ARM copyright"/>    
-                <policyitem type="copyright" name="2006-2013 ARM Limited" path=".*" desc="chipsea use ARM copyright"/>
+                <policyitem type="copyright" name="Arm Limited. All rights reserved." path=".*" desc="chipsea use ARM copyright"/>
+                <policyitem type="copyright" name="Chipsea Technologies (Shenzhen) Corp., Ltd. All rights reserved" path=".*" desc="chipsea copyright"/>
+                <policyitem type="copyright" name="ARM Limited" path=".*" desc="chipsea use ARM copyright"/>
+                <policyitem type="copyright" name="CHIPSEA Co., Ltd. All rights reserved." path=".*" desc="chipsea copyright"/> 
+                <policyitem type="copyright" name="Swedish Institute of Computer Science. " path=".*" desc="chipsea use Swedish copyright"/>                     
+                <policyitem type="copyright" name="Arm Limited or its affiliates. All rights reserved." path=".*" desc="chipsea use ARM copyright"/>
             </policy>
         </policylist>
         <filefilterlist>
             <filefilter name="defaultFilter" desc="Files not to check">
                 <filteritem type="filepath" name=".*.a" desc="Temp files"/>
-                <filteritem type="filepath" name=".*.png|.*.gif" desc="Temp files"/>
-                <filteritem type="filepath" name="cst85/liteos_m/sdk/modules/lwip/.*" desc="lwip files"/>
+                <filteritem type="filepath" name=".*.png|.*.gif" desc="Temp files"/>         
                 <filteritem type="filepath" name="cst85/build.sh" desc="script file"/>
             </filefilter>
             <filefilter name="defaultPolicyFilter" desc="Filters for compatibility，license header policies">
                 <filteritem type="filepath" name="EULA" desc="chipsea using MIT files, but invalid copyright"/>
+            </filefilter>
+            <filefilter name="copyrightPolicyFilter" desc="Filters for copyright header policies">
+                <filteritem type="filepath" name="cst85/liteos_m/sdk/modules/lwip-2.1/dhcps/dhcps.c" desc="chipsea use Ari Suutari copyright"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>
