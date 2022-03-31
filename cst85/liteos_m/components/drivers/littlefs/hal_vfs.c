@@ -96,6 +96,17 @@ int32_t hal_vfs_init(void)
     if (LOS_Mkdir("/data", 0777) != 0) {
         printf("+++ hal_vfs_init: Make dir faild!\n");
     }
+#ifdef DSOFTBUS_ENABLED
+    if (LOS_Mkdir("/data/data", 0777) != 0) {
+        printf("+++ hal_vfs_init: 1 Make dir faild!\n");
+    }
+    if (LOS_Mkdir("/data/data/data", 0777) != 0) {
+        printf("+++ hal_vfs_init: 2 Make dir faild!\n");
+    }
+    if (LOS_Mkdir("/data/data/data/dsoftbus", 0777) != 0) {
+        printf("+++ hal_vfs_init: 3 Make dir faild!\n");
+    }
+#endif
 
     flash_user_data_addr_length_set(LFS_DEFAULT_START_ADDR,
             LFS_DEFAULT_BLOCK_SIZE * LFS_DEFAULT_BLOCK_COUNT);

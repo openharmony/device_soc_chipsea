@@ -34,18 +34,39 @@ print("SOC:CHIPSEA:CST85/liteos_m/sdk - $module_name")
 kernel_module(module_name) {
 }
 
+declare_args() {
+  dsoftbus_enabled = false
+}
+
 config("public") {
   include_dirs = [
     "bsp/driver",
   ]
 
   ldflags = [
-    "-Wl,-T" + rebase_path("bsp/out/cst85f01/cst85f01.ld"),
+#"-Wl,-T" + rebase_path("bsp/out/cst85f01/cst85f01.ld"),
     "-L" + rebase_path("bsp/out/cst85f01/"),
   ]
+  if (dsoftbus_enabled) {
+    ldflags += [
+      "-Wl,-T" + rebase_path("bsp/out/cst85f01/cst85f01_dsoftbus.ld"),
+    ]
+  } else {
+    ldflags += [
+      "-Wl,-T" + rebase_path("bsp/out/cst85f01/cst85f01.ld"),
+    ]
+  }
 
   libs = [
     "sdk",
     "iot",
   ]
+
+  if (dsoftbus_enabled) {
+    libs += [
+      "m"
+    ]
+
+    defines = [ "DSOFTBUS_ENABLED" ]
+  }
 }
