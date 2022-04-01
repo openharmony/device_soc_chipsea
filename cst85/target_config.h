@@ -80,7 +80,7 @@ extern "C" {
                                        Mutex module configuration
 =============================================================================*/
 #define LOSCFG_BASE_IPC_MUX                                 1
-#define LOSCFG_BASE_IPC_MUX_LIMIT                           48
+#define LOSCFG_BASE_IPC_MUX_LIMIT                           CFG_OS_IPC_MUX_LIMIT
 /*=============================================================================
                                        Queue module configuration
 =============================================================================*/
@@ -108,7 +108,7 @@ extern "C" {
 
 #define LOSCFG_BASE_CORE_SCHED_SLEEP                        1
 
-#define LOSCFG_SYS_HEAP_SIZE                                0x25000UL
+#define LOSCFG_SYS_HEAP_SIZE                                CFG_OS_SYS_HEAP_SIZE
 
 //#define LOSCFG_KERNEL_PM                                    0
 

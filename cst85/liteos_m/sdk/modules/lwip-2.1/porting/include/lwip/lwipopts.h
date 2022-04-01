@@ -34,6 +34,8 @@
 
 #include_next "lwip/lwipopts.h"
 
+#define LWIP_SOCKET_SELECT_FUNC         1
+#define LWIP_SOCKET_FCNTL_FUNC          1
 #define LWIP_SUPPORT_CUSTOM_PBUF      1
 #define LWIP_NETIF_API                1
 #define TCPIP_MBOX_SIZE               10
@@ -50,7 +52,7 @@
 #define LWIP_TCPIP_CORE_LOCKING_INPUT 1
 #define PBUF_LINK_ENCAPSULATION_HLEN  0
 #define MEMP_NUM_NETBUF               32
-#define MEMP_NUM_NETCONN              10
+//#define MEMP_NUM_NETCONN              10
 #define MEMP_NUM_UDP_PCB              16
 #define TCP_MSS                       1460
 #define LWIP_CHKSUM                   fhost_ip_chksum

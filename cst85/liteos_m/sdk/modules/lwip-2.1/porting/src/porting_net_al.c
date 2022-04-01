@@ -337,6 +337,10 @@ int net_init(void)
     // Initialize the TCP/IP stack
     tcpip_init(NULL, NULL);
 
+#ifdef DSOFTBUS_ENABLED
+    ipc_host_cntrl_start();
+#endif
+
     return 0;
 }
 
