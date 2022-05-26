@@ -36,25 +36,23 @@ kernel_module(module_name) {
 
 declare_args() {
   dsoftbus_enabled = false
+  enable_xts_service = false
 }
 
 config("public") {
-  include_dirs = [
-    "bsp/driver",
-  ]
+  include_dirs = [ "bsp/driver" ]
 
   ldflags = [
-#"-Wl,-T" + rebase_path("bsp/out/cst85f01/cst85f01.ld"),
+    #"-Wl,-T" + rebase_path("bsp/out/cst85f01/cst85f01.ld"),
     "-L" + rebase_path("bsp/out/cst85f01/"),
   ]
   if (dsoftbus_enabled) {
-    ldflags += [
-      "-Wl,-T" + rebase_path("bsp/out/cst85f01/cst85f01_dsoftbus.ld"),
-    ]
+    ldflags +=
+        [ "-Wl,-T" + rebase_path("bsp/out/cst85f01/cst85f01_dsoftbus.ld") ]
+  } else if (enable_xts_service) {
+    ldflags += [ "-Wl,-T" + rebase_path("bsp/out/cst85f01/cst85f01_xts.ld") ]
   } else {
-    ldflags += [
-      "-Wl,-T" + rebase_path("bsp/out/cst85f01/cst85f01.ld"),
-    ]
+    ldflags += [ "-Wl,-T" + rebase_path("bsp/out/cst85f01/cst85f01.ld") ]
   }
 
   libs = [
@@ -63,9 +61,7 @@ config("public") {
   ]
 
   if (dsoftbus_enabled) {
-    libs += [
-      "m"
-    ]
+    libs += [ "m" ]
 
     defines = [ "DSOFTBUS_ENABLED" ]
   }
