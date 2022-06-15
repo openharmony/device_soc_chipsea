@@ -16,14 +16,12 @@ module_name = "sdk_module_common_api"
 
 kernel_module(module_name) {
   sources = [
+    "src/ring_buffer.c",
     "src/wb_co_main.c",
     "src/wb_co_math.c",
-    "src/ring_buffer.c",
   ]
 }
 
 config("public") {
-  include_dirs = [
-    "api"
-  ]
+  include_dirs = [ "api" ]
 }

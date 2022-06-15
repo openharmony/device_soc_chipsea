@@ -15,12 +15,7 @@ import("//kernel/liteos_m/liteos.gni")
 module_name = "bsp_sdk_sample"
 print("SOC:CHIPSEA:CST85/liteos_m/sdk - $module_name")
 kernel_module(module_name) {
+  sources = [ "task_sample.c" ]
 
-  sources = [
-    "task_sample.c",
-  ]
-
-  include_dirs = [
-  ]
+  include_dirs = []
 }
-

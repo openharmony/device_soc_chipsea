@@ -15,9 +15,7 @@ import("//kernel/liteos_m/liteos.gni")
 module_name = "bsp_sdk_wrapper"
 print("SOC:CHIPSEA:CST85/liteos_m/sdk - $module_name")
 kernel_module(module_name) {
-  sources = [
-    "syscalls.c",
-  ]
+  sources = [ "syscalls.c" ]
 
   include_dirs = [
     "//kernel/liteos_m/kernel/include",

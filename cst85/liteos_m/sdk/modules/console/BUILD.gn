@@ -22,7 +22,5 @@ kernel_module(module_name) {
 }
 
 config("public") {
-  include_dirs = [
-    "api"
-  ]
+  include_dirs = [ "api" ]
 }

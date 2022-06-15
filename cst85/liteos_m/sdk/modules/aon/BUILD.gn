@@ -15,14 +15,9 @@ import("//kernel/liteos_m/liteos.gni")
 module_name = "sdk_module_aon_sram"
 
 kernel_module(module_name) {
-  sources = [
-    "src/aon_sram.c"
-  ]
+  sources = [ "src/aon_sram.c" ]
 }
 
 config("public") {
-  include_dirs = [
-    "api"
-  ]
+  include_dirs = [ "api" ]
 }
-

@@ -15,14 +15,9 @@ import("//kernel/liteos_m/liteos.gni")
 module_name = "sdk_module_wb_coex"
 
 kernel_module(module_name) {
-  sources = [
-    "src/wb_coex.c"
-  ]
+  sources = [ "src/wb_coex.c" ]
 }
 
 config("public") {
-  include_dirs = [
-    "api"
-  ]
+  include_dirs = [ "api" ]
 }
-

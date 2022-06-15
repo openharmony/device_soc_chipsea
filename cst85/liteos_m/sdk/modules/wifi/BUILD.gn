@@ -16,12 +16,12 @@ module_name = "sdk_module_wifi"
 
 kernel_module(module_name) {
   sources = [
+    "console/fhost_command_common.c",
+    "console/wifi_host_console.c",
     "fhost/wifi_host_config.c",
     "macif/rom_patch.c",
-    "console/wifi_host_console.c",
-    "console/fhost_command_common.c"
   ]
-  configs += ["../lwip-2.1:lwip_public_configs"]
+  configs += [ "../lwip-2.1:lwip_public_configs" ]
 }
 
 config("wifi_public_configs") {
@@ -29,7 +29,8 @@ config("wifi_public_configs") {
     "fhost",
     "fhost/application",
     "macif",
-    "wlan" ]
+    "wlan",
+  ]
 }
 
 config("public") {
@@ -39,6 +40,6 @@ config("public") {
     "fhost/application",
     "macif",
     "wlan",
-    "//foundation/communication/wifi_lite/interfaces/wifiservice/"
+    "//foundation/communication/wifi_lite/interfaces/wifiservice/",
   ]
 }

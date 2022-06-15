@@ -19,12 +19,8 @@ print("SOC:CHIPSEA:CST85")
 module_name = get_path_info(rebase_path("."), "name")
 print("SOC:CHIPSEA:CST85 - $module_name")
 module_group(module_name) {
-  modules = [
-    "liteos_m",
-  ]
-
+  modules = [ "liteos_m" ]
 }
-
 #build_ext_component("cst85f01") {
 #  print("SOC:CHIPSEA:CST85 ext component")
 #  exec_path = rebase_path(".", root_build_dir)
@@ -65,8 +61,8 @@ module_group(module_name) {
 #  ]
 #
 #  deps = [
-##     "//drivers/adapter/khdf/liteos_m:hdf_lite",
+##     "//drivers/hdf_core/adapter/khdf/liteos_m:hdf_lite",
 #     "Core:core",
-#     "handler:handler",  
+#     "handler:handler",
 #  ]
 #}

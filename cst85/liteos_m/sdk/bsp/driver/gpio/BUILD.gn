@@ -15,14 +15,9 @@ import("//kernel/liteos_m/liteos.gni")
 module_name = "bsp_sdk_gpio"
 print("SOC:CHIPSEA:CST85/liteos_m/sdk - $module_name")
 kernel_module(module_name) {
-  sources = [
-    "gpio_api.c",
-  ]
-
+  sources = [ "gpio_api.c" ]
 }
 
 config("public") {
-  include_dirs = [
-    ".",
-  ]
+  include_dirs = [ "." ]
 }
