@@ -17,7 +17,7 @@ module_name = "sdk_modules_rtos"
 kernel_module(module_name) {
   sources = [
     "src/os_al/rtos_al.c",
-    "src/rtos.c"
+    "src/rtos.c",
   ]
 
   deps = [ "//base/hiviewdfx/hilog_lite/frameworks/featured:hilog_static" ]
@@ -28,7 +28,5 @@ kernel_module(module_name) {
 }
 
 config("public") {
-  include_dirs = [
-    "api/"
-  ]
+  include_dirs = [ "api/" ]
 }

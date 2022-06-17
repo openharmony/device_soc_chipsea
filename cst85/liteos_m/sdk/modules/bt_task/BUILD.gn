@@ -15,14 +15,9 @@ import("//kernel/liteos_m/liteos.gni")
 module_name = "sdk_module_bt_task"
 
 kernel_module(module_name) {
-  sources = [
-   
-  ]
+  sources = []
 }
 
 config("public") {
-  include_dirs = [
-    "api"
-  ]
+  include_dirs = [ "api" ]
 }
-

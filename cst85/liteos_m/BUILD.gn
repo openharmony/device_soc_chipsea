@@ -30,6 +30,7 @@ module_group(module_name) {
     "sdk/bsp/driver/cs1000aud_regs",
     "sdk/bsp/driver/cs1000lite_regs",
     "sdk/bsp/driver/dma",
+
     #"sdk/bsp/driver/dbg",
     "sdk/bsp/driver/flash",
     "sdk/bsp/driver/gpadc",
@@ -58,6 +59,7 @@ module_group(module_name) {
     "sdk/modules/rtos",
     "sdk/modules/wb_coex",
     "sdk/modules/wifi",
+
     #"sdk/modules/wifi/wifilib",
     #"sdk/modules/wifi/wpalib",
     "sdk/modules/console",

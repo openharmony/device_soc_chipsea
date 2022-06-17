@@ -33,11 +33,10 @@ import("$LITEOSTOPDIR/components/net/lwip-2.1/lwip_porting.gni")
 module_switch = defined(LOSCFG_NET_LWIP_SACK)
 module_name = get_path_info(rebase_path("."), "name")
 kernel_module(module_name) {
-  sources = LWIP_PORTING_FILES + LWIPNOAPPSFILES -
-            [ "$LWIPDIR/api/sockets.c" ]
+  sources = LWIP_PORTING_FILES + LWIPNOAPPSFILES - [ "$LWIPDIR/api/sockets.c" ]
   sources += [
-    "./porting/src/porting_net_al.c",
     "./dhcps/dhcps.c",
+    "./porting/src/porting_net_al.c",
   ]
 }
 
@@ -49,5 +48,5 @@ config("public") {
   #defines = [ "_BSD_SOURCE=1" ]
   include_dirs =
       [ "porting/include" ] + LWIP_PORTING_INCLUDE_DIRS + LWIP_INCLUDE_DIRS
-  include_dirs += ["./dhcps"]
+  include_dirs += [ "./dhcps" ]
 }

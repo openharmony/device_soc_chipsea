@@ -17,11 +17,11 @@ module_name = "sdk_module_btdm"
 kernel_module(module_name) {
   sources = [
     "ble/ble_app/app_main/app_present_task.c",
-    "ble/ble_profiles/smartconfig/smartconfigs/src/smartconfig.c",
-    "ble/ble_profiles/smartconfig/smartconfigs/src/smartconfig_task.c", 
-    "ble/ble_profiles/prf/profile_user.c",
-    "ble/ble_dbg/csble_dbg.c",
     "ble/ble_app/app_smartconfig/app_smartconfig.c",
+    "ble/ble_dbg/csble_dbg.c",
+    "ble/ble_profiles/prf/profile_user.c",
+    "ble/ble_profiles/smartconfig/smartconfigs/src/smartconfig.c",
+    "ble/ble_profiles/smartconfig/smartconfigs/src/smartconfig_task.c",
   ]
 }
 
@@ -52,7 +52,5 @@ config("public") {
     "ble/ble_profiles/bas/bass/api",
     "ble/ble_profiles/bas/bass/src",
     "ble/ble_app/app_smartconfig",
-
   ]
 }
-

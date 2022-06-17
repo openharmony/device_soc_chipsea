@@ -30,20 +30,13 @@ import("//kernel/liteos_m/liteos.gni")
 module_switch = defined(LOSCFG_FS_LITTLEFS)
 module_name = get_path_info(rebase_path("."), "name")
 kernel_module(module_name) {
-  sources = [
-    "hal_vfs.c",
-  ]
+  sources = [ "hal_vfs.c" ]
   include_dirs = [
     "//kernel/liteos_m/components/fs/vfs",
-    "//drivers/framework/include/utils"
+    "//drivers/hdf_core/framework/include/utils",
   ]
 }
 
 config("public") {
-  include_dirs = [
-    "."
-  ]
+  include_dirs = [ "." ]
 }
-
-
-

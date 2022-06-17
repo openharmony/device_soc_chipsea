@@ -16,16 +16,12 @@ module_name = "sdk_module_apps"
 
 kernel_module(module_name) {
   sources = [
-   "src/app_ble_only.c",
-   "src/ble_smartconfig_wifi_example.c",
+    "src/app_ble_only.c",
+    "src/ble_smartconfig_wifi_example.c",
   ]
-  configs += ["../lwip-2.1:lwip_public_configs"]
-
+  configs += [ "../lwip-2.1:lwip_public_configs" ]
 }
 
 config("public") {
-  include_dirs = [
-    "api"
-  ]
+  include_dirs = [ "api" ]
 }
-

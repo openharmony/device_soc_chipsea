@@ -13,6 +13,7 @@
 
 import("//kernel/liteos_m/liteos.gni")
 module_name = "sdk_bsp_arch"
+
 #module_name = get_path_info(rebase_path("."), "name")
 print("SOC:CHIPSEA:CST85/liteos_m/sdk/bsp - $module_name")
 
@@ -21,11 +22,8 @@ kernel_module(module_name) {
     "boot/armgcc_4_8/boot_startup.S",
     "boot/armgcc_4_8/exception.S",
     "boot/fault_handler.c",
-
     "cmsis/cmsis_nvic.c",
-
     "ll/ll.c",
-
     "main/arch_main.c",
   ]
 
@@ -34,9 +32,7 @@ kernel_module(module_name) {
     "boot/armgcc_4_8",
   ]
 
-  deps = [
-    "//base/startup/bootstrap_lite/services/source:bootstrap",
-  ]
+  deps = [ "//base/startup/bootstrap_lite/services/source:bootstrap" ]
 }
 
 config("public") {

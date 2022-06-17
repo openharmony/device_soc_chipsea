@@ -16,21 +16,19 @@ module_name = "bsp_sdk_bt"
 print("SOC:CHIPSEA:CST85/liteos_m/sdk - $module_name")
 kernel_module(module_name) {
   sources = [
-    "bt_cs8800_driver.c",
     "bt_common_config.c",
+    "bt_cs8800_driver.c",
     "bt_patch_table.c",
-    "patch/mcu/fw_patch_u02.c",
     "patch/mcu/fw_patch_table_u02.c",
-    "patch/mcu/fw_patch_u03.c",
     "patch/mcu/fw_patch_table_u03.c",
+    "patch/mcu/fw_patch_u02.c",
+    "patch/mcu/fw_patch_u03.c",
   ]
-
 }
 
 config("public") {
   include_dirs = [
     ".",
     "patch/mcu",
-
   ]
 }

@@ -20,11 +20,8 @@ kernel_module(module_name) {
     "cs_dbg_assert.c",
     "cs_dbg_print.c",
   ]
-
 }
 
 config("public") {
-  include_dirs = [
-    ".",
-  ]
+  include_dirs = [ "." ]
 }

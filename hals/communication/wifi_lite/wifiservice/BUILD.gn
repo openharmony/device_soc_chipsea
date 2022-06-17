@@ -19,11 +19,11 @@ module_name = get_path_info(rebase_path("."), "name")
 kernel_module(module_name) {
   sources = [
     "wifi_device.c",
-    "wifi_hotspot.c",
     "wifi_event.c",
+    "wifi_hotspot.c",
   ]
   deps = [ "//foundation/communication/wifi_lite:wifi" ]
   include_dirs = [ "./" ]
   visibility += [ "../../.." ]
-  configs += ["//device/soc/chipsea/cst85/liteos_m/sdk/modules/lwip-2.1:lwip_public_configs"]
+  configs += [ "//device/soc/chipsea/cst85/liteos_m/sdk/modules/lwip-2.1:lwip_public_configs" ]
 }
