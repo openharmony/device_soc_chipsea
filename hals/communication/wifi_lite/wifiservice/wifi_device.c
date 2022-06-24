@@ -214,7 +214,7 @@ int32_t DoScan(void)
     g_wifiData.scanSize = 0;
     if (SetStaVif() != WIFI_SUCCESS) {
         dbg("SetStaVif err\r\n");
-        DoScanCallBack(WIFI_STATE_NOT_AVALIABLE, 0);
+        DoScanCallBack(WIFI_STATE_NOT_AVAILABLE, 0);
         return ERROR_WIFI_NOT_AVAILABLE;
     }
 
@@ -222,11 +222,11 @@ int32_t DoScan(void)
     if (g_wifiData.scanSize < 0) {
         dbg("wifiDevice:scan size err:%d\r\n", g_wifiData.scanSize);
         WIFI_CLOSE_LINK(g_wifiData.consoleCntrlLink);
-        DoScanCallBack(WIFI_STATE_NOT_AVALIABLE, 0);
+        DoScanCallBack(WIFI_STATE_NOT_AVAILABLE, 0);
         return ERROR_WIFI_NOT_AVAILABLE;
     }
 
-    DoScanCallBack(WIFI_STATE_AVALIABLE, g_wifiData.scanSize);
+    DoScanCallBack(WIFI_STATE_AVAILABLE, g_wifiData.scanSize);
     return WIFI_SUCCESS;
 }
 
@@ -319,7 +319,7 @@ void DoAdvanceScan(WifiScanParams *params)
             break;
         default:
             rtos_free(params);
-            DoScanCallBack(WIFI_STATE_AVALIABLE, 0);
+            DoScanCallBack(WIFI_STATE_AVAILABLE, 0);
             return;
         break;
     }
@@ -327,7 +327,7 @@ void DoAdvanceScan(WifiScanParams *params)
 
     if (SetStaVif() != WIFI_SUCCESS) {
         dbg("SetStaVif err\r\n");
-        DoScanCallBack(WIFI_STATE_AVALIABLE, 0);
+        DoScanCallBack(WIFI_STATE_AVAILABLE, 0);
         return;
     }
 
@@ -338,7 +338,7 @@ void DoAdvanceScan(WifiScanParams *params)
         dbg("fhost_super_scan,no result!\r\n");
     }
 
-    DoScanCallBack(WIFI_STATE_AVALIABLE, g_wifiData.scanSize);
+    DoScanCallBack(WIFI_STATE_AVAILABLE, g_wifiData.scanSize);
 }
 
 WifiErrorCode GetScanInfoList(WifiScanInfo *result, unsigned int *size)
@@ -397,7 +397,7 @@ static void AfterConnect(int networkId, WifiConnectDevice *device)
     memcpy(info->linkinfo.bssid, device->devConf.bssid, WIFI_MAC_LEN);
     strcpy(info->linkinfo.ssid, device->devConf.ssid);
     info->linkinfo.rssi = data_pkt_rssi_get();
-    DoStaConnectCallBack(WIFI_STATE_AVALIABLE, &info->linkinfo);
+    DoStaConnectCallBack(WIFI_STATE_AVAILABLE, &info->linkinfo);
 }
 
 static int32_t StaConfig(WifiConnectDevice *device, struct fhost_vif_sta_cfg *staCfg)
@@ -487,7 +487,7 @@ WifiErrorCode ConnectTo(int networkId)
     return WIFI_SUCCESS;
 connect_err:
     WifiUnlock();
-    DoStaConnectCallBack(WIFI_STATE_NOT_AVALIABLE, NULL);
+    DoStaConnectCallBack(WIFI_STATE_NOT_AVAILABLE, NULL);
     return ERROR_WIFI_UNKNOWN;
 }
 

@@ -115,11 +115,11 @@ WifiErrorCode EnableHotspot(void)
     dbg("DHCPS init: ip=%d.%d.%d.%d\r\n", (ip_addr)&0xFF, (ip_addr>>8)&0xFF, (ip_addr>>16)&0xFF, (ip_addr>>24)&0xFF);
 
     g_apData.state = WIFI_HOTSPOT_ACTIVE;
-    DoApStateCallBack(WIFI_STATE_AVALIABLE);
+    DoApStateCallBack(WIFI_STATE_AVAILABLE);
     WifiUnlock();
     return WIFI_SUCCESS;
 enable_err:
-    DoApStateCallBack(WIFI_STATE_NOT_AVALIABLE);
+    DoApStateCallBack(WIFI_STATE_NOT_AVAILABLE);
     WifiUnlock();
     return ERROR_WIFI_UNKNOWN;
 }
@@ -143,7 +143,7 @@ WifiErrorCode DisableHotspot(void)
     }
     g_apData.stationCnt = 0;
     g_apData.state = WIFI_HOTSPOT_NOT_ACTIVE;
-    DoApStateCallBack(WIFI_STATE_NOT_AVALIABLE);
+    DoApStateCallBack(WIFI_STATE_NOT_AVAILABLE);
     WifiUnlock();
     return WIFI_SUCCESS;
 }
