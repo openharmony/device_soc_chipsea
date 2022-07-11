@@ -421,6 +421,12 @@ void print_buffer(uint32_t addr, uint32_t count, uint8_t width, bool ascii_on)
     } while(nbytes > 0);
 }
 
+int do_auto_download(int argc, char *argv[])
+{
+    printf("%s: reboot to download ...\n");
+    pmic_chip_reboot();
+}
+
 int do_help(int argc, char *argv[])
 {
     cmd_tbl_t *cmdtemp = &cmd_tbl_list[0];    /*Init value */
@@ -665,6 +671,7 @@ void command_init(void)
     console_cmd_add("ar", " ar addr <cnt> <size>", 4, do_amem_read);
     console_cmd_add("aw", " aw addr val", 3, do_amem_write);
     #endif
+    console_cmd_add("auto_dl", "  auto_dl: auto download image", 1, do_auto_download);
 }
 
 /**
