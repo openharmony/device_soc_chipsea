@@ -3,7 +3,7 @@
 /* Linker script to configure memory regions. */
 MEMORY
 {
-    IRAM (rwx)      : ORIGIN = 0x08000000, LENGTH = 1500K
+    IRAM (rwx)      : ORIGIN = 0x08000000, LENGTH = 1650K
     DRAM (rwx)      : ORIGIN = 0x00100000, LENGTH = 384K
     LPIRAM (rwx)    : ORIGIN = 0x001A0000, LENGTH = 0x100
     ipc_shared_memory (!rx) : ORIGIN = 0x00190000, len = 2K
