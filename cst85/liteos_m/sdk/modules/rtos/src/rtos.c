@@ -261,7 +261,7 @@ void rtos_main(void)
     DeviceManagerStart();
     OHOS_SystemInit();
 #ifdef CONFIG_FS_LITTLEFS
-    hal_vfs_init();
+    //hal_vfs_init();
 #endif
     /*chipsea_ohos start device manager and init system , end*/
 
