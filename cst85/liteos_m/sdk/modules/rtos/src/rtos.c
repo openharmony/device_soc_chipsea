@@ -94,6 +94,8 @@ struct rwnx_hw hw_env;
 
 #include "sysctrl_api.h"
 #include "sleep_api.h"
+#include "cmsis_os2.h"
+
 extern int fhost_application_smartconfig_init(void);
 rtos_task_cfg_st get_task_cfg(uint8_t task_id)
 {
@@ -137,6 +139,11 @@ __WEAK void user_data_save(void)
 __WEAK void user_data_restore(void)
 {
     // VOID
+}
+
+void timer_callback(void *arg) {
+    printf("%s: begin\n", __func__);
+    OHOS_SystemInit();
 }
 
 void rtos_main(void)
@@ -259,7 +266,19 @@ void rtos_main(void)
     /*chipsea_ohos start device manager and init system , begin*/
     init_trace_system();
     DeviceManagerStart();
-    OHOS_SystemInit();
+
+    osTimerId_t timerId;
+    unsigned int timerExec = 5000;
+    osStatus_t status;
+    timerId = osTimerNew((osTimerFunc_t)timer_callback, osTimerOnce, &timerExec, NULL );
+    if (timerId != NULL) {
+        status = osTimerStart(timerId, 5000U);
+        if (status != osOK) {
+            printf("Failed to start timer!\n");
+        }
+    } else {
+        printf("Failed to create timer!\n");
+    }
 #ifdef CONFIG_FS_LITTLEFS
     //hal_vfs_init();
 #endif
