@@ -34,7 +34,7 @@
 #include <stddef.h>    // standard definitions
 #include <stdint.h>    // standard integer definition
 #include <stdbool.h>   // boolean definition
-#include "time_api.h"
+#include "driver_pub.h"
 
 #include "dbg.h"
 

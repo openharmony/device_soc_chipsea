@@ -21,7 +21,7 @@
 #include "wifi_mac_frame.h"
 #include "wifi_msg.h"
 #include "wifi_host.h"
-#include "time_api.h"
+#include "driver_pub.h"
 #include "trng_api.h"
 #include "flash_api.h"
 

@@ -37,6 +37,7 @@ module_group(module_name) {
     "sdk/bsp/driver/gpio",
     "sdk/bsp/driver/iomux",
     "sdk/bsp/driver/ipc",
+    "sdk/bsp/driver/pub",
     "sdk/bsp/driver/pmic",
     "sdk/bsp/driver/psim",
     "sdk/bsp/driver/reg",
@@ -45,7 +46,8 @@ module_group(module_name) {
     "sdk/bsp/driver/stdio_uart",
     "sdk/bsp/driver/sysctrl",
     "sdk/bsp/driver/ticker",
-    "sdk/bsp/driver/time",
+
+    #"sdk/bsp/driver/time",
     "sdk/bsp/driver/trng",
     "sdk/bsp/wrapper",
 
