@@ -12,10 +12,12 @@
 # limitations under the License.
 
 import("//kernel/liteos_m/liteos.gni")
-module_name = "bsp_sdk_time"
+module_name = "bsp_sdk_public"
 print("SOC:CHIPSEA:CST85/liteos_m/sdk - $module_name")
 kernel_module(module_name) {
-  sources = [ "time_api.c" ]
+  sources = []
+
+  include_dirs = []
 }
 
 config("public") {

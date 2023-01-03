@@ -26,7 +26,7 @@
 #include "app_tws.h"
 #endif
 #include "bt_task_msg.h"
-#include "time_api.h"
+#include "driver_pub.h"
 
 #define CFG_CUR_TIME_INFORMER   0
 #if CFG_CUR_TIME_INFORMER
