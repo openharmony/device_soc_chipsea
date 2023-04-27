@@ -32,7 +32,7 @@ device/soc/chipsea
 │           └── wifiservice
 ```
 
-以下内容步骤参考[quickstart-lite-env-setup-linux](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-env-setup-linux.md)。
+以下内容步骤参考[quickstart-lite-env-setup-linux](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/Readme-CN.md)。
 
 仓库包含编译构建脚本和打包镜像工具。
 
@@ -190,8 +190,6 @@ repo forall -c 'git lfs pull'
     ```
 
 ## 编译流程
-
-[编译构建使用指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-mini-lite.md)
 
 ```shell
     hb set
